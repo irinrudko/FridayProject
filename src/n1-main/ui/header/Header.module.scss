@@ -1,0 +1,21 @@
+.headerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
+  background-color: #383838;
+  .navLink {
+    color: white;
+    padding: 10px;
+    text-transform: uppercase;
+    line-height: 20px;
+    text-decoration: none;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    &:hover {
+      color: #2196f3;
+      transition: color 1s ease;
+    }
+  }
+}

@@ -1,0 +1,60 @@
+.default {
+    width: 100px;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    padding: .5em 2em;
+    outline: none;
+    border-width: 2px 0;
+    border-style: solid none;
+    border-color: #878787 #000 #878787;
+    border-radius: 6px;
+    background: linear-gradient(#878787, #5e5e60) #878787;
+    transition: 0.2s;
+}
+
+.default:hover {
+    background: linear-gradient(#878787, #525252) #878787;
+}
+
+.default:active {
+    background: linear-gradient(#525252, #878787) #525252;
+}
+
+.red {
+    margin-top: 20px;
+    width: 100px;
+    display: inline-block;
+    color: #e53232;
+    text-decoration: none;
+    padding: .5em 2em;
+    outline: none;
+    border-width: 2px 0;
+    border-style: solid none;
+    border-color: #878787 #000 #878787;
+    border-radius: 6px;
+    background: linear-gradient(#878787, #5e5e60) #878787;
+    transition: 0.2s;
+}
+
+.red:hover {
+    background: linear-gradient(#878787, #525252) #878787;
+}
+
+.red:active {
+    background: linear-gradient(#525252, #878787) #525252;
+}
+
+.disabled {
+    margin-top: 20px;
+    display: inline-block;
+    color: #5b5757;
+    text-decoration: none;
+    padding: .5em 2em;
+    outline: none;
+    border-width: 2px 0;
+    border-style: solid none;
+    border-color: #878787 #000 #878787;
+    border-radius: 6px;
+    background: linear-gradient(#878787, #5e5e60) #878787;
+}
