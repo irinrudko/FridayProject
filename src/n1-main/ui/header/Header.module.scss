@@ -13,9 +13,13 @@
     font-weight: 400;
     font-style: normal;
     font-size: 15px;
+
     &:hover {
       color: #2196f3;
       transition: color 1s ease;
     }
+  }
+  .active {
+    color: #2196f3;
   }
 }
