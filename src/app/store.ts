@@ -1,17 +1,19 @@
 import {AnyAction, applyMiddleware, combineReducers, legacy_createStore} from "redux";
 import {appReducer} from "./app-reducer";
-import {loginReducer} from "./login-reducer";
-import {profileReducer} from "./profile-reducer";
-import {registrationReducer} from "./registartion-reducer";
+import {loginReducer} from "../features/auth/login/login-reducer";
+import {profileReducer} from "../features/profile/profile-reducer";
+import {registrationReducer} from "../features/auth/registration/registartion-reducer";
 import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import {foggotPasswordReducer} from "../features/auth/foggotPassword/foggotPassword-reducer";
 
 
 const rootReducer = combineReducers({
     app: appReducer,
     login: loginReducer,
     profile: profileReducer,
-    registration: registrationReducer
+    registration: registrationReducer,
+    foggotPassword:foggotPasswordReducer
 })
 
 

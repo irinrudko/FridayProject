@@ -1,10 +1,12 @@
 
 export const routes = {
+    main:"/main",
     profile: "/profile",
     login: "/login",
     registration: "/registration",
+    foggotPassword:"/foggotPassword",
     newPassword: "/newPassword",
     passwordRecovery: "/passwordRecovery",
     test: "/test",
-    w404:"/404"
+    error404:"/404"
 }

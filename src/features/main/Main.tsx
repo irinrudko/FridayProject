@@ -1,11 +1,10 @@
 import React from 'react';
 
-const W404 = () => {
+export const Main = () => {
     return (
         <div>
-            404
+            <h1>there will be main</h1>
         </div>
     );
 };
 
-export default W404;
