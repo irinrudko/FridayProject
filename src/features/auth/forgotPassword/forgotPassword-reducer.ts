@@ -2,7 +2,7 @@ const initialState = {}
 type InitialStateType = typeof initialState
 type ActionType = any
 
-export const foggotPasswordReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
+export const forgotPasswordReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
         default:
             return state
