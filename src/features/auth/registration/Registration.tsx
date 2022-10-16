@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import s from './Registration.module.css'
 import authStyle from '../../auth/Auth.module.css'
-import {NavLink} from 'react-router-dom'
+import {Navigate, NavLink} from 'react-router-dom'
 import {routes} from '../../../app/routes/Routes'
 import Grid from '@mui/material/Grid'
 import Checkbox from '@mui/material/Checkbox'
@@ -14,11 +14,13 @@ import Button from '@mui/material/Button'
 import {useFormik} from 'formik'
 import {IconButton, Input, InputAdornment, InputLabel, OutlinedInput} from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
+import {regTC} from "./registartion-reducer";
+import {useAppDispatch, useAppSelector} from "../../../app/store";
 
-//TODO: validation
 
 const Registration = () => {
-
+    const dispatch = useAppDispatch();
+    const registered = useAppSelector<boolean>(state => state.registration.registered)
     const [password, setPassword] = useState(false);
     const [confirmPassword, setConfirmPassword] = useState(false);
 
@@ -35,17 +37,25 @@ const Registration = () => {
         }
     };
 
+
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
-            rememberMe: false,
             confirmPassword: ''
         },
         onSubmit: (values) => {
-            // alert(JSON.stringify(values))
+            if(formik.values.password === formik.values.confirmPassword) {
+                alert(JSON.stringify(values))
+                dispatch(regTC(values))
+                formik.resetForm()
+            }
         },
     })
+
+    if(registered) {
+        return <Navigate to={routes.login}/>
+    }
 
     return (
         <Grid container justifyContent={'center'}>
@@ -65,7 +75,7 @@ const Registration = () => {
                                 onChange={formik.handleChange}
                                 value={formik.values.email}
                             />
-                            <FormControl variant="standard" className={s.input}>
+                            <FormControl variant="standard">
                                 <InputLabel htmlFor="password" >Password</InputLabel>
                                 <Input
                                     id="password"
@@ -74,7 +84,6 @@ const Registration = () => {
                                     onChange={formik.handleChange}
                                     value={formik.values.password}
                                     className={s.input}
-
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
@@ -88,26 +97,27 @@ const Registration = () => {
                                     }
                                 />
                             </FormControl>
-                            <FormControl variant="standard" className={s.lastInput}>
-                            <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
-                            <Input
-                                id="confirmPassword"
-                                name="confirmPassword"
-                                type={confirmPassword? 'text' : 'password'}
-                                onChange={formik.handleChange}
-                                value={formik.values.confirmPassword}
-                                endAdornment={
-                                    <InputAdornment position="end">
-                                        <IconButton
-                                            aria-label="toggle password visibility"
-                                            onClick={()=>handleClickShowPassword("confirm")}
-                                            onMouseDown={handleMouseDownPassword}
-                                        >
-                                            {confirmPassword ? <VisibilityOff /> : <Visibility />}
-                                        </IconButton>
-                                    </InputAdornment>
-                                }
-                            />
+                            <FormControl variant="standard">
+                                <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
+                                <Input
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    type={confirmPassword? 'text' : 'password'}
+                                    onChange={formik.handleChange}
+                                    value={formik.values.confirmPassword}
+                                    className={s.lastInput}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={()=>handleClickShowPassword("confirm")}
+                                                onMouseDown={handleMouseDownPassword}
+                                            >
+                                                {confirmPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                />
                             </FormControl>
                             <Button
                                 type={'submit'}
