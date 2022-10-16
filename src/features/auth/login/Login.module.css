@@ -1,0 +1,9 @@
+.rememberMe {
+    align-self: flex-start;
+    margin-bottom: 19px;
+}
+
+.forgotPassword {
+    align-self: flex-end;
+    margin-bottom: 60px;
+}

@@ -4,7 +4,9 @@
   align-items: center;
   height: 5vh;
   background-color: #383838;
+  margin-bottom: 50px;
 }
+
 .headerContainer .navLink {
   color: white;
   padding: 10px;
@@ -15,10 +17,12 @@
   font-style: normal;
   font-size: 15px;
 }
+
 .headerContainer .navLink:hover {
   color: #2196f3;
   transition: color 1s ease;
 }
+
 .headerContainer .active {
   color: #2196f3;
 }
