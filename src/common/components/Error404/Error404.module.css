@@ -1,0 +1,30 @@
+.MainDiv {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    justify-content: center;
+    text-align: center;
+}
+.MainDiv h1 {
+    color: grey;
+    margin-bottom: 0.4em;
+}
+.MainDiv p {
+    color: black;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+.MainDiv .navlink {
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    margin-top: 0;
+    background-color: black;
+}
+.MainDiv .navlink:hover {
+    background-color: grey;
+}

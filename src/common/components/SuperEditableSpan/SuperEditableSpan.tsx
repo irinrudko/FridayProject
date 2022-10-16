@@ -2,6 +2,8 @@ import React, {DetailedHTMLProps, InputHTMLAttributes, HTMLAttributes, useState}
 import s from "./SuperEditableSpan.module.css"
 import SuperInputText from "../SuperInputText/SuperInputText";
 
+
+
 // тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 // тип пропсов обычного спана
