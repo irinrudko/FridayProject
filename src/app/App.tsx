@@ -12,7 +12,7 @@ function App() {
     return (
         <div className="App">
             <Header/>
-            {status === "loading" && <LinearProgress/>}
+            {status === "idle" && <LinearProgress/>}
             <Content/>
             <ErrorSnackbar/>
         </div>
