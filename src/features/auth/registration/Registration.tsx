@@ -14,7 +14,7 @@ import Button from '@mui/material/Button'
 import {useFormik} from 'formik'
 import {IconButton, Input, InputAdornment, InputLabel, OutlinedInput} from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
-import {regTC} from "./registartion-reducer";
+import {regTC} from "./registration-reducer";
 import {useAppDispatch, useAppSelector} from "../../../app/store";
 
 

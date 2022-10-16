@@ -2,7 +2,7 @@ import { AnyAction, applyMiddleware, combineReducers, legacy_createStore } from 
 import { appReducer } from './app-reducer'
 import { loginReducer } from '../features/auth/login/login-reducer'
 import { profileReducer } from '../features/profile/profile-reducer'
-import { registrationReducer } from '../features/auth/registration/registartion-reducer'
+import { registrationReducer } from '../features/auth/registration/registration-reducer'
 import thunk, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { forgotPasswordReducer } from '../features/auth/forgotPassword/forgotPassword-reducer'
