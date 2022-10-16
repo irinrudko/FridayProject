@@ -34,7 +34,7 @@ export const regTC = (data: dataType): AppThunk => (dispatch) => {
             dispatch(setErrAC(err.response.data.error))
         })
         .finally(() =>{
-            dispatch(setAppStatusAC('succeeded'))
+            // dispatch(setAppStatusAC('succeeded'))
         })
 }
 
