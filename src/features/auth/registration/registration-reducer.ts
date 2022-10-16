@@ -1,6 +1,6 @@
 import {AppThunk} from "../../../app/store";
-import {regAPI} from "./api-registration";
 import {AxiosError} from "axios";
+import {regAPI} from "../../../api/api";
 
 
 
