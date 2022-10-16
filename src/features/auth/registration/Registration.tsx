@@ -72,7 +72,7 @@ const Registration = () => {
                                 value={formik.values.email}
                             />
                             <FormControl variant="standard">
-                                <InputLabel htmlFor="password" >Password</InputLabel>
+                                <InputLabel htmlFor="password" variant="standard">Password</InputLabel>
                                 <Input
                                     id="password"
                                     name="password"
@@ -80,6 +80,7 @@ const Registration = () => {
                                     onChange={formik.handleChange}
                                     value={formik.values.password}
                                     className={s.input}
+                                    autoComplete={"on"}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
@@ -102,6 +103,7 @@ const Registration = () => {
                                     onChange={formik.handleChange}
                                     value={formik.values.confirmPassword}
                                     className={s.lastInput}
+                                    autoComplete={"on"}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
