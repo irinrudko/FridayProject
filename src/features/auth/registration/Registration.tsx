@@ -27,14 +27,12 @@ const Registration = () => {
     };
 
     const handleClickShowPassword = (type: "pass" | "confirm") => {
-
         if (type === "pass") {
             setPassword(!password)
         } else {
             setConfirmPassword(!confirmPassword)
         }
     };
-
 
     const formik = useFormik({
         initialValues: {

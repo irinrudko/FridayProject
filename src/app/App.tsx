@@ -5,6 +5,7 @@ import Content from "./content/Content";
 import {useAppSelector} from "./store";
 import {RequestStatusType} from "./app-reducer";
 import {LinearProgress} from "@mui/material";
+import {ErrorSnackbar} from "../common/components/ErrorSnackBar/ErrorSnackBar";
 
 function App() {
     const status = useAppSelector<RequestStatusType>(store => store.app.status)
@@ -13,6 +14,7 @@ function App() {
             <Header/>
             {status === "loading" && <LinearProgress/>}
             <Content/>
+            <ErrorSnackbar/>
         </div>
     );
 }

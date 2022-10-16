@@ -1,6 +1,7 @@
 import {AppThunk} from "../../../app/store";
 import {AxiosError} from "axios";
 import {regAPI} from "../../../api/api";
+import {setErrAC} from "../../../app/app-reducer";
 
 
 
@@ -22,17 +23,18 @@ export const registrationReducer = (state: InitialStateType = initialState, acti
 //Action creators
 export const isRegisteredAC = (reg: boolean) => ({type:"REG/REGISTERED", reg} as const)
 
+
 //Thunk creators
 export const regTC = (data: dataType): AppThunk => (dispatch) => {
-    dispatch(isRegisteredAC(true)) // сделано для проверки
     regAPI.authRegistration(data.email, data.password)
         .then((res)=>{
             //проверку сделать
             console.log(res)
-            dispatch(isRegisteredAC(true))
+            // dispatch(isRegisteredAC(true))
         })
         .catch((err: AxiosError)=>{
-            console.log(err)
+            // dispatch(setErrAC())
+            // console.log(err.response.data?.error)
         })
 }
 
