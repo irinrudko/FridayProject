@@ -1,0 +1,14 @@
+.rememberMe {
+    align-self: flex-start;
+    margin-bottom: 19px;
+}
+
+.input {
+    /*margin-top: 16px;*/
+    margin-bottom: 16px;
+
+}
+
+.lastInput {
+    margin-bottom: 64px;
+}
