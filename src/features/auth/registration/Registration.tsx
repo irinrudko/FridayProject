@@ -4,15 +4,13 @@ import authStyle from '../../auth/Auth.module.css'
 import {Navigate, NavLink} from 'react-router-dom'
 import {routes} from '../../../app/routes/Routes'
 import Grid from '@mui/material/Grid'
-import Checkbox from '@mui/material/Checkbox'
 import FormControl from '@mui/material/FormControl'
-import FormControlLabel from '@mui/material/FormControlLabel'
 import FormGroup from '@mui/material/FormGroup'
 import FormLabel from '@mui/material/FormLabel'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import {useFormik} from 'formik'
-import {IconButton, Input, InputAdornment, InputLabel, OutlinedInput} from "@mui/material";
+import {IconButton, Input, InputAdornment, InputLabel} from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
 import {regTC} from "./registration-reducer";
 import {useAppDispatch, useAppSelector} from "../../../app/store";
