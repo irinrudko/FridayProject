@@ -47,11 +47,9 @@ export const loginTC =
                 dispatch(setAppStatusAC('succeeded'))
                 alert('signed in')
                 dispatch(setUserDataAC(res))
-                console.log(res)
             })
             .catch((err: any) => {
                 let error = err.response.data.error
-                console.log(err)
                 dispatch(setErrAC(error))
                 dispatch(setAppStatusAC('failed'))
             })
