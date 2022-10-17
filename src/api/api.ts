@@ -10,10 +10,13 @@ export const regAPI = {
         return instance.post<RegistrationPayloadType, AxiosResponse<any>>(`auth/register`, { email, password })
     },
     me() {
-        return instance.post<AxiosResponse<UserData>>(`auth/register`)
+        return instance.post<AxiosResponse<UserData>>(`auth/me`)
     },
     login(data: LoginParamsData) {
         return instance.post<LoginParamsData, AxiosResponse<UserData>>('auth/login', data).then((response) => response.data)
+    },
+    logout() {
+        return instance.delete<AxiosResponse<LogoutResponseType>>(`auth/me`)
     },
 }
 
@@ -42,4 +45,9 @@ export type UserData = {
     verified: boolean
     rememberMe: boolean
     error?: string
+}
+
+export type LogoutResponseType ={
+    info: string
+    error: string
 }

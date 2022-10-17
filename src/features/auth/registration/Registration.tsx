@@ -18,6 +18,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/store'
 const Registration = () => {
     const dispatch = useAppDispatch()
     const registered = useAppSelector<boolean>((state) => state.registration.registered)
+    const isLoggedIn = useAppSelector<boolean>((state) => state.login.isLoggedIn)
     const [password, setPassword] = useState(false)
     const [confirmPassword, setConfirmPassword] = useState(false)
 
@@ -50,6 +51,9 @@ const Registration = () => {
 
     if (registered) {
         return <Navigate to={routes.login} />
+    }
+    if (isLoggedIn) {
+        return <Navigate to={routes.profile} />
     }
 
     return (
