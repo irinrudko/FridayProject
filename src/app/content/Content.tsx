@@ -9,7 +9,7 @@ import Error404 from '../../common/components/Error404/Error404'
 import s from './Content.module.css'
 import { Main } from '../../features/main/Main'
 import ForgotPassword from '../../features/auth/forgotPassword/ForgotPassword'
-import Login from '../../features/auth/login/Login'
+import { Login } from '../../features/auth/login/Login'
 
 const Content = () => {
     return (

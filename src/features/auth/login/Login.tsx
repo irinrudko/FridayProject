@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import s from './Login.module.css'
 import authStyle from '../../auth/Auth.module.css'
-import { NavLink } from 'react-router-dom'
+import { Navigate, NavLink } from 'react-router-dom'
 import { routes } from '../../../app/routes/Routes'
 import Grid from '@mui/material/Grid'
 import Checkbox from '@mui/material/Checkbox'
@@ -15,15 +15,13 @@ import { useFormik } from 'formik'
 import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
 import { VisibilityOff, Visibility } from '@mui/icons-material'
 import { loginTC } from './login-reducer'
-import { AppRootStateType, useAppDispatch } from '../../../app/store'
-import { useSelector } from 'react-redux'
-import { redirect } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
 
 //TODO: validation
 
-const Login = () => {
+export const Login = () => {
     const dispatch = useAppDispatch()
-    const isLoggedIn = useSelector<AppRootStateType, boolean>((state) => state.login.isLoggedIn)
+    const isLoggedIn = useAppSelector<boolean>((state) => state.login.isLoggedIn)
     const [password, setPassword] = useState(false)
     const [confirmPassword, setConfirmPassword] = useState(false)
 
@@ -51,7 +49,7 @@ const Login = () => {
     })
 
     if (isLoggedIn) {
-        return redirect('/profile')
+        return <Navigate to={routes.profile} />
     }
 
     return (
@@ -123,5 +121,3 @@ const Login = () => {
         </Grid>
     )
 }
-
-export default Login
