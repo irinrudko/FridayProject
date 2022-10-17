@@ -14,10 +14,13 @@ import Button from '@mui/material/Button'
 import { useFormik } from 'formik'
 import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
 import { VisibilityOff, Visibility } from '@mui/icons-material'
+import { loginTC } from './login-reducer'
+import { useAppDispatch } from '../../../app/store'
 
 //TODO: validation
 
 export const Login = () => {
+    const dispatch = useAppDispatch()
     const [password, setPassword] = useState(false)
     const [confirmPassword, setConfirmPassword] = useState(false)
 
@@ -40,7 +43,7 @@ export const Login = () => {
             rememberMe: false,
         },
         onSubmit: (values) => {
-            alert(JSON.stringify(values))
+            dispatch(loginTC(values))
         },
     })
 
@@ -71,6 +74,7 @@ export const Login = () => {
                                     onChange={formik.handleChange}
                                     value={formik.values.password}
                                     className={authStyle.textField}
+                                    autoComplete="on"
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
