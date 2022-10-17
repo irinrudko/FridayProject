@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import s from './ForgotPassword.module.css'
 import authStyle from '../Auth.module.css'
-import {NavLink} from 'react-router-dom'
+import {Navigate, NavLink, useNavigate} from 'react-router-dom'
 import {routes} from '../../../app/routes/Routes'
 import Grid from '@mui/material/Grid'
 import FormControl from '@mui/material/FormControl'
@@ -10,15 +10,22 @@ import FormLabel from '@mui/material/FormLabel'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import {useFormik} from 'formik'
+import {useAppDispatch} from "../../../app/store";
+import {forgotPassword} from "./forgotPassword-reducer";
 
 
 export const ForgotPassword = () => {
+    const dispatch = useAppDispatch()
+    const [sendValue, setSendValue] = useState(false)
+    const navigate = useNavigate();
+
     const formik = useFormik({
         initialValues: {
             email: '',
         },
         onSubmit: (values) => {
-            // alert(JSON.stringify(values))
+            dispatch(forgotPassword(values))
+            navigate(routes.passwordRecovery);
         },
     })
 

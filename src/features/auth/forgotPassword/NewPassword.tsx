@@ -9,10 +9,16 @@ import Button from '@mui/material/Button'
 import {useFormik} from 'formik'
 import {IconButton, Input, InputAdornment, InputLabel} from "@mui/material";
 import {Visibility, VisibilityOff} from "@mui/icons-material";
+import {useParams} from "react-router-dom";
+import {useAppDispatch} from "../../../app/store";
+import {newPassword} from "./forgotPassword-reducer";
 
 
 export const NewPassword = () => {
+    const dispatch=useAppDispatch()
     const [password, setPassword] = useState(false);
+    const {token} = useParams<{token: string}>()
+    console.log(token);
 
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
@@ -28,7 +34,7 @@ export const NewPassword = () => {
             password: '',
         },
         onSubmit: (values) => {
-            // alert(JSON.stringify(values))
+            dispatch(newPassword({...values,resetPasswordToken:token}))
         },
     })
 

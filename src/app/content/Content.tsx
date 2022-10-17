@@ -24,6 +24,7 @@ const Content = () => {
                 <Route path={routes.registration} element={<Registration />} />
                 <Route path={routes.forgotPassword} element={<ForgotPassword />} />
                 <Route path={routes.newPassword} element={<NewPassword />} />
+                <Route path={`${routes.newPassword}/:token`} element={<NewPassword />} />
                 <Route path={routes.passwordRecovery} element={<PasswordRecovery />} />
                 <Route path={routes.error404} element={<Error404 />} />
                 <Route path={'/*'} element={<Navigate to={routes.error404} />} />

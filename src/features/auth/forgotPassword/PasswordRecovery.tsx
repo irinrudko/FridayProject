@@ -6,25 +6,22 @@ import FormControl from '@mui/material/FormControl'
 import FormGroup from '@mui/material/FormGroup'
 import FormLabel from '@mui/material/FormLabel'
 import Button from '@mui/material/Button'
-import {useFormik} from 'formik'
 import ImageLetter from '../../../common/assets/image/iconSendForgotPassword.svg'
+import {routes} from "../../../app/routes/Routes";
+import {useNavigate} from "react-router-dom";
 
 
 export const PasswordRecovery = () => {
+    const navigate = useNavigate();
 
-    const formik = useFormik({
-        initialValues: {
-            password: '',
-        },
-        onSubmit: (values) => {
-            // alert(JSON.stringify(values))
-        },
-    })
+    const navigateToLogin = () => {
+        navigate(routes.login);
+    };
 
     return (
         <Grid container justifyContent={'center'}>
             <Grid item justifyContent={'center'}>
-                <form className={s.formContainer} onSubmit={formik.handleSubmit}>
+                <form className={s.formContainer}>
                     <FormControl className={s.form}>
                         <FormLabel>
                             <h2 className={authStyle.title}>Check Email</h2>
@@ -40,6 +37,7 @@ export const PasswordRecovery = () => {
                                 type={'submit'}
                                 variant={'contained'}
                                 color={'primary'}
+                                onClick={navigateToLogin}
                                 className={`${authStyle.button} ${s.button}`}
                             >
                                 Back to login
