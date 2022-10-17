@@ -18,7 +18,7 @@ const Content = () => {
                 <Route path={'/'} element={<Profile />} />
                 <Route path={routes.main} element={<Main />} />
                 <Route path={routes.profile} element={<Profile />} />
-                <Route path={routes.profile} element={<Login />} />
+                <Route path={routes.login} element={<Login />} />
                 <Route path={routes.registration} element={<Registration />} />
                 <Route path={routes.forgotPassword} element={<ForgotPassword />} />
                 <Route path={routes.newPassword} element={<NewPassword />} />
