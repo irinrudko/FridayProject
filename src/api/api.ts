@@ -10,9 +10,7 @@ export const regAPI = {
         return instance.post<RegistrationPayloadType, AxiosResponse<any>>(`auth/register`, { email, password })
     },
     login(data: LoginParamsData) {
-        return instance
-            .post<LoginParamsData, AxiosResponse<LoginResponseType>>('auth/login', data)
-            .then((response) => response.data)
+        return instance.post<LoginParamsData, AxiosResponse<UserData>>('auth/login', data).then((response) => response.data)
     },
 }
 
@@ -29,18 +27,16 @@ export type LoginParamsData = {
     rememberMe: boolean
 }
 
-type LoginResponseType = {
+export type UserData = {
     _id: string
     email: string
-    rememberMe: boolean
-    isAdmin: boolean
     name: string
-    verified: boolean
+    avatar?: string
     publicCardPacksCount: number
-    created: Date | string
-    updated: Date | string
-    __v: number
-    token: string
-    tokenDeathTime: number
-    avatar: string
+    created: Date | null
+    updated: Date | null
+    isAdmin: boolean
+    verified: boolean
+    rememberMe: boolean
+    error?: string
 }
