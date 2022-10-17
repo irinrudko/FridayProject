@@ -16,8 +16,7 @@ import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { loginTC } from './login-reducer'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
-
-//TODO: validation
+import { FormikErrorType } from '../auth-types'
 
 export const Login = () => {
     const dispatch = useAppDispatch()
@@ -42,6 +41,27 @@ export const Login = () => {
             email: '',
             password: '',
             rememberMe: false,
+        },
+        validate: (values) => {
+            const errors: FormikErrorType = {
+                email: '',
+                password: '',
+                rememberMe: false,
+            }
+
+            if (!values.email) {
+                errors.email = 'Email is required'
+            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+                errors.email = 'Invalid email address'
+            }
+
+            if (!values.password) {
+                errors.password = 'Password is required'
+            } else if (values.password.length < 7) {
+                errors.password = 'Must be 7 characters or more'
+            }
+
+            return errors
         },
         onSubmit: (values) => {
             dispatch(loginTC(values))
@@ -70,6 +90,7 @@ export const Login = () => {
                                 onChange={formik.handleChange}
                                 value={formik.values.email}
                             />
+                            {formik.errors.email ? <div>{formik.errors.email}</div> : null}
                             <FormControl variant="standard">
                                 <InputLabel htmlFor="password">Password</InputLabel>
                                 <Input
@@ -92,6 +113,7 @@ export const Login = () => {
                                         </InputAdornment>
                                     }
                                 />
+                                {formik.errors.password ? <div>{formik.errors.password}</div> : null}
                             </FormControl>
                             <FormControlLabel
                                 label={'Remember me'}
