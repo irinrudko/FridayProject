@@ -1,11 +1,11 @@
-import {AppThunk} from "./store";
-import {regAPI} from "../api/api";
-import {AxiosError} from "axios";
+import { AppThunk } from './store'
+import { regAPI } from '../api/api'
+import { AxiosError } from 'axios'
 
 const initialState = {
     status: 'idle' as RequestStatusType,
     error: null as null | string,
-    initialized: false
+    initialized: true,
 }
 type InitialStateType = typeof initialState
 
@@ -14,26 +14,25 @@ export const appReducer = (state: InitialStateType = initialState, action: Reduc
         case 'APP/SET-STATUS':
             return { ...state, status: action.status }
         case 'APP/SET-ERROR':
-            return {...state, error: action.message}
-        case "APP/INITIALIZED":
-            return {...state, initialized: action.initializedStatus}
+            return { ...state, error: action.message }
+        case 'APP/INITIALIZED':
+            return { ...state, initialized: action.initializedStatus }
         default:
             return state
     }
 }
 
-
 //ActionC
-export const setAppStatusAC = (status: RequestStatusType) => ({type: "APP/SET-STATUS", status} as const)
-export const setErrAC = (message: null | string) => ({type: "APP/SET-ERROR", message} as const)
-export const initializedAC = (initializedStatus: boolean) => ({type: "APP/INITIALIZED", initializedStatus} as const)
-
+export const setAppStatusAC = (status: RequestStatusType) => ({ type: 'APP/SET-STATUS', status } as const)
+export const setErrAC = (message: null | string) => ({ type: 'APP/SET-ERROR', message } as const)
+export const initializedAC = (initializedStatus: boolean) => ({ type: 'APP/INITIALIZED', initializedStatus } as const)
 
 //ThunkC
 const initializedTC = (): AppThunk => (dispatch) => {
     dispatch(setAppStatusAC('loading'))
     dispatch(initializedAC(false))
-    regAPI.me()
+    regAPI
+        .me()
         .then((res) => {
             //сделать проверку
             console.log(res)
@@ -47,11 +46,7 @@ const initializedTC = (): AppThunk => (dispatch) => {
         })
 }
 
-
 //type
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export type setErrType = ReturnType<typeof setErrAC>
-export type ReducerActionType =
-    ReturnType<typeof setAppStatusAC>
-    | setErrType
-    | ReturnType<typeof initializedAC>
+export type ReducerActionType = ReturnType<typeof setAppStatusAC> | setErrType | ReturnType<typeof initializedAC>

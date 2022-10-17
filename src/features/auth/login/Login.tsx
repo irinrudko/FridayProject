@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import s from './Login.module.css'
 import authStyle from '../../auth/Auth.module.css'
-import {Navigate, NavLink} from 'react-router-dom'
-import {routes} from '../../../app/routes/Routes'
+import { Navigate, NavLink } from 'react-router-dom'
+import { routes } from '../../../app/routes/Routes'
 import Grid from '@mui/material/Grid'
 import Checkbox from '@mui/material/Checkbox'
 import FormControl from '@mui/material/FormControl'
@@ -11,11 +11,11 @@ import FormGroup from '@mui/material/FormGroup'
 import FormLabel from '@mui/material/FormLabel'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
-import {useFormik} from 'formik'
-import {IconButton, Input, InputAdornment, InputLabel} from '@mui/material'
-import {Visibility, VisibilityOff} from '@mui/icons-material'
-import {loginTC} from './login-reducer'
-import {useAppDispatch, useAppSelector} from '../../../app/store'
+import { useFormik } from 'formik'
+import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { loginTC } from './login-reducer'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
 
 //TODO: validation
 
@@ -49,7 +49,8 @@ const Login = () => {
     })
 
     if (isLoggedIn) {
-        return <Navigate to={routes.profile}/>    }
+        return <Navigate to={routes.profile} />
+    }
 
     return (
         <Grid container justifyContent={'center'}>

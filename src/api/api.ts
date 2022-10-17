@@ -1,15 +1,13 @@
-import axios, {AxiosResponse} from "axios";
-
+import axios, { AxiosResponse } from 'axios'
 
 const instance = axios.create({
     baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
     withCredentials: true,
 })
 
-
 export const regAPI = {
     authRegistration(email: string, password: string) {
-        return instance.post<RegistrationPayloadType, AxiosResponse<any>>(`auth/register`, {email, password})
+        return instance.post<RegistrationPayloadType, AxiosResponse<any>>(`auth/register`, { email, password })
     },
     me() {
         return instance.post<AxiosResponse<UserData>>(`auth/register`)
@@ -22,7 +20,7 @@ export const regAPI = {
 //types
 
 export type RegistrationPayloadType = {
-    email: string,
+    email: string
     password: string
 }
 

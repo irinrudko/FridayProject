@@ -1,16 +1,15 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
-import {routes} from '../routes/Routes'
+import { NavLink } from 'react-router-dom'
+import { routes } from '../routes/Routes'
 import s from './Header.module.css'
-import {useAppSelector} from "../store";
-import {loginReducer} from "../../features/auth/login/login-reducer";
+import { useAppSelector } from '../store'
+import { loginReducer } from '../../features/auth/login/login-reducer'
 
 const Header = () => {
-
     // const isLoggin = useAppSelector<boolean>(store => store.loginReducer)
-    const isLoggin = true;
+    const isLoggin = true
     const onclickHandler = () => {
-        alert("logout")
+        alert('logout')
     }
 
     return (
@@ -39,9 +38,11 @@ const Header = () => {
             <NavLink to={routes.error404} className={s.navLink}>
                 404{' '}
             </NavLink>
-            {isLoggin && <NavLink to={routes.login} className={s.navLink} onClick={onclickHandler}>
-                Logout{' '}
-            </NavLink>}
+            {isLoggin && (
+                <NavLink to={routes.login} className={s.navLink} onClick={onclickHandler}>
+                    Logout{' '}
+                </NavLink>
+            )}
         </div>
     )
 }

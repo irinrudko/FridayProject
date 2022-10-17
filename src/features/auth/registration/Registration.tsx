@@ -1,47 +1,46 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import s from './Registration.module.css'
 import authStyle from '../../auth/Auth.module.css'
-import {Navigate, NavLink} from 'react-router-dom'
-import {routes} from '../../../app/routes/Routes'
+import { Navigate, NavLink } from 'react-router-dom'
+import { routes } from '../../../app/routes/Routes'
 import Grid from '@mui/material/Grid'
 import FormControl from '@mui/material/FormControl'
 import FormGroup from '@mui/material/FormGroup'
 import FormLabel from '@mui/material/FormLabel'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
-import {useFormik} from 'formik'
-import {IconButton, Input, InputAdornment, InputLabel} from "@mui/material";
-import {Visibility, VisibilityOff} from "@mui/icons-material";
-import {regTC} from "./registration-reducer";
-import {useAppDispatch, useAppSelector} from "../../../app/store";
-
+import { useFormik } from 'formik'
+import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { regTC } from './registration-reducer'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
 
 const Registration = () => {
-    const dispatch = useAppDispatch();
-    const registered = useAppSelector<boolean>(state => state.registration.registered)
-    const [password, setPassword] = useState(false);
-    const [confirmPassword, setConfirmPassword] = useState(false);
+    const dispatch = useAppDispatch()
+    const registered = useAppSelector<boolean>((state) => state.registration.registered)
+    const [password, setPassword] = useState(false)
+    const [confirmPassword, setConfirmPassword] = useState(false)
 
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-    };
+        event.preventDefault()
+    }
 
-    const handleClickShowPassword = (type: "pass" | "confirm") => {
-        if (type === "pass") {
+    const handleClickShowPassword = (type: 'pass' | 'confirm') => {
+        if (type === 'pass') {
             setPassword(!password)
         } else {
             setConfirmPassword(!confirmPassword)
         }
-    };
+    }
 
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
         },
         onSubmit: (values) => {
-            if(formik.values.password === formik.values.confirmPassword) {
+            if (formik.values.password === formik.values.confirmPassword) {
                 alert(JSON.stringify(values))
                 dispatch(regTC(values))
                 formik.resetForm()
@@ -49,8 +48,8 @@ const Registration = () => {
         },
     })
 
-    if(registered) {
-        return <Navigate to={routes.login}/>
+    if (registered) {
+        return <Navigate to={routes.login} />
     }
 
     return (
@@ -72,7 +71,9 @@ const Registration = () => {
                                 value={formik.values.email}
                             />
                             <FormControl variant="standard">
-                                <InputLabel htmlFor="password" variant="standard">Password</InputLabel>
+                                <InputLabel htmlFor="password" variant="standard">
+                                    Password
+                                </InputLabel>
                                 <Input
                                     id="password"
                                     name="password"
@@ -80,12 +81,12 @@ const Registration = () => {
                                     onChange={formik.handleChange}
                                     value={formik.values.password}
                                     className={s.input}
-                                    autoComplete={"on"}
+                                    autoComplete={'on'}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
                                                 aria-label="toggle password visibility"
-                                                onClick={()=>handleClickShowPassword("pass")}
+                                                onClick={() => handleClickShowPassword('pass')}
                                                 onMouseDown={handleMouseDownPassword}
                                             >
                                                 {password ? <VisibilityOff /> : <Visibility />}
@@ -99,16 +100,16 @@ const Registration = () => {
                                 <Input
                                     id="confirmPassword"
                                     name="confirmPassword"
-                                    type={confirmPassword? 'text' : 'password'}
+                                    type={confirmPassword ? 'text' : 'password'}
                                     onChange={formik.handleChange}
                                     value={formik.values.confirmPassword}
                                     className={s.lastInput}
-                                    autoComplete={"on"}
+                                    autoComplete={'on'}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
                                                 aria-label="toggle password visibility"
-                                                onClick={()=>handleClickShowPassword("confirm")}
+                                                onClick={() => handleClickShowPassword('confirm')}
                                                 onMouseDown={handleMouseDownPassword}
                                             >
                                                 {confirmPassword ? <VisibilityOff /> : <Visibility />}
