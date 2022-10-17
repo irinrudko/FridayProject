@@ -4,12 +4,14 @@ import { routes } from '../routes/Routes'
 import Profile from '../../features/profile/Profile'
 import Login from '../../features/auth/login/Login'
 import Registration from '../../features/auth/registration/Registration'
-import NewPassword from '../../features/auth/forgotPassword/NewPassword'
-import PasswordRecovery from '../../features/auth/forgotPassword/PasswordRecovery'
+import {NewPassword} from '../../features/auth/forgotPassword/NewPassword'
+import {PasswordRecovery} from '../../features/auth/forgotPassword/PasswordRecovery'
 import Error404 from '../../common/components/Error404/Error404'
 import s from './Content.module.css'
 import { Main } from '../../features/main/Main'
-import ForgotPassword from '../../features/auth/forgotPassword/ForgotPassword'
+import {ForgotPassword} from "../../features/auth/forgotPassword/ForgotPassword";
+
+
 
 const Content = () => {
     return (
