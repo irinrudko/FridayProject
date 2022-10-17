@@ -1,6 +1,7 @@
 import { AppThunk } from './store'
 import { regAPI } from '../api/api'
 import { AxiosError } from 'axios'
+import {setIsLoggedInAC} from "../features/auth/login/login-reducer";
 
 const initialState = {
     status: 'idle' as RequestStatusType,
@@ -28,20 +29,23 @@ export const setErrAC = (message: null | string) => ({ type: 'APP/SET-ERROR', me
 export const initializedAC = (initializedStatus: boolean) => ({ type: 'APP/INITIALIZED', initializedStatus } as const)
 
 //ThunkC
-const initializedTC = (): AppThunk => (dispatch) => {
+export const initializedTC = (): AppThunk => (dispatch) => {
+    debugger
     dispatch(setAppStatusAC('loading'))
     dispatch(initializedAC(false))
     regAPI
         .me()
         .then((res) => {
-            //сделать проверку
-            console.log(res)
-            dispatch(initializedAC(true))
+            // debugger
+            if(res.status === 200){
+                dispatch(setIsLoggedInAC(true))
+            }
         })
         .catch((err: AxiosError) => {
             console.log(err)
         })
         .finally(() => {
+            dispatch(initializedAC(true))
             dispatch(setAppStatusAC('succeeded'))
         })
 }
