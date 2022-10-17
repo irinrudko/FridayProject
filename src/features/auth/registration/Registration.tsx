@@ -52,6 +52,7 @@ const Registration = () => {
     if (registered) {
         return <Navigate to={routes.login} />
     }
+
     if (isLoggedIn) {
         return <Navigate to={routes.profile} />
     }
@@ -130,7 +131,7 @@ const Registration = () => {
                             >
                                 Sign Up
                             </Button>
-                            <p className={authStyle.text}>Already have an account? </p>
+                            <div className={authStyle.text}>Already have an account?</div>
                             <div>
                                 <NavLink to={routes.login} className={authStyle.link}>
                                     Sign In
