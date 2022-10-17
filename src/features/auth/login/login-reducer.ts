@@ -40,7 +40,6 @@ export const loginTC =
     (data: LoginParamsData): AppThunk =>
     (dispatch) => {
         dispatch(setAppStatusAC('loading'))
-
         regAPI
             .login(data)
             .then((res) => {

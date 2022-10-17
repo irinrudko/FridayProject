@@ -2,14 +2,15 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { routes } from '../routes/Routes'
 import s from './Header.module.css'
-import { useAppSelector } from '../store'
-import { loginReducer } from '../../features/auth/login/login-reducer'
+import {AppRootStateType, useAppDispatch, useAppSelector} from '../store'
+import {loginReducer, logoutTC} from '../../features/auth/login/login-reducer'
 
 const Header = () => {
-    // const isLoggin = useAppSelector<boolean>(store => store.loginReducer)
-    const isLoggin = true
+    const dispatch = useAppDispatch();
+    const isLoggin = useAppSelector<boolean>((store: AppRootStateType)  => store.login.isLoggedIn)
     const onclickHandler = () => {
         alert('logout')
+        dispatch(logoutTC())
     }
 
     return (

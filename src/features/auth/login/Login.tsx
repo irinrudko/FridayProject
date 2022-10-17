@@ -41,27 +41,27 @@ export const Login = () => {
             password: '',
             rememberMe: false,
         },
-        validate: (values) => {
-            const errors: FormikErrorType = {
-                email: '',
-                password: '',
-                rememberMe: false,
-            }
-
-            if (!values.email) {
-                errors.email = 'Email is required'
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-                errors.email = 'Invalid email address'
-            }
-
-            if (!values.password) {
-                errors.password = 'Password is required'
-            } else if (values.password.length < 7) {
-                errors.password = 'Must be 7 characters or more'
-            }
-
-            return errors
-        },
+        // validate: (values) => {
+        //     const errors: FormikErrorType = {
+        //         email: '',
+        //         password: '',
+        //         rememberMe: false,
+        //     }
+        //
+        //     if (!values.email) {
+        //         errors.email = 'Email is required'
+        //     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        //         errors.email = 'Invalid email address'
+        //     }
+        //
+        //     if (!values.password) {
+        //         errors.password = 'Password is required'
+        //     } else if (values.password.length < 7) {
+        //         errors.password = 'Must be 7 characters or more'
+        //     }
+        //
+        //     return errors
+        // },
         onSubmit: (values) => {
             dispatch(loginTC(values))
         },
