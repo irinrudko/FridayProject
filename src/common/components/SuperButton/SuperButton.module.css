@@ -3,7 +3,7 @@
     display: inline-block;
     color: white;
     text-decoration: none;
-    padding: .5em 2em;
+    padding: 0.5em 2em;
     outline: none;
     border-width: 2px 0;
     border-style: solid none;
@@ -27,7 +27,7 @@
     display: inline-block;
     color: #e53232;
     text-decoration: none;
-    padding: .5em 2em;
+    padding: 0.5em 2em;
     outline: none;
     border-width: 2px 0;
     border-style: solid none;
@@ -50,7 +50,7 @@
     display: inline-block;
     color: #5b5757;
     text-decoration: none;
-    padding: .5em 2em;
+    padding: 0.5em 2em;
     outline: none;
     border-width: 2px 0;
     border-style: solid none;

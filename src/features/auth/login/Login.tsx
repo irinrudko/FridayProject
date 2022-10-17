@@ -13,7 +13,7 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import { useFormik } from 'formik'
 import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
-import { VisibilityOff, Visibility } from '@mui/icons-material'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { loginTC } from './login-reducer'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 

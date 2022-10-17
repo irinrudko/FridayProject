@@ -9,6 +9,9 @@ export const regAPI = {
     authRegistration(email: string, password: string) {
         return instance.post<RegistrationPayloadType, AxiosResponse<any>>(`auth/register`, { email, password })
     },
+    me() {
+        return instance.post<AxiosResponse<UserData>>(`auth/register`)
+    },
     login(data: LoginParamsData) {
         return instance.post<LoginParamsData, AxiosResponse<UserData>>('auth/login', data).then((response) => response.data)
     },

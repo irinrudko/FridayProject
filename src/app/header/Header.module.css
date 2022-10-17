@@ -1,29 +1,29 @@
 .headerContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
-  /*background-color: #383838;*/
-  background-color: #fafafb;
-  margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    /*background-color: #383838;*/
+    background-color: #fafafb;
+    margin-bottom: 30px;
 }
 
 .headerContainer .navLink {
-  color: #383838;
-  padding: 10px;
-  text-transform: uppercase;
-  line-height: 20px;
-  text-decoration: none;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 15px;
+    color: #383838;
+    padding: 10px;
+    text-transform: uppercase;
+    line-height: 20px;
+    text-decoration: none;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
 }
 
 .headerContainer .navLink:hover {
-  color: #2196f3;
-  transition: color 1s ease;
+    color: #2196f3;
+    transition: color 1s ease;
 }
 
 .headerContainer .active {
-  color: #2196f3;
+    color: #2196f3;
 }
