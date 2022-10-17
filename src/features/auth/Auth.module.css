@@ -5,7 +5,7 @@
     line-height: 17px;
     font-weight: 500;
     width: 413px;
-    height: 552px;
+    min-height: 552px;
     align-items: center;
     justify-content: flex-start;
     background: #ffffff;
