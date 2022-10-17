@@ -15,12 +15,15 @@ import { useFormik } from 'formik'
 import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
 import { VisibilityOff, Visibility } from '@mui/icons-material'
 import { loginTC } from './login-reducer'
-import { useAppDispatch } from '../../../app/store'
+import { AppRootStateType, useAppDispatch } from '../../../app/store'
+import { useSelector } from 'react-redux'
+import { redirect } from 'react-router-dom'
 
 //TODO: validation
 
-export const Login = () => {
+const Login = () => {
     const dispatch = useAppDispatch()
+    const isLoggedIn = useSelector<AppRootStateType, boolean>((state) => state.login.isLoggedIn)
     const [password, setPassword] = useState(false)
     const [confirmPassword, setConfirmPassword] = useState(false)
 
@@ -46,6 +49,10 @@ export const Login = () => {
             dispatch(loginTC(values))
         },
     })
+
+    if (isLoggedIn) {
+        return redirect('/profile')
+    }
 
     return (
         <Grid container justifyContent={'center'}>
@@ -117,4 +124,4 @@ export const Login = () => {
     )
 }
 
-// export default Login
+export default Login
