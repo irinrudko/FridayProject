@@ -13,8 +13,8 @@ function App() {
         <div className="App">
             <Header />
             {status === 'loading' && <LinearProgress />}
-            {status === 'failed' && <LinearProgress color="error" variant="buffer" />}
-            {status === 'succeeded' && <LinearProgress color="success" variant="buffer" />}
+            {status === 'failed' && <LinearProgress color="error" variant="determinate" value={0} />}
+            {status === 'succeeded' && <LinearProgress color="success" variant="determinate" value={0} />}
             <Content />
             <ErrorSnackbar />
         </div>
