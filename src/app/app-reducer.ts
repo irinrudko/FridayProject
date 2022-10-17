@@ -9,11 +9,10 @@ const initialState = {
 }
 type InitialStateType = typeof initialState
 
-
 export const appReducer = (state: InitialStateType = initialState, action: ReducerActionType): InitialStateType => {
     switch (action.type) {
-        case "APP/SET-STATUS":
-            return {...state, status: action.status}
+        case 'APP/SET-STATUS':
+            return { ...state, status: action.status }
         case 'APP/SET-ERROR':
             return {...state, error: action.message}
         case "APP/INITIALIZED":

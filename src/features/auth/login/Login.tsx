@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import s from './Login.module.css'
 import authStyle from '../../auth/Auth.module.css'
 import { NavLink } from 'react-router-dom'
@@ -12,10 +12,33 @@ import FormLabel from '@mui/material/FormLabel'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import { useFormik } from 'formik'
+import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
+import { VisibilityOff, Visibility } from '@mui/icons-material'
+import { loginTC } from './login-reducer'
+import { AppRootStateType, useAppDispatch } from '../../../app/store'
+import { useSelector } from 'react-redux'
+import { redirect } from 'react-router-dom'
 
 //TODO: validation
 
 const Login = () => {
+    const dispatch = useAppDispatch()
+    const isLoggedIn = useSelector<AppRootStateType, boolean>((state) => state.login.isLoggedIn)
+    const [password, setPassword] = useState(false)
+    const [confirmPassword, setConfirmPassword] = useState(false)
+
+    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault()
+    }
+
+    const handleClickShowPassword = (type: 'pass' | 'confirm') => {
+        if (type === 'pass') {
+            setPassword(!password)
+        } else {
+            setConfirmPassword(!confirmPassword)
+        }
+    }
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -23,9 +46,13 @@ const Login = () => {
             rememberMe: false,
         },
         onSubmit: (values) => {
-            // alert(JSON.stringify(values))
+            dispatch(loginTC(values))
         },
     })
+
+    if (isLoggedIn) {
+        return redirect('/profile')
+    }
 
     return (
         <Grid container justifyContent={'center'}>
@@ -45,16 +72,29 @@ const Login = () => {
                                 onChange={formik.handleChange}
                                 value={formik.values.email}
                             />
-                            <TextField
-                                label="Password"
-                                name="password"
-                                type="password"
-                                margin="normal"
-                                variant="standard"
-                                className={authStyle.textField}
-                                onChange={formik.handleChange}
-                                value={formik.values.password}
-                            />
+                            <FormControl variant="standard">
+                                <InputLabel htmlFor="password">Password</InputLabel>
+                                <Input
+                                    id="password"
+                                    name="password"
+                                    type={password ? 'text' : 'password'}
+                                    onChange={formik.handleChange}
+                                    value={formik.values.password}
+                                    className={authStyle.textField}
+                                    autoComplete="on"
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={() => handleClickShowPassword('pass')}
+                                                onMouseDown={handleMouseDownPassword}
+                                            >
+                                                {password ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                />
+                            </FormControl>
                             <FormControlLabel
                                 label={'Remember me'}
                                 name="rememberMe"
@@ -67,12 +107,7 @@ const Login = () => {
                                 <NavLink to={routes.forgotPassword}>Forgot password? </NavLink>
                             </p>
 
-                            <Button
-                                type={'submit'}
-                                variant={'contained'}
-                                color={'primary'}
-                                className={authStyle.button}
-                            >
+                            <Button type={'submit'} variant={'contained'} color={'primary'} className={authStyle.button}>
                                 Sign In
                             </Button>
                             <p className={authStyle.text}>If you don't have an account, get registered here </p>

@@ -12,7 +12,10 @@ export const regAPI = {
         return instance.post<RegistrationPayloadType, AxiosResponse<any>>(`auth/register`, {email, password})
     },
     me() {
-        return instance.post<AxiosResponse<ResponseAuth>>(`auth/register`)
+        return instance.post<AxiosResponse<UserData>>(`auth/register`)
+    },
+    login(data: LoginParamsData) {
+        return instance.post<LoginParamsData, AxiosResponse<UserData>>('auth/login', data).then((response) => response.data)
     },
 }
 
@@ -23,16 +26,22 @@ export type RegistrationPayloadType = {
     password: string
 }
 
-export type ResponseAuth = {
-    _id: string;
-    email: string;
-    name: string;
-    avatar?: string;
-    publicCardPacksCount: number; // количество колод
-    created: Date;
-    updated: Date;
-    isAdmin: boolean;
-    verified: boolean; // подтвердил ли почту
-    rememberMe: boolean;
-    error?: string;
+export type LoginParamsData = {
+    email: string
+    password: string
+    rememberMe: boolean
+}
+
+export type UserData = {
+    _id: string
+    email: string
+    name: string
+    avatar?: string
+    publicCardPacksCount: number
+    created: Date | null
+    updated: Date | null
+    isAdmin: boolean
+    verified: boolean
+    rememberMe: boolean
+    error?: string
 }
