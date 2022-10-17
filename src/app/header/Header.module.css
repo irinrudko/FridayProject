@@ -2,13 +2,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 5vh;
-  background-color: #383838;
-  margin-bottom: 50px;
+  height: 60px;
+  /*background-color: #383838;*/
+  background-color: #fafafb;
+  /*margin-bottom: 50px;*/
 }
 
 .headerContainer .navLink {
-  color: white;
+  color: #383838;
   padding: 10px;
   text-transform: uppercase;
   line-height: 20px;
