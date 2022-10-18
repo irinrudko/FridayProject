@@ -31,15 +31,21 @@ const Header = () => {
                     Registration{' '}
                 </NavLink>
             )}
-            <NavLink to={routes.forgotPassword} className={s.navLink}>
-                Forgot password{' '}
-            </NavLink>
-            <NavLink to={routes.newPassword} className={s.navLink}>
-                New Password{' '}
-            </NavLink>
-            <NavLink to={routes.passwordRecovery} className={s.navLink}>
-                Password Recovery{' '}
-            </NavLink>
+            {!isLoggedIn && (
+                <NavLink to={routes.forgotPassword} className={s.navLink}>
+                    Forgot password{' '}
+                </NavLink>
+            )}
+            {!isLoggedIn && (
+                <NavLink to={routes.newPassword} className={s.navLink}>
+                    New Password{' '}
+                </NavLink>
+            )}
+            {!isLoggedIn && (
+                <NavLink to={routes.passwordRecovery} className={s.navLink}>
+                    Password Recovery{' '}
+                </NavLink>
+            )}
             <NavLink to={routes.error404} className={s.navLink}>
                 404{' '}
             </NavLink>
