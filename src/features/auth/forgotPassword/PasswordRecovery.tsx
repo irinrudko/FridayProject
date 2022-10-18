@@ -7,16 +7,15 @@ import FormGroup from '@mui/material/FormGroup'
 import FormLabel from '@mui/material/FormLabel'
 import Button from '@mui/material/Button'
 import ImageLetter from '../../../common/assets/image/iconSendForgotPassword.svg'
-import {routes} from "../../../app/routes/Routes";
-import {useNavigate} from "react-router-dom";
-
+import { routes } from '../../../app/routes/Routes'
+import { useNavigate } from 'react-router-dom'
 
 export const PasswordRecovery = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     const navigateToLogin = () => {
-        navigate(routes.login);
-    };
+        navigate(routes.login)
+    }
 
     return (
         <Grid container justifyContent={'center'}>
@@ -27,7 +26,7 @@ export const PasswordRecovery = () => {
                             <h2 className={authStyle.title}>Check Email</h2>
                         </FormLabel>
                         <FormGroup>
-                            <img src={ImageLetter} alt="image letter"/>
+                            <img src={ImageLetter} alt="image letter" />
                             <FormLabel>
                                 <p className={`${s.textInstruction} ${s.textPassRecovery}`}>
                                     We’ve sent an Email with instructions to example@mail.com
@@ -49,5 +48,3 @@ export const PasswordRecovery = () => {
         </Grid>
     )
 }
-
-
