@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import s from './ForgotPassword.module.css'
 import authStyle from '../Auth.module.css'
 import Grid from '@mui/material/Grid'
@@ -6,35 +6,46 @@ import FormControl from '@mui/material/FormControl'
 import FormGroup from '@mui/material/FormGroup'
 import FormLabel from '@mui/material/FormLabel'
 import Button from '@mui/material/Button'
-import {useFormik} from 'formik'
-import {IconButton, Input, InputAdornment, InputLabel} from "@mui/material";
-import {Visibility, VisibilityOff} from "@mui/icons-material";
-import {useParams} from "react-router-dom";
-import {useAppDispatch} from "../../../app/store";
-import {newPassword} from "./forgotPassword-reducer";
-
+import { useFormik } from 'formik'
+import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { useParams } from 'react-router-dom'
+import { useAppDispatch } from '../../../app/store'
+import { newPassword } from './forgotPassword-reducer'
+import { FormikErrorType } from '../auth-types'
 
 export const NewPassword = () => {
-    const dispatch=useAppDispatch()
-    const [password, setPassword] = useState(false);
-    const {token} = useParams<{token: string}>()
-    console.log(token);
+    const dispatch = useAppDispatch()
+    const [password, setPassword] = useState(false)
+    const { token } = useParams<{ token: string }>()
+    console.log(token)
 
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-    };
-    const handleClickShowPassword = (type: "pass" | "confirm") => {
-        if (type === "pass") {
+        event.preventDefault()
+    }
+    const handleClickShowPassword = (type: 'pass' | 'confirm') => {
+        if (type === 'pass') {
             setPassword(!password)
         }
-    };
+    }
 
     const formik = useFormik({
         initialValues: {
             password: '',
         },
+        validate: (values) => {
+            const errors: FormikErrorType = {}
+
+            if (!values.password) {
+                errors.password = 'Password is required'
+            } else if (values.password.length < 7) {
+                errors.password = 'Must be 7 characters or more'
+            }
+
+            return errors
+        },
         onSubmit: (values) => {
-            dispatch(newPassword({...values,resetPasswordToken:token}))
+            dispatch(newPassword({ ...values, resetPasswordToken: token }))
         },
     })
 
@@ -60,14 +71,15 @@ export const NewPassword = () => {
                                         <InputAdornment position="end">
                                             <IconButton
                                                 aria-label="toggle password visibility"
-                                                onClick={() => handleClickShowPassword("pass")}
+                                                onClick={() => handleClickShowPassword('pass')}
                                                 onMouseDown={handleMouseDownPassword}
                                             >
-                                                {password ? <VisibilityOff/> : <Visibility/>}
+                                                {password ? <VisibilityOff /> : <Visibility />}
                                             </IconButton>
                                         </InputAdornment>
                                     }
                                 />
+                                {formik.errors.password ? <div>{formik.errors.password}</div> : null}
                             </FormControl>
                             <FormLabel>
                                 <p className={s.textInstruction}>
@@ -89,5 +101,3 @@ export const NewPassword = () => {
         </Grid>
     )
 }
-
-
