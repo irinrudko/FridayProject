@@ -45,7 +45,6 @@ export const loginTC =
             .then((res) => {
                 dispatch(setIsLoggedInAC(true))
                 dispatch(setAppStatusAC('succeeded'))
-                alert('signed in')
                 dispatch(setUserDataAC(res))
             })
             .catch((err: any) => {
