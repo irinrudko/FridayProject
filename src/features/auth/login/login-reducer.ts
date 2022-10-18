@@ -56,13 +56,11 @@ export const loginTC =
 
 export const logoutTC = (): AppThunk => (dispatch) => {
     dispatch(setAppStatusAC('loading'))
-
+    // debugger
     regAPI
         .logout()
         .then((res) => {
-            if (res.status === 200) {
-                dispatch(setIsLoggedInAC(false))
-            }
+            dispatch(setIsLoggedInAC(false))
         })
         .catch((err: AxiosError) => {
             console.log(err)

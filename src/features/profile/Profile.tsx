@@ -6,22 +6,29 @@ import s from './Profile.module.css'
 import authStyle from '../auth/Auth.module.css'
 import Button from '@mui/material/Button'
 import { EditableSpan } from './EditableSpan/EditableSpan'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { routes } from '../../app/routes/Routes'
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import { setProfileUserName } from './profile-reducer'
+import { logoutTC } from '../auth/login/login-reducer'
 
 const Profile = () => {
     const dispatch = useAppDispatch()
     const name = useAppSelector((state) => state.profile.name)
     const email = useAppSelector((state) => state.profile.email)
+    const isLoggedIn = useAppSelector<boolean>((state) => state.login.isLoggedIn)
 
     useEffect(() => {
         dispatch(setProfileUserName())
     }, [])
     const navigate = useNavigate()
     const redirectToLogin = () => {
+        dispatch(logoutTC())
         navigate(routes.login)
+    }
+
+    if (!isLoggedIn) {
+        return <Navigate to={routes.login} />
     }
 
     return (
