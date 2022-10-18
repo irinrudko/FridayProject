@@ -9,7 +9,6 @@ const Header = () => {
     const dispatch = useAppDispatch()
     const isLoggedIn = useAppSelector<boolean>((store: AppRootStateType) => store.login.isLoggedIn)
     const onclickHandler = () => {
-        alert('logout')
         dispatch(logoutTC())
     }
 
