@@ -20,6 +20,7 @@ import { FormikErrorType } from '../auth-types'
 
 export const Login = () => {
     const dispatch = useAppDispatch()
+    const isLoggedIn = useAppSelector<boolean>((state) => state.login.isLoggedIn)
     const [password, setPassword] = useState(false)
     const [confirmPassword, setConfirmPassword] = useState(false)
 
@@ -62,6 +63,10 @@ export const Login = () => {
             dispatch(loginTC(values))
         },
     })
+
+    if (isLoggedIn) {
+        return <Navigate to={routes.profile} />
+    }
 
     return (
         <Grid container justifyContent={'center'}>
