@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import s from './ForgotPassword.module.css'
 import authStyle from '../Auth.module.css'
-import {Navigate, NavLink, useNavigate} from 'react-router-dom'
+import {NavLink, useNavigate} from 'react-router-dom'
 import {routes} from '../../../app/routes/Routes'
 import Grid from '@mui/material/Grid'
 import FormControl from '@mui/material/FormControl'

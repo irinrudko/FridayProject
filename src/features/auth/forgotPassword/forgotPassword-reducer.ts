@@ -2,9 +2,7 @@ import {AppThunk} from "../../../app/store";
 import {setAppStatusAC, setErrAC} from "../../../app/app-reducer";
 import {DataNewPasswordType, forgotPasswordAPI, ForgotPasswordDataType} from "../../../api/api";
 import {AxiosError} from "axios";
-import {Navigate} from "react-router-dom";
 import {routes} from "../../../app/routes/Routes";
-import React from "react";
 
 const initialState = {}
 type InitialStateType = typeof initialState
