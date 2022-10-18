@@ -1,6 +1,6 @@
 import {AppThunk} from "../../../app/store";
 import {setAppStatusAC, setErrAC} from "../../../app/app-reducer";
-import {dataNewPasswordType, forgotPasswordAPI, ForgotPasswordDataType} from "../../../api/api";
+import {DataNewPasswordType, forgotPasswordAPI, ForgotPasswordDataType} from "../../../api/api";
 import {AxiosError} from "axios";
 import {Navigate} from "react-router-dom";
 import {routes} from "../../../app/routes/Routes";
@@ -35,7 +35,7 @@ password recovery link: <a href='http://localhost:3000/#${routes.newPassword}/$t
         .catch((error: AxiosError) => dispatch(setErrAC(error.message ? error.message : "some error occurred")))
         .finally(() => dispatch(setAppStatusAC('idle')))
 }
-export const newPassword=(dataNewPassword:dataNewPasswordType):AppThunk=>(dispatch)=>{
+export const newPassword=(dataNewPassword:DataNewPasswordType):AppThunk=>(dispatch)=>{
     dispatch(setAppStatusAC('loading'))
     console.log(dataNewPassword)
     forgotPasswordAPI.sendNewPassword(dataNewPassword)

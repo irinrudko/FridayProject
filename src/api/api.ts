@@ -25,7 +25,7 @@ export const forgotPasswordAPI={
     forgotPassword(dataForgotPassword:ForgotPasswordDataType){
         return instance.post('auth/forgot',dataForgotPassword)
     },
-    sendNewPassword(dataNewPassword:dataNewPasswordType){
+    sendNewPassword(dataNewPassword:DataNewPasswordType){
         return instance.post('auth/set-new-password',dataNewPassword)
     }
 }
@@ -34,7 +34,7 @@ export const forgotPasswordAPI={
 export type ResponseForgotPasswordAPIType={
 
 }
-export type dataNewPasswordType= {
+export type DataNewPasswordType = {
     password: string
     resetPasswordToken: string|undefined
 }
