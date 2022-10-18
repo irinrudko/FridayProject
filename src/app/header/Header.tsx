@@ -21,12 +21,16 @@ const Header = () => {
             <NavLink to={routes.profile} className={s.navLink}>
                 Profile{' '}
             </NavLink>
-            <NavLink to={routes.login} className={s.navLink}>
-                Login{' '}
-            </NavLink>
-            <NavLink to={routes.registration} className={s.navLink}>
-                Registration{' '}
-            </NavLink>
+            {!isLoggedIn && (
+                <NavLink to={routes.login} className={s.navLink}>
+                    Login{' '}
+                </NavLink>
+            )}
+            {!isLoggedIn && (
+                <NavLink to={routes.registration} className={s.navLink}>
+                    Registration{' '}
+                </NavLink>
+            )}
             <NavLink to={routes.forgotPassword} className={s.navLink}>
                 Forgot password{' '}
             </NavLink>
