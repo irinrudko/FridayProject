@@ -1,7 +1,7 @@
 import { LoginParamsData, regAPI, UserData } from '../../../api/api'
-import {initializedAC, setAppStatusAC, setErrAC} from '../../../app/app-reducer'
+import { initializedAC, setAppStatusAC, setErrAC } from '../../../app/app-reducer'
 import { AppThunk } from '../../../app/store'
-import {AxiosError} from "axios";
+import { AxiosError } from 'axios'
 
 type InitialStateType = {
     isLoggedIn: boolean
@@ -55,27 +55,24 @@ export const loginTC =
             })
     }
 
-export const logoutTC =
-    (): AppThunk =>
-        (dispatch) => {
-            dispatch(setAppStatusAC('loading'))
+export const logoutTC = (): AppThunk => (dispatch) => {
+    dispatch(setAppStatusAC('loading'))
 
-            regAPI
-                .logout()
-                .then((res) => {
-                    if(res.status === 200){
-                        dispatch(setIsLoggedInAC(false))
-                    }
-                })
-                .catch((err: AxiosError) => {
-                    console.log(err)
-                })
-                .finally(() => {
-                    dispatch(initializedAC(true))
-                    dispatch(setAppStatusAC('succeeded'))
-                })
-        }
-
+    regAPI
+        .logout()
+        .then((res) => {
+            if (res.status === 200) {
+                dispatch(setIsLoggedInAC(false))
+            }
+        })
+        .catch((err: AxiosError) => {
+            console.log(err)
+        })
+        .finally(() => {
+            dispatch(initializedAC(true))
+            dispatch(setAppStatusAC('succeeded'))
+        })
+}
 
 export const setIsLoggedInAC = (isLoggedIn: boolean) => ({ type: 'login/SET-IS-LOGGED-IN', isLoggedIn } as const)
 export const setUserDataAC = (user: UserData) => ({ type: 'SET-USER-DATA', user } as const)

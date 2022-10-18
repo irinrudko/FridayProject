@@ -1,7 +1,7 @@
 import { AppThunk } from './store'
 import { regAPI } from '../api/api'
 import { AxiosError } from 'axios'
-import {setIsLoggedInAC} from "../features/auth/login/login-reducer";
+import { setIsLoggedInAC } from '../features/auth/login/login-reducer'
 
 const initialState = {
     status: 'idle' as RequestStatusType,
@@ -37,7 +37,7 @@ export const initializedTC = (): AppThunk => (dispatch) => {
         .me()
         .then((res) => {
             // debugger
-            if(res.status === 200){
+            if (res.status === 200) {
                 dispatch(setIsLoggedInAC(true))
             }
         })
