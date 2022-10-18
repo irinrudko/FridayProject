@@ -12,6 +12,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch } from '../../../app/store'
 import { newPassword } from './forgotPassword-reducer'
+import { FormikErrorType } from '../auth-types'
 
 export const NewPassword = () => {
     const dispatch = useAppDispatch()
@@ -31,6 +32,17 @@ export const NewPassword = () => {
     const formik = useFormik({
         initialValues: {
             password: '',
+        },
+        validate: (values) => {
+            const errors: FormikErrorType = {}
+
+            if (!values.password) {
+                errors.password = 'Password is required'
+            } else if (values.password.length < 7) {
+                errors.password = 'Must be 7 characters or more'
+            }
+
+            return errors
         },
         onSubmit: (values) => {
             dispatch(newPassword({ ...values, resetPasswordToken: token }))
@@ -67,6 +79,7 @@ export const NewPassword = () => {
                                         </InputAdornment>
                                     }
                                 />
+                                {formik.errors.password ? <div>{formik.errors.password}</div> : null}
                             </FormControl>
                             <FormLabel>
                                 <p className={s.textInstruction}>

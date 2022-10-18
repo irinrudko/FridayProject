@@ -7,7 +7,7 @@ import { logoutTC } from '../../features/auth/login/login-reducer'
 
 const Header = () => {
     const dispatch = useAppDispatch()
-    const isLoggin = useAppSelector<boolean>((store: AppRootStateType) => store.login.isLoggedIn)
+    const isLoggedIn = useAppSelector<boolean>((store: AppRootStateType) => store.login.isLoggedIn)
     const onclickHandler = () => {
         alert('logout')
         dispatch(logoutTC())
@@ -21,12 +21,16 @@ const Header = () => {
             <NavLink to={routes.profile} className={s.navLink}>
                 Profile{' '}
             </NavLink>
-            <NavLink to={routes.login} className={s.navLink}>
-                Login{' '}
-            </NavLink>
-            <NavLink to={routes.registration} className={s.navLink}>
-                Registration{' '}
-            </NavLink>
+            {!isLoggedIn && (
+                <NavLink to={routes.login} className={s.navLink}>
+                    Login{' '}
+                </NavLink>
+            )}
+            {!isLoggedIn && (
+                <NavLink to={routes.registration} className={s.navLink}>
+                    Registration{' '}
+                </NavLink>
+            )}
             <NavLink to={routes.forgotPassword} className={s.navLink}>
                 Forgot password{' '}
             </NavLink>
@@ -39,7 +43,7 @@ const Header = () => {
             <NavLink to={routes.error404} className={s.navLink}>
                 404{' '}
             </NavLink>
-            {isLoggin && (
+            {isLoggedIn && (
                 <NavLink to={routes.login} className={s.navLink} onClick={onclickHandler}>
                     Logout{' '}
                 </NavLink>

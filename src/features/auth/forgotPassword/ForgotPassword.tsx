@@ -12,6 +12,7 @@ import Button from '@mui/material/Button'
 import { useFormik } from 'formik'
 import { useAppDispatch } from '../../../app/store'
 import { forgotPassword } from './forgotPassword-reducer'
+import { FormikErrorType } from '../auth-types'
 
 export const ForgotPassword = () => {
     const dispatch = useAppDispatch()
@@ -21,6 +22,17 @@ export const ForgotPassword = () => {
     const formik = useFormik({
         initialValues: {
             email: '',
+        },
+        validate: (values) => {
+            const errors: FormikErrorType = {}
+
+            if (!values.email) {
+                errors.email = 'Email is required'
+            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+                errors.email = 'Invalid email address'
+            }
+
+            return errors
         },
         onSubmit: (values) => {
             dispatch(forgotPassword(values))
@@ -46,6 +58,8 @@ export const ForgotPassword = () => {
                                 onChange={formik.handleChange}
                                 value={formik.values.email}
                             />
+                            {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+
                             <FormLabel>
                                 <p className={s.textInstruction}>
                                     Enter your email address and we will send you further instructions
