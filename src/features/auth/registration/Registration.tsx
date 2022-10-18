@@ -14,6 +14,7 @@ import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { regTC } from './registration-reducer'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
+import { FormikErrorType } from '../auth-types'
 
 const Registration = () => {
     const dispatch = useAppDispatch()
@@ -39,6 +40,25 @@ const Registration = () => {
             email: '',
             password: '',
             confirmPassword: '',
+        },
+        validate: (values) => {
+            const errors: FormikErrorType = {}
+
+            if (!values.email) {
+                errors.email = 'Email is required'
+            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+                errors.email = 'Invalid email address'
+            }
+
+            if (!values.password) {
+                errors.password = 'Password is required'
+            } else if (values.password.length < 7) {
+                errors.password = 'Must be 7 characters or more'
+            } else if (values.confirmPassword.length < 7) {
+                errors.confirmPassword = 'Must be 7 characters or more'
+            }
+
+            return errors
         },
         onSubmit: (values) => {
             if (formik.values.password === formik.values.confirmPassword) {
@@ -75,6 +95,8 @@ const Registration = () => {
                                 onChange={formik.handleChange}
                                 value={formik.values.email}
                             />
+                            {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+
                             <FormControl variant="standard">
                                 <InputLabel htmlFor="password" variant="standard">
                                     Password
@@ -99,6 +121,7 @@ const Registration = () => {
                                         </InputAdornment>
                                     }
                                 />
+                                {formik.errors.password ? <div>{formik.errors.password}</div> : null}
                             </FormControl>
                             <FormControl variant="standard">
                                 <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
@@ -122,6 +145,7 @@ const Registration = () => {
                                         </InputAdornment>
                                     }
                                 />
+                                {formik.errors.confirmPassword ? <div>{formik.errors.confirmPassword}</div> : null}
                             </FormControl>
                             <Button
                                 type={'submit'}
