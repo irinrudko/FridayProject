@@ -52,10 +52,16 @@ const Registration = () => {
 
             if (!values.password) {
                 errors.password = 'Password is required'
-            } else if (values.password.length < 7) {
-                errors.password = 'Must be 7 characters or more'
-            } else if (values.confirmPassword.length < 7) {
-                errors.confirmPassword = 'Must be 7 characters or more'
+            } else if (values.password.length < 8) {
+                errors.password = 'Must be 8 characters or more'
+            }
+
+            if (!values.confirmPassword) {
+                errors.confirmPassword = 'Password is required'
+            } else if (values.confirmPassword.length < 8) {
+                errors.confirmPassword = 'Must be 8 characters or more'
+            } else if (values.password !== values.confirmPassword) {
+                errors.confirmPassword = 'Passwords do not match'
             }
 
             return errors
@@ -88,14 +94,17 @@ const Registration = () => {
                         <FormGroup>
                             <TextField
                                 label="Email"
-                                name="email"
                                 margin="normal"
                                 variant="standard"
                                 className={authStyle.textField}
-                                onChange={formik.handleChange}
-                                value={formik.values.email}
+                                // onChange={formik.handleChange}
+                                // value={formik.values.email}
+                                // name="email"
+                                {...formik.getFieldProps('email')}
                             />
-                            {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+                            {formik.touched.email && formik.errors.email ? (
+                                <div style={{ color: 'red' }}>{formik.errors.email}</div>
+                            ) : null}
 
                             <FormControl variant="standard">
                                 <InputLabel htmlFor="password" variant="standard">
@@ -103,12 +112,13 @@ const Registration = () => {
                                 </InputLabel>
                                 <Input
                                     id="password"
-                                    name="password"
                                     type={password ? 'text' : 'password'}
-                                    onChange={formik.handleChange}
-                                    value={formik.values.password}
+                                    // onChange={formik.handleChange}
+                                    // value={formik.values.password}
+                                    // name="password"
                                     className={s.input}
                                     autoComplete={'on'}
+                                    {...formik.getFieldProps('password')}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
@@ -121,18 +131,21 @@ const Registration = () => {
                                         </InputAdornment>
                                     }
                                 />
-                                {formik.errors.password ? <div>{formik.errors.password}</div> : null}
+                                {formik.touched.password && formik.errors.password ? (
+                                    <div style={{ color: 'red' }}>{formik.errors.password}</div>
+                                ) : null}
                             </FormControl>
                             <FormControl variant="standard">
                                 <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
                                 <Input
                                     id="confirmPassword"
-                                    name="confirmPassword"
                                     type={confirmPassword ? 'text' : 'password'}
-                                    onChange={formik.handleChange}
-                                    value={formik.values.confirmPassword}
+                                    // onChange={formik.handleChange}
+                                    // value={formik.values.confirmPassword}
+                                    // name="confirmPassword"
                                     className={s.lastInput}
                                     autoComplete={'on'}
+                                    {...formik.getFieldProps('confirmPassword')}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
@@ -145,12 +158,16 @@ const Registration = () => {
                                         </InputAdornment>
                                     }
                                 />
-                                {formik.errors.confirmPassword ? <div>{formik.errors.confirmPassword}</div> : null}
+                                {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
+                                    <div style={{ color: 'red', marginBottom: '30px' }}>{formik.errors.confirmPassword}</div>
+                                ) : null}
                             </FormControl>
                             <Button
                                 type={'submit'}
                                 variant={'contained'}
                                 color={'primary'}
+                                // disabled={!!formik.errors.email || !!formik.errors.password || !!formik.errors.confirmPassword}
+                                // disabled={!formik.errors}
                                 className={`${authStyle.button} ${s.button}`}
                             >
                                 Sign Up
