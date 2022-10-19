@@ -1,7 +1,7 @@
-import {regAPI} from '../../api/api'
-import {AppThunk} from '../../app/store'
-import {setAppStatusAC, setErrAC} from '../../app/app-reducer'
-import {AxiosError} from "axios";
+import { regAPI } from '../../api/api'
+import { AppThunk } from '../../app/store'
+import { setAppStatusAC, setErrAC } from '../../app/app-reducer'
+import { AxiosError } from 'axios'
 
 const initialState = {
     name: '' as string,
@@ -40,7 +40,7 @@ export const updateUser =
         regAPI
             .changeNameOrImg(userName)
             .then((response) => dispatch(setUserData(userName)))
-            .catch((error:AxiosError) => {
+            .catch((error: AxiosError) => {
                 dispatch(setErrAC(error.message ? error.message : 'some error occurred'))
             })
             .finally(() => dispatch(setAppStatusAC('idle')))

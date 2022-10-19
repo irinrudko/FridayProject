@@ -1,26 +1,25 @@
 import React from 'react'
 import s from './ForgotPassword.module.css'
 import authStyle from '../Auth.module.css'
-import {NavLink, useNavigate} from 'react-router-dom'
-import {routes} from '../../../app/routes/Routes'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { routes } from '../../../app/routes/Routes'
 import Grid from '@mui/material/Grid'
 import FormControl from '@mui/material/FormControl'
 import FormGroup from '@mui/material/FormGroup'
 import FormLabel from '@mui/material/FormLabel'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
-import {useFormik} from 'formik'
-import {useAppDispatch} from '../../../app/store'
-import {forgotPassword} from './forgotPassword-reducer'
-import {FormikErrorType} from '../auth-types'
+import { useFormik } from 'formik'
+import { useAppDispatch } from '../../../app/store'
+import { forgotPassword } from './forgotPassword-reducer'
+import { FormikErrorType } from '../auth-types'
 
 export const ForgotPassword = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
-    const navigateToPasswordRecovery=()=>{
+    const navigateToPasswordRecovery = () => {
         navigate(routes.passwordRecovery)
     }
-
 
     const formik = useFormik({
         initialValues: {
@@ -38,8 +37,7 @@ export const ForgotPassword = () => {
             return errors
         },
         onSubmit: (values) => {
-            dispatch(forgotPassword(values,navigateToPasswordRecovery))
-
+            dispatch(forgotPassword(values, navigateToPasswordRecovery))
         },
     })
 
@@ -61,7 +59,7 @@ export const ForgotPassword = () => {
                                 onChange={formik.handleChange}
                                 value={formik.values.email}
                             />
-                            {formik.errors.email ? <div style={{color:'red'}}>{formik.errors.email}</div> : null}
+                            {formik.errors.email ? <div style={{ color: 'red' }}>{formik.errors.email}</div> : null}
 
                             <FormLabel>
                                 <p className={s.textInstruction}>

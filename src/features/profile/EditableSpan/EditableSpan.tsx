@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import TextField from '@mui/material/TextField'
-import {Button} from '@mui/material'
+import { Button } from '@mui/material'
 import s from './EditableSpan.module.css'
-import {useAppDispatch} from '../../../app/store'
-import {updateUser} from '../profile-reducer'
-import {useFormik} from 'formik'
+import { useAppDispatch } from '../../../app/store'
+import { updateUser } from '../profile-reducer'
+import { useFormik } from 'formik'
 
 type EditableSpanPropsType = {
     name: string
@@ -52,8 +52,9 @@ export const EditableSpan = function (props: EditableSpanPropsType) {
                 </Button>
             </form>
         </>
-    ) :
-        (
-            <span className={s.pensilSpan} onDoubleClick={activateEditMode}>{props.name}</span>
+    ) : (
+        <span className={s.pensilSpan} onDoubleClick={activateEditMode}>
+            {props.name}
+        </span>
     )
 }

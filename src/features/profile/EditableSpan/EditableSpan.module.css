@@ -17,7 +17,7 @@
     border: 1px solid;
     padding: 0;
 }
-.pensilSpan{
+.pensilSpan {
     position: relative;
 }
 .pensilSpan::after {
@@ -30,4 +30,3 @@
     background-image: url('../../../common/assets/image/pencilForProfile.svg');
     background-repeat: no-repeat;
 }
-
