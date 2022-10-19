@@ -9,16 +9,17 @@ import Button from '@mui/material/Button'
 import { useFormik } from 'formik'
 import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
-import { useParams } from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import { useAppDispatch } from '../../../app/store'
 import { newPassword } from './forgotPassword-reducer'
 import { FormikErrorType } from '../auth-types'
+import {routes} from "../../../app/routes/Routes";
 
 export const NewPassword = () => {
     const dispatch = useAppDispatch()
     const [password, setPassword] = useState(false)
+    const navigate=useNavigate()
     const { token } = useParams<{ token: string }>()
-    console.log(token)
 
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
@@ -28,7 +29,9 @@ export const NewPassword = () => {
             setPassword(!password)
         }
     }
-
+const redirectToLogin=()=>{
+    navigate(routes.login)
+}
     const formik = useFormik({
         initialValues: {
             password: '',
@@ -45,7 +48,9 @@ export const NewPassword = () => {
             return errors
         },
         onSubmit: (values) => {
-            dispatch(newPassword({ ...values, resetPasswordToken: token }))
+
+            dispatch(newPassword({ ...values, resetPasswordToken: token },redirectToLogin))
+
         },
     })
 
@@ -79,7 +84,7 @@ export const NewPassword = () => {
                                         </InputAdornment>
                                     }
                                 />
-                                {formik.errors.password ? <div>{formik.errors.password}</div> : null}
+                                {formik.errors.password ? <div style={{color:'red'}}>{formik.errors.password}</div> : null}
                             </FormControl>
                             <FormLabel>
                                 <p className={s.textInstruction}>

@@ -17,7 +17,7 @@ export const forgotPasswordReducer = (state: InitialStateType = initialState, ac
 
 //thunk
 export const forgotPassword =
-    (emailValue: { email: string }): AppThunk =>
+    (emailValue: { email: string },redirect:()=>void): AppThunk =>
     (dispatch) => {
         const data: ForgotPasswordDataType = {
             ...emailValue,
@@ -30,19 +30,23 @@ password recovery link: <a href='http://localhost:3000/#${routes.newPassword}/$t
         forgotPasswordAPI
             .forgotPassword(data)
             .then((response) => {
+                redirect()
                 dispatch(setAppStatusAC('succeeded'))
             })
             .catch((error: AxiosError) => dispatch(setErrAC(error.message ? error.message : 'some error occurred')))
             .finally(() => dispatch(setAppStatusAC('idle')))
     }
 export const newPassword =
-    (dataNewPassword: DataNewPasswordType): AppThunk =>
+    (dataNewPassword: DataNewPasswordType,redirect:()=>void): AppThunk =>
     (dispatch) => {
         dispatch(setAppStatusAC('loading'))
-        console.log(dataNewPassword)
         forgotPasswordAPI
             .sendNewPassword(dataNewPassword)
-            .then((response) => dispatch(setAppStatusAC('succeeded')))
+            .then((response) => {
+                redirect()
+                dispatch(setAppStatusAC('succeeded'))
+
+            })
             .catch((error: AxiosError) => dispatch(setErrAC(error.message ? error.message : 'some error occurred')))
             .finally(() => dispatch(setAppStatusAC('idle')))
     }

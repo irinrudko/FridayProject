@@ -17,3 +17,17 @@
     border: 1px solid;
     padding: 0;
 }
+.pensilSpan{
+    position: relative;
+}
+.pensilSpan::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    right: -27px;
+    width: 16px;
+    height: 16px;
+    background-image: url('../../../common/assets/image/pencilForProfile.svg');
+    background-repeat: no-repeat;
+}
+

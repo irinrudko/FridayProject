@@ -1,6 +1,7 @@
-import { ChangeNameOrImgType, regAPI } from '../../api/api'
-import { AppThunk } from '../../app/store'
-import { setAppStatusAC, setErrAC } from '../../app/app-reducer'
+import {regAPI} from '../../api/api'
+import {AppThunk} from '../../app/store'
+import {setAppStatusAC, setErrAC} from '../../app/app-reducer'
+import {AxiosError} from "axios";
 
 const initialState = {
     name: '' as string,
@@ -32,14 +33,14 @@ export const setProfileUserName = (): AppThunk => (dispatch) => {
         )
     )
 }
-export const changeUserName =
+export const updateUser =
     (userName: { name: string }): AppThunk =>
     (dispatch) => {
         dispatch(setAppStatusAC('loading'))
         regAPI
             .changeNameOrImg(userName)
             .then((response) => dispatch(setUserData(userName)))
-            .catch((error) => {
+            .catch((error:AxiosError) => {
                 dispatch(setErrAC(error.message ? error.message : 'some error occurred'))
             })
             .finally(() => dispatch(setAppStatusAC('idle')))

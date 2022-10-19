@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import TextField from '@mui/material/TextField'
-import { Button } from '@mui/material'
+import {Button} from '@mui/material'
 import s from './EditableSpan.module.css'
-import { useAppDispatch, useAppSelector } from '../../../app/store'
-import { changeUserName } from '../profile-reducer'
-import { useFormik } from 'formik'
+import {useAppDispatch} from '../../../app/store'
+import {updateUser} from '../profile-reducer'
+import {useFormik} from 'formik'
 
 type EditableSpanPropsType = {
     name: string
 }
-export const EditableSpan = React.memo(function (props: EditableSpanPropsType) {
+export const EditableSpan = function (props: EditableSpanPropsType) {
     const dispatch = useAppDispatch()
 
     let [editMode, setEditMode] = useState(false)
@@ -18,7 +18,7 @@ export const EditableSpan = React.memo(function (props: EditableSpanPropsType) {
             name: '',
         },
         onSubmit: (values) => {
-            dispatch(changeUserName(values))
+            dispatch(updateUser(values))
             setEditMode(false)
         },
     })
@@ -52,7 +52,8 @@ export const EditableSpan = React.memo(function (props: EditableSpanPropsType) {
                 </Button>
             </form>
         </>
-    ) : (
-        <span onDoubleClick={activateEditMode}>{props.name}</span>
+    ) :
+        (
+            <span className={s.pensilSpan} onDoubleClick={activateEditMode}>{props.name}</span>
     )
-})
+}

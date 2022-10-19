@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react'
+import React, {useEffect} from 'react'
 import Grid from '@mui/material/Grid'
-import { Paper } from '@mui/material'
+import {Paper} from '@mui/material'
 import AvatarImage from '../../common/assets/image/avatar.jpg'
 import s from './Profile.module.css'
 import authStyle from '../auth/Auth.module.css'
 import Button from '@mui/material/Button'
-import { EditableSpan } from './EditableSpan/EditableSpan'
-import { Navigate, useNavigate } from 'react-router-dom'
-import { routes } from '../../app/routes/Routes'
-import { useAppDispatch, useAppSelector } from '../../app/store'
-import { setProfileUserName } from './profile-reducer'
-import { logoutTC } from '../auth/login/login-reducer'
+import {EditableSpan} from './EditableSpan/EditableSpan'
+import {Navigate} from 'react-router-dom'
+import {routes} from '../../app/routes/Routes'
+import {useAppDispatch, useAppSelector} from '../../app/store'
+import {setProfileUserName} from './profile-reducer'
+import {logoutTC} from '../auth/login/login-reducer'
 
 const Profile = () => {
     const dispatch = useAppDispatch()
@@ -21,10 +21,9 @@ const Profile = () => {
     useEffect(() => {
         dispatch(setProfileUserName())
     }, [])
-    const navigate = useNavigate()
+
     const redirectToLogin = () => {
         dispatch(logoutTC())
-        navigate(routes.login)
     }
 
     if (!isLoggedIn) {
@@ -41,7 +40,7 @@ const Profile = () => {
                         <EditableSpan name={name} />
                     </h4>
                     <p className={s.email}>{email}</p>
-                    <Button type={'submit'} variant={'outlined'} color={'inherit'} onClick={redirectToLogin}>
+                    <Button type={'button'} variant={'outlined'} color={'inherit'} onClick={redirectToLogin}>
                         <span className={s.iconButton}></span> <span className={s.logoutText}>Log out</span>
                     </Button>
                 </Paper>
