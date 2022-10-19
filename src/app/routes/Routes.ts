@@ -8,4 +8,5 @@ export const routes = {
     passwordRecovery: '/passwordRecovery',
     test: '/test',
     error404: '/404',
+    packsList: '/main/packlist',
 }

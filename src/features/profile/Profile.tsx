@@ -6,7 +6,7 @@ import s from './Profile.module.css'
 import authStyle from '../auth/Auth.module.css'
 import Button from '@mui/material/Button'
 import { EditableSpan } from './EditableSpan/EditableSpan'
-import { Navigate } from 'react-router-dom'
+import { Navigate, NavLink, useNavigate } from 'react-router-dom'
 import { routes } from '../../app/routes/Routes'
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import { setProfileUserName } from './profile-reducer'
@@ -17,6 +17,7 @@ const Profile = () => {
     const name = useAppSelector((state) => state.profile.name)
     const email = useAppSelector((state) => state.profile.email)
     const isLoggedIn = useAppSelector<boolean>((state) => state.login.isLoggedIn)
+    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(setProfileUserName())
@@ -25,27 +26,37 @@ const Profile = () => {
     const redirectToLogin = () => {
         dispatch(logoutTC())
     }
+    const backToPacksList = () => {
+        navigate(routes.packsList)
+    }
 
     if (!isLoggedIn) {
         return <Navigate to={routes.login} />
     }
 
     return (
-        <Grid container justifyContent={'center'}>
-            <Grid item justifyContent={'center'}>
-                <Paper className={s.paper} elevation={3}>
-                    <h2 className={`${authStyle.title} ${s.title}`}>Personal Information</h2>
-                    <img className={s.img} alt="my avatar" src={AvatarImage} />
-                    <h4 className={s.name}>
-                        <EditableSpan name={name} />
-                    </h4>
-                    <p className={s.email}>{email}</p>
-                    <Button type={'button'} variant={'outlined'} color={'inherit'} onClick={redirectToLogin}>
-                        <span className={s.iconButton}></span> <span className={s.logoutText}>Log out</span>
-                    </Button>
-                </Paper>
+        <>
+            <Grid container justifyContent={'center'}>
+                <Grid item justifyContent={'center'}>
+                    <div className={s.toPacksListContainer}>
+                        <NavLink className={s.toPacksList} to={routes.packsList}>
+                            Back to Packs List
+                        </NavLink>
+                    </div>
+                    <Paper className={s.paper} elevation={3}>
+                        <h2 className={`${authStyle.title} ${s.title}`}>Personal Information</h2>
+                        <img className={s.img} alt="my avatar" src={AvatarImage} />
+                        <h4 className={s.name}>
+                            <EditableSpan name={name} />
+                        </h4>
+                        <p className={s.email}>{email}</p>
+                        <Button type={'button'} variant={'outlined'} color={'inherit'} onClick={redirectToLogin}>
+                            <span className={s.iconButton}></span> <span className={s.logoutText}>Log out</span>
+                        </Button>
+                    </Paper>
+                </Grid>
             </Grid>
-        </Grid>
+        </>
     )
 }
 

@@ -2,9 +2,11 @@
     margin: 0;
     padding: 0 50px;
 }
+
 .title {
     padding-top: 17px;
 }
+
 .img {
     height: 96px;
     width: 96px;
@@ -16,6 +18,7 @@
     margin-top: 17px;
     position: relative;
 }
+
 .name::after {
     content: '';
     position: absolute;
@@ -26,10 +29,12 @@
     background-image: url('../../common/assets/image/iconPhotoProfile.svg');
     background-repeat: no-repeat;
 }
+
 .email {
     opacity: 0.5;
     margin-top: 17px;
 }
+
 .paper button {
     align-self: normal;
     text-align: center;
@@ -38,9 +43,11 @@
     margin-bottom: 31px;
     box-shadow: 0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
 }
+
 .iconButton {
     position: relative;
 }
+
 .iconButton::before {
     content: '';
     position: absolute;
@@ -54,4 +61,25 @@
 
 .logoutText {
     padding-left: 20px;
+}
+
+/*toPacksListContainer{*/
+/*    */
+/*    justify-content: flex-start;*/
+/*}*/
+.toPacksList {
+    cursor: pointer;
+    position: relative;
+    right: 100%;
+}
+
+.toPacksList::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    bottom: 3px;
+    width: 14px;
+    height: 12px;
+    background-image: url('../../common/assets/image/backProfile.svg');
+    background-repeat: no-repeat;
 }

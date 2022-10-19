@@ -29,7 +29,7 @@ export const EditableSpan = function (props: EditableSpanPropsType) {
 
     return editMode ? (
         <>
-            <form className={s.form} onSubmit={formik.handleSubmit}>
+            <form className={s.form} onSubmit={formik.handleSubmit} onBlur={formik.handleSubmit}>
                 <TextField
                     name="name"
                     label="Nickname"
@@ -38,6 +38,7 @@ export const EditableSpan = function (props: EditableSpanPropsType) {
                     color={'info'}
                     onChange={formik.handleChange}
                     value={formik.values.name}
+                    onBlur={formik.handleBlur}
                     autoFocus
                     className={s.TextField}
                 />
