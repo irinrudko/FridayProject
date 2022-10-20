@@ -9,10 +9,11 @@ import Button from '@mui/material/Button'
 import ImageLetter from '../../../common/assets/image/iconSendForgotPassword.svg'
 import { routes } from '../../../app/routes/Routes'
 import { useNavigate } from 'react-router-dom'
+import { useAppSelector } from '../../../app/store'
 
 export const PasswordRecovery = () => {
+    const email = useAppSelector((state) => state.forgotPassword.email)
     const navigate = useNavigate()
-
     const navigateToLogin = () => {
         navigate(routes.login)
     }
@@ -29,7 +30,7 @@ export const PasswordRecovery = () => {
                             <img src={ImageLetter} alt="image letter" />
                             <FormLabel>
                                 <p className={`${s.textInstruction} ${s.textPassRecovery}`}>
-                                    We’ve sent an Email with instructions to example@mail.com
+                                    We’ve sent an Email with instructions to {email}
                                 </p>
                             </FormLabel>
                             <Button
