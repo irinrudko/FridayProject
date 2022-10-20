@@ -3,15 +3,15 @@ import { AppThunk } from '../../app/store'
 import { setAppStatusAC, setErrAC } from '../../app/app-reducer'
 import { AxiosError } from 'axios'
 
-const initialState = {
+const profileInitialState = {
     name: '' as string,
     avatar: '' as string,
     email: '' as string,
 }
 
-export const profileReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
+export const profileReducer = (state: ProfileInitialStateType = profileInitialState, action: ActionType): ProfileInitialStateType => {
     switch (action.type) {
-        case 'PROFILE/SET-USER-NAME': {
+        case 'PROFILE/SET-USER-DATA': {
             return { ...state, ...action.data }
         }
         default:
@@ -20,7 +20,7 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
 }
 
 //action
-export const setUserData = (data: UserDataType) => ({ type: 'PROFILE/SET-USER-NAME', data })
+export const setUserData = (data: UserDataType) => ({ type: 'PROFILE/SET-USER-DATA', data }) as const
 
 //thunk
 export const setProfileUserName = (): AppThunk => (dispatch) => {
@@ -39,7 +39,7 @@ export const updateUser =
         dispatch(setAppStatusAC('loading'))
         regAPI
             .changeNameOrImg(userName)
-            .then((response) => dispatch(setUserData(userName)))
+            .then(() => dispatch(setUserData(userName)))
             .catch((error: AxiosError) => {
                 dispatch(setErrAC(error.message ? error.message : 'some error occurred'))
             })
@@ -52,5 +52,5 @@ export type UserDataType = {
     avatar?: string
     email?: string
 }
-type InitialStateType = typeof initialState
+type ProfileInitialStateType = typeof profileInitialState
 type ActionType = ReturnType<typeof setUserData>

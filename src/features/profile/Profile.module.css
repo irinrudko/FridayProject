@@ -63,14 +63,15 @@
     padding-left: 20px;
 }
 
-/*toPacksListContainer{*/
-/*    */
-/*    justify-content: flex-start;*/
-/*}*/
 .toPacksList {
     cursor: pointer;
     position: relative;
     right: 100%;
+
+}
+.toPacksListContainer a {
+    text-decoration: none;
+
 }
 
 .toPacksList::before {
