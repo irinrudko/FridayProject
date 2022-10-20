@@ -36,17 +36,15 @@ export const initializedTC = (): AppThunk => (dispatch) => {
     regAPI
         .me()
         .then((res) => {
-            // debugger
-            if (res.status === 200) {
-                dispatch(setIsLoggedInAC(true))
-            }
+            dispatch(setIsLoggedInAC(true))
+            dispatch(setAppStatusAC('succeeded'))
         })
         .catch((err: AxiosError) => {
-            console.log(err)
+            // console.log(err)
         })
         .finally(() => {
             dispatch(initializedAC(true))
-            dispatch(setAppStatusAC('succeeded'))
+            dispatch(setAppStatusAC('idle'))
         })
 }
 

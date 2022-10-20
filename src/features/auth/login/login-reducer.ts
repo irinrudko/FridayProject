@@ -62,11 +62,12 @@ export const logoutTC = (): AppThunk => (dispatch) => {
         .then((res) => {
             dispatch(setIsLoggedInAC(false))
         })
-        .catch((err: AxiosError) => {
-            console.log(err)
+        .catch((err: any) => {
+            let error = err.response.data.error
+            dispatch(setErrAC(error))
+            dispatch(setAppStatusAC('failed'))
         })
         .finally(() => {
-            dispatch(initializedAC(true))
             dispatch(setAppStatusAC('succeeded'))
         })
 }
