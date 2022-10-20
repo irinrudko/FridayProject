@@ -10,6 +10,7 @@ import s from './Content.module.css'
 import { Main } from '../../features/main/Main'
 import { ForgotPassword } from '../../features/auth/forgotPassword/ForgotPassword'
 import { Login } from '../../features/auth/login/Login'
+import PackList from '../../features/main/PackList/PackList'
 
 const Content = () => {
     return (
@@ -17,6 +18,7 @@ const Content = () => {
             <Routes>
                 <Route path={'/'} element={<Profile />} />
                 <Route path={routes.main} element={<Main />} />
+                <Route path={routes.packsList} element={<PackList />} />
                 <Route path={routes.profile} element={<Profile />} />
                 <Route path={routes.login} element={<Login />} />
                 <Route path={routes.registration} element={<Registration />} />

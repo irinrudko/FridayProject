@@ -6,7 +6,7 @@ import s from './Profile.module.css'
 import authStyle from '../auth/Auth.module.css'
 import Button from '@mui/material/Button'
 import { EditableSpan } from './EditableSpan/EditableSpan'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate, NavLink } from 'react-router-dom'
 import { routes } from '../../app/routes/Routes'
 import { useAppDispatch, useAppSelector } from '../../app/store'
 import { setProfileUserName } from './profile-reducer'
@@ -21,10 +21,9 @@ const Profile = () => {
     useEffect(() => {
         dispatch(setProfileUserName())
     }, [])
-    const navigate = useNavigate()
+
     const redirectToLogin = () => {
         dispatch(logoutTC())
-        navigate(routes.login)
     }
 
     if (!isLoggedIn) {
@@ -32,21 +31,28 @@ const Profile = () => {
     }
 
     return (
-        <Grid container justifyContent={'center'}>
-            <Grid item justifyContent={'center'}>
-                <Paper className={s.paper} elevation={3}>
-                    <h2 className={`${authStyle.title} ${s.title}`}>Personal Information</h2>
-                    <img className={s.img} alt="my avatar" src={AvatarImage} />
-                    <h4 className={s.name}>
-                        <EditableSpan name={name} />
-                    </h4>
-                    <p className={s.email}>{email}</p>
-                    <Button type={'submit'} variant={'outlined'} color={'inherit'} onClick={redirectToLogin}>
-                        <span className={s.iconButton}></span> <span className={s.logoutText}>Log out</span>
-                    </Button>
-                </Paper>
+        <>
+            <Grid container justifyContent={'center'}>
+                <Grid item justifyContent={'center'}>
+                    <div className={s.toPacksListContainer}>
+                        <NavLink className={s.toPacksList} to={routes.packsList}>
+                            Back to Packs List
+                        </NavLink>
+                    </div>
+                    <Paper className={s.paper} elevation={3}>
+                        <h2 className={`${authStyle.title} ${s.title}`}>Personal Information</h2>
+                        <img className={s.img} alt="my avatar" src={AvatarImage} />
+                        <h4 className={s.name}>
+                            <EditableSpan name={name} />
+                        </h4>
+                        <p className={s.email}>{email}</p>
+                        <Button type={'button'} variant={'outlined'} color={'inherit'} onClick={redirectToLogin}>
+                            <span className={s.iconButton}></span> <span className={s.logoutText}>Log out</span>
+                        </Button>
+                    </Paper>
+                </Grid>
             </Grid>
-        </Grid>
+        </>
     )
 }
 

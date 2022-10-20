@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import s from './ForgotPassword.module.css'
 import authStyle from '../Auth.module.css'
 import { NavLink, useNavigate } from 'react-router-dom'
@@ -16,8 +16,10 @@ import { FormikErrorType } from '../auth-types'
 
 export const ForgotPassword = () => {
     const dispatch = useAppDispatch()
-    const [sendValue, setSendValue] = useState(false)
     const navigate = useNavigate()
+    const navigateToPasswordRecovery = () => {
+        navigate(routes.passwordRecovery)
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -35,8 +37,7 @@ export const ForgotPassword = () => {
             return errors
         },
         onSubmit: (values) => {
-            dispatch(forgotPassword(values))
-            navigate(routes.passwordRecovery)
+            dispatch(forgotPassword(values, navigateToPasswordRecovery))
         },
     })
 
@@ -58,7 +59,7 @@ export const ForgotPassword = () => {
                                 onChange={formik.handleChange}
                                 value={formik.values.email}
                             />
-                            {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+                            {formik.errors.email ? <div style={{ color: 'red' }}>{formik.errors.email}</div> : null}
 
                             <FormLabel>
                                 <p className={s.textInstruction}>

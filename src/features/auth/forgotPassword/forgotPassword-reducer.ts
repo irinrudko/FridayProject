@@ -4,45 +4,60 @@ import { DataNewPasswordType, forgotPasswordAPI, ForgotPasswordDataType } from '
 import { AxiosError } from 'axios'
 import { routes } from '../../../app/routes/Routes'
 
-const initialState = {}
-type InitialStateType = typeof initialState
-type ActionType = any
+const forgotPasswordInitialState = { email: '' as string }
 
-export const forgotPasswordReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
+export const forgotPasswordReducer = (
+    state: ForgotPasswordInitialStateType = forgotPasswordInitialState,
+    action: ActionType
+): ForgotPasswordInitialStateType => {
     switch (action.type) {
+        case 'FORGOT-PASSWORD/SET-EMAIL-RECOVERY': {
+            return { ...state, email: action.value }
+        }
         default:
             return state
     }
 }
+//action
+const setEmailRecovery = (value: string) => ({ type: 'FORGOT-PASSWORD/SET-EMAIL-RECOVERY', value })
 
 //thunk
 export const forgotPassword =
-    (emailValue: { email: string }): AppThunk =>
+    (emailValue: { email: string }, redirect: () => void): AppThunk =>
     (dispatch) => {
+        const namehost = document.location.host
         const data: ForgotPasswordDataType = {
             ...emailValue,
             from: '',
             message: `<div> 
-password recovery link: <a href='http://localhost:3000/#${routes.newPassword}/$token$'>link</a>
+password recovery link: <a href='http://${namehost}/#${routes.newPassword}/$token$'>link</a>
 </div>`,
         }
         dispatch(setAppStatusAC('loading'))
         forgotPasswordAPI
             .forgotPassword(data)
-            .then((response) => {
+            .then(() => {
+                redirect()
+                dispatch(setEmailRecovery(emailValue.email))
                 dispatch(setAppStatusAC('succeeded'))
             })
             .catch((error: AxiosError) => dispatch(setErrAC(error.message ? error.message : 'some error occurred')))
             .finally(() => dispatch(setAppStatusAC('idle')))
     }
 export const newPassword =
-    (dataNewPassword: DataNewPasswordType): AppThunk =>
+    (dataNewPassword: DataNewPasswordType, redirect: () => void): AppThunk =>
     (dispatch) => {
         dispatch(setAppStatusAC('loading'))
-        console.log(dataNewPassword)
         forgotPasswordAPI
             .sendNewPassword(dataNewPassword)
-            .then((response) => dispatch(setAppStatusAC('succeeded')))
+            .then(() => {
+                redirect()
+                dispatch(setAppStatusAC('succeeded'))
+            })
             .catch((error: AxiosError) => dispatch(setErrAC(error.message ? error.message : 'some error occurred')))
             .finally(() => dispatch(setAppStatusAC('idle')))
     }
+
+//types
+type ForgotPasswordInitialStateType = typeof forgotPasswordInitialState
+type ActionType = ReturnType<typeof setEmailRecovery>

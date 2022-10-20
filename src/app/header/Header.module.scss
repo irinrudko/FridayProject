@@ -1,0 +1,84 @@
+.headerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    /*background-color: #383838;*/
+    background-color: #fafafb;
+    box-shadow: 0px 4px 18px rgba(54, 110, 255, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+    .nav {
+        position: relative;
+        /*border: red 1px solid;*/
+        transition: 1s;
+        transform: translateX(-76%);
+    }
+
+    .active {
+        position: relative;
+        /*border: red 1px solid;*/
+        transform: translateX(0);
+        transition: 1s;
+    }
+    .mainBlock {
+        width: 80%;
+        display: flex;
+        justify-content: end;
+
+        .navLink {
+            &:hover {
+                color: #2196f3;
+                transition: color 1s ease;
+            }
+
+            .button {
+                width: 113px;
+                height: 36px;
+                border-radius: 30px;
+                background: #366eff;
+                text-transform: capitalize;
+                box-shadow: 0px 4px 18px rgba(54, 110, 255, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        .profileBlock {
+            position: relative;
+            height: 36px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.8s ease 0s;
+
+            .nav {
+                position: absolute;
+                opacity: 0;
+                top: -200px;
+                transition: all 0.8s ease 0s;
+                z-index: 10;
+            }
+
+            .active {
+                position: absolute;
+                opacity: 1;
+                top: 0;
+                transition: all 1s ease 0s;
+                z-index: 10;
+            }
+
+            .profileName {
+                font-family: Montserrat;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 24px;
+                border-bottom: 1px dashed #000000;
+                cursor: pointer;
+            }
+
+            .img {
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                margin-left: 10px;
+            }
+        }
+    }
+}

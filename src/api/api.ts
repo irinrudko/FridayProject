@@ -1,8 +1,8 @@
 import axios, { AxiosResponse } from 'axios'
 
 const instance = axios.create({
-    baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
-    // baseURL:'https://neko-back.herokuapp.com/2.0/',
+    // baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
+    baseURL: 'https://neko-back.herokuapp.com/2.0/',
     withCredentials: true,
 })
 
@@ -14,7 +14,7 @@ export const regAPI = {
         return instance.post<UserData>(`auth/me`)
     },
     changeNameOrImg(data: ChangeNameOrImgType) {
-        return instance.post<UserData>('auth/me', data)
+        return instance.put<UserData>('auth/me', data)
     },
     login(data: LoginParamsData) {
         return instance.post<LoginParamsData, AxiosResponse<UserData>>('auth/login', data).then((response) => response.data)
@@ -26,10 +26,10 @@ export const regAPI = {
 
 export const forgotPasswordAPI = {
     forgotPassword(dataForgotPassword: ForgotPasswordDataType) {
-        return instance.post('auth/forgot', dataForgotPassword)
+        return instance.post<ResponseForgotPasswordAPIType>('auth/forgot', dataForgotPassword)
     },
     sendNewPassword(dataNewPassword: DataNewPasswordType) {
-        return instance.post('auth/set-new-password', dataNewPassword)
+        return instance.post<ResponseForgotPasswordAPIType>('auth/set-new-password', dataNewPassword)
     },
 }
 
@@ -38,7 +38,10 @@ export type ChangeNameOrImgType = {
     name?: string
     avatar?: string
 }
-export type ResponseForgotPasswordAPIType = {}
+export type ResponseForgotPasswordAPIType = {
+    info: string
+    error: string
+}
 export type DataNewPasswordType = {
     password: string
     resetPasswordToken: string | undefined

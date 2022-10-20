@@ -53,8 +53,8 @@ export const Login = () => {
 
             if (!values.password) {
                 errors.password = 'Password is required'
-            } else if (values.password.length < 7) {
-                errors.password = 'Must be 7 characters or more'
+            } else if (values.password.length < 8) {
+                errors.password = 'Must be 8 characters or more'
             }
 
             return errors
@@ -79,24 +79,28 @@ export const Login = () => {
                         <FormGroup>
                             <TextField
                                 label="Email"
-                                name="email"
                                 margin="normal"
                                 variant="standard"
                                 className={authStyle.textField}
-                                onChange={formik.handleChange}
-                                value={formik.values.email}
+                                // onChange={formik.handleChange}
+                                // value={formik.values.email}
+                                // name="email"
+                                {...formik.getFieldProps('email')}
                             />
-                            {formik.errors.email ? <div>{formik.errors.email}</div> : null}
+                            {formik.touched.email && formik.errors.email ? (
+                                <div style={{ color: 'red' }}>{formik.errors.email}</div>
+                            ) : null}
                             <FormControl variant="standard">
                                 <InputLabel htmlFor="password">Password</InputLabel>
                                 <Input
                                     id="password"
-                                    name="password"
                                     type={password ? 'text' : 'password'}
-                                    onChange={formik.handleChange}
-                                    value={formik.values.password}
+                                    // onChange={formik.handleChange}
+                                    // value={formik.values.password}
+                                    // name="password"
                                     className={authStyle.textField}
                                     autoComplete="on"
+                                    {...formik.getFieldProps('password')}
                                     endAdornment={
                                         <InputAdornment position="end">
                                             <IconButton
@@ -109,7 +113,9 @@ export const Login = () => {
                                         </InputAdornment>
                                     }
                                 />
-                                {formik.errors.password ? <div>{formik.errors.password}</div> : null}
+                                {formik.touched.password && formik.errors.password ? (
+                                    <div style={{ color: 'red' }}>{formik.errors.password}</div>
+                                ) : null}
                             </FormControl>
                             <FormControlLabel
                                 label={'Remember me'}
