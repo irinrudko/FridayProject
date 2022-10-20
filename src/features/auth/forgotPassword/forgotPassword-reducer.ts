@@ -25,11 +25,12 @@ const setEmailRecovery = (value: string) => ({ type: 'FORGOT-PASSWORD/SET-EMAIL-
 export const forgotPassword =
     (emailValue: { email: string }, redirect: () => void): AppThunk =>
     (dispatch) => {
+        const namehost = document.location.host
         const data: ForgotPasswordDataType = {
             ...emailValue,
             from: '',
             message: `<div> 
-password recovery link: <a href='http://localhost:3000/#${routes.newPassword}/$token$'>link</a>
+password recovery link: <a href='http://${namehost}/#${routes.newPassword}/$token$'>link</a>
 </div>`,
         }
         dispatch(setAppStatusAC('loading'))
