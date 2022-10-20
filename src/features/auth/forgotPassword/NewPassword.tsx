@@ -24,7 +24,7 @@ export const NewPassword = () => {
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault()
     }
-    const handleClickShowPassword = (type: 'pass' | 'confirm') => {
+    const handleClickShowPassword = (type: 'pass') => {
         if (type === 'pass') {
             setPassword(!password)
         }
@@ -41,8 +41,8 @@ export const NewPassword = () => {
 
             if (!values.password) {
                 errors.password = 'Password is required'
-            } else if (values.password.length < 7) {
-                errors.password = 'Must be 7 characters or more'
+            } else if (values.password.length < 8) {
+                errors.password = 'Must be 8 characters or more'
             }
 
             return errors
