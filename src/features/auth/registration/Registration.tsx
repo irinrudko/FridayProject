@@ -12,14 +12,14 @@ import Button from '@mui/material/Button'
 import { useFormik } from 'formik'
 import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
-import { regTC } from './registration-reducer'
-import { useAppDispatch, useAppSelector } from '../../../app/store'
+import { AppRootStateType, useAppDispatch, useAppSelector } from '../../../app/store'
 import { FormikErrorType } from '../auth-types'
+import { regTC } from '../auth-reducer'
 
 const Registration = () => {
     const dispatch = useAppDispatch()
-    const registered = useAppSelector<boolean>((state) => state.registration.registered)
-    const isLoggedIn = useAppSelector<boolean>((state) => state.login.isLoggedIn)
+    const registered = useAppSelector<boolean>((state: AppRootStateType) => state.auth.registered)
+    const isLoggedIn = useAppSelector<boolean>((state: AppRootStateType) => state.auth.isLoggedIn)
     const [password, setPassword] = useState(false)
     const [confirmPassword, setConfirmPassword] = useState(false)
 

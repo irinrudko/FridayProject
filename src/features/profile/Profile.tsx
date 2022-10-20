@@ -8,15 +8,15 @@ import Button from '@mui/material/Button'
 import { EditableSpan } from './EditableSpan/EditableSpan'
 import { Navigate, NavLink } from 'react-router-dom'
 import { routes } from '../../app/routes/Routes'
-import { useAppDispatch, useAppSelector } from '../../app/store'
+import { AppRootStateType, useAppDispatch, useAppSelector } from '../../app/store'
 import { setProfileUserName } from './profile-reducer'
-import { logoutTC } from '../auth/login/login-reducer'
+import { logoutTC } from '../auth/auth-reducer'
 
 const Profile = () => {
     const dispatch = useAppDispatch()
-    const name = useAppSelector((state) => state.profile.name)
-    const email = useAppSelector((state) => state.profile.email)
-    const isLoggedIn = useAppSelector<boolean>((state) => state.login.isLoggedIn)
+    const name = useAppSelector((state: AppRootStateType) => state.profile.name)
+    const email = useAppSelector((state: AppRootStateType) => state.profile.email)
+    const isLoggedIn = useAppSelector<boolean>((state: AppRootStateType) => state.auth.isLoggedIn)
 
     useEffect(() => {
         dispatch(setProfileUserName())

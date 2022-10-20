@@ -1,7 +1,7 @@
 import { AppThunk } from './store'
 import { regAPI } from '../api/api'
 import { AxiosError } from 'axios'
-import { setIsLoggedInAC } from '../features/auth/login/login-reducer'
+import { setIsLoggedInAC } from '../features/auth/auth-reducer'
 
 const initialState = {
     status: 'idle' as RequestStatusType,

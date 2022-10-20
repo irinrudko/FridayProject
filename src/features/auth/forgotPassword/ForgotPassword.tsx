@@ -11,8 +11,8 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import { useFormik } from 'formik'
 import { useAppDispatch } from '../../../app/store'
-import { forgotPassword } from './forgotPassword-reducer'
 import { FormikErrorType } from '../auth-types'
+import { forgotPassword } from '../auth-reducer'
 
 export const ForgotPassword = () => {
     const dispatch = useAppDispatch()
