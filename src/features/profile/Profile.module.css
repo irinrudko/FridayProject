@@ -67,11 +67,9 @@
     cursor: pointer;
     position: relative;
     right: 100%;
-
 }
 .toPacksListContainer a {
     text-decoration: none;
-
 }
 
 .toPacksList::before {

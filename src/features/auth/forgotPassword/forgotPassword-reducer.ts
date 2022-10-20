@@ -4,20 +4,22 @@ import { DataNewPasswordType, forgotPasswordAPI, ForgotPasswordDataType } from '
 import { AxiosError } from 'axios'
 import { routes } from '../../../app/routes/Routes'
 
-const forgotPasswordInitialState = {email: '' as string}
+const forgotPasswordInitialState = { email: '' as string }
 
-
-export const forgotPasswordReducer = (state: ForgotPasswordInitialStateType = forgotPasswordInitialState, action: ActionType): ForgotPasswordInitialStateType => {
+export const forgotPasswordReducer = (
+    state: ForgotPasswordInitialStateType = forgotPasswordInitialState,
+    action: ActionType
+): ForgotPasswordInitialStateType => {
     switch (action.type) {
-        case "FORGOT-PASSWORD/SET-EMAIL-RECOVERY":{
-            return {...state,email:action.value}
+        case 'FORGOT-PASSWORD/SET-EMAIL-RECOVERY': {
+            return { ...state, email: action.value }
         }
         default:
             return state
     }
 }
 //action
-const setEmailRecovery =(value:string )=>({type:'FORGOT-PASSWORD/SET-EMAIL-RECOVERY',value})
+const setEmailRecovery = (value: string) => ({ type: 'FORGOT-PASSWORD/SET-EMAIL-RECOVERY', value })
 
 //thunk
 export const forgotPassword =
@@ -54,7 +56,6 @@ export const newPassword =
             .catch((error: AxiosError) => dispatch(setErrAC(error.message ? error.message : 'some error occurred')))
             .finally(() => dispatch(setAppStatusAC('idle')))
     }
-
 
 //types
 type ForgotPasswordInitialStateType = typeof forgotPasswordInitialState

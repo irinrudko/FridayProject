@@ -38,7 +38,7 @@ export type ChangeNameOrImgType = {
     name?: string
     avatar?: string
 }
-export type ResponseForgotPasswordAPIType =  {
+export type ResponseForgotPasswordAPIType = {
     info: string
     error: string
 }

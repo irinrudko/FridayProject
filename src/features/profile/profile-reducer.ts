@@ -9,7 +9,10 @@ const profileInitialState = {
     email: '' as string,
 }
 
-export const profileReducer = (state: ProfileInitialStateType = profileInitialState, action: ActionType): ProfileInitialStateType => {
+export const profileReducer = (
+    state: ProfileInitialStateType = profileInitialState,
+    action: ActionType
+): ProfileInitialStateType => {
     switch (action.type) {
         case 'PROFILE/SET-USER-DATA': {
             return { ...state, ...action.data }
@@ -20,7 +23,7 @@ export const profileReducer = (state: ProfileInitialStateType = profileInitialSt
 }
 
 //action
-export const setUserData = (data: UserDataType) => ({ type: 'PROFILE/SET-USER-DATA', data }) as const
+export const setUserData = (data: UserDataType) => ({ type: 'PROFILE/SET-USER-DATA', data } as const)
 
 //thunk
 export const setProfileUserName = (): AppThunk => (dispatch) => {
