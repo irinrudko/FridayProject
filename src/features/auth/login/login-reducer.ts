@@ -56,7 +56,6 @@ export const loginTC =
 
 export const logoutTC = (): AppThunk => (dispatch) => {
     dispatch(setAppStatusAC('loading'))
-    // debugger
     regAPI
         .logout()
         .then((res) => {
@@ -69,6 +68,7 @@ export const logoutTC = (): AppThunk => (dispatch) => {
         })
         .finally(() => {
             dispatch(setAppStatusAC('succeeded'))
+            dispatch(setIsLoggedInAC(false))
         })
 }
 
