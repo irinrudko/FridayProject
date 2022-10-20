@@ -3,7 +3,7 @@ import { initializedAC, setAppStatusAC, setErrAC } from '../../../app/app-reduce
 import { AppThunk } from '../../../app/store'
 import { AxiosError } from 'axios'
 
-type InitialStateType = {
+export type LoginInitialStateType = {
     isLoggedIn: boolean
     user: UserData
 }
@@ -25,7 +25,7 @@ const initialState = {
     },
 }
 
-export const loginReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
+export const loginReducer = (state: LoginInitialStateType = initialState, action: ActionsType): LoginInitialStateType => {
     switch (action.type) {
         case 'login/SET-IS-LOGGED-IN':
             return { ...state, isLoggedIn: action.isLoggedIn }
