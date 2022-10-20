@@ -13,10 +13,16 @@ const CollapsedMenu = () => {
     return (
         <div className={s.mainContainer}>
             <NavLink to={routes.login}>
-                <div className={s.text}>Profile</div>
+                <div className={s.linkBlock}>
+                    <span className={s.iconProfile}></span>
+                    <span className={s.text}>Profile</span>
+                </div>
             </NavLink>
             <NavLink to={routes.login} onClick={redirectToLogin}>
-                <div className={s.text}>Log out</div>
+                <div className={s.linkBlock}>
+                    <span className={s.iconLogout}></span>
+                    <span className={s.text}>Log out</span>
+                </div>
             </NavLink>
         </div>
     )
