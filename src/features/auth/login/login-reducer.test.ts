@@ -1,6 +1,6 @@
 import { LoginInitialStateType, loginReducer, setIsLoggedInAC, setUserDataAC } from './login-reducer'
 
-let startState = {
+let startState: LoginInitialStateType = {
     isLoggedIn: false,
     user: {
         _id: '',
