@@ -6,14 +6,11 @@ import { CircularProgress, LinearProgress } from '@mui/material'
 import { ErrorSnackbar } from '../common/components/ErrorSnackBar/ErrorSnackBar'
 import { AppRootStateType, useAppDispatch, useAppSelector } from './store'
 import { initializedTC, RequestStatusType } from './app-reducer'
-import { Navigate } from 'react-router-dom'
-import { routes } from './routes/Routes'
 
 function App() {
     // debugger
     const status = useAppSelector<RequestStatusType>((store: AppRootStateType) => store.app.status)
     const dispatch = useAppDispatch()
-    const isLoggedIn = useAppSelector<boolean>((store: AppRootStateType) => store.auth.isLoggedIn)
     const initialized = useAppSelector<boolean>((store: AppRootStateType) => store.app.initialized)
 
     useEffect(() => {

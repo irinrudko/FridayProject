@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { routes } from '../routes/Routes'
 import s from './Header.module.scss'
-import { AppRootStateType, useAppDispatch, useAppSelector } from '../store'
+import { AppRootStateType, useAppSelector } from '../store'
 
 import Button from '@mui/material/Button'
 import AvatarImage from '../../common/assets/image/avatar.jpg'

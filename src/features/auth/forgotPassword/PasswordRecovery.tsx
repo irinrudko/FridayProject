@@ -27,7 +27,7 @@ export const PasswordRecovery = () => {
                             <h2 className={authStyle.title}>Check Email</h2>
                         </FormLabel>
                         <FormGroup>
-                            <img src={ImageLetter} alt="image letter" />
+                            <img src={ImageLetter} alt="letter" />
                             <FormLabel>
                                 <p className={`${s.textInstruction} ${s.textPassRecovery}`}>
                                     We’ve sent an Email with instructions to {email}
