@@ -1,6 +1,4 @@
 import { DataNewPasswordType, forgotPasswordAPI, ForgotPasswordDataType, LoginParamsData, authAPI, UserData } from '../../api/api'
-import { initializedAC, setAppStatusAC, setErrAC } from '../../app/app-reducer'
-import { DataNewPasswordType, forgotPasswordAPI, ForgotPasswordDataType, LoginParamsData, regAPI, UserData } from '../../api/api'
 import { setAppStatusAC, setErrAC } from '../../app/app-reducer'
 import { AppThunk } from '../../app/store'
 import { routes } from '../../app/routes/Routes'
@@ -107,12 +105,12 @@ export const logoutTC = (): AppThunk => (dispatch) => {
 export const forgotPassword =
     (emailValue: { email: string }, redirect: () => void): AppThunk =>
     (dispatch) => {
-        const namehost = document.location.host
+        const nameHost = document.location.host
         const data: ForgotPasswordDataType = {
             ...emailValue,
             from: '',
             message: `<div> 
-password recovery link: <a href='http://${namehost}/#${routes.newPassword}/$token$'>link</a>
+password recovery link: <a href='http://${nameHost}/#${routes.newPassword}/$token$'>link</a>
 </div>`,
         }
         dispatch(setAppStatusAC('loading'))

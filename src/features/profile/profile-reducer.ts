@@ -1,7 +1,6 @@
 import { authAPI } from '../../api/api'
 import { AppThunk } from '../../app/store'
 import { setAppStatusAC, setErrAC } from '../../app/app-reducer'
-import { AxiosError } from 'axios'
 
 const profileInitialState = {
     name: '' as string,
