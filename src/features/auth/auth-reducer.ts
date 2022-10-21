@@ -4,17 +4,11 @@ import { AppThunk } from '../../app/store'
 import { routes } from '../../app/routes/Routes'
 import { dataType } from './auth-types'
 
-export type LoginInitialStateType = {
-    isLoggedIn: boolean
-    user: UserData
-    email: string
-    registered: boolean
-}
 const initialState = {
     isLoggedIn: false,
     email: '',
     registered: false,
-    user: {
+    user: <UserData>{
         _id: '',
         email: '',
         name: '',
@@ -29,7 +23,9 @@ const initialState = {
     },
 }
 
-export const authReducer = (state: LoginInitialStateType = initialState, action: ActionsType): LoginInitialStateType => {
+export type AuthInitialStateType = typeof initialState
+
+export const authReducer = (state: AuthInitialStateType = initialState, action: ActionsType): AuthInitialStateType => {
     switch (action.type) {
         case 'AUTH/SET-IS-LOGGED-IN':
             return { ...state, isLoggedIn: action.isLoggedIn }

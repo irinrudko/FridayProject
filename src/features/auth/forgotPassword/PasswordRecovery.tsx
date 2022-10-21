@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 import { AppRootStateType, useAppSelector } from '../../../app/store'
 
 export const PasswordRecovery = () => {
-    const email = useAppSelector((state: AppRootStateType) => state.auth.email)
+    const email = useAppSelector((state) => state.auth.email)
     const navigate = useNavigate()
     const navigateToLogin = () => {
         navigate(routes.login)
@@ -27,7 +27,7 @@ export const PasswordRecovery = () => {
                             <h2 className={authStyle.title}>Check Email</h2>
                         </FormLabel>
                         <FormGroup>
-                            <img src={ImageLetter} alt="image letter" />
+                            <img src={ImageLetter} alt="letter" />
                             <FormLabel>
                                 <p className={`${s.textInstruction} ${s.textPassRecovery}`}>
                                     We’ve sent an Email with instructions to {email}

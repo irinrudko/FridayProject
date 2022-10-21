@@ -1,6 +1,6 @@
-import { authReducer, isRegisteredAC, LoginInitialStateType, setIsLoggedInAC, setUserDataAC } from './auth-reducer'
+import { authReducer, isRegisteredAC, AuthInitialStateType, setIsLoggedInAC, setUserDataAC } from './auth-reducer'
 
-let startState: LoginInitialStateType = {
+let startState: AuthInitialStateType = {
     isLoggedIn: false,
     email: '',
     registered: false,
@@ -39,20 +39,20 @@ beforeEach(() => {
     }
 })
 
-test('status registered status should be changed to true ', () => {
+it('should check if user is registered', () => {
     const action = isRegisteredAC(true)
     const endState = authReducer(startState, action)
 
     expect(endState.registered).toBe(true)
 })
 
-test('should log in user', () => {
+it('should log in user', () => {
     const endState = authReducer(startState, setIsLoggedInAC(true))
 
     expect(endState.isLoggedIn).toBeTruthy()
 })
 
-test('should set up user data', () => {
+it('should set up user data', () => {
     const endState = authReducer(
         startState,
         setUserDataAC({ ...startState.user, email: 'email@gmail.com', name: 'username', publicCardPacksCount: 0 })

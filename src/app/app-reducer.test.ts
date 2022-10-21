@@ -1,6 +1,6 @@
 import { appReducer, initializedAC, RequestStatusType, setAppStatusAC, setErrAC } from './app-reducer'
 
-test('status should be changed', () => {
+it('should change AppStatus', () => {
     let startState = {
         status: 'loading' as RequestStatusType,
         error: null as null | string,
@@ -13,7 +13,7 @@ test('status should be changed', () => {
     expect(endState.status).toBe('succeeded')
 })
 
-test('error message should be changed', () => {
+it('should change error message', () => {
     let startState = {
         status: 'loading' as RequestStatusType,
         error: null as null | string,
@@ -27,7 +27,7 @@ test('error message should be changed', () => {
     expect(endState.status).toBe('loading')
 })
 
-test('initialized should be changed', () => {
+it('should initialize App', () => {
     let startState = {
         status: 'loading' as RequestStatusType,
         error: null as null | string,

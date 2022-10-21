@@ -5,18 +5,18 @@ import AvatarImage from '../../common/assets/image/avatar.jpg'
 import s from './Profile.module.css'
 import authStyle from '../auth/Auth.module.css'
 import Button from '@mui/material/Button'
-import { EditableSpan } from './EditableSpan/EditableSpan'
+import { EditableSpan } from '../../common/components/EditableSpan/EditableSpan'
 import { Navigate, NavLink } from 'react-router-dom'
 import { routes } from '../../app/routes/Routes'
-import { AppRootStateType, useAppDispatch, useAppSelector } from '../../app/store'
+import { useAppDispatch, useAppSelector } from '../../app/store'
 import { setProfileUserName } from './profile-reducer'
 import { logoutTC } from '../auth/auth-reducer'
 
 const Profile = () => {
     const dispatch = useAppDispatch()
-    const name = useAppSelector((state: AppRootStateType) => state.profile.name)
-    const email = useAppSelector((state: AppRootStateType) => state.profile.email)
-    const isLoggedIn = useAppSelector<boolean>((state: AppRootStateType) => state.auth.isLoggedIn)
+    const name = useAppSelector((state) => state.profile.name)
+    const email = useAppSelector((state) => state.profile.email)
+    const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
 
     useEffect(() => {
         dispatch(setProfileUserName())
