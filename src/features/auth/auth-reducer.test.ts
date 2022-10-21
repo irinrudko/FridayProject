@@ -1,6 +1,6 @@
-import { authReducer, isRegisteredAC, LoginInitialStateType, setIsLoggedInAC, setUserDataAC } from './auth-reducer'
+import { authReducer, isRegisteredAC, AuthInitialStateType, setIsLoggedInAC, setUserDataAC } from './auth-reducer'
 
-let startState: LoginInitialStateType = {
+let startState: AuthInitialStateType = {
     isLoggedIn: false,
     email: '',
     registered: false,
