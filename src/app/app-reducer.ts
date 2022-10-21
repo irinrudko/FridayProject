@@ -30,7 +30,6 @@ export const initializedAC = (initializedStatus: boolean) => ({ type: 'APP/INITI
 
 //ThunkC
 export const initializedTC = (): AppThunk => (dispatch) => {
-    // debugger
     dispatch(setAppStatusAC('loading'))
     dispatch(initializedAC(false))
     authAPI
