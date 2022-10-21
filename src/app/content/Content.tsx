@@ -7,17 +7,17 @@ import { NewPassword } from '../../features/auth/forgotPassword/NewPassword'
 import { PasswordRecovery } from '../../features/auth/forgotPassword/PasswordRecovery'
 import Error404 from '../../common/components/Error404/Error404'
 import s from './Content.module.css'
-import { Main } from '../../features/main/Main'
+import { Cards } from '../../features/cards/Cards'
 import { ForgotPassword } from '../../features/auth/forgotPassword/ForgotPassword'
 import { Login } from '../../features/auth/login/Login'
-import PackList from '../../features/main/PackList/PackList'
+import PackList from '../../features/cards/PackList/PackList'
 
 const Content = () => {
     return (
         <div className={s.contentBlock}>
             <Routes>
                 <Route path={'/'} element={<Profile />} />
-                <Route path={routes.main} element={<Main />} />
+                <Route path={routes.main} element={<Cards />} />
                 <Route path={routes.packsList} element={<PackList />} />
                 <Route path={routes.profile} element={<Profile />} />
                 <Route path={routes.login} element={<Login />} />
