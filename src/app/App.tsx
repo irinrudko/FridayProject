@@ -13,7 +13,7 @@ function App() {
     // debugger
     const status = useAppSelector<RequestStatusType>((store: AppRootStateType) => store.app.status)
     const dispatch = useAppDispatch()
-    const isLoggedIn = useAppSelector<boolean>((store: AppRootStateType) => store.login.isLoggedIn)
+    const isLoggedIn = useAppSelector<boolean>((store: AppRootStateType) => store.auth.isLoggedIn)
     const initialized = useAppSelector<boolean>((store: AppRootStateType) => store.app.initialized)
 
     useEffect(() => {

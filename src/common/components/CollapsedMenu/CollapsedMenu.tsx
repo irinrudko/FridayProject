@@ -2,8 +2,8 @@ import React from 'react'
 import s from '../../components/CollapsedMenu/CollapsedMenu.module.scss'
 import { NavLink } from 'react-router-dom'
 import { routes } from '../../../app/routes/Routes'
-import { logoutTC } from '../../../features/auth/login/login-reducer'
 import { useAppDispatch } from '../../../app/store'
+import { logoutTC } from '../../../features/auth/auth-reducer'
 
 const CollapsedMenu = () => {
     const dispatch = useAppDispatch()

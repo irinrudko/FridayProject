@@ -1,7 +1,7 @@
 import { AppThunk } from './store'
-import { regAPI } from '../api/api'
+import { authAPI } from '../api/api'
 import { AxiosError } from 'axios'
-import { setIsLoggedInAC } from '../features/auth/login/login-reducer'
+import { setIsLoggedInAC } from '../features/auth/auth-reducer'
 
 const initialState = {
     status: 'idle' as RequestStatusType,
@@ -10,7 +10,7 @@ const initialState = {
 }
 type InitialStateType = typeof initialState
 
-export const appReducer = (state: InitialStateType = initialState, action: ReducerActionType): InitialStateType => {
+export const appReducer = (state: InitialStateType = initialState, action: AppActionType): InitialStateType => {
     switch (action.type) {
         case 'APP/SET-STATUS':
             return { ...state, status: action.status }
@@ -33,14 +33,14 @@ export const initializedTC = (): AppThunk => (dispatch) => {
     // debugger
     dispatch(setAppStatusAC('loading'))
     dispatch(initializedAC(false))
-    regAPI
+    authAPI
         .me()
         .then((res) => {
             dispatch(setIsLoggedInAC(true))
             dispatch(setAppStatusAC('succeeded'))
         })
         .catch((err: AxiosError) => {
-            // console.log(err)
+            console.log(err)
         })
         .finally(() => {
             dispatch(initializedAC(true))
@@ -51,4 +51,4 @@ export const initializedTC = (): AppThunk => (dispatch) => {
 //type
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export type setErrType = ReturnType<typeof setErrAC>
-export type ReducerActionType = ReturnType<typeof setAppStatusAC> | setErrType | ReturnType<typeof initializedAC>
+export type AppActionType = ReturnType<typeof setAppStatusAC> | setErrType | ReturnType<typeof initializedAC>

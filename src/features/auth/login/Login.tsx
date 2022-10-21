@@ -14,13 +14,13 @@ import Button from '@mui/material/Button'
 import { useFormik } from 'formik'
 import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
-import { loginTC } from './login-reducer'
-import { useAppDispatch, useAppSelector } from '../../../app/store'
+import { AppRootStateType, useAppDispatch, useAppSelector } from '../../../app/store'
 import { FormikErrorType } from '../auth-types'
+import { loginTC } from '../auth-reducer'
 
 export const Login = () => {
     const dispatch = useAppDispatch()
-    const isLoggedIn = useAppSelector<boolean>((state) => state.login.isLoggedIn)
+    const isLoggedIn = useAppSelector<boolean>((state: AppRootStateType) => state.auth.isLoggedIn)
     const [password, setPassword] = useState(false)
     const [confirmPassword, setConfirmPassword] = useState(false)
 

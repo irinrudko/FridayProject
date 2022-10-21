@@ -11,9 +11,9 @@ import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAppDispatch } from '../../../app/store'
-import { newPassword } from './forgotPassword-reducer'
 import { FormikErrorType } from '../auth-types'
 import { routes } from '../../../app/routes/Routes'
+import { newPassword } from '../auth-reducer'
 
 export const NewPassword = () => {
     const dispatch = useAppDispatch()

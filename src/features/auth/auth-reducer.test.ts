@@ -1,7 +1,9 @@
-import { LoginInitialStateType, loginReducer, setIsLoggedInAC, setUserDataAC } from './login-reducer'
+import { authReducer, isRegisteredAC, LoginInitialStateType, setIsLoggedInAC, setUserDataAC } from './auth-reducer'
 
 let startState: LoginInitialStateType = {
     isLoggedIn: false,
+    email: '',
+    registered: false,
     user: {
         _id: '',
         email: '',
@@ -16,10 +18,11 @@ let startState: LoginInitialStateType = {
         error: '',
     },
 }
-
 beforeEach(() => {
     startState = {
         isLoggedIn: false,
+        email: '',
+        registered: false,
         user: {
             _id: '',
             email: '',
@@ -36,14 +39,21 @@ beforeEach(() => {
     }
 })
 
-it('should log in user', () => {
-    const endState = loginReducer(startState, setIsLoggedInAC(true))
+test('status registered status should be changed to true ', () => {
+    const action = isRegisteredAC(true)
+    const endState = authReducer(startState, action)
+
+    expect(endState.registered).toBe(true)
+})
+
+test('should log in user', () => {
+    const endState = authReducer(startState, setIsLoggedInAC(true))
 
     expect(endState.isLoggedIn).toBeTruthy()
 })
 
-it('should set up user data', () => {
-    const endState = loginReducer(
+test('should set up user data', () => {
+    const endState = authReducer(
         startState,
         setUserDataAC({ ...startState.user, email: 'email@gmail.com', name: 'username', publicCardPacksCount: 0 })
     )

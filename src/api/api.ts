@@ -6,8 +6,8 @@ const instance = axios.create({
     withCredentials: true,
 })
 
-export const regAPI = {
-    authRegistration(email: string, password: string) {
+export const authAPI = {
+    registration(email: string, password: string) {
         return instance.post<RegistrationPayloadType, AxiosResponse<any>>(`auth/register`, { email, password })
     },
     me() {
@@ -80,3 +80,9 @@ export type LogoutResponseType = {
     info: string
     error: string
 }
+
+// export type ErrorResponse = {
+//     code: string,
+//     config:{},
+//     message: string,
+// }

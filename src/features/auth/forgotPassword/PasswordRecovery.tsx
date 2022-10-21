@@ -9,10 +9,10 @@ import Button from '@mui/material/Button'
 import ImageLetter from '../../../common/assets/image/iconSendForgotPassword.svg'
 import { routes } from '../../../app/routes/Routes'
 import { useNavigate } from 'react-router-dom'
-import { useAppSelector } from '../../../app/store'
+import { AppRootStateType, useAppSelector } from '../../../app/store'
 
 export const PasswordRecovery = () => {
-    const email = useAppSelector((state) => state.forgotPassword.email)
+    const email = useAppSelector((state: AppRootStateType) => state.auth.email)
     const navigate = useNavigate()
     const navigateToLogin = () => {
         navigate(routes.login)
