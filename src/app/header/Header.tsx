@@ -9,7 +9,7 @@ import AvatarImage from '../../common/assets/image/avatar.jpg'
 import CollapsedMenu from '../../common/components/CollapsedMenu/CollapsedMenu'
 
 const Header = () => {
-    const isLoggedIn = useAppSelector<boolean>((store: AppRootStateType) => store.auth.isLoggedIn)
+    const isLoggedIn = useAppSelector((store) => store.auth.isLoggedIn)
     const name = useAppSelector((state) => state.profile.name)
     const avatar = useAppSelector((state) => state.profile.avatar)
     const [collapsed, setCollapsed] = useState<boolean>(true)

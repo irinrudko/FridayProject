@@ -20,7 +20,7 @@ import { loginTC } from '../auth-reducer'
 
 export const Login = () => {
     const dispatch = useAppDispatch()
-    const isLoggedIn = useAppSelector<boolean>((state: AppRootStateType) => state.auth.isLoggedIn)
+    const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
     const [password, setPassword] = useState(false)
     const [confirmPassword, setConfirmPassword] = useState(false)
 

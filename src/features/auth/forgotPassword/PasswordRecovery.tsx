@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 import { AppRootStateType, useAppSelector } from '../../../app/store'
 
 export const PasswordRecovery = () => {
-    const email = useAppSelector((state: AppRootStateType) => state.auth.email)
+    const email = useAppSelector((state) => state.auth.email)
     const navigate = useNavigate()
     const navigateToLogin = () => {
         navigate(routes.login)
