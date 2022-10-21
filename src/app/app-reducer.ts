@@ -1,7 +1,8 @@
 import { AppThunk } from './store'
-import { regAPI } from '../api/api'
+import { authAPI } from '../api/api'
 import { AxiosError } from 'axios'
 import { setIsLoggedInAC } from '../features/auth/auth-reducer'
+import { setUserData } from '../features/profile/profile-reducer'
 
 const initialState = {
     status: 'idle' as RequestStatusType,
@@ -33,14 +34,14 @@ export const initializedTC = (): AppThunk => (dispatch) => {
     // debugger
     dispatch(setAppStatusAC('loading'))
     dispatch(initializedAC(false))
-    regAPI
+    authAPI
         .me()
         .then((res) => {
             dispatch(setIsLoggedInAC(true))
             dispatch(setAppStatusAC('succeeded'))
         })
         .catch((err: AxiosError) => {
-            // console.log(err)
+            console.log(err)
         })
         .finally(() => {
             dispatch(initializedAC(true))

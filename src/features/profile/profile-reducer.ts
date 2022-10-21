@@ -1,4 +1,4 @@
-import { regAPI } from '../../api/api'
+import { authAPI } from '../../api/api'
 import { AppThunk } from '../../app/store'
 import { setAppStatusAC, setErrAC } from '../../app/app-reducer'
 import { AxiosError } from 'axios'
@@ -27,7 +27,7 @@ export const setUserData = (data: UserDataType) => ({ type: 'PROFILE/SET-USER-DA
 
 //thunk
 export const setProfileUserName = (): AppThunk => (dispatch) => {
-    regAPI.me().then((response) =>
+    authAPI.me().then((response) =>
         dispatch(
             setUserData({
                 name: response.data.name,
@@ -40,7 +40,7 @@ export const updateUser =
     (userName: { name: string }): AppThunk =>
     (dispatch) => {
         dispatch(setAppStatusAC('loading'))
-        regAPI
+        authAPI
             .changeNameOrImg(userName)
             .then(() => dispatch(setUserData(userName)))
             .catch((error: AxiosError) => {

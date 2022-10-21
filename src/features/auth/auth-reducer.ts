@@ -1,4 +1,4 @@
-import { DataNewPasswordType, forgotPasswordAPI, ForgotPasswordDataType, LoginParamsData, regAPI, UserData } from '../../api/api'
+import { DataNewPasswordType, forgotPasswordAPI, ForgotPasswordDataType, LoginParamsData, authAPI, UserData } from '../../api/api'
 import { initializedAC, setAppStatusAC, setErrAC } from '../../app/app-reducer'
 import { AppThunk } from '../../app/store'
 import { AxiosError } from 'axios'
@@ -57,7 +57,7 @@ export const loginTC =
     (data: LoginParamsData): AppThunk =>
     (dispatch) => {
         dispatch(setAppStatusAC('loading'))
-        regAPI
+        authAPI
             .login(data)
             .then((res) => {
                 dispatch(setIsLoggedInAC(true))
@@ -72,7 +72,7 @@ export const loginTC =
     }
 export const logoutTC = (): AppThunk => (dispatch) => {
     dispatch(setAppStatusAC('loading'))
-    regAPI
+    authAPI
         .logout()
         .then((res) => {
             dispatch(setIsLoggedInAC(false))
@@ -122,18 +122,19 @@ export const newPassword =
             .catch((error: AxiosError) => dispatch(setErrAC(error.message ? error.message : 'some error occurred')))
             .finally(() => dispatch(setAppStatusAC('idle')))
     }
-export const regTC =
+export const registrationTC =
     (data: dataType): AppThunk =>
     (dispatch) => {
         dispatch(setAppStatusAC('loading'))
-        regAPI
-            .authRegistration(data.email, data.password)
+        authAPI
+            .registration(data.email, data.password)
             .then((res) => {
                 //проверку сделать
                 console.log(res)
                 dispatch(isRegisteredAC(true))
             })
             .catch((err: any) => {
+                console.log(err)
                 dispatch(setErrAC(err.response.data.error))
             })
             .finally(() => {

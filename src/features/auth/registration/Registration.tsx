@@ -14,7 +14,7 @@ import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { AppRootStateType, useAppDispatch, useAppSelector } from '../../../app/store'
 import { FormikErrorType } from '../auth-types'
-import { regTC } from '../auth-reducer'
+import { registrationTC } from '../auth-reducer'
 
 const Registration = () => {
     const dispatch = useAppDispatch()
@@ -68,8 +68,8 @@ const Registration = () => {
         },
         onSubmit: (values) => {
             if (formik.values.password === formik.values.confirmPassword) {
-                alert(JSON.stringify(values))
-                dispatch(regTC(values))
+                // alert(JSON.stringify(values))
+                dispatch(registrationTC(values))
                 formik.resetForm()
             }
         },

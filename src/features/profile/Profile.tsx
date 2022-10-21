@@ -20,7 +20,7 @@ const Profile = () => {
 
     useEffect(() => {
         dispatch(setProfileUserName())
-    }, [])
+    }, [dispatch])
 
     const redirectToLogin = () => {
         dispatch(logoutTC())
