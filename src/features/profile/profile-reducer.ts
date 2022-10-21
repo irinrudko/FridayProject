@@ -11,7 +11,7 @@ const profileInitialState = {
 
 export const profileReducer = (
     state: ProfileInitialStateType = profileInitialState,
-    action: ActionType
+    action: ProfileActionType
 ): ProfileInitialStateType => {
     switch (action.type) {
         case 'PROFILE/SET-USER-DATA': {
@@ -27,14 +27,24 @@ export const setUserData = (data: UserDataType) => ({ type: 'PROFILE/SET-USER-DA
 
 //thunk
 export const setProfileUserName = (): AppThunk => (dispatch) => {
-    regAPI.me().then((response) =>
-        dispatch(
-            setUserData({
-                name: response.data.name,
-                email: response.data.email,
-            })
-        )
-    )
+    dispatch(setAppStatusAC('loading'))
+    regAPI
+        .me()
+        .then((response) => {
+            dispatch(
+                setUserData({
+                    name: response.data.name,
+                    email: response.data.email,
+                })
+            )
+            dispatch(setAppStatusAC('succeeded'))
+        })
+        .catch((err: any) => {
+            let error = err.response.data.error
+            dispatch(setErrAC(error))
+            dispatch(setAppStatusAC('failed'))
+        })
+        .finally(() => dispatch(setAppStatusAC('idle')))
 }
 export const updateUser =
     (userName: { name: string }): AppThunk =>
@@ -43,8 +53,10 @@ export const updateUser =
         regAPI
             .changeNameOrImg(userName)
             .then(() => dispatch(setUserData(userName)))
-            .catch((error: AxiosError) => {
-                dispatch(setErrAC(error.message ? error.message : 'some error occurred'))
+            .catch((err: any) => {
+                let error = err.response.data.error
+                dispatch(setErrAC(error))
+                dispatch(setAppStatusAC('failed'))
             })
             .finally(() => dispatch(setAppStatusAC('idle')))
     }
@@ -56,4 +68,4 @@ export type UserDataType = {
     email?: string
 }
 type ProfileInitialStateType = typeof profileInitialState
-type ActionType = ReturnType<typeof setUserData>
+export type ProfileActionType = ReturnType<typeof setUserData>

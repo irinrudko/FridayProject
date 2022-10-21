@@ -1,7 +1,6 @@
 import { DataNewPasswordType, forgotPasswordAPI, ForgotPasswordDataType, LoginParamsData, regAPI, UserData } from '../../api/api'
-import { initializedAC, setAppStatusAC, setErrAC } from '../../app/app-reducer'
+import { setAppStatusAC, setErrAC } from '../../app/app-reducer'
 import { AppThunk } from '../../app/store'
-import { AxiosError } from 'axios'
 import { routes } from '../../app/routes/Routes'
 import { dataType } from './auth-types'
 
@@ -69,12 +68,28 @@ export const loginTC =
                 dispatch(setErrAC(error))
                 dispatch(setAppStatusAC('failed'))
             })
+            .finally(() => dispatch(setAppStatusAC('idle')))
     }
 export const logoutTC = (): AppThunk => (dispatch) => {
     dispatch(setAppStatusAC('loading'))
     regAPI
         .logout()
         .then((res) => {
+            const user = {
+                _id: '',
+                email: '',
+                name: '',
+                avatar: '',
+                publicCardPacksCount: 0,
+                created: null,
+                updated: null,
+                isAdmin: false,
+                verified: false,
+                rememberMe: false,
+                error: '',
+            }
+            dispatch(setAppStatusAC('succeeded'))
+            dispatch(setUserDataAC(user))
             dispatch(setIsLoggedInAC(false))
         })
         .catch((err: any) => {
@@ -83,7 +98,7 @@ export const logoutTC = (): AppThunk => (dispatch) => {
             dispatch(setAppStatusAC('failed'))
         })
         .finally(() => {
-            dispatch(setAppStatusAC('succeeded'))
+            dispatch(setAppStatusAC('idle'))
             dispatch(setIsLoggedInAC(false))
         })
 }
@@ -106,7 +121,11 @@ password recovery link: <a href='http://${namehost}/#${routes.newPassword}/$toke
                 dispatch(setEmailRecovery(emailValue.email))
                 dispatch(setAppStatusAC('succeeded'))
             })
-            .catch((error: AxiosError) => dispatch(setErrAC(error.message ? error.message : 'some error occurred')))
+            .catch((err: any) => {
+                let error = err.response.data.error
+                dispatch(setErrAC(error))
+                dispatch(setAppStatusAC('failed'))
+            })
             .finally(() => dispatch(setAppStatusAC('idle')))
     }
 export const newPassword =
@@ -119,7 +138,11 @@ export const newPassword =
                 redirect()
                 dispatch(setAppStatusAC('succeeded'))
             })
-            .catch((error: AxiosError) => dispatch(setErrAC(error.message ? error.message : 'some error occurred')))
+            .catch((err: any) => {
+                let error = err.response.data.error
+                dispatch(setErrAC(error))
+                dispatch(setAppStatusAC('failed'))
+            })
             .finally(() => dispatch(setAppStatusAC('idle')))
     }
 export const regTC =
@@ -134,15 +157,17 @@ export const regTC =
                 dispatch(isRegisteredAC(true))
             })
             .catch((err: any) => {
-                dispatch(setErrAC(err.response.data.error))
+                let error = err.response.data.error
+                dispatch(setErrAC(error))
+                dispatch(setAppStatusAC('failed'))
             })
             .finally(() => {
-                dispatch(setAppStatusAC('succeeded'))
+                dispatch(setAppStatusAC('idle'))
             })
     }
 
 //Types
-type ActionsType =
+export type ActionsType =
     | ReturnType<typeof setIsLoggedInAC>
     | ReturnType<typeof setUserDataAC>
     | ReturnType<typeof setEmailRecovery>
