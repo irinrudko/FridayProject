@@ -52,7 +52,7 @@ export const cardsAPI = {
     getCards(params: GetCardParams) {
         return instance.get<AxiosResponse<GetCardsResponseType>>('cards/card', { params })
     },
-    createCard(cardData: CreateCardDataType) {
+    createCard(cardData: CreateCardData) {
         return instance.post<AxiosResponse<CreateCardResponseType>>('cards/card', cardData)
     },
     removeCard(id: string) {
@@ -110,7 +110,7 @@ export type GetCardsResponseType = {
     token: string
     tokenDeathTime: number
 }
-export type CreateCardDataType = {
+export type CreateCardData = {
     cardsPack_id: string
     question?: string
     answer?: string
