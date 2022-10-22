@@ -1,13 +1,11 @@
 import React from 'react'
 import s from './FriendsPack.module.scss'
 import Button from '@mui/material/Button'
-import { SettingsBlock } from '../PackList/SettingsBlock/SettingsBlock'
-import { PackListTable } from '../PackList/Table/PackListTable'
 import { IconButton, InputBase, Paper } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { NavLink } from 'react-router-dom'
 import { routes } from '../../../app/routes/Routes'
-import { FriendsTable } from './FriendsTable/FriendsTable'
+import { MyPackTable } from '../MyPackPage/MyPackTable/MyPackTable'
 
 export const FriendsPack = () => {
     return (
@@ -40,7 +38,7 @@ export const FriendsPack = () => {
             </div>
 
             <div className={s.tableBlock}>
-                <FriendsTable />
+                <MyPackTable />
             </div>
 
             <div className={s.paginationBlock}>pagin</div>

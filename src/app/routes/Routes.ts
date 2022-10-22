@@ -10,4 +10,5 @@ export const routes = {
     error404: '/404',
     packsList: '/cards/pack-list',
     friendsPacksList: '/cards/friend-list',
+    myPacksList: '/cards/my-list',
 }

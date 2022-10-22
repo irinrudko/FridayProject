@@ -12,6 +12,7 @@ import { ForgotPassword } from '../../features/auth/forgotPassword/ForgotPasswor
 import { Login } from '../../features/auth/login/Login'
 import { PackList } from '../../features/cards/PackList/PackList'
 import { FriendsPack } from '../../features/cards/FriendsPack/FriendsPack'
+import { MyPackPage } from '../../features/cards/MyPackPage/MyPackPage'
 
 const Content = () => {
     return (
@@ -21,6 +22,7 @@ const Content = () => {
                 <Route path={routes.cards} element={<Cards />} />
                 <Route path={routes.packsList} element={<PackList />} />
                 <Route path={routes.friendsPacksList} element={<FriendsPack />} />
+                <Route path={routes.myPacksList} element={<MyPackPage />} />
                 <Route path={routes.profile} element={<Profile />} />
                 <Route path={routes.login} element={<Login />} />
                 <Route path={routes.registration} element={<Registration />} />

@@ -30,7 +30,7 @@ export const SettingsBlock = () => {
                 />
             </Paper>
             <div className={s.settingButton}>
-                <NavLink to={routes.packsList} className={s.navLink}>
+                <NavLink to={routes.myPacksList} className={s.navLink}>
                     {' '}
                     {/*временная навигация*/}
                     <Button type={'submit'} variant={'contained'} color={'primary'} style={{ width: '100px' }}>

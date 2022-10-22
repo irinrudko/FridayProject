@@ -1,13 +1,13 @@
 import React from 'react'
-import {Paper, TableBody, TableCell, TableContainer, TableHead, TableRow, Table, Icon} from '@mui/material'
+import { Paper, TableBody, TableCell, TableContainer, TableHead, TableRow, Table, Icon } from '@mui/material'
 import s from './PackListTable.module.scss'
-import SchoolIcon from '@mui/icons-material/School';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import SchoolIcon from '@mui/icons-material/School'
+import BorderColorIcon from '@mui/icons-material/BorderColor'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 
 export const PackListTable = () => {
     function createData(name: string, cards: number, lastUpdate: string, createdBy: string, actions: any) {
-        return {name, cards, lastUpdate, createdBy, actions}
+        return { name, cards, lastUpdate, createdBy, actions }
     }
 
     const rows = [
@@ -24,27 +24,27 @@ export const PackListTable = () => {
     return (
         <>
             <TableContainer component={Paper}>
-                <Table sx={{minWidth: 650}} aria-label="simple table">
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
-                        <TableRow style={{backgroundColor: '#EFEFEF'}}>
-                            <TableCell style={{fontWeight: '600'}}>Name</TableCell>
-                            <TableCell align="right" style={{fontWeight: '600'}}>
+                        <TableRow style={{ backgroundColor: '#EFEFEF' }}>
+                            <TableCell style={{ fontWeight: '600' }}>Name</TableCell>
+                            <TableCell align="right" style={{ fontWeight: '600' }}>
                                 Cards
                             </TableCell>
-                            <TableCell align="right" style={{fontWeight: '600'}}>
+                            <TableCell align="right" style={{ fontWeight: '600' }}>
                                 Last Updated
                             </TableCell>
-                            <TableCell align="right" style={{fontWeight: '600'}}>
+                            <TableCell align="right" style={{ fontWeight: '600' }}>
                                 Created by
                             </TableCell>
-                            <TableCell align="right" style={{fontWeight: '600'}}>
+                            <TableCell align="right" style={{ fontWeight: '600' }}>
                                 Actions
                             </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {rows.map((row) => (
-                            <TableRow key={row.name} sx={{'&:last-child td, &:last-child th': {border: 0}}}>
+                            <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell component="th" scope="row">
                                     {row.name}
                                 </TableCell>
@@ -53,9 +53,9 @@ export const PackListTable = () => {
                                 <TableCell align="right">{row.createdBy}</TableCell>
                                 <TableCell align="right">
                                     <div className={s.actions}>
-                                        <SchoolIcon fontSize={"small"} style={{marginRight: "15px"}}/>
-                                        <BorderColorIcon fontSize={"small"} style={{marginRight: "15px"}}/>
-                                        <DeleteForeverIcon fontSize={"small"}/>
+                                        <SchoolIcon fontSize={'small'} style={{ marginRight: '15px' }} />
+                                        <BorderColorIcon fontSize={'small'} style={{ marginRight: '15px' }} />
+                                        <DeleteForeverIcon fontSize={'small'} />
                                     </div>
                                 </TableCell>
                             </TableRow>
