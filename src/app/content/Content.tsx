@@ -10,14 +10,14 @@ import s from './Content.module.css'
 import { Cards } from '../../features/cards/Cards'
 import { ForgotPassword } from '../../features/auth/forgotPassword/ForgotPassword'
 import { Login } from '../../features/auth/login/Login'
-import PackList from '../../features/cards/PackList/PackList'
+import { PackList } from '../../features/cards/PackList/PackList'
 
 const Content = () => {
     return (
         <div className={s.contentBlock}>
             <Routes>
                 <Route path={'/'} element={<Profile />} />
-                <Route path={routes.main} element={<Cards />} />
+                <Route path={routes.cards} element={<Cards />} />
                 <Route path={routes.packsList} element={<PackList />} />
                 <Route path={routes.profile} element={<Profile />} />
                 <Route path={routes.login} element={<Login />} />

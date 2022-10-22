@@ -1,0 +1,40 @@
+@import '../../../../common/styles/sass/mixins';
+
+.settingButton {
+    @include flex(row, start, center, wrap);
+    margin-right: 32px;
+}
+.slider {
+    @include flex(row, start, center, wrap);
+}
+.firstSquare {
+    @include flex(row, center, center, wrap);
+    width: 36px;
+    height: 36px;
+    background-color: #ffffff;
+    margin-right: 12px;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+}
+.secondSquare {
+    @include flex(row, center, center, wrap);
+    width: 36px;
+    height: 36px;
+    background-color: #ffffff;
+    margin-left: 12px;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+}
+
+.thirdSquare {
+    @include flex(row, center, center, wrap);
+    width: 36px;
+    height: 36px;
+    background-color: #ffffff;
+    margin-left: 33px;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    background-image: url('../../../../common/assets/image/filter.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
