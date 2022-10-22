@@ -1,0 +1,7 @@
+@import '../../../../common/styles/sass/mixins';
+
+
+.actions {
+  @include flex(row, end, center, wrap);
+  //margin-right: 10px;
+}
