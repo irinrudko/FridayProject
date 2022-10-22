@@ -37,7 +37,7 @@ export const packsAPI = {
     getPacks(params: GetPackParams) {
         return instance.get<AxiosResponse<GetPacksResponseType>>('cards/pack', { params })
     },
-    createPack(newPack: NewPackDataType) {
+    createPack(newPack: CreateNewPackData) {
         return instance.post<AxiosResponse<GetPacksResponseType>>('cards/pack', newPack)
     },
     removePack(id: string) {
@@ -144,33 +144,7 @@ export type UpdateCardResponseType = {
 }
 
 // packsAPI types
-export type ChangePackNameResponseType = {
-    updatedCardsPack: CardPackType
-    token: string
-    tokenDeathTime: number
-}
-export type RemovePackResponseType = {
-    deletedCardsPack: CardPackType
-    token: string
-    tokenDeathTime: number
-}
-export type NewPackDataType = {
-    name: string
-    deckCover?: string
-    private?: boolean
-}
-export type GetPackParams = {
-    user_id: string
-    packName?: string
-    min?: number
-    max?: number
-    sortPacks?: string
-    page?: number
-    pageCount?: number
-    block?: boolean
-}
-
-export type CardPackType = {
+export type PackType = {
     _id: string
     user_id: string
     user_name: string
@@ -188,14 +162,38 @@ export type CardPackType = {
     more_id: string
     __v: number
 }
-
+export type GetPackParams = {
+    user_id: string
+    packName?: string
+    min?: number
+    max?: number
+    sortPacks?: string
+    page?: number
+    pageCount?: number
+    block?: boolean
+}
 export type GetPacksResponseType = {
-    cardPacks: CardPackType[]
+    cardPacks: PackType[]
     page: number
     pageCount: number
     cardPacksTotalCount: number
     minCardsCount: number
     maxCardsCount: number
+    token: string
+    tokenDeathTime: number
+}
+export type CreateNewPackData = {
+    name: string
+    deckCover?: string
+    private?: boolean
+}
+export type RemovePackResponseType = {
+    deletedCardsPack: PackType
+    token: string
+    tokenDeathTime: number
+}
+export type ChangePackNameResponseType = {
+    updatedCardsPack: PackType
     token: string
     tokenDeathTime: number
 }
