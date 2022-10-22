@@ -8,5 +8,6 @@ export const routes = {
     passwordRecovery: '/passwordRecovery',
     test: '/test',
     error404: '/404',
-    packsList: '/cards/packList',
+    packsList: '/cards/pack-list',
+    friendsPacksList: '/cards/friend-list',
 }

@@ -3,6 +3,8 @@ import { Box, IconButton, InputBase, Paper, Slider } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import s from './SettingsBlock.module.scss'
 import Button from '@mui/material/Button'
+import { routes } from '../../../../app/routes/Routes'
+import { NavLink } from 'react-router-dom'
 
 export const SettingsBlock = () => {
     //////for slider
@@ -28,13 +30,20 @@ export const SettingsBlock = () => {
                 />
             </Paper>
             <div className={s.settingButton}>
-                <Button type={'submit'} variant={'contained'} color={'primary'} style={{ width: '100px' }}>
-                    My
-                </Button>
-
-                <Button type={'submit'} variant={'contained'} color={'primary'} style={{ width: '100px' }}>
-                    All
-                </Button>
+                <NavLink to={routes.packsList} className={s.navLink}>
+                    {' '}
+                    {/*временная навигация*/}
+                    <Button type={'submit'} variant={'contained'} color={'primary'} style={{ width: '100px' }}>
+                        My
+                    </Button>
+                </NavLink>
+                <NavLink to={routes.friendsPacksList} className={s.navLink}>
+                    {' '}
+                    {/*временная навигация*/}
+                    <Button type={'submit'} variant={'contained'} color={'primary'} style={{ width: '100px' }}>
+                        All
+                    </Button>
+                </NavLink>
             </div>
 
             <div className={s.slider}>

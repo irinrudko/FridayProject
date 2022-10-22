@@ -11,6 +11,7 @@ import { Cards } from '../../features/cards/Cards'
 import { ForgotPassword } from '../../features/auth/forgotPassword/ForgotPassword'
 import { Login } from '../../features/auth/login/Login'
 import { PackList } from '../../features/cards/PackList/PackList'
+import { FriendsPack } from '../../features/cards/FriendsPack/FriendsPack'
 
 const Content = () => {
     return (
@@ -19,6 +20,7 @@ const Content = () => {
                 <Route path={'/'} element={<Profile />} />
                 <Route path={routes.cards} element={<Cards />} />
                 <Route path={routes.packsList} element={<PackList />} />
+                <Route path={routes.friendsPacksList} element={<FriendsPack />} />
                 <Route path={routes.profile} element={<Profile />} />
                 <Route path={routes.login} element={<Login />} />
                 <Route path={routes.registration} element={<Registration />} />
