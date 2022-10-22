@@ -4,6 +4,8 @@ import s from './PackListTable.module.scss'
 import SchoolIcon from '@mui/icons-material/School'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import { routes } from '../../../../app/routes/Routes'
+import { NavLink } from 'react-router-dom'
 
 export const PackListTable = () => {
     function createData(name: string, cards: number, lastUpdate: string, createdBy: string, actions: any) {
@@ -46,7 +48,9 @@ export const PackListTable = () => {
                         {rows.map((row) => (
                             <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell component="th" scope="row">
-                                    {row.name}
+                                    <NavLink to={routes.pagePack} className={s.navLink}>
+                                        {row.name}
+                                    </NavLink>
                                 </TableCell>
                                 <TableCell align="right">{row.cards}</TableCell>
                                 <TableCell align="right">{row.lastUpdate}</TableCell>

@@ -11,4 +11,5 @@ export const routes = {
     packsList: '/cards/pack-list',
     friendsPacksList: '/cards/friend-list',
     myPacksList: '/cards/my-list',
+    pagePack: '/cards/page-pack',
 }

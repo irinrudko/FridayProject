@@ -13,6 +13,7 @@ import { Login } from '../../features/auth/login/Login'
 import { PackList } from '../../features/cards/PackList/PackList'
 import { FriendsPack } from '../../features/cards/FriendsPack/FriendsPack'
 import { MyPackPage } from '../../features/cards/MyPackPage/MyPackPage'
+import { PagePack } from '../../features/cards/PagePack/PagePack'
 
 const Content = () => {
     return (
@@ -23,6 +24,7 @@ const Content = () => {
                 <Route path={routes.packsList} element={<PackList />} />
                 <Route path={routes.friendsPacksList} element={<FriendsPack />} />
                 <Route path={routes.myPacksList} element={<MyPackPage />} />
+                <Route path={routes.pagePack} element={<PagePack />} />
                 <Route path={routes.profile} element={<Profile />} />
                 <Route path={routes.login} element={<Login />} />
                 <Route path={routes.registration} element={<Registration />} />

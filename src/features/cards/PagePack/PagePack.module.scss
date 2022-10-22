@@ -1,0 +1,56 @@
+@import '../../../common/styles/sass/mixins';
+
+.friendListContainer {
+    width: 1000px;
+    position: relative;
+
+    .toPacksList {
+        position: absolute;
+        left: 20px;
+        top: -10px;
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            bottom: 3px;
+            width: 14px;
+            height: 12px;
+            background-image: url('../../../common/assets/image/backProfile.svg');
+            background-repeat: no-repeat;
+        }
+    }
+
+    .headBlock {
+        @include flex(row, center, center, wrap);
+        //border: 1px solid blue;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        justify-content: space-between;
+
+        .headName {
+            @include text(22px, 27px, 600);
+            @include flex(row, center, center, wrap);
+        }
+    }
+
+    .descriptionBlock {
+        //border: 1px solid #282c34;
+        @include flex(column, start, center, wrap);
+
+        .text {
+            @include text(16px, 20px, 400);
+            margin-bottom: 32px;
+            margin-top: 160px;
+            opacity: 50%;
+        }
+        .button {
+            width: 175px;
+            height: 36px;
+            border-radius: 30px;
+            //background: #366eff;
+            text-transform: capitalize;
+            box-shadow: 0px 4px 18px rgba(54, 110, 255, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+        }
+    }
+}
