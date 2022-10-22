@@ -33,7 +33,78 @@ export const forgotPasswordAPI = {
     },
 }
 
-//types
+export const packsAPI = {
+    getPacks(params: GetPackParams) {
+        return instance.get<AxiosResponse<GetPacksResponseType>>('cards/pack', { params })
+    },
+    createPack(newPack: NewPackDataType) {
+        return instance.post<AxiosResponse<GetPacksResponseType>>('cards/pack', newPack)
+    },
+    removePack(id: string) {
+        return instance.delete<AxiosResponse<RemovePackResponseType>>(`cards/pack?id=${id}`)
+    },
+    changePackName(id: string, name: string) {
+        return instance.put<AxiosResponse<ChangePackNameResponseType>>('cards/pack', { id, name })
+    },
+}
+
+// packsAPI types
+export type ChangePackNameResponseType = {
+    updatedCardsPack: CardPackType
+    token: string
+    tokenDeathTime: number
+}
+export type RemovePackResponseType = {
+    deletedCardsPack: CardPackType
+    token: string
+    tokenDeathTime: number
+}
+export type NewPackDataType = {
+    name: string
+    deckCover?: string
+    private?: boolean
+}
+export type GetPackParams = {
+    user_id: string
+    packName?: string
+    min?: number
+    max?: number
+    sortPacks?: string
+    page?: number
+    pageCount?: number
+    block?: boolean
+}
+
+export type CardPackType = {
+    _id: string
+    user_id: string
+    user_name: string
+    private: boolean
+    name: string
+    path: string
+    grade: number
+    shots: number
+    deckCover: string
+    cardsCount: number
+    type: string
+    rating: number
+    created: Date
+    updated: Date
+    more_id: string
+    __v: number
+}
+
+export type GetPacksResponseType = {
+    cardPacks: CardPackType[]
+    page: number
+    pageCount: number
+    cardPacksTotalCount: number
+    minCardsCount: number
+    maxCardsCount: number
+    token: string
+    tokenDeathTime: number
+}
+// authAPI types
 export type ChangeNameOrImgType = {
     name?: string
     avatar?: string
@@ -55,13 +126,11 @@ export type RegistrationPayloadType = {
     email: string
     password: string
 }
-
 export type LoginParamsData = {
     email: string
     password: string
     rememberMe: boolean
 }
-
 export type UserData = {
     _id: string
     email: string
@@ -75,12 +144,10 @@ export type UserData = {
     rememberMe: boolean
     error?: string
 }
-
 export type LogoutResponseType = {
     info: string
     error: string
 }
-
 // export type ErrorResponse = {
 //     code: string,
 //     config:{},
