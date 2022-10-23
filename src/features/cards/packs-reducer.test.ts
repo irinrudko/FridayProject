@@ -38,7 +38,7 @@ beforeEach(() => {
                 user_id: '7y678qjqwlqw',
                 user_name: '',
                 private: true,
-                name: '',
+                name: 'pack1',
                 path: '',
                 grade: 0,
                 shots: 0,
@@ -56,7 +56,7 @@ beforeEach(() => {
                 user_id: '1212sq1211',
                 user_name: '',
                 private: false,
-                name: '',
+                name: 'pack2',
                 path: '',
                 grade: 0,
                 shots: 0,
@@ -185,4 +185,11 @@ it('should add one pack to cardPacks collection', () => {
     )
 
     expect(endState.cardPacks[2].name).toBe('my second Pack')
+})
+
+it("should change pack's name ", () => {
+    const endState = packsReducer(startState, changePackNameAC('394892alsd203', 'changed name'))
+
+    expect(endState.cardPacks[0].name).toBe('changed name')
+    expect(endState.cardPacks[1].name).toBe('pack2')
 })
