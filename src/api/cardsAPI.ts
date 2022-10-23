@@ -6,7 +6,7 @@ export const cardsAPI = {
         return instance.get<GetCardParams, AxiosResponse<GetCardsResponseType>>('cards/card', { params }).then(({ data }) => data)
     },
     createCard(cardData: CreateCardData) {
-        return instance.post<AxiosResponse<CreateCardResponseType>>('cards/card', cardData)
+        return instance.post<CreateCardData, AxiosResponse<CreateCardResponseType>>('cards/card', cardData)
     },
     removeCard(id: string) {
         return instance.delete<AxiosResponse<RemoveCardResponseType>>(`cards/card?id=${id}`)
