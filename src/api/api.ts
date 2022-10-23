@@ -35,10 +35,10 @@ export const forgotPasswordAPI = {
 
 export const packsAPI = {
     getPacks(params: GetPackParams) {
-        return instance.get<AxiosResponse<GetPacksResponseType>>('cards/pack', { params })
+        return instance.get<GetPackParams, AxiosResponse<GetPacksResponseType>>('cards/pack', { params }).then(({ data }) => data)
     },
     createPack(newPack: CreateNewPackData) {
-        return instance.post<AxiosResponse<GetPacksResponseType>>('cards/pack', newPack)
+        return instance.post<AxiosResponse<CreatePacksResponseType>>('cards/pack', newPack)
     },
     removePack(id: string) {
         return instance.delete<AxiosResponse<RemovePackResponseType>>(`cards/pack?id=${id}`)
@@ -157,8 +157,8 @@ export type PackType = {
     cardsCount: number
     type: string
     rating: number
-    created: Date
-    updated: Date
+    created: Date | null
+    updated: Date | null
     more_id: string
     __v: number
 }
@@ -186,6 +186,16 @@ export type CreateNewPackData = {
     name: string
     deckCover?: string
     private?: boolean
+}
+export type CreatePacksResponseType = {
+    newCardsPack: PackType[]
+    page: number
+    pageCount: number
+    cardPacksTotalCount: number
+    minCardsCount: number
+    maxCardsCount: number
+    token: string
+    tokenDeathTime: number
 }
 export type RemovePackResponseType = {
     deletedCardsPack: PackType
