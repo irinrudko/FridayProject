@@ -6,6 +6,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import { NavLink } from 'react-router-dom'
 import { routes } from '../../../app/routes/Routes'
 import { MyPackTable } from '../MyPackPage/MyPackTable/MyPackTable'
+import {PaginationBlock} from "../../../common/components/PaginationBlock/PaginationBlock";
 
 export const FriendsPack = () => {
     return (
@@ -41,7 +42,7 @@ export const FriendsPack = () => {
                 <MyPackTable />
             </div>
 
-            <div className={s.paginationBlock}>pagin</div>
+            <PaginationBlock/>
         </div>
     )
 }

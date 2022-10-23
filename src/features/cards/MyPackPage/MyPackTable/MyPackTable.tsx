@@ -5,14 +5,14 @@ import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 
 export const MyPackTable = () => {
-    const [value, setValue] = React.useState<number | null>(0)
+    const [value, setValue] = React.useState<number | null>(5)
 
     function createData(question: string, answer: string, lastUpdate: string, grade: any, action: any) {
         return { question, answer, lastUpdate, grade, action }
     }
 
     const rows = [
-        createData('How "This" works in JavaScript?', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
+        createData('How "This" works in JavaScript? ', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
         createData('How "This" works in JavaScript?', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
         createData('How "This" works in JavaScript?', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
         createData('How "This" works in JavaScript?', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
@@ -42,7 +42,9 @@ export const MyPackTable = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
+                        {rows.map((row) =>{
+                            const [value, setValue] = React.useState<number | null>(0)
+                            return(
                             <TableRow key={row.question} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell component="th" scope="row">
                                     {row.question}
@@ -68,7 +70,10 @@ export const MyPackTable = () => {
                                     </div>
                                 </TableCell>
                             </TableRow>
-                        ))}
+                        )}
+
+                        )
+                        }
                     </TableBody>
                 </Table>
             </TableContainer>
