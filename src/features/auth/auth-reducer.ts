@@ -25,7 +25,7 @@ const initialState = {
 
 export type AuthInitialStateType = typeof initialState
 
-export const authReducer = (state: AuthInitialStateType = initialState, action: ActionsType): AuthInitialStateType => {
+export const authReducer = (state: AuthInitialStateType = initialState, action: AuthActionsType): AuthInitialStateType => {
     switch (action.type) {
         case 'AUTH/SET-IS-LOGGED-IN':
             return { ...state, isLoggedIn: action.isLoggedIn }
@@ -163,7 +163,7 @@ export const registrationTC =
     }
 
 //Types
-export type ActionsType =
+export type AuthActionsType =
     | ReturnType<typeof setIsLoggedInAC>
     | ReturnType<typeof setUserDataAC>
     | ReturnType<typeof setEmailRecovery>
