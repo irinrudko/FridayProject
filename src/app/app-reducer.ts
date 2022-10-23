@@ -1,5 +1,5 @@
 import { AppThunk } from './store'
-import { authAPI } from '../api/api'
+import { authAPI } from '../api/userAPI'
 import { AxiosError } from 'axios'
 import { setIsLoggedInAC } from '../features/auth/auth-reducer'
 

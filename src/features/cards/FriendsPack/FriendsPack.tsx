@@ -6,8 +6,10 @@ import SearchIcon from '@mui/icons-material/Search'
 import { NavLink } from 'react-router-dom'
 import { routes } from '../../../app/routes/Routes'
 import { MyPackTable } from '../MyPackPage/MyPackTable/MyPackTable'
+import { getPacksTC } from '../packs-reducer'
 
 export const FriendsPack = () => {
+    getPacksTC({})
     return (
         <div className={s.friendListContainer}>
             <NavLink className={s.toPacksList} to={routes.packsList}>

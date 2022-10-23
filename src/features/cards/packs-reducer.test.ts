@@ -1,4 +1,4 @@
-import { PackType } from '../../api/api'
+import { PackType } from '../../api/packsAPI'
 import { getPacksAC, PacksInitialStateType, packsReducer } from './packs-reducer'
 
 let startState: PacksInitialStateType = {

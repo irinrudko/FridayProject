@@ -1,6 +1,5 @@
-import { GetPackParams, packsAPI } from './../../api/api'
+import { CreateNewPackData, GetPackParams, GetPacksResponseType, packsAPI, PackType } from './../../api/packsAPI'
 import { AppThunk } from './../../app/store'
-import { CreateNewPackData, GetPacksResponseType, PackType } from '../../api/api'
 
 const initialState = {
     cardPacks: <PackType[]>[
@@ -72,17 +71,29 @@ export const changePackNameTC =
 export const removePackTC =
     (id: string, params: GetPackParams): AppThunk =>
     (dispatch) => {
-        packsAPI.removePack(id).then(() => {
-            dispatch(getPacksTC(params))
-        })
+        packsAPI
+            .removePack(id)
+            .then(() => {
+                dispatch(getPacksTC(params))
+            })
+            .catch((err: any) => {
+                let error = err.response.data.error
+                console.log('catch, error:', error)
+            })
     }
 
 export const addPackTC =
     (newPack: CreateNewPackData, params: GetPackParams): AppThunk =>
     (dispatch) => {
-        packsAPI.createPack(newPack).then(() => {
-            dispatch(getPacksTC(params))
-        })
+        packsAPI
+            .createPack(newPack)
+            .then(() => {
+                dispatch(getPacksTC(params))
+            })
+            .catch((err: any) => {
+                let error = err.response.data.error
+                console.log('catch, error:', error)
+            })
     }
 
 //Types

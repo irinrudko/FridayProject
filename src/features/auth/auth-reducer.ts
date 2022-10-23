@@ -1,4 +1,11 @@
-import { DataNewPasswordType, forgotPasswordAPI, ForgotPasswordDataType, LoginParamsData, authAPI, UserData } from '../../api/api'
+import {
+    authAPI,
+    DataNewPasswordType,
+    forgotPasswordAPI,
+    ForgotPasswordDataType,
+    LoginParamsData,
+    UserData,
+} from '../../api/userAPI'
 import { setAppStatusAC, setErrAC } from '../../app/app-reducer'
 import { AppThunk } from '../../app/store'
 import { routes } from '../../app/routes/Routes'

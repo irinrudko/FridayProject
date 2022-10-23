@@ -1,4 +1,4 @@
-import { authAPI } from '../../api/api'
+import { authAPI } from '../../api/userAPI'
 import { AppThunk } from '../../app/store'
 import { setAppStatusAC, setErrAC } from '../../app/app-reducer'
 

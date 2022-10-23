@@ -1,4 +1,4 @@
-import { CardType } from '../../api/api'
+import { CardType } from '../../api/cardsAPI'
 import { CardsInitialStateType, cardsReducer, getCardsAC } from './cards-reducer'
 
 let startState: CardsInitialStateType = {
