@@ -32,56 +32,6 @@ let startState: PacksInitialStateType = {
 }
 beforeEach(() => {
     startState = {
-        cardPacks: [
-            {
-                _id: '394892alsd203',
-                user_id: '7y678qjqwlqw',
-                user_name: '',
-                private: true,
-                name: 'pack1',
-                path: '',
-                grade: 0,
-                shots: 0,
-                deckCover: '',
-                cardsCount: 0,
-                type: '',
-                rating: 0,
-                created: null,
-                updated: null,
-                more_id: '',
-                __v: 0,
-            },
-            {
-                _id: '23394892alsd203hs',
-                user_id: '1212sq1211',
-                user_name: '',
-                private: false,
-                name: 'pack2',
-                path: '',
-                grade: 0,
-                shots: 0,
-                deckCover: '',
-                cardsCount: 0,
-                type: '',
-                rating: 0,
-                created: null,
-                updated: null,
-                more_id: '',
-                __v: 0,
-            },
-        ],
-        page: 2,
-        pageCount: 8,
-        cardPacksTotalCount: 2,
-        minCardsCount: 0,
-        maxCardsCount: 0,
-        token: '',
-        tokenDeathTime: 0,
-    }
-})
-
-it('should get new card packs', () => {
-    const initialState = {
         cardPacks: <PackType[]>[
             {
                 _id: '',
@@ -110,9 +60,11 @@ it('should get new card packs', () => {
         token: '',
         tokenDeathTime: 0,
     }
+})
 
+it('should get all card packs', () => {
     const endState = packsReducer(
-        initialState,
+        startState,
         getPacksAC({
             cardPacks: [
                 {
