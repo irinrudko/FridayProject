@@ -80,8 +80,8 @@ export type CardType = {
     type: string
     rating: number
     more_id: string
-    created: Date
-    updated: Date
+    created: Date | null
+    updated: Date | null
     __v: number
 }
 export type GetCardParams = {
@@ -100,8 +100,8 @@ export type GetCardsResponseType = {
     packName: string
     packPrivate: boolean
     packDeckCover: string
-    packCreated: Date
-    packUpdated: Date
+    packCreated: Date | null
+    packUpdated: Date | null
     page: number
     pageCount: number
     cardsTotalCount: number
