@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom'
 import { routes } from '../../../app/routes/Routes'
 import { MyPackTable } from '../MyPackPage/MyPackTable/MyPackTable'
 import { getPacksTC } from '../packs-reducer'
+import { PaginationBlock } from '../../../common/components/PaginationBlock/PaginationBlock'
 
 export const FriendsPack = () => {
     getPacksTC({})
@@ -43,7 +44,7 @@ export const FriendsPack = () => {
                 <MyPackTable />
             </div>
 
-            <div className={s.paginationBlock}>pagin</div>
+            <PaginationBlock />
         </div>
     )
 }

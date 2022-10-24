@@ -9,18 +9,14 @@ import { EditableSpan } from '../../common/components/EditableSpan/EditableSpan'
 import { Navigate, NavLink } from 'react-router-dom'
 import { routes } from '../../app/routes/Routes'
 import { useAppDispatch, useAppSelector } from '../../app/store'
-import { setProfileUserName } from './profile-reducer'
+
 import { logoutTC } from '../auth/auth-reducer'
 
 const Profile = () => {
     const dispatch = useAppDispatch()
-    const name = useAppSelector((state) => state.profile.name)
-    const email = useAppSelector((state) => state.profile.email)
+    const name = useAppSelector((state) => state.auth.user.name)
+    const email = useAppSelector((state) => state.auth.user.email)
     const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
-
-    useEffect(() => {
-        dispatch(setProfileUserName())
-    }, [dispatch])
 
     const redirectToLogin = () => {
         dispatch(logoutTC())

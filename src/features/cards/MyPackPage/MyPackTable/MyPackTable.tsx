@@ -5,14 +5,14 @@ import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 
 export const MyPackTable = () => {
-    const [value, setValue] = React.useState<number | null>(0)
+    const [value, setValue] = React.useState<number | null>(5)
 
     function createData(question: string, answer: string, lastUpdate: string, grade: any, action: any) {
         return { question, answer, lastUpdate, grade, action }
     }
 
     const rows = [
-        createData('How "This" works in JavaScript?', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
+        createData('How "This" works in JavaScript? ', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
         createData('How "This" works in JavaScript?', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
         createData('How "This" works in JavaScript?', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
         createData('How "This" works in JavaScript?', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
@@ -42,33 +42,36 @@ export const MyPackTable = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <TableRow key={row.question} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell component="th" scope="row">
-                                    {row.question}
-                                </TableCell>
-                                <TableCell align="left">{row.answer}</TableCell>
-                                <TableCell align="left">{row.lastUpdate}</TableCell>
-                                {/*<TableCell align="right">{row.grade}</TableCell>*/}
-                                <TableCell align="left">
-                                    <Box sx={{ '& > legend': { mt: 2 } }}>
-                                        <Rating
-                                            name="simple-controlled"
-                                            value={value}
-                                            onChange={(event, newValue) => {
-                                                setValue(newValue)
-                                            }}
-                                        />
-                                    </Box>
-                                </TableCell>
-                                <TableCell align="left">
-                                    <div className={s.actions}>
-                                        <BorderColorIcon fontSize={'small'} style={{ marginRight: '15px' }} />
-                                        <DeleteForeverIcon fontSize={'small'} />
-                                    </div>
-                                </TableCell>
-                            </TableRow>
-                        ))}
+                        {rows.map((row) => {
+                            const [value, setValue] = React.useState<number | null>(0)
+                            return (
+                                <TableRow key={row.question} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                    <TableCell component="th" scope="row">
+                                        {row.question}
+                                    </TableCell>
+                                    <TableCell align="left">{row.answer}</TableCell>
+                                    <TableCell align="left">{row.lastUpdate}</TableCell>
+                                    {/*<TableCell align="right">{row.grade}</TableCell>*/}
+                                    <TableCell align="left">
+                                        <Box sx={{ '& > legend': { mt: 2 } }}>
+                                            <Rating
+                                                name="simple-controlled"
+                                                value={value}
+                                                onChange={(event, newValue) => {
+                                                    setValue(newValue)
+                                                }}
+                                            />
+                                        </Box>
+                                    </TableCell>
+                                    <TableCell align="left">
+                                        <div className={s.actions}>
+                                            <BorderColorIcon fontSize={'small'} style={{ marginRight: '15px' }} />
+                                            <DeleteForeverIcon fontSize={'small'} />
+                                        </div>
+                                    </TableCell>
+                                </TableRow>
+                            )
+                        })}
                     </TableBody>
                 </Table>
             </TableContainer>

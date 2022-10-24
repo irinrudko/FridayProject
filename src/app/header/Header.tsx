@@ -10,8 +10,8 @@ import CollapsedMenu from '../../common/components/CollapsedMenu/CollapsedMenu'
 
 const Header = () => {
     const isLoggedIn = useAppSelector((store) => store.auth.isLoggedIn)
-    const name = useAppSelector((state) => state.profile.name)
-    const avatar = useAppSelector((state) => state.profile.avatar)
+    const name = useAppSelector((state) => state.auth.user.name)
+    const avatar = useAppSelector((state) => state.auth.user.avatar)
     const [collapsed, setCollapsed] = useState<boolean>(true)
     const inputClass = !collapsed ? s.active : s.nav
 

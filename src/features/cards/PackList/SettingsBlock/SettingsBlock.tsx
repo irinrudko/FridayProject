@@ -8,8 +8,8 @@ import { NavLink } from 'react-router-dom'
 
 export const SettingsBlock = () => {
     //////for slider
-    const [value, setValue] = React.useState<number[]>([20, 37])
-
+    const [value, setValue] = React.useState<number[]>([10, 30])
+    console.log(value)
     const handleChange = (event: Event, newValue: number | number[]) => {
         setValue(newValue as number[])
     }
@@ -33,7 +33,7 @@ export const SettingsBlock = () => {
                 <NavLink to={routes.myPacksList} className={s.navLink}>
                     {' '}
                     {/*временная навигация*/}
-                    <Button type={'submit'} variant={'contained'} color={'primary'} style={{ width: '100px' }}>
+                    <Button type={'submit'} variant={'outlined'} color={'inherit'} style={{ width: '100px' }}>
                         My
                     </Button>
                 </NavLink>
@@ -47,17 +47,20 @@ export const SettingsBlock = () => {
             </div>
 
             <div className={s.slider}>
-                <div className={s.firstSquare}>2</div>
+                <div className={s.firstSquare}>{value[0]}</div>
                 <Box sx={{ width: '163px' }}>
                     <Slider
                         getAriaLabel={() => 'Temperature range'}
                         value={value}
                         onChange={handleChange}
                         valueLabelDisplay="auto"
+                        min={0}
+                        max={52}
+                        step={1}
                         // getAriaValueText={valuetext}
                     />
                 </Box>
-                <div className={s.secondSquare}>10</div>
+                <div className={s.secondSquare}>{value[1]}</div>
                 <div className={s.thirdSquare}></div>
             </div>
         </>

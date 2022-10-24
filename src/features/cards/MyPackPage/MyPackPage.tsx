@@ -7,8 +7,8 @@ import { IconButton, InputBase, Paper } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { MyPackTable } from './MyPackTable/MyPackTable'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
-import CollapsedMenu from '../../../common/components/CollapsedMenu/CollapsedMenu'
 import { ActionsMenu } from './ActionsMenu/ActionsMenu'
+import { PaginationBlock } from '../../../common/components/PaginationBlock/PaginationBlock'
 
 export const MyPackPage = () => {
     const [collapsed, setCollapsed] = useState<boolean>(true)
@@ -60,7 +60,7 @@ export const MyPackPage = () => {
                 <MyPackTable />
             </div>
 
-            <div className={s.paginationBlock}>pagin</div>
+            <PaginationBlock />
         </div>
     )
 }
