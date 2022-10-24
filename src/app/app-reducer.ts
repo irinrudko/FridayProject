@@ -1,7 +1,7 @@
 import { AppThunk } from './store'
 import { authAPI } from '../api/api'
 import { AxiosError } from 'axios'
-import { setIsLoggedInAC } from '../features/auth/auth-reducer'
+import {setIsLoggedInAC, setUserDataAC} from '../features/auth/auth-reducer'
 
 const initialState = {
     status: 'idle' as RequestStatusType,
@@ -36,6 +36,7 @@ export const initializedTC = (): AppThunk => (dispatch) => {
     authAPI
         .me()
         .then((res) => {
+            dispatch(setUserDataAC(res.data))
             dispatch(setIsLoggedInAC(true))
             dispatch(setAppStatusAC('succeeded'))
         })

@@ -1,8 +1,9 @@
 import { DataNewPasswordType, forgotPasswordAPI, ForgotPasswordDataType, LoginParamsData, authAPI, UserData } from '../../api/api'
 import { setAppStatusAC, setErrAC } from '../../app/app-reducer'
-import { AppThunk } from '../../app/store'
+import {AppRootStateType, AppThunk} from '../../app/store'
 import { routes } from '../../app/routes/Routes'
 import { dataType } from './auth-types'
+
 
 const initialState = {
     isLoggedIn: false,
@@ -161,6 +162,22 @@ export const registrationTC =
                 dispatch(setAppStatusAC('idle'))
             })
     }
+export const updateUser =
+    (userName: { name: string }): AppThunk =>
+        (dispatch,getState: () => AppRootStateType) => {
+            dispatch(setAppStatusAC('loading'))
+            const user=getState().auth.user
+            const userUpdate={...user,...userName}
+            authAPI
+                .changeNameOrImg(userName)
+                .then(() => dispatch(setUserDataAC(userUpdate)))
+                .catch((err: any) => {
+                    let error = err.response.data.error
+                    dispatch(setErrAC(error))
+                    dispatch(setAppStatusAC('failed'))
+                })
+                .finally(() => dispatch(setAppStatusAC('idle')))
+        }
 
 //Types
 export type ActionsType =

@@ -3,8 +3,8 @@ import TextField from '@mui/material/TextField'
 import { Button } from '@mui/material'
 import s from './EditableSpan.module.css'
 import { useAppDispatch } from '../../../app/store'
-import { updateUser } from '../../../features/profile/profile-reducer'
 import { useFormik } from 'formik'
+import {updateUser} from "../../../features/auth/auth-reducer";
 
 type EditableSpanPropsType = {
     name: string
