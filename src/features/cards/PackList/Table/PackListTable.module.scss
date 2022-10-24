@@ -2,5 +2,17 @@
 
 .actions {
     @include flex(row, end, center, wrap);
-    //margin-right: 10px;
+    .schoolIcon {
+        width: 20px;
+        margin-right: 15px;
+    }
+
+    .editIcon {
+        width: 20px;
+        margin-right: 15px;
+    }
+
+    .deleteIcon {
+        width: 20px;
+    }
 }

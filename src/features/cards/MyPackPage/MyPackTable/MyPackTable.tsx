@@ -6,35 +6,23 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { getPacksTC } from '../../packs-reducer'
 import { useAppDispatch, useAppSelector } from '../../../../app/store'
 import { GetPackParams } from '../../../../api/packsAPI'
+import { getCardsTC } from '../../cards-reducer'
+import { CardType, GetCardParams } from '../../../../api/cardsAPI'
 
 export const MyPackTable = () => {
     const dispatch = useAppDispatch()
-    const userId = useAppSelector((store) => store.auth.user._id)
-    const myCardPacks = useAppSelector((store) => store.packs.cardPacks)
-
+    const cardsId = useAppSelector((store) => store.packs)
+    ////////////////исправить ошибку!!!!!!!!!!!!
+    // @ts-ignore
+    const myCardPacks = useAppSelector<CardType[]>((store) => store.cards.cards)
     const [value, setValue] = React.useState<number | null>(5)
 
-    // function createData(question: string, answer: string, lastUpdate: string, grade: any, action: any) {
-    //     return { question, answer, lastUpdate, grade, action }
-    // }
-    //
-    // const rows = [
-    //     createData('How "This" works in JavaScript? ', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
-    //     createData('How "This" works in JavaScript?', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
-    //     createData('How "This" works in JavaScript?', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
-    //     createData('How "This" works in JavaScript?', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
-    //     createData('How "This" works in JavaScript?', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
-    //     createData('How "This" works in JavaScript?', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
-    //     createData('How "This" works in JavaScript?', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
-    //     createData('How "This" works in JavaScript?', 'This is how "This" works in Javascript', '18.03.2022', 1, 1),
-    // ]
-
-    const myPacksSettings: GetPackParams = {
-        user_id: userId,
+    const myPacksSettings: GetCardParams = {
+        cardsPack_id: '6356688365c36e000499fa04',
     }
 
     useEffect(() => {
-        dispatch(getPacksTC(myPacksSettings))
+        dispatch(getCardsTC(myPacksSettings))
     }, [])
 
     return (
@@ -57,26 +45,26 @@ export const MyPackTable = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {myCardPacks.map((row, index) => {
+                        {myCardPacks.map((row) => {
                             return (
-                                <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                    {/*<TableCell component="th" scope="row">*/}
-                                    {/*    {row.question}*/}
-                                    {/*</TableCell>*/}
-                                    {/*<TableCell align="left">{row.answer}</TableCell>*/}
-                                    {/*<TableCell align="left">{row.lastUpdate}</TableCell>*/}
-                                    {/*/!*<TableCell align="right">{row.grade}</TableCell>*!/*/}
-                                    {/*<TableCell align="left">*/}
-                                    {/*    <Box sx={{'& > legend': {mt: 2}}}>*/}
-                                    {/*        <Rating*/}
-                                    {/*            name="simple-controlled"*/}
-                                    {/*            value={value}*/}
-                                    {/*            onChange={(event, newValue) => {*/}
-                                    {/*                setValue(newValue)*/}
-                                    {/*            }}*/}
-                                    {/*        />*/}
-                                    {/*    </Box>*/}
-                                    {/*</TableCell>*/}
+                                <TableRow key={row.cardsPack_id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                    <TableCell component="th" scope="row">
+                                        {row.question}
+                                    </TableCell>
+                                    <TableCell align="left">{row.answer}</TableCell>
+                                    <TableCell align="left">{row.updated}</TableCell>
+                                    {/*<TableCell align="right">{row.grade}</TableCell>*/}
+                                    <TableCell align="left">
+                                        <Box sx={{ '& > legend': { mt: 2 } }}>
+                                            <Rating
+                                                name="simple-controlled"
+                                                value={row.grade}
+                                                onChange={(event, newValue) => {
+                                                    setValue(newValue)
+                                                }}
+                                            />
+                                        </Box>
+                                    </TableCell>
                                     <TableCell align="left">
                                         <div className={s.actions}>
                                             <BorderColorIcon fontSize={'small'} style={{ marginRight: '15px' }} />

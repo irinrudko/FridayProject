@@ -59,7 +59,7 @@ it('should get all cards', () => {
                     rating: 0,
                     more_id: '',
                     created: null,
-                    updated: null,
+                    updated: '',
                     __v: 0,
                 },
                 {

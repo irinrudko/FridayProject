@@ -6,8 +6,8 @@ import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { routes } from '../../../../app/routes/Routes'
 import { NavLink } from 'react-router-dom'
-import { getPacksTC } from '../../packs-reducer'
-import { useAppDispatch, useAppSelector } from '../../../../app/store'
+import { getPacksTC, removePackTC } from '../../packs-reducer'
+import { AppThunk, useAppDispatch, useAppSelector } from '../../../../app/store'
 import { GetPackParams } from '../../../../api/packsAPI'
 
 type PackListTablePropsType = {
@@ -19,6 +19,10 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
     const cardPacks = useAppSelector((store) => store.packs.cardPacks)
     const userId = useAppSelector((store) => store.auth.user._id)
 
+    const deletePack = (id: string) => {
+        myPack ? dispatch(removePackTC(id, myCardPacksSettings)) : dispatch(removePackTC(id, cardPacksSettings))
+    }
+
     const myCardPacksSettings: GetPackParams = {
         user_id: userId,
         pageCount: 8,
@@ -29,11 +33,7 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
     }
 
     useEffect(() => {
-        if (myPack) {
-            dispatch(getPacksTC(myCardPacksSettings))
-        } else if (!myPack) {
-            dispatch(getPacksTC(cardPacksSettings))
-        }
+        myPack ? dispatch(getPacksTC(myCardPacksSettings)) : dispatch(getPacksTC(cardPacksSettings))
     }, [myPack])
 
     return (
@@ -58,8 +58,8 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {cardPacks.map((row, index) => (
-                            <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                        {cardPacks.map((row) => (
+                            <TableRow key={row._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell component="th" scope="row">
                                     <NavLink to={routes.pagePack} className={s.navLink}>
                                         {row.name}
@@ -70,9 +70,17 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
                                 <TableCell align="right">{row.user_name}</TableCell>
                                 <TableCell align="right">
                                     <div className={s.actions}>
-                                        <SchoolIcon fontSize={'small'} style={{ marginRight: '15px' }} />
-                                        <BorderColorIcon fontSize={'small'} style={{ marginRight: '15px' }} />
-                                        <DeleteForeverIcon fontSize={'small'} />
+                                        <div className={s.schoolIcon}>
+                                            <SchoolIcon fontSize={'small'} />
+                                        </div>
+                                        <div className={s.editIcon}>
+                                            {row.user_id === userId && <BorderColorIcon fontSize={'small'} />}
+                                        </div>
+                                        <div className={s.deleteIcon}>
+                                            {row.user_id === userId && (
+                                                <DeleteForeverIcon fontSize={'small'} onClick={() => deletePack(row._id)} />
+                                            )}
+                                        </div>
                                     </div>
                                 </TableCell>
                             </TableRow>

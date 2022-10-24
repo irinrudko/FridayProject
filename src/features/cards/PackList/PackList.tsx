@@ -15,10 +15,6 @@ export const PackList = () => {
     const dispatch = useAppDispatch()
     const [myPack, setMyPack] = useState(false)
 
-    const navigateToAddNewPack = () => {
-        navigate(routes.pagePack)
-    }
-
     const newPack = {
         cardsPack: {
             name: 'test Pack',
@@ -39,14 +35,7 @@ export const PackList = () => {
         <div className={s.packListContainer}>
             <div className={s.headBlock}>
                 <h2 className={s.headName}>Pack list</h2>
-                <Button
-                    type={'button'}
-                    variant={'contained'}
-                    color={'primary'}
-                    className={s.button}
-                    // onClick={navigateToAddNewPack}
-                    onClick={addNewPack}
-                >
+                <Button type={'button'} variant={'contained'} color={'primary'} className={s.button} onClick={addNewPack}>
                     Add new pack
                 </Button>
             </div>

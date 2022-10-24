@@ -35,7 +35,7 @@ export type CardType = {
     rating: number
     more_id: string
     created: Date | null
-    updated: Date | null
+    updated: string
     __v: number
 }
 export type GetCardParams = {
