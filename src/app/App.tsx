@@ -14,7 +14,6 @@ function App() {
     const initialized = useAppSelector((store) => store.app.initialized)
 
     useEffect(() => {
-
         dispatch(initializedTC())
     }, [])
 

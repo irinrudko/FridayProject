@@ -1,14 +1,14 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import s from '../FriendsPack/FriendsPack.module.scss'
-import {NavLink} from 'react-router-dom'
-import {routes} from '../../../app/routes/Routes'
+import { NavLink } from 'react-router-dom'
+import { routes } from '../../../app/routes/Routes'
 import Button from '@mui/material/Button'
-import {IconButton, InputBase, Paper} from '@mui/material'
+import { IconButton, InputBase, Paper } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
-import {MyPackTable} from './MyPackTable/MyPackTable'
+import { MyPackTable } from './MyPackTable/MyPackTable'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
-import {ActionsMenu} from './ActionsMenu/ActionsMenu'
-import {PaginationBlock} from "../../../common/components/PaginationBlock/PaginationBlock";
+import { ActionsMenu } from './ActionsMenu/ActionsMenu'
+import { PaginationBlock } from '../../../common/components/PaginationBlock/PaginationBlock'
 
 export const MyPackPage = () => {
     const [collapsed, setCollapsed] = useState<boolean>(true)
@@ -60,7 +60,7 @@ export const MyPackPage = () => {
                 <MyPackTable />
             </div>
 
-            <PaginationBlock/>
+            <PaginationBlock />
         </div>
     )
 }

@@ -42,38 +42,36 @@ export const MyPackTable = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) =>{
+                        {rows.map((row) => {
                             const [value, setValue] = React.useState<number | null>(0)
-                            return(
-                            <TableRow key={row.question} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                <TableCell component="th" scope="row">
-                                    {row.question}
-                                </TableCell>
-                                <TableCell align="left">{row.answer}</TableCell>
-                                <TableCell align="left">{row.lastUpdate}</TableCell>
-                                {/*<TableCell align="right">{row.grade}</TableCell>*/}
-                                <TableCell align="left">
-                                    <Box sx={{ '& > legend': { mt: 2 } }}>
-                                        <Rating
-                                            name="simple-controlled"
-                                            value={value}
-                                            onChange={(event, newValue) => {
-                                                setValue(newValue)
-                                            }}
-                                        />
-                                    </Box>
-                                </TableCell>
-                                <TableCell align="left">
-                                    <div className={s.actions}>
-                                        <BorderColorIcon fontSize={'small'} style={{ marginRight: '15px' }} />
-                                        <DeleteForeverIcon fontSize={'small'} />
-                                    </div>
-                                </TableCell>
-                            </TableRow>
-                        )}
-
-                        )
-                        }
+                            return (
+                                <TableRow key={row.question} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                    <TableCell component="th" scope="row">
+                                        {row.question}
+                                    </TableCell>
+                                    <TableCell align="left">{row.answer}</TableCell>
+                                    <TableCell align="left">{row.lastUpdate}</TableCell>
+                                    {/*<TableCell align="right">{row.grade}</TableCell>*/}
+                                    <TableCell align="left">
+                                        <Box sx={{ '& > legend': { mt: 2 } }}>
+                                            <Rating
+                                                name="simple-controlled"
+                                                value={value}
+                                                onChange={(event, newValue) => {
+                                                    setValue(newValue)
+                                                }}
+                                            />
+                                        </Box>
+                                    </TableCell>
+                                    <TableCell align="left">
+                                        <div className={s.actions}>
+                                            <BorderColorIcon fontSize={'small'} style={{ marginRight: '15px' }} />
+                                            <DeleteForeverIcon fontSize={'small'} />
+                                        </div>
+                                    </TableCell>
+                                </TableRow>
+                            )
+                        })}
                     </TableBody>
                 </Table>
             </TableContainer>

@@ -18,8 +18,6 @@ const Profile = () => {
     const email = useAppSelector((state) => state.auth.user.email)
     const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
 
-
-
     const redirectToLogin = () => {
         dispatch(logoutTC())
     }

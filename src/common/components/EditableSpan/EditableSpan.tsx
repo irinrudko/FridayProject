@@ -4,7 +4,7 @@ import { Button } from '@mui/material'
 import s from './EditableSpan.module.css'
 import { useAppDispatch } from '../../../app/store'
 import { useFormik } from 'formik'
-import {updateUser} from "../../../features/auth/auth-reducer";
+import { updateUser } from '../../../features/auth/auth-reducer'
 
 type EditableSpanPropsType = {
     name: string

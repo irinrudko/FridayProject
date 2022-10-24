@@ -1,13 +1,12 @@
 import { AppThunk } from './store'
 import { authAPI } from '../api/api'
 import { AxiosError } from 'axios'
-import {setIsLoggedInAC, setUserDataAC} from '../features/auth/auth-reducer'
+import { setIsLoggedInAC, setUserDataAC } from '../features/auth/auth-reducer'
 
 const initialState = {
     status: 'idle' as RequestStatusType,
     error: null as null | string,
     initialized: false,
-
 }
 type InitialStateType = typeof initialState
 
