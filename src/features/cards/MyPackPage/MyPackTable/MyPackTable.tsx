@@ -43,7 +43,7 @@ export const MyPackTable = () => {
                     </TableHead>
                     <TableBody>
                         {rows.map((row) => {
-                            const [value, setValue] = React.useState<number | null>(0)
+                            // const [value, setValue] = React.useState<number | null>(0)
                             return (
                                 <TableRow key={row.question} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                     <TableCell component="th" scope="row">
