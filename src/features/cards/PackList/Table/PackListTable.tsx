@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Paper, TableBody, TableCell, TableContainer, TableHead, TableRow, Table, Icon } from '@mui/material'
 import s from './PackListTable.module.scss'
 import SchoolIcon from '@mui/icons-material/School'
@@ -6,22 +6,35 @@ import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { routes } from '../../../../app/routes/Routes'
 import { NavLink } from 'react-router-dom'
+import { getPacksTC } from '../../packs-reducer'
+import { useAppDispatch, useAppSelector } from '../../../../app/store'
+import { GetPackParams } from '../../../../api/packsAPI'
 
-export const PackListTable = () => {
-    function createData(name: string, cards: number, lastUpdate: string, createdBy: string, actions: any) {
-        return { name, cards, lastUpdate, createdBy, actions }
+type PackListTablePropsType = {
+    myPack: boolean
+}
+
+export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
+    const dispatch = useAppDispatch()
+    const cardPacks = useAppSelector((store) => store.packs.cardPacks)
+    const userId = useAppSelector((store) => store.auth.user._id)
+
+    const myCardPacksSettings: GetPackParams = {
+        user_id: userId,
+        pageCount: 8,
+    }
+    const cardPacksSettings: GetPackParams = {
+        user_id: '',
+        pageCount: 8,
     }
 
-    const rows = [
-        createData('Pack Name', 4, '18.03.2022', 'Ivan Ivanov', 1),
-        createData('Name Pack', 37, '18.06.2022', 'Petr Petrov', 2),
-        createData('Pack Name', 4, '18.03.2022', 'Ivan Ivanov', 1),
-        createData('Name Pack', 37, '18.06.2022', 'Petr Petrov', 2),
-        createData('Pack Name', 4, '18.03.2022', 'Ivan Ivanov', 1),
-        createData('Name Pack', 37, '18.06.2022', 'Petr Petrov', 2),
-        createData('Pack Name', 4, '18.03.2022', 'Ivan Ivanov', 1),
-        createData('Name Pack', 37, '18.06.2022', 'Petr Petrov', 2),
-    ]
+    useEffect(() => {
+        if (myPack) {
+            dispatch(getPacksTC(myCardPacksSettings))
+        } else if (!myPack) {
+            dispatch(getPacksTC(cardPacksSettings))
+        }
+    }, [myPack])
 
     return (
         <>
@@ -45,16 +58,16 @@ export const PackListTable = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                        {cardPacks.map((row, index) => (
+                            <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                 <TableCell component="th" scope="row">
                                     <NavLink to={routes.pagePack} className={s.navLink}>
                                         {row.name}
                                     </NavLink>
                                 </TableCell>
-                                <TableCell align="right">{row.cards}</TableCell>
-                                <TableCell align="right">{row.lastUpdate}</TableCell>
-                                <TableCell align="right">{row.createdBy}</TableCell>
+                                <TableCell align="right">{row.cardsCount}</TableCell>
+                                <TableCell align="right">{row.updated}</TableCell>
+                                <TableCell align="right">{row.user_name}</TableCell>
                                 <TableCell align="right">
                                     <div className={s.actions}>
                                         <SchoolIcon fontSize={'small'} style={{ marginRight: '15px' }} />

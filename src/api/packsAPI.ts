@@ -31,7 +31,7 @@ export type PackType = {
     type: string
     rating: number
     created: Date | null
-    updated: Date | null
+    updated: string
     more_id: string
     __v: number
 }

@@ -1,15 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Box, IconButton, InputBase, Paper, Slider } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import s from './SettingsBlock.module.scss'
 import Button from '@mui/material/Button'
 import { routes } from '../../../../app/routes/Routes'
 import { NavLink } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../../../app/store'
+import { GetPackParams } from '../../../../api/packsAPI'
+import { getPacksTC } from '../../packs-reducer'
 
-export const SettingsBlock = () => {
-    //////for slider
+type SettingsPropsType = {
+    setMyPack: (value: boolean) => void
+}
+
+export const SettingsBlock: React.FC<SettingsPropsType> = ({ setMyPack }) => {
+    // const dispatch = useAppDispatch()
+    // const userId = useAppSelector(store => store.auth.user._id)
+    // const myCardPacks = useAppSelector(store => store.packs.cardPacks)
+
     const [value, setValue] = React.useState<number[]>([10, 30])
-    console.log(value)
+
+    const changePack = (type: string) => {
+        if (type === 'my') {
+            setMyPack(true)
+        } else {
+            setMyPack(false)
+        }
+    }
+
     const handleChange = (event: Event, newValue: number | number[]) => {
         setValue(newValue as number[])
     }
@@ -30,20 +48,28 @@ export const SettingsBlock = () => {
                 />
             </Paper>
             <div className={s.settingButton}>
-                <NavLink to={routes.myPacksList} className={s.navLink}>
-                    {' '}
-                    {/*временная навигация*/}
-                    <Button type={'submit'} variant={'outlined'} color={'inherit'} style={{ width: '100px' }}>
-                        My
-                    </Button>
-                </NavLink>
-                <NavLink to={routes.friendsPacksList} className={s.navLink}>
-                    {' '}
-                    {/*временная навигация*/}
-                    <Button type={'submit'} variant={'contained'} color={'primary'} style={{ width: '100px' }}>
-                        All
-                    </Button>
-                </NavLink>
+                {/*<NavLink to={routes.myPacksList} className={s.navLink}>*/} {/*временная навигация*/}
+                <Button
+                    type={'submit'}
+                    variant={'outlined'}
+                    color={'inherit'}
+                    style={{ width: '100px' }}
+                    onClick={() => changePack('my')}
+                >
+                    My
+                </Button>
+                {/*</NavLink>*/}
+                {/*<NavLink to={routes.friendsPacksList} className={s.navLink}>*/} {/*временная навигация*/}
+                <Button
+                    type={'submit'}
+                    variant={'contained'}
+                    color={'primary'}
+                    style={{ width: '100px' }}
+                    onClick={() => changePack('all')}
+                >
+                    All
+                </Button>
+                {/*</NavLink>*/}
             </div>
 
             <div className={s.slider}>

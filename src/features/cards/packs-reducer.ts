@@ -17,7 +17,7 @@ const initialState = {
             type: '',
             rating: 0,
             created: null,
-            updated: null,
+            updated: '',
             more_id: '',
             __v: 0,
         },
@@ -52,6 +52,7 @@ export const getPacksTC =
         packsAPI
             .getPacks(params)
             .then((res) => {
+                console.log(res)
                 dispatch(getPacksAC(res))
             })
             .catch((err: any) => {
@@ -83,7 +84,7 @@ export const removePackTC =
     }
 
 export const addPackTC =
-    (newPack: CreateNewPackData, params: GetPackParams): AppThunk =>
+    (newPack: any, params: GetPackParams): AppThunk =>
     (dispatch) => {
         packsAPI
             .createPack(newPack)
