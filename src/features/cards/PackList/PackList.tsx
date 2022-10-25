@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import s from './PackList.module.scss'
 import Button from '@mui/material/Button'
 import { Navigate, useNavigate } from 'react-router-dom'
@@ -12,6 +12,7 @@ import { addPackTC } from '../packs-reducer'
 export const PackList = () => {
     const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
     const dispatch = useAppDispatch()
+
     const [myPack, setMyPack] = useState(false)
 
     const newPack = {
