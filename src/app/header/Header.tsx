@@ -15,9 +15,8 @@ const Header = () => {
     const [collapsed, setCollapsed] = useState<boolean>(true)
     const inputClass = !collapsed ? s.active : s.nav
 
-    const onClickHandler = () => {
-        setCollapsed(!collapsed)
-    }
+    const onClickHandler = () => setCollapsed(!collapsed)
+    const onMouseLeaveHandler = () => setCollapsed(true)
 
     return (
         <div className={s.headerContainer}>
@@ -44,7 +43,7 @@ const Header = () => {
                             {/*{avatar}*/}
                             <img className={s.img} alt="my avatar" src={AvatarImage} />
                         </div>
-                        <div className={inputClass}>
+                        <div className={inputClass} onMouseLeave={onMouseLeaveHandler}>
                             <CollapsedMenu />
                         </div>
                     </div>
