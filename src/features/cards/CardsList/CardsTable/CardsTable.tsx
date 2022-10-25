@@ -7,22 +7,17 @@ import { CardType, GetCardParams } from '../../../../api/cardsAPI'
 import CardRow from './CardRow/CardRow'
 
 type CardsTablePropsType = {
-    user: any
     deleteCard: () => void
     editCard: () => void
+    myCardPacks: CardType[]
+    userId: string
+    packId: string
 }
 
-export const CardsTable: React.FC<CardsTablePropsType> = ({ user, deleteCard, editCard }) => {
+export const CardsTable: React.FC<CardsTablePropsType> = ({ deleteCard, editCard, myCardPacks, userId, packId }) => {
     const dispatch = useAppDispatch()
-    const cardsId = useAppSelector((store) => store.table.packId)
-    ////////////////исправить ошибку!!!!!!!!!!!!
-    // @ts-ignore
-    const myCardPacks = useAppSelector((store) => store.cards.cards)
     const [value, setValue] = React.useState<number | null>(5)
-
-    const myPacksSettings: GetCardParams = {
-        cardsPack_id: cardsId,
-    }
+    const myPacksSettings: GetCardParams = { cardsPack_id: packId }
 
     useEffect(() => {
         dispatch(getCardsTC(myPacksSettings))
@@ -44,12 +39,18 @@ export const CardsTable: React.FC<CardsTablePropsType> = ({ user, deleteCard, ed
                             <TableCell align="left" style={{ fontWeight: '600' }}>
                                 Grade
                             </TableCell>
-                            {user && <TableCell align="right"></TableCell>}
+                            {userId && <TableCell align="right"></TableCell>}
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {myCardPacks.map((row: CardType) => (
-                            <CardRow key={row.cardsPack_id} row={row} user={user} deleteCard={deleteCard} editCard={editCard} />
+                            <CardRow
+                                key={row.cardsPack_id}
+                                row={row}
+                                deleteCard={deleteCard}
+                                editCard={editCard}
+                                userId={userId}
+                            />
                         ))}
                     </TableBody>
                 </Table>

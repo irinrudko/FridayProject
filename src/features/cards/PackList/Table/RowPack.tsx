@@ -13,14 +13,16 @@ import { useAppDispatch, useAppSelector } from '../../../../app/store'
 type RowPropsType = {
     row: PackType
     deletePack: (rowId: string) => void
+    editPack: (rowId: string) => void
+    learnPack: (rowId: string) => void
 }
 
-const RowPack: React.FC<RowPropsType> = ({ row, deletePack }) => {
+const RowPack: React.FC<RowPropsType> = ({ row, deletePack, editPack, learnPack }) => {
     const dispatch = useAppDispatch()
     const userId = useAppSelector((store) => store.auth.user._id)
 
-    const setPackId = (id: string) => {
-        dispatch(setIdAC(id))
+    const setPackId = (id: string, userId: string) => {
+        dispatch(setIdAC(id, userId))
     }
 
     const formatDate = (date: string): string => {
@@ -35,7 +37,7 @@ const RowPack: React.FC<RowPropsType> = ({ row, deletePack }) => {
         <>
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell component="th" scope="row">
-                    <NavLink to={routes.myPacksList} className={s.navLink} onClick={() => setPackId(row._id)}>
+                    <NavLink to={routes.myPacksList} className={s.navLink} onClick={() => setPackId(row._id, row.user_id)}>
                         {row.name}
                     </NavLink>
                 </TableCell>
@@ -45,10 +47,10 @@ const RowPack: React.FC<RowPropsType> = ({ row, deletePack }) => {
                 <TableCell align="right">
                     <div className={s.actions}>
                         <div className={s.schoolIcon}>
-                            <SchoolIcon fontSize={'small'} onClick={() => {}} />
+                            <SchoolIcon fontSize={'small'} onClick={() => learnPack(row._id)} />
                         </div>
                         <div className={s.editIcon}>
-                            {row.user_id === userId && <BorderColorIcon fontSize={'small'} onClick={() => {}} />}
+                            {row.user_id === userId && <BorderColorIcon fontSize={'small'} onClick={() => editPack(row._id)} />}
                         </div>
                         <div className={s.deleteIcon}>
                             {row.user_id === userId && (

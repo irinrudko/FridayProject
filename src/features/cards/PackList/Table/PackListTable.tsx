@@ -25,6 +25,14 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
         myPack ? dispatch(removePackTC(id, myCardPacksSettings)) : dispatch(removePackTC(id, cardPacksSettings))
     }
 
+    const editPack = (id: string) => {
+        alert('editPack:  ' + id)
+    }
+
+    const learnPack = (id: string) => {
+        alert('learnPack:  ' + id)
+    }
+
     const myCardPacksSettings: GetPackParams = {
         user_id: userId,
         pageCount: 8,
@@ -61,7 +69,7 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
                     </TableHead>
                     <TableBody>
                         {cardPacks.map((row, index) => (
-                            <RowPack deletePack={deletePack} row={row} key={index} />
+                            <RowPack key={index} deletePack={deletePack} row={row} editPack={editPack} learnPack={learnPack} />
                         ))}
                     </TableBody>
                 </Table>

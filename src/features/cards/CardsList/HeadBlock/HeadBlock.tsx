@@ -5,18 +5,20 @@ import { ActionsMenu } from '../ActionsMenu/ActionsMenu'
 import Button from '@mui/material/Button'
 import { addCardTC } from '../../cards-reducer'
 import { useAppDispatch, useAppSelector } from '../../../../app/store'
+import { CardType } from '../../../../api/cardsAPI'
 
 type HeadBlockPropsType = {
-    user: any
     deletePack: () => void
     editPack: () => void
     learnPack: () => void
 }
 
-const HeadBlock: React.FC<HeadBlockPropsType> = ({ user, deletePack, editPack, learnPack }) => {
+const HeadBlock: React.FC<HeadBlockPropsType> = ({ deletePack, editPack, learnPack }) => {
     const dispatch = useAppDispatch()
     const cardPacks = useAppSelector((store) => store.packs.cardPacks)
     const packId = useAppSelector((store) => store.table.packId)
+    const userId = useAppSelector((store) => store.table.userId)
+    const id = useAppSelector((store) => store.auth.user._id)
 
     const [collapsed, setCollapsed] = useState<boolean>(true)
     const namePack = cardPacks.map((pack) => (pack._id === packId ? pack.name : ''))
@@ -49,7 +51,7 @@ const HeadBlock: React.FC<HeadBlockPropsType> = ({ user, deletePack, editPack, l
         <div className={s.headBlock}>
             <h2 className={s.headName}>
                 {namePack}
-                {user && (
+                {id === userId && (
                     <div className={s.menuIcon}>
                         <MoreVertIcon fontSize={'small'} style={{ paddingBottom: '2px' }} onClick={onClickHandler} />
                         <div className={inputClass}>
@@ -58,7 +60,7 @@ const HeadBlock: React.FC<HeadBlockPropsType> = ({ user, deletePack, editPack, l
                     </div>
                 )}
             </h2>
-            {user ? (
+            {id === userId ? (
                 <Button type={'submit'} variant={'contained'} color={'primary'} className={s.button} onClick={addCard}>
                     Add new card
                 </Button>

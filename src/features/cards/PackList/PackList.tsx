@@ -23,7 +23,7 @@ export const PackList = () => {
     }
 
     const addNewPack = () => {
-        dispatch(addPackTC(newPack, {}))
+        dispatch(addPackTC(newPack, { pageCount: 8 }))
     }
 
     if (!isLoggedIn) {

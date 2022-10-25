@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Box, IconButton, InputBase, Paper, Slider } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import s from './SettingsBlock.module.scss'
 import Button from '@mui/material/Button'
-import { routes } from '../../../../app/routes/Routes'
-import { NavLink } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../../../app/store'
-import { GetPackParams } from '../../../../api/packsAPI'
-import { getPacksTC } from '../../packs-reducer'
+import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
 
 type SettingsPropsType = {
     setMyPack: (value: boolean) => void
@@ -91,7 +87,9 @@ export const SettingsBlock: React.FC<SettingsPropsType> = ({ setMyPack }) => {
                     />
                 </Box>
                 <div className={s.secondSquare}>{value[1]}</div>
-                <div className={s.thirdSquare}></div>
+                <div className={s.thirdSquare}>
+                    <FilterAltOffIcon fontSize={'medium'} />
+                </div>
             </div>
         </div>
     )

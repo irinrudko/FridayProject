@@ -7,12 +7,12 @@ import { CardType } from '../../../../../api/cardsAPI'
 
 type CardRowPropsType = {
     row: CardType
-    user: boolean
+    userId: string
     deleteCard: () => void
     editCard: () => void
 }
 
-const CardRow: React.FC<CardRowPropsType> = ({ row, user, deleteCard, editCard }) => {
+const CardRow: React.FC<CardRowPropsType> = ({ row, userId, deleteCard, editCard }) => {
     const formatDate = (date: string): string => {
         return new Date(date).toLocaleDateString('ru', {
             day: '2-digit',
@@ -37,11 +37,15 @@ const CardRow: React.FC<CardRowPropsType> = ({ row, user, deleteCard, editCard }
                     />
                 </Box>
             </TableCell>
-            {user && (
+            {row.user_id === userId && (
                 <TableCell align="left">
                     <div className={s.actions}>
-                        <BorderColorIcon fontSize={'small'} style={{ marginRight: '15px' }} onClick={editCard} />
-                        <DeleteForeverIcon fontSize={'small'} onClick={deleteCard} />
+                        <div className={s.editIcon}>
+                            <BorderColorIcon fontSize={'small'} style={{ marginRight: '15px' }} onClick={editCard} />
+                        </div>
+                        <div className={s.deleteIcon}>
+                            <DeleteForeverIcon fontSize={'small'} onClick={deleteCard} />
+                        </div>
                     </div>
                 </TableCell>
             )}
