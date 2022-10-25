@@ -11,14 +11,14 @@ import { CardType, GetCardParams } from '../../../../api/cardsAPI'
 
 export const MyPackTable = () => {
     const dispatch = useAppDispatch()
-    const cardsId = useAppSelector((store) => store.packs)
+    const cardsId = useAppSelector((store) => store.table.packId)
     ////////////////исправить ошибку!!!!!!!!!!!!
     // @ts-ignore
     const myCardPacks = useAppSelector<CardType[]>((store) => store.cards.cards)
     const [value, setValue] = React.useState<number | null>(5)
 
     const myPacksSettings: GetCardParams = {
-        cardsPack_id: '6356688365c36e000499fa04',
+        cardsPack_id: cardsId,
     }
 
     useEffect(() => {
@@ -45,9 +45,9 @@ export const MyPackTable = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {myCardPacks.map((row) => {
+                        {myCardPacks.map((row, index) => {
                             return (
-                                <TableRow key={row.cardsPack_id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                     <TableCell component="th" scope="row">
                                         {row.question}
                                     </TableCell>

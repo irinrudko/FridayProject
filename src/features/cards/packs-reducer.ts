@@ -52,7 +52,6 @@ export const getPacksTC =
         packsAPI
             .getPacks(params)
             .then((res) => {
-                console.log(res)
                 dispatch(getPacksAC(res))
             })
             .catch((err: any) => {

@@ -40,9 +40,7 @@ export const FriendsPack = () => {
                 </Paper>
             </div>
 
-            <div className={s.tableBlock}>
-                <MyPackTable />
-            </div>
+            <div className={s.tableBlock}>{/*<MyPackTable />*/}</div>
 
             <PaginationBlock />
         </div>

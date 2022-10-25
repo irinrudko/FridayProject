@@ -4,9 +4,11 @@ import { NavLink } from 'react-router-dom'
 import { routes } from '../../../app/routes/Routes'
 import Button from '@mui/material/Button'
 import { addCardTC } from '../cards-reducer'
-import { useAppDispatch } from '../../../app/store'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
 
 export const PagePack = () => {
+    const packName = useAppSelector((store) => store.packs.cardPacks)
+    const packId = useAppSelector((store) => store.table.packId)
     const dispatch = useAppDispatch()
     const newCard = {
         card: {
@@ -21,6 +23,7 @@ export const PagePack = () => {
             answerVideo: 'url or base 64',
         },
     }
+    const namePack = packName.map((n) => (n._id === packId ? n.name : ''))
 
     const addCard = () => {
         dispatch(addCardTC(newCard, { cardsPack_id: '6356688365c36e000499fa04' }))
@@ -32,7 +35,7 @@ export const PagePack = () => {
                 Back to Packs List
             </NavLink>
             <div className={s.headBlock}>
-                <h2 className={s.headName}>Name Pack</h2>
+                <h3 className={s.headName}> {namePack} </h3>
             </div>
 
             <div className={s.descriptionBlock}>

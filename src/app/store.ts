@@ -5,12 +5,14 @@ import thunk, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { authReducer, AuthActionsType } from '../features/auth/auth-reducer'
 import { CardsActionsType, cardsReducer } from '../features/cards/cards-reducer'
+import { tableReducer } from '../features/cards/PackList/table-reducer'
 
 const rootReducer = combineReducers({
     app: appReducer,
     auth: authReducer,
     packs: packsReducer,
     cards: cardsReducer,
+    table: tableReducer,
 })
 
 export const store = legacy_createStore(rootReducer, applyMiddleware(thunk))
