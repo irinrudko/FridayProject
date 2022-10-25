@@ -10,6 +10,7 @@ import { getPacksTC, removePackTC } from '../../packs-reducer'
 import { AppThunk, useAppDispatch, useAppSelector } from '../../../../app/store'
 import { GetPackParams } from '../../../../api/packsAPI'
 import { setIdAC } from '../table-reducer'
+import RowPack from './RowPack'
 
 type PackListTablePropsType = {
     myPack: boolean
@@ -33,16 +34,12 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
         pageCount: 8,
     }
 
-    // const setPack = () => {
-    //     dispatch(setPack())
-    // }
-
     useEffect(() => {
         myPack ? dispatch(getPacksTC(myCardPacksSettings)) : dispatch(getPacksTC(cardPacksSettings))
     }, [myPack])
 
     return (
-        <>
+        <div className={s.tableBlock}>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
@@ -63,51 +60,12 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {cardPacks.map((row, index) => {
-                            const setPackId = (id: string) => {
-                                dispatch(setIdAC(id))
-                            }
-                            return (
-                                <>
-                                    <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                        <TableCell component="th" scope="row">
-                                            {/*{row._id === userId}*/}
-                                            <NavLink
-                                                to={routes.myPacksList}
-                                                className={s.navLink}
-                                                onClick={() => setPackId(row._id)}
-                                            >
-                                                {row.name}
-                                            </NavLink>
-                                        </TableCell>
-                                        <TableCell align="right">{row.cardsCount}</TableCell>
-                                        <TableCell align="right">{row.updated}</TableCell>
-                                        <TableCell align="right">{row.user_name}</TableCell>
-                                        <TableCell align="right">
-                                            <div className={s.actions}>
-                                                <div className={s.schoolIcon}>
-                                                    <SchoolIcon fontSize={'small'} />
-                                                </div>
-                                                <div className={s.editIcon}>
-                                                    {row.user_id === userId && <BorderColorIcon fontSize={'small'} />}
-                                                </div>
-                                                <div className={s.deleteIcon}>
-                                                    {row.user_id === userId && (
-                                                        <DeleteForeverIcon
-                                                            fontSize={'small'}
-                                                            onClick={() => deletePack(row._id)}
-                                                        />
-                                                    )}
-                                                </div>
-                                            </div>
-                                        </TableCell>
-                                    </TableRow>
-                                </>
-                            )
-                        })}
+                        {cardPacks.map((row, index) => (
+                            <RowPack deletePack={deletePack} row={row} key={index} />
+                        ))}
                     </TableBody>
                 </Table>
             </TableContainer>
-        </>
+        </div>
     )
 }

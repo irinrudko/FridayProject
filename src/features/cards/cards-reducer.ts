@@ -98,6 +98,7 @@ export const removeCardTC =
 export const addCardTC =
     // (cardData: CreateCardData, params: GetCardParams): AppThunk =>
 
+
         (cardData: any, params: GetCardParams): AppThunk =>
         (dispatch) => {
             cardsAPI

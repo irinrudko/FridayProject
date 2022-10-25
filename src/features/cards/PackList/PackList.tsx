@@ -11,7 +11,6 @@ import { addPackTC } from '../packs-reducer'
 
 export const PackList = () => {
     const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
-    const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const [myPack, setMyPack] = useState(false)
 
@@ -39,21 +38,8 @@ export const PackList = () => {
                     Add new pack
                 </Button>
             </div>
-
-            <div className={s.descriptionBlock}>
-                <span>Search</span>
-                <span className={s.second}>Show packs cards</span>
-                <span className={s.third}>Number of cards</span>
-            </div>
-
-            <div className={s.settingsBlock}>
-                <SettingsBlock setMyPack={(value) => setMyPack(value)} />
-            </div>
-
-            <div className={s.tableBlock}>
-                <PackListTable myPack={myPack} />
-            </div>
-
+            <SettingsBlock setMyPack={(value) => setMyPack(value)} />
+            <PackListTable myPack={myPack} />
             <PaginationBlock />
         </div>
     )

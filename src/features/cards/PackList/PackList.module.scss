@@ -24,29 +24,24 @@
         }
     }
 
-    .descriptionBlock {
-        //border: 1px solid #282c34;
-        @include flex(row, start, center, wrap);
-        @include text(14px, 17px, 500);
-
-        .second {
-            padding-left: 390px;
-        }
-
-        .third {
-            padding-left: 120px;
-        }
-    }
+    //.descriptionBlock {
+    //    //border: 1px solid #282c34;
+    //    @include flex(row, start, center, wrap);
+    //    @include text(14px, 17px, 500);
+    //
+    //    .second {
+    //        padding-left: 390px;
+    //    }
+    //
+    //    .third {
+    //        padding-left: 120px;
+    //    }
+    //}
 
     .settingsBlock {
         //border: 1px solid #525252;
         @include flex(row, start, center, wrap);
         margin-bottom: 24px;
         margin-top: 8px;
-    }
-
-    .tableBlock {
-        //border: 1px solid #61dafb;
-        margin-bottom: 36px;
     }
 }

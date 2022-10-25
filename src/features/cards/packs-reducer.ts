@@ -1,5 +1,5 @@
-import { CreateNewPackData, GetPackParams, GetPacksResponseType, packsAPI, PackType } from './../../api/packsAPI'
-import { AppThunk } from './../../app/store'
+import { CreateNewPackData, GetPackParams, GetPacksResponseType, packsAPI, PackType } from '../../api/packsAPI'
+import { AppThunk } from '../../app/store'
 
 const initialState = {
     cardPacks: <PackType[]>[

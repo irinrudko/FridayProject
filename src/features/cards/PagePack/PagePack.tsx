@@ -5,6 +5,7 @@ import { routes } from '../../../app/routes/Routes'
 import Button from '@mui/material/Button'
 import { addCardTC } from '../cards-reducer'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
+import { BackPackArrow } from '../../../common/components/BackPackArrow/BackPackArrow'
 
 export const PagePack = () => {
     const packName = useAppSelector((store) => store.packs.cardPacks)
@@ -31,9 +32,10 @@ export const PagePack = () => {
 
     return (
         <div className={s.friendListContainer}>
-            <NavLink className={s.toPacksList} to={routes.packsList}>
-                Back to Packs List
-            </NavLink>
+            {/*<NavLink className={s.toPacksList} to={routes.packsList}>*/}
+            {/*    Back to Packs List*/}
+            {/*</NavLink>*/}
+            <BackPackArrow />
             <div className={s.headBlock}>
                 <h3 className={s.headName}> {namePack} </h3>
             </div>

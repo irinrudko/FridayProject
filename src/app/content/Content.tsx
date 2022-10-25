@@ -1,18 +1,16 @@
 import React from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { routes } from '../routes/Routes'
 import Profile from '../../features/profile/Profile'
 import Registration from '../../features/auth/registration/Registration'
 import { NewPassword } from '../../features/auth/forgotPassword/NewPassword'
 import { PasswordRecovery } from '../../features/auth/forgotPassword/PasswordRecovery'
-import Error404 from '../../common/components/Error404/Error404'
 import s from './Content.module.css'
 import { Cards } from '../../features/cards/Cards'
 import { ForgotPassword } from '../../features/auth/forgotPassword/ForgotPassword'
 import { Login } from '../../features/auth/login/Login'
 import { PackList } from '../../features/cards/PackList/PackList'
-import { FriendsPack } from '../../features/cards/FriendsPack/FriendsPack'
-import { MyPackPage } from '../../features/cards/MyPackPage/MyPackPage'
+import { CardsList } from '../../features/cards/CardsList/CardsList'
 import { PagePack } from '../../features/cards/PagePack/PagePack'
 
 const Content = () => {
@@ -22,8 +20,8 @@ const Content = () => {
                 <Route path={'/'} element={<Profile />} />
                 <Route path={routes.cards} element={<Cards />} />
                 <Route path={routes.packsList} element={<PackList />} />
-                <Route path={routes.friendsPacksList} element={<FriendsPack />} />
-                <Route path={routes.myPacksList} element={<MyPackPage />} />
+                {/*<Route path={routes.friendsPacksList} element={<FriendsPack />} />*/}
+                <Route path={routes.myPacksList} element={<CardsList />} />
                 <Route path={routes.pagePack} element={<PagePack />} />
                 <Route path={routes.profile} element={<Profile />} />
                 <Route path={routes.login} element={<Login />} />

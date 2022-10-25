@@ -70,6 +70,8 @@
 }
 .toPacksListContainer a {
     text-decoration: none;
+    position: relative;
+    left: -418.5px;
 }
 
 .toPacksList::before {
