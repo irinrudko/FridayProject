@@ -1,5 +1,6 @@
 import { CreateNewPackData, GetPackParams, GetPacksResponseType, packsAPI, PackType } from '../../api/packsAPI'
 import { AppThunk } from '../../app/store'
+import { setSetting } from './PackList/SettingsBlock/setting-reducer'
 
 const initialState = {
     cardPacks: <PackType[]>[
@@ -53,6 +54,7 @@ export const getPacksTC =
             .getPacks(params)
             .then((res) => {
                 dispatch(getPacksAC(res))
+                dispatch(setSetting(params))
             })
             .catch((err: any) => {
                 let error = err.response.data.error
