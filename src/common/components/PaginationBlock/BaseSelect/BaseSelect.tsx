@@ -19,7 +19,7 @@ export function BasicSelect() {
     return (
         <FormControl sx={{ paddingLeft: 1, paddingRight: 1 }} size="small">
             <Select autoWidth labelId="demo-select-small" id="demo-select-small" value={cardsPerPage} onChange={handleChange}>
-                <MenuItem value={pageCount}>pageCount</MenuItem>
+                <MenuItem value={pageCount}>{pageCount}</MenuItem>
                 <MenuItem value={pageCount * 2}>{pageCount * 2}</MenuItem>
                 <MenuItem value={pageCount * 3}>{pageCount * 3}</MenuItem>
                 <MenuItem value={pageCount * 4}>{pageCount * 4}</MenuItem>
