@@ -2,6 +2,8 @@
 
 .tableBlock {
     .lastUpdate {
-        @include flex(row, end, center, wrap);
+        position: relative;
+        top: 7px;
+        cursor: pointer;
     }
 }

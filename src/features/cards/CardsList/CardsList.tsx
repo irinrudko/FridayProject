@@ -50,7 +50,14 @@ export const CardsList = () => {
                 packName={packName}
             />
             <CardsSettings packId={packId} />
-            <CardsTable deleteCard={deleteCard} editCard={editCard} userId={userId} packId={packId} myCardPacks={myCardPacks} />
+            <CardsTable
+                deleteCard={deleteCard}
+                editCard={editCard}
+                userId={userId}
+                packId={packId}
+                myCardPacks={myCardPacks}
+                id={id}
+            />
             <PaginationBlock />
         </div>
     )

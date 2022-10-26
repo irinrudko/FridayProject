@@ -10,7 +10,7 @@
 }
 
 .actions {
-    @include flex(row, end, center, wrap);
+    @include flex(row, start, center, wrap);
     cursor: pointer;
 
     .schoolIcon {

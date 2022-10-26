@@ -50,18 +50,20 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow style={{ backgroundColor: '#EFEFEF' }}>
-                            <TableCell style={{ fontWeight: '600' }}>Name</TableCell>
-                            <TableCell align="right" style={{ fontWeight: '600' }}>
+                            <TableCell style={{ fontWeight: '600' }} width={300}>
+                                Name
+                            </TableCell>
+                            <TableCell align="left" style={{ fontWeight: '600' }} width={180}>
                                 Cards
                             </TableCell>
-                            <TableCell align="right" style={{ fontWeight: '600' }} className={s.lastUpdate}>
-                                <div>Last Updated</div>
-                                <ArrowDropDownIcon onClick={onclickHandler} />
+                            <TableCell align="left" style={{ fontWeight: '600' }} width={180}>
+                                Last Updated
+                                <ArrowDropDownIcon onClick={onclickHandler} className={s.lastUpdate} />
                             </TableCell>
-                            <TableCell align="right" style={{ fontWeight: '600' }}>
+                            <TableCell align="left" style={{ fontWeight: '600' }} width={180}>
                                 Created by
                             </TableCell>
-                            <TableCell align="right" style={{ fontWeight: '600' }}>
+                            <TableCell align="left" style={{ fontWeight: '600' }} width={120}>
                                 Actions
                             </TableCell>
                         </TableRow>

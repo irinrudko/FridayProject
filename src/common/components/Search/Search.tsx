@@ -15,9 +15,9 @@ export const Search: React.FC<SearchPropsType> = ({ getThunk }) => {
     const onChangeSearchHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setSearchValue(e.currentTarget.value)
     }
-    useEffect(() => {
-        dispatch(getThunk({ packName: searchValue }))
-    }, [debouncedValue])
+    // useEffect(() => {
+    //     dispatch(getThunk({ packName: searchValue }))
+    // }, [debouncedValue])
 
     return (
         <Paper

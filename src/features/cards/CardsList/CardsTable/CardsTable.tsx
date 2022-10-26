@@ -13,9 +13,10 @@ type CardsTablePropsType = {
     myCardPacks: CardType[]
     userId: string
     packId: string
+    id: string
 }
 
-export const CardsTable: React.FC<CardsTablePropsType> = ({ deleteCard, editCard, myCardPacks, userId, packId }) => {
+export const CardsTable: React.FC<CardsTablePropsType> = ({ deleteCard, editCard, myCardPacks, userId, packId, id }) => {
     const dispatch = useAppDispatch()
     const [value, setValue] = React.useState<number | null>(5)
     const myPacksSettings: GetCardParams = { cardsPack_id: packId }
@@ -34,18 +35,20 @@ export const CardsTable: React.FC<CardsTablePropsType> = ({ deleteCard, editCard
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow style={{ backgroundColor: '#EFEFEF' }}>
-                            <TableCell style={{ fontWeight: '600' }}>Question</TableCell>
-                            <TableCell align="left" style={{ fontWeight: '600' }}>
+                            <TableCell style={{ fontWeight: '600' }} width={250}>
+                                Question
+                            </TableCell>
+                            <TableCell align="left" style={{ fontWeight: '600' }} width={250}>
                                 Answer
                             </TableCell>
-                            <TableCell align="left" style={{ fontWeight: '600' }} className={s.lastUpdate}>
-                                <div>Last Updated</div>
-                                <ArrowDropDownIcon onClick={onclickHandler} />
+                            <TableCell align="left" style={{ fontWeight: '600' }} width={150}>
+                                Last Updated
+                                <ArrowDropDownIcon onClick={onclickHandler} className={s.lastUpdate} />
                             </TableCell>
                             <TableCell align="left" style={{ fontWeight: '600' }}>
                                 Grade
                             </TableCell>
-                            {userId && <TableCell align="right"></TableCell>}
+                            {id === userId && <TableCell align="right"></TableCell>}
                         </TableRow>
                     </TableHead>
                     <TableBody>

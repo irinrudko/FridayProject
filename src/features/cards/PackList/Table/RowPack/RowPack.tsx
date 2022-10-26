@@ -41,10 +41,10 @@ const RowPack: React.FC<RowPropsType> = ({ row, deletePack, editPack, learnPack 
                         {row.name}
                     </NavLink>
                 </TableCell>
-                <TableCell align="right">{row.cardsCount}</TableCell>
-                <TableCell align="right">{formatDate(row.updated)}</TableCell>
-                <TableCell align="right">{row.user_name}</TableCell>
-                <TableCell align="right">
+                <TableCell align="left">{row.cardsCount}</TableCell>
+                <TableCell align="left">{formatDate(row.updated)}</TableCell>
+                <TableCell align="left">{row.user_name}</TableCell>
+                <TableCell align="left">
                     <div className={s.actions}>
                         <div className={s.schoolIcon}>
                             <SchoolIcon fontSize={'small'} onClick={() => learnPack(row._id)} />

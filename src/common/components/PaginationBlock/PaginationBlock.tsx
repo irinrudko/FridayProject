@@ -40,7 +40,7 @@ export const PaginationBlock = () => {
         block,
     }
     useEffect(() => {
-        dispatch(getPacksTC(settingData))
+        // dispatch(getPacksTC(settingData))
     }, [page])
 
     return (
