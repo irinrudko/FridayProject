@@ -1,15 +1,15 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import s from '../SettingsBlock.module.scss'
-import {Box, Slider} from '@mui/material'
-import {useAppDispatch, useAppSelector} from '../../../../../app/store'
-import {getPacksTC} from '../../../packs-reducer'
+import { Box, Slider } from '@mui/material'
+import { useAppDispatch, useAppSelector } from '../../../../../app/store'
+import { getPacksTC } from '../../../packs-reducer'
 import ResetFilter from './ResetFilter/ResetFilter'
 
 export const SliderBlock = () => {
     const minValue = useAppSelector((state) => state.setting.min)
     const maxValue = useAppSelector((state) => state.setting.max)
-    const user_id=useAppSelector((state)=>state.setting.user_id)
-    const pageCount=useAppSelector((state)=>state.setting.pageCount)
+    const user_id = useAppSelector((state) => state.setting.user_id)
+    const pageCount = useAppSelector((state) => state.setting.pageCount)
     useEffect(() => {
         setValue([minValue, maxValue])
     }, [minValue, maxValue])
@@ -20,8 +20,8 @@ export const SliderBlock = () => {
         setValue(newValue as number[])
     }
 
-    const setSliderValueHandler=()=>{
-        dispatch(getPacksTC({ min: value[0], max: value[1], pageCount,user_id }))
+    const setSliderValueHandler = () => {
+        dispatch(getPacksTC({ min: value[0], max: value[1], pageCount, user_id }))
     }
     return (
         <div className={s.slider}>

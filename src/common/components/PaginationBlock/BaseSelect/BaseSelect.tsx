@@ -14,7 +14,6 @@ export function BasicSelect() {
 
     const handleChange = (event: SelectChangeEvent) => {
         setCardsPerPage(event.target.value as string)
-
     }
 
     return (

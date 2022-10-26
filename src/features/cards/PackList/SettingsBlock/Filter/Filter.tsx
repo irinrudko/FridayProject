@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import s from '../SettingsBlock.module.scss'
 import Button from '@mui/material/Button'
-import {useAppDispatch, useAppSelector} from '../../../../../app/store'
-import {getPacksTC} from "../../../packs-reducer";
+import { useAppDispatch, useAppSelector } from '../../../../../app/store'
+import { getPacksTC } from '../../../packs-reducer'
 
 type FilterPropsType = {
     setMyPack: (value: boolean) => void
@@ -14,13 +14,13 @@ export const Filter: React.FC<FilterPropsType> = ({ setMyPack }) => {
 
     const [disableButton, setDisableButton] = React.useState<boolean[]>([false, true])
 
-    const showMyPackHandler=()=>{
-        dispatch(getPacksTC({user_id:myId,pageCount:8}))
-        setDisableButton([ true,false])
+    const showMyPackHandler = () => {
+        dispatch(getPacksTC({ user_id: myId, pageCount: 8 }))
+        setDisableButton([true, false])
     }
 
-    const showAllPackHandler=()=>{
-        dispatch(getPacksTC({user_id:'',pageCount:8}))
+    const showAllPackHandler = () => {
+        dispatch(getPacksTC({ user_id: '', pageCount: 8 }))
 
         setDisableButton([false, true])
     }
@@ -49,6 +49,4 @@ export const Filter: React.FC<FilterPropsType> = ({ setMyPack }) => {
             </Button>
         </div>
     )
-
-
 }

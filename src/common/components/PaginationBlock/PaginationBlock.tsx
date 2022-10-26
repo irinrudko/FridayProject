@@ -17,10 +17,8 @@ export const PaginationBlock = () => {
     const min = useAppSelector((state) => state.setting.min)
     const max = useAppSelector((state) => state.setting.max)
     const block = useAppSelector((state) => state.setting.block)
-    const user_id= useAppSelector((state) => state.setting.user_id)
-    const sortPacks= useAppSelector((state) => state.setting.sortPacks)
-
-
+    const user_id = useAppSelector((state) => state.setting.user_id)
+    const sortPacks = useAppSelector((state) => state.setting.sortPacks)
 
     useEffect(() => {
         setCount(cardPacksTotalCount)
@@ -31,7 +29,7 @@ export const PaginationBlock = () => {
     const [page, setPage] = useState(pagePack)
     const [pageCountValue, setPageCountValue] = useState(0)
 
-    const settingData={
+    const settingData = {
         user_id,
         packName,
         min,
@@ -41,9 +39,9 @@ export const PaginationBlock = () => {
         pageCount,
         block,
     }
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getPacksTC(settingData))
-    },[page])
+    }, [page])
 
     return (
         <div className={s.paginationBlock}>
