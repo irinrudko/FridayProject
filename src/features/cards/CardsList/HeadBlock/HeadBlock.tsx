@@ -5,23 +5,32 @@ import { ActionsMenu } from '../ActionsMenu/ActionsMenu'
 import Button from '@mui/material/Button'
 import { addCardTC } from '../../cards-reducer'
 import { useAppDispatch, useAppSelector } from '../../../../app/store'
-import { CardType } from '../../../../api/cardsAPI'
+import { CardType, GetCardsResponseType } from '../../../../api/cardsAPI'
 
 type HeadBlockPropsType = {
     deletePack: () => void
     editPack: () => void
     learnPack: () => void
+    cardPacks: CardType[]
+    userId: string
+    packId: string
+    id: string
+    packName: string
 }
 
-const HeadBlock: React.FC<HeadBlockPropsType> = ({ deletePack, editPack, learnPack }) => {
+const HeadBlock: React.FC<HeadBlockPropsType> = ({
+    deletePack,
+    editPack,
+    learnPack,
+    packId,
+    userId,
+    cardPacks,
+    id,
+    packName,
+}) => {
     const dispatch = useAppDispatch()
-    const cardPacks = useAppSelector((store) => store.packs.cardPacks)
-    const packId = useAppSelector((store) => store.table.packId)
-    const userId = useAppSelector((store) => store.table.userId)
-    const id = useAppSelector((store) => store.auth.user._id)
-
     const [collapsed, setCollapsed] = useState<boolean>(true)
-    const namePack = cardPacks.map((pack) => (pack._id === packId ? pack.name : ''))
+    const namePack = cardPacks.map((pack) => (pack._id === packId ? packName : ''))
 
     const newCard = {
         card: {

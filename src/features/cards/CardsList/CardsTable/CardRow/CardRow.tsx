@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Rating, TableCell, TableRow } from '@mui/material'
-import s from '../CardsTable.module.scss'
+import s from './CardRow.module.scss'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { CardType } from '../../../../../api/cardsAPI'

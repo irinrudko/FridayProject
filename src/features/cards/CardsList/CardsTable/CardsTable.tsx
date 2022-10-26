@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../../app/store'
 import { getCardsTC } from '../../cards-reducer'
 import { CardType, GetCardParams } from '../../../../api/cardsAPI'
 import CardRow from './CardRow/CardRow'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 
 type CardsTablePropsType = {
     deleteCard: () => void
@@ -18,6 +19,10 @@ export const CardsTable: React.FC<CardsTablePropsType> = ({ deleteCard, editCard
     const dispatch = useAppDispatch()
     const [value, setValue] = React.useState<number | null>(5)
     const myPacksSettings: GetCardParams = { cardsPack_id: packId }
+
+    const onclickHandler = () => {
+        alert('filter')
+    }
 
     useEffect(() => {
         dispatch(getCardsTC(myPacksSettings))
@@ -33,8 +38,9 @@ export const CardsTable: React.FC<CardsTablePropsType> = ({ deleteCard, editCard
                             <TableCell align="left" style={{ fontWeight: '600' }}>
                                 Answer
                             </TableCell>
-                            <TableCell align="left" style={{ fontWeight: '600' }}>
-                                Last Updated
+                            <TableCell align="left" style={{ fontWeight: '600' }} className={s.lastUpdate}>
+                                <div>Last Updated</div>
+                                <ArrowDropDownIcon onClick={onclickHandler} />
                             </TableCell>
                             <TableCell align="left" style={{ fontWeight: '600' }}>
                                 Grade

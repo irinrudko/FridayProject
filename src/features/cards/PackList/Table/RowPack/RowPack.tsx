@@ -1,14 +1,14 @@
 import React from 'react'
-import { setIdAC } from '../table-reducer'
+import { setIdAC } from '../../table-reducer'
 import { TableCell, TableRow } from '@mui/material'
 import { NavLink } from 'react-router-dom'
-import { routes } from '../../../../app/routes/Routes'
-import s from './PackListTable.module.scss'
+import { routes } from '../../../../../app/routes/Routes'
+import s from './RowPack.module.scss'
 import SchoolIcon from '@mui/icons-material/School'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import { PackType } from '../../../../api/packsAPI'
-import { useAppDispatch, useAppSelector } from '../../../../app/store'
+import { PackType } from '../../../../../api/packsAPI'
+import { useAppDispatch, useAppSelector } from '../../../../../app/store'
 
 type RowPropsType = {
     row: PackType

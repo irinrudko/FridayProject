@@ -1,16 +1,11 @@
 import React, { useEffect } from 'react'
-import { Paper, TableBody, TableCell, TableContainer, TableHead, TableRow, Table, Icon } from '@mui/material'
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import s from './PackListTable.module.scss'
-import SchoolIcon from '@mui/icons-material/School'
-import BorderColorIcon from '@mui/icons-material/BorderColor'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import { routes } from '../../../../app/routes/Routes'
-import { NavLink } from 'react-router-dom'
 import { getPacksTC, removePackTC } from '../../packs-reducer'
-import { AppThunk, useAppDispatch, useAppSelector } from '../../../../app/store'
+import { useAppDispatch, useAppSelector } from '../../../../app/store'
 import { GetPackParams } from '../../../../api/packsAPI'
-import { setIdAC } from '../table-reducer'
-import RowPack from './RowPack'
+import RowPack from './RowPack/RowPack'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 
 type PackListTablePropsType = {
     myPack: boolean
@@ -31,6 +26,10 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
 
     const learnPack = (id: string) => {
         alert('learnPack:  ' + id)
+    }
+
+    const onclickHandler = () => {
+        alert('filter')
     }
 
     const myCardPacksSettings: GetPackParams = {
@@ -56,8 +55,9 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
                             <TableCell align="right" style={{ fontWeight: '600' }}>
                                 Cards
                             </TableCell>
-                            <TableCell align="right" style={{ fontWeight: '600' }}>
-                                Last Updated
+                            <TableCell align="right" style={{ fontWeight: '600' }} className={s.lastUpdate}>
+                                <div>Last Updated</div>
+                                <ArrowDropDownIcon onClick={onclickHandler} />
                             </TableCell>
                             <TableCell align="right" style={{ fontWeight: '600' }}>
                                 Created by

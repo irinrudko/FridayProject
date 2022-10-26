@@ -6,16 +6,20 @@ import { useAppDispatch, useAppSelector } from '../../../../app/store'
 import { useDebouce } from '../../../../common/assets/Hook/useDebouce'
 import { getCardsTC } from '../../cards-reducer'
 
-const CardsSettings = () => {
+type CardsSettingsPropsType = {
+    packId: string
+}
+
+const CardsSettings: React.FC<CardsSettingsPropsType> = ({ packId }) => {
     const dispatch = useAppDispatch()
-    const cardsId = useAppSelector((state) => state.table.packId)
+    // const packId = useAppSelector((state) => state.table.packId)
     const [searchValue, setSearchValue] = React.useState('')
     const debouncedValue = useDebouce<string>(searchValue, 500)
     const onChangeSearchHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setSearchValue(e.currentTarget.value)
     }
     useEffect(() => {
-        dispatch(getCardsTC({ cardQuestion: searchValue, cardsPack_id: cardsId }))
+        dispatch(getCardsTC({ cardQuestion: searchValue, cardsPack_id: packId }))
     }, [debouncedValue])
 
     return (

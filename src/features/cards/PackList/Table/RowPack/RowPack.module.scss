@@ -1,0 +1,44 @@
+@import '../../../../../common/styles/sass/mixins';
+
+.navLink {
+    cursor: pointer;
+
+    &:hover {
+        color: #1975d1;
+        transition: color 0.4s ease;
+    }
+}
+
+.actions {
+    @include flex(row, end, center, wrap);
+    cursor: pointer;
+
+    .schoolIcon {
+        width: 20px;
+        margin-right: 15px;
+        opacity: 50%;
+
+        &:hover {
+            opacity: 100%;
+        }
+    }
+
+    .editIcon {
+        width: 20px;
+        margin-right: 15px;
+        opacity: 50%;
+
+        &:hover {
+            opacity: 100%;
+        }
+    }
+
+    .deleteIcon {
+        width: 20px;
+        opacity: 50%;
+
+        &:hover {
+            opacity: 100%;
+        }
+    }
+}

@@ -1,23 +1,7 @@
 @import '../../../../common/styles/sass/mixins';
 
-//.tableBlock {
-//    margin-bottom: 36px;
-//}
-
-.actions {
-    @include flex(row, end, center, wrap);
-    cursor: pointer;
-
-    .editIcon {
-        opacity: 50%;
-        &:hover {
-            opacity: 100%;
-        }
-    }
-    .deleteIcon {
-        opacity: 50%;
-        &:hover {
-            opacity: 100%;
-        }
+.tableBlock {
+    .lastUpdate {
+        @include flex(row, start, center, wrap);
     }
 }
