@@ -10,21 +10,40 @@ import { getPacksTC } from '../../../features/cards/packs-reducer'
 export const PaginationBlock = () => {
     const dispatch = useAppDispatch()
 
-    const totalCount = useAppSelector((state) => state.packs.cardPacksTotalCount)
-    const pageCount = useAppSelector((state) => state.packs.pageCount)
-    const pagePack = useAppSelector((state) => state.packs.page)
+    const cardPacksTotalCount = useAppSelector((state) => state.packs.cardPacksTotalCount)
+    const pageCount = useAppSelector((state) => state.setting.pageCount)
+    const pagePack = useAppSelector((state) => state.setting.page)
+    const packName = useAppSelector((state) => state.setting.packName)
+    const min = useAppSelector((state) => state.setting.min)
+    const max = useAppSelector((state) => state.setting.max)
+    const block = useAppSelector((state) => state.setting.block)
+    const user_id= useAppSelector((state) => state.setting.user_id)
+    const sortPacks= useAppSelector((state) => state.setting.sortPacks)
+
+
+
     useEffect(() => {
-        setCount(totalCount)
+        setCount(cardPacksTotalCount)
         setPage(pagePack)
         setPageCountValue(pageCount)
-    }, [totalCount, pageCount, pagePack])
+    }, [cardPacksTotalCount, pageCount, pagePack])
     const [count, setCount] = useState(0)
-    const [page, setPage] = useState(0)
+    const [page, setPage] = useState(pagePack)
     const [pageCountValue, setPageCountValue] = useState(0)
 
-    // useEffect(()=>{
-    // dispatch(getPacksTC({pageCount:6}))
-    // },[page,pageCountValue])
+    const settingData={
+        user_id,
+        packName,
+        min,
+        max,
+        sortPacks,
+        page,
+        pageCount,
+        block,
+    }
+    useEffect(()=>{
+        dispatch(getPacksTC(settingData))
+    },[page])
 
     return (
         <div className={s.paginationBlock}>

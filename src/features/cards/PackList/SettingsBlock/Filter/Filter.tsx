@@ -1,31 +1,29 @@
-import React, { useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
-import { routes } from '../../../../../app/routes/Routes'
+import React, {useEffect} from 'react'
 import s from '../SettingsBlock.module.scss'
 import Button from '@mui/material/Button'
-import { useAppSelector } from '../../../../../app/store'
+import {useAppDispatch, useAppSelector} from '../../../../../app/store'
+import {getPacksTC} from "../../../packs-reducer";
 
 type FilterPropsType = {
     setMyPack: (value: boolean) => void
 }
 export const Filter: React.FC<FilterPropsType> = ({ setMyPack }) => {
-    const userId = useAppSelector((state) => state.setting.user_id)
-    useEffect(() => {
-        if (userId === '') {
-            setDisableButton([false, true])
-        }
-    }, [userId])
+    const dispatch = useAppDispatch()
+    const myId = useAppSelector((state) => state.auth.user._id)
+    const user_id = useAppSelector((state) => state.setting.user_id)
+
     const [disableButton, setDisableButton] = React.useState<boolean[]>([false, true])
-    const changePack = (type: string) => {
-        if (type === 'my') {
-            setMyPack(true)
-            setDisableButton([true, false])
-        } else {
-            setMyPack(false)
-            setDisableButton([false, true])
-        }
+
+    const showMyPackHandler=()=>{
+        dispatch(getPacksTC({user_id:myId,pageCount:8}))
+        setDisableButton([ true,false])
     }
 
+    const showAllPackHandler=()=>{
+        dispatch(getPacksTC({user_id:'',pageCount:8}))
+
+        setDisableButton([false, true])
+    }
     return (
         <div className={s.settingButton}>
             <Button
@@ -34,7 +32,7 @@ export const Filter: React.FC<FilterPropsType> = ({ setMyPack }) => {
                 color={'primary'}
                 disabled={disableButton[0]}
                 style={{ width: '100px' }}
-                onClick={() => changePack('my')}
+                onClick={showMyPackHandler}
             >
                 My
             </Button>
@@ -45,10 +43,12 @@ export const Filter: React.FC<FilterPropsType> = ({ setMyPack }) => {
                 color={'primary'}
                 disabled={disableButton[1]}
                 style={{ width: '100px' }}
-                onClick={() => changePack('all')}
+                onClick={showAllPackHandler}
             >
                 All
             </Button>
         </div>
     )
+
+
 }
