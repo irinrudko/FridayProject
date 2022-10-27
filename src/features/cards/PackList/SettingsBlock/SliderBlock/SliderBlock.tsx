@@ -10,12 +10,12 @@ export const SliderBlock = () => {
     const maxValue = useAppSelector((state) => state.setting.max)
     const user_id = useAppSelector((state) => state.setting.user_id)
     const pageCount = useAppSelector((state) => state.setting.pageCount)
-    useEffect(() => {
-        setValue([minValue, maxValue])
-    }, [minValue, maxValue])
 
     const dispatch = useAppDispatch()
-    const [value, setValue] = React.useState<number[]>([minValue, maxValue])
+    const [value, setValue] = React.useState<number[]>([0, 110])
+    useEffect(() => {
+        setValue([minValue, maxValue])
+    }, [])
     const handleChange = (event: Event, newValue: number | number[]) => {
         setValue(newValue as number[])
     }

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect } from 'react'
 import { IconButton, InputBase, Paper } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
-import { useAppDispatch } from '../../../app/store'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { useDebouce } from '../../assets/Hook/useDebouce'
 
 type SearchPropsType = {
@@ -10,12 +10,16 @@ type SearchPropsType = {
 
 export const Search: React.FC<SearchPropsType> = ({ getThunk }) => {
     const dispatch = useAppDispatch()
+    const packNameSetting = useAppSelector((state) => state.setting.packName)
     const [searchValue, setSearchValue] = React.useState('')
     const debouncedValue = useDebouce<string>(searchValue, 500)
     const onChangeSearchHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setSearchValue(e.currentTarget.value)
     }
     useEffect(() => {
+        if (searchValue === '') {
+            return
+        }
         dispatch(getThunk({ packName: searchValue }))
     }, [debouncedValue])
 
