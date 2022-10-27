@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import s from './CardsTable.module.scss'
-import { useAppDispatch, useAppSelector } from '../../../../app/store'
+import { useAppDispatch } from '../../../../app/store'
 import { getCardsTC } from '../../cards-reducer'
 import { CardType, GetCardParams } from '../../../../api/cardsAPI'
 import CardRow from './CardRow/CardRow'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import { useParams } from 'react-router-dom'
 
 type CardsTablePropsType = {
     deleteCard: (cardId: string) => void
@@ -19,7 +20,9 @@ type CardsTablePropsType = {
 export const CardsTable: React.FC<CardsTablePropsType> = ({ deleteCard, editCard, myCardPacks, userId, packId, id }) => {
     const dispatch = useAppDispatch()
     const [value, setValue] = React.useState<number | null>(5)
-    const myPacksSettings: GetCardParams = { cardsPack_id: packId }
+
+    const { urlPackId } = useParams()
+    const myPacksSettings: GetCardParams = { cardsPack_id: urlPackId! } //gets id from url. helps to save data if reloading  page
 
     const onclickHandler = () => {
         alert('filter')
