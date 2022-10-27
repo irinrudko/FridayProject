@@ -1,4 +1,4 @@
-import { CreateNewPackData, GetPackParams, GetPacksResponseType, packsAPI, PackType } from '../../api/packsAPI'
+import { GetPackParams, GetPacksResponseType, packsAPI, PackType } from '../../api/packsAPI'
 import { AppThunk } from '../../app/store'
 import { setSetting } from './PackList/SettingsBlock/setting-reducer'
 import { setAppStatusAC } from '../../app/app-reducer'
