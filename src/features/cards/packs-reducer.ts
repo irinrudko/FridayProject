@@ -1,7 +1,7 @@
-import {GetPackParams, GetPacksResponseType, packsAPI, PackType} from '../../api/packsAPI'
-import {AppThunk} from '../../app/store'
-import {setSetting} from './PackList/SettingsBlock/setting-reducer'
-import {setAppStatusAC} from '../../app/app-reducer'
+import { GetPackParams, GetPacksResponseType, packsAPI, PackType } from '../../api/packsAPI'
+import { AppThunk } from '../../app/store'
+import { setSetting } from './PackList/SettingsBlock/setting-reducer'
+import { setAppStatusAC } from '../../app/app-reducer'
 
 const initialState = {
     cardPacks: <PackType[]>[

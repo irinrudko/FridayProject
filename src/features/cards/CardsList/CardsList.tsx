@@ -5,16 +5,24 @@ import { BackPackArrow } from '../../../common/components/BackPackArrow/BackPack
 import HeadBlock from './HeadBlock/HeadBlock'
 import CardsSettings from './CardSettings/CardsSettings'
 import { CardsTable } from './CardsTable/CardsTable'
-import { useAppSelector } from '../../../app/store'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { CardType } from '../../../api/cardsAPI'
 import { PagePack } from '../PagePack/PagePack'
+import { Search } from '../../../common/components/Search/Search'
+import { getCardsTC } from '../cards-reducer'
 
 export const CardsList = () => {
-    const userId = useAppSelector((store) => store.auth.user._id)
-    const packId = useAppSelector((store) => store.table.packId)
-    const cardPacks = useAppSelector((store) => store.packs.cardPacks)
+    const dispatch = useAppDispatch()
+
+    const userId = useAppSelector((state) => state.auth.user._id)
+    const packId = useAppSelector((state) => state.table.packId)
+    const cardPacks = useAppSelector((state) => state.packs.cardPacks)
     // @ts-ignore
-    const myCardPacks = useAppSelector((store) => store.cards.cards)
+    const myCardPacks = useAppSelector((state) => state.cards.cards)
+
+    const searchCard = (searchValue: string) => {
+        dispatch(getCardsTC({ cardQuestion: searchValue, cardsPack_id: packId }))
+    }
 
     const deleteCard = () => {
         alert('Delete Card')
@@ -39,9 +47,16 @@ export const CardsList = () => {
             {/*<PagePack/>*/}
             <BackPackArrow />
             <HeadBlock deletePack={deletePack} editPack={editPack} learnPack={learnPack} />
-            <CardsSettings />
+            <div className={s.descriptionBlock}>
+                <span>Search</span>
+            </div>
+            <Search
+                searchPack={searchCard}
+                searchStyle={{ display: 'flex', alignItems: 'center', width: '100%', height: '36px' }}
+            />
+            {/*<CardsSettings />*/}
             <CardsTable deleteCard={deleteCard} editCard={editCard} userId={userId} packId={packId} myCardPacks={myCardPacks} />
-            {/*<PaginationBlock />*/}
+            {/*<PaginationBlock setPaginationPage={} valueFromPagination={}/>*/}
         </div>
     )
 }

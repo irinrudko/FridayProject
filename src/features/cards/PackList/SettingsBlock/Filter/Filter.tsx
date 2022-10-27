@@ -1,10 +1,10 @@
 import React from 'react'
 import s from '../SettingsBlock.module.scss'
 import Button from '@mui/material/Button'
-import {useAppDispatch, useAppSelector} from '../../../../../app/store'
+import { useAppDispatch, useAppSelector } from '../../../../../app/store'
 
 type FilterPropsType = {
-    setFilterPack:(user_id:string, pageCount:number)=>void
+    setFilterPack: (user_id: string, pageCount: number) => void
 }
 export const Filter: React.FC<FilterPropsType> = ({ setFilterPack }) => {
     const dispatch = useAppDispatch()
@@ -14,13 +14,12 @@ export const Filter: React.FC<FilterPropsType> = ({ setFilterPack }) => {
     const [disableButton, setDisableButton] = React.useState<boolean[]>([false, true])
 
     const showMyPackHandler = () => {
-
-        setFilterPack(myId,8)
+        setFilterPack(myId, 8)
         setDisableButton([true, false])
     }
 
     const showAllPackHandler = () => {
-        setFilterPack("",8)
+        setFilterPack('', 8)
         setDisableButton([false, true])
     }
     return (

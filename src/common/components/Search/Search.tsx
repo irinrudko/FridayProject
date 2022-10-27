@@ -1,14 +1,15 @@
-import React, {ChangeEvent, useEffect} from 'react'
-import {IconButton, InputBase, Paper} from '@mui/material'
+import React, { ChangeEvent, useEffect } from 'react'
+import { IconButton, InputBase, Paper } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
-import {useAppDispatch} from '../../../app/store'
-import {useDebouce} from '../../assets/Hook/useDebouce'
+import { useAppDispatch } from '../../../app/store'
+import { useDebouce } from '../../assets/Hook/useDebouce'
 
 type SearchPropsType = {
-    searchPack:(searchPack:string)=>void
+    searchPack: (searchPack: string) => void
+    searchStyle: any
 }
 
-export const Search: React.FC<SearchPropsType> = ({ searchPack }) => {
+export const Search: React.FC<SearchPropsType> = ({ searchPack, searchStyle }) => {
     const dispatch = useAppDispatch()
 
     const [searchValue, setSearchValue] = React.useState('')
@@ -16,18 +17,15 @@ export const Search: React.FC<SearchPropsType> = ({ searchPack }) => {
     const onChangeSearchHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setSearchValue(e.currentTarget.value)
     }
-    useEffect(()=>{
-        if(searchValue===''){
+    useEffect(() => {
+        if (searchValue === '') {
             return
         }
         searchPack(searchValue)
     }, [debouncedValue])
 
     return (
-        <Paper
-            component="form"
-            sx={{ display: 'flex', alignItems: 'center', width: '410px', height: '36px', marginRight: '22px' }}
-        >
+        <Paper component="form" sx={searchStyle}>
             <IconButton type="button" sx={{ p: '10px', cursor: 'pointer' }} aria-label="search">
                 <SearchIcon />
             </IconButton>

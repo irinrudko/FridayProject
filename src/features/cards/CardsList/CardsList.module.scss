@@ -3,4 +3,16 @@
 .friendListContainer {
     width: 1000px;
     position: relative;
+    .descriptionBlock {
+        @include flex(row, start, center, wrap);
+        @include text(14px, 17px, 500);
+
+        .second {
+            padding-left: 390px;
+        }
+
+        .third {
+            padding-left: 120px;
+        }
+    }
 }

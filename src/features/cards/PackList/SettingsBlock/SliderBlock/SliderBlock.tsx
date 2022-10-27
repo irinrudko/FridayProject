@@ -1,21 +1,20 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import s from '../SettingsBlock.module.scss'
-import {Box, Slider} from '@mui/material'
-import {useAppSelector} from '../../../../../app/store'
-import {ResetFilter} from './ResetFilter/ResetFilter'
-import {InitialStateSettingType} from "../setting-reducer";
-import {GetPackParams} from "../../../../../api/packsAPI";
+import { Box, Slider } from '@mui/material'
+import { useAppSelector } from '../../../../../app/store'
+import { ResetFilter } from './ResetFilter/ResetFilter'
+import { InitialStateSettingType } from '../setting-reducer'
+import { GetPackParams } from '../../../../../api/packsAPI'
 
-type SliderBlockPropsType={
-    resetPackListFilter:(data:GetPackParams)=>void
-    filterWithSlider:(value:GetPackParams)=>void
+type SliderBlockPropsType = {
+    resetPackListFilter: (data: GetPackParams) => void
+    filterWithSlider: (value: GetPackParams) => void
 }
-export const SliderBlock:React.FC<SliderBlockPropsType> = ({resetPackListFilter,filterWithSlider}) => {
+export const SliderBlock: React.FC<SliderBlockPropsType> = ({ resetPackListFilter, filterWithSlider }) => {
     const minValue = useAppSelector((state) => state.setting.min)
     const maxValue = useAppSelector((state) => state.setting.max)
     const user_id = useAppSelector((state) => state.setting.user_id)
     const pageCount = useAppSelector((state) => state.setting.pageCount)
-
 
     const [value, setValue] = React.useState<number[]>([0, 110])
     useEffect(() => {
@@ -44,7 +43,7 @@ export const SliderBlock:React.FC<SliderBlockPropsType> = ({resetPackListFilter,
                 />
             </Box>
             <div className={s.secondSquare}>{value[1]}</div>
-            <ResetFilter resetPackListFilter={resetPackListFilter}/>
+            <ResetFilter resetPackListFilter={resetPackListFilter} />
         </div>
     )
 }
