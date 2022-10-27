@@ -96,21 +96,18 @@ export const removeCardTC =
             })
     }
 export const addCardTC =
-    // (cardData: CreateCardData, params: GetCardParams): AppThunk =>
-
-
-        (cardData: any, params: GetCardParams): AppThunk =>
-        (dispatch) => {
-            cardsAPI
-                .createCard(cardData)
-                .then(() => {
-                    dispatch(getCardsTC(params))
-                })
-                .catch((err: any) => {
-                    let error = err.response.data.error
-                    console.log('catch, error:', error)
-                })
-        }
+    (cardData: CreateCardData, params: GetCardParams): AppThunk =>
+    (dispatch) => {
+        cardsAPI
+            .createCard(cardData)
+            .then(() => {
+                dispatch(getCardsTC(params))
+            })
+            .catch((err: any) => {
+                let error = err.response.data.error
+                console.log('catch, error:', error)
+            })
+    }
 
 //Types
 export type CardsActionsType = ReturnType<typeof getCardsAC>
