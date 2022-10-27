@@ -34,7 +34,8 @@ const HeadBlock: React.FC<HeadBlockPropsType> = ({
 
     const newCard = {
         card: {
-            cardsPack_id: '6356688365c36e000499fa04',
+            // cardsPack_id: '6356688365c36e000499fa04',
+            cardsPack_id: packId,
             question: 'ready to be changed?',
             answer: 'no, please',
             grade: 0,
@@ -47,7 +48,8 @@ const HeadBlock: React.FC<HeadBlockPropsType> = ({
     }
 
     const addCard = () => {
-        dispatch(addCardTC(newCard, { cardsPack_id: '6356688365c36e000499fa04' }))
+        // dispatch(addCardTC(newCard, { cardsPack_id: '6356688365c36e000499fa04' }))
+        dispatch(addCardTC(newCard, { cardsPack_id: packId }))
     }
 
     const onClickHandler = () => {

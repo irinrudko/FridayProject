@@ -1,15 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import s from './CardsList.module.scss'
-import { PaginationBlock } from '../../../common/components/PaginationBlock/PaginationBlock'
-import { BackPackArrow } from '../../../common/components/BackPackArrow/BackPackArrow'
+import {BackPackArrow} from '../../../common/components/BackPackArrow/BackPackArrow'
 import HeadBlock from './HeadBlock/HeadBlock'
-import CardsSettings from './CardSettings/CardsSettings'
-import { CardsTable } from './CardsTable/CardsTable'
-import { useAppDispatch, useAppSelector } from '../../../app/store'
-import { CardType } from '../../../api/cardsAPI'
-import { PagePack } from '../PagePack/PagePack'
-import { Search } from '../../../common/components/Search/Search'
-import { getCardsTC } from '../cards-reducer'
+import {CardsTable} from './CardsTable/CardsTable'
+import {useAppDispatch, useAppSelector} from '../../../app/store'
+import {Search} from '../../../common/components/Search/Search'
+import {getCardsTC} from '../cards-reducer'
 
 export const CardsList = () => {
     const dispatch = useAppDispatch()
@@ -17,9 +13,7 @@ export const CardsList = () => {
     const packId = useAppSelector((state) => state.table.packId)
     const cardPacks = useAppSelector((state) => state.packs.cardPacks)
     const id = useAppSelector((store) => store.table.userId)
-    // @ts-ignore
     const myCardPacks = useAppSelector((state) => state.cards.cards)
-    // @ts-ignore
     const packName = useAppSelector((store) => store.cards.packName)
 
     const searchCard = (searchValue: string) => {
@@ -63,7 +57,7 @@ export const CardsList = () => {
             </div>
             <Search
                 searchPack={searchCard}
-                searchStyle={{ display: 'flex', alignItems: 'center', width: '100%', height: '36px', marginBottom: '15px' }}
+                searchStyle={{ display: 'flex', alignItems: 'center', width: '100%', height: '36px', marginBottom: '25px', marginTop: '9px' }}
             />
             {/*<CardsSettings />*/}
             <CardsTable
