@@ -1,19 +1,29 @@
-import React, {useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import s from './PackList.module.scss'
 import Button from '@mui/material/Button'
-import {Navigate} from 'react-router-dom'
-import {routes} from '../../../app/routes/Routes'
-import {useAppDispatch, useAppSelector} from '../../../app/store'
-import {SettingsBlock} from './SettingsBlock/SettingsBlock'
-import {PackListTable} from './Table/PackListTable'
-import {PaginationBlock} from '../../../common/components/PaginationBlock/PaginationBlock'
-import {addPackTC, getPacksTC} from '../packs-reducer'
-import {InitialStateSettingType} from "./SettingsBlock/setting-reducer";
-import {GetPackParams} from "../../../api/packsAPI";
+import { Navigate } from 'react-router-dom'
+import { routes } from '../../../app/routes/Routes'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
+import { SettingsBlock } from './SettingsBlock/SettingsBlock'
+import { PackListTable } from './Table/PackListTable'
+import { PaginationBlock } from '../../../common/components/PaginationBlock/PaginationBlock'
+import { addPackTC, getPacksTC } from '../packs-reducer'
+import { InitialStateSettingType } from './SettingsBlock/setting-reducer'
+import { GetPackParams } from '../../../api/packsAPI'
 
 export const PackList = () => {
-    const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
     const dispatch = useAppDispatch()
+
+    const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
+    const cardPacksTotalCount = useAppSelector((state) => state.packs.cardPacksTotalCount)
+    const pageCount = useAppSelector((state) => state.setting.pageCount)
+    const pagePack = useAppSelector((state) => state.setting.page)
+    const packName = useAppSelector((state) => state.setting.packName)
+    const min = useAppSelector((state) => state.setting.min)
+    const max = useAppSelector((state) => state.setting.max)
+    const block = useAppSelector((state) => state.setting.block)
+    const user_id = useAppSelector((state) => state.setting.user_id)
+    const sortPacks = useAppSelector((state) => state.setting.sortPacks)
 
     const [myPack, setMyPack] = useState(false)
 
@@ -24,18 +34,27 @@ export const PackList = () => {
             private: false,
         },
     }
-    const filterWithSlider = (value:GetPackParams) => {
+    const valueFromPagination = { totalCount: cardPacksTotalCount, pageCount, pagePack }
+    const setPaginationPage = (page: number) => {
+        dispatch(getPacksTC({ packName, min, max, block, user_id, sortPacks, pageCount, page }))
+    }
+
+    const filterWithSlider = (value: GetPackParams) => {
         dispatch(getPacksTC(value))
     }
-    const resetPackListFilter=(data:GetPackParams) => {
+
+    const resetPackListFilter = (data: GetPackParams) => {
         dispatch(getPacksTC({ ...data }))
     }
-    const setFilterPack=(user_id:string, pageCount:number)=>{
-        dispatch(getPacksTC({user_id, pageCount}))
+
+    const setFilterPack = (user_id: string, pageCount: number) => {
+        dispatch(getPacksTC({ user_id, pageCount }))
     }
-    const searchPack=(searchValue:string)=> {
-        dispatch(getPacksTC({ packName: searchValue,pageCount:8 }))
+
+    const searchPack = (searchValue: string) => {
+        dispatch(getPacksTC({ packName: searchValue, pageCount: 8 }))
     }
+
     const addNewPack = () => {
         dispatch(addPackTC(newPack, { pageCount: 8 }))
     }
@@ -59,7 +78,7 @@ export const PackList = () => {
                 filterWithSlider={filterWithSlider}
             />
             <PackListTable myPack={myPack} />
-            <PaginationBlock />
+            <PaginationBlock valueFromPagination={valueFromPagination} setPaginationPage={setPaginationPage} />
         </div>
     )
 }
