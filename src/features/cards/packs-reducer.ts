@@ -85,7 +85,7 @@ export const removePackTC =
     }
 
 export const addPackTC =
-    (newPack: any, params: GetPackParams): AppThunk =>
+    (newPack: CreateNewPackData, params: GetPackParams): AppThunk =>
     (dispatch) => {
         packsAPI
             .createPack(newPack)
