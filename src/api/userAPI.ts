@@ -1,14 +1,9 @@
-import axios, { AxiosResponse } from 'axios'
-
-const instance = axios.create({
-    // baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
-    baseURL: 'https://neko-back.herokuapp.com/2.0/',
-    withCredentials: true,
-})
+import { AxiosResponse } from 'axios'
+import { instance } from './instance'
 
 export const authAPI = {
     registration(email: string, password: string) {
-        return instance.post<RegistrationPayloadType, AxiosResponse<any>>(`auth/register`, { email, password })
+        return instance.post<RegistrationPayloadType, AxiosResponse<UserData>>(`auth/register`, { email, password })
     },
     me() {
         return instance.post<UserData>(`auth/me`)
@@ -33,7 +28,7 @@ export const forgotPasswordAPI = {
     },
 }
 
-//types
+// userAPI types
 export type ChangeNameOrImgType = {
     name?: string
     avatar?: string
@@ -55,13 +50,11 @@ export type RegistrationPayloadType = {
     email: string
     password: string
 }
-
 export type LoginParamsData = {
     email: string
     password: string
     rememberMe: boolean
 }
-
 export type UserData = {
     _id: string
     email: string
@@ -75,14 +68,7 @@ export type UserData = {
     rememberMe: boolean
     error?: string
 }
-
 export type LogoutResponseType = {
     info: string
     error: string
 }
-
-// export type ErrorResponse = {
-//     code: string,
-//     config:{},
-//     message: string,
-// }

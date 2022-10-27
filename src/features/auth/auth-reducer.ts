@@ -1,6 +1,13 @@
-import { DataNewPasswordType, forgotPasswordAPI, ForgotPasswordDataType, LoginParamsData, authAPI, UserData } from '../../api/api'
+import {
+    authAPI,
+    DataNewPasswordType,
+    forgotPasswordAPI,
+    ForgotPasswordDataType,
+    LoginParamsData,
+    UserData,
+} from '../../api/userAPI'
 import { setAppStatusAC, setErrAC } from '../../app/app-reducer'
-import { AppThunk } from '../../app/store'
+import { AppRootStateType, AppThunk } from '../../app/store'
 import { routes } from '../../app/routes/Routes'
 import { dataType } from './auth-types'
 
@@ -25,7 +32,7 @@ const initialState = {
 
 export type AuthInitialStateType = typeof initialState
 
-export const authReducer = (state: AuthInitialStateType = initialState, action: ActionsType): AuthInitialStateType => {
+export const authReducer = (state: AuthInitialStateType = initialState, action: AuthActionsType): AuthInitialStateType => {
     switch (action.type) {
         case 'AUTH/SET-IS-LOGGED-IN':
             return { ...state, isLoggedIn: action.isLoggedIn }
@@ -161,9 +168,25 @@ export const registrationTC =
                 dispatch(setAppStatusAC('idle'))
             })
     }
+export const updateUser =
+    (userName: { name: string }): AppThunk =>
+    (dispatch, getState: () => AppRootStateType) => {
+        dispatch(setAppStatusAC('loading'))
+        const user = getState().auth.user
+        const userUpdate = { ...user, ...userName }
+        authAPI
+            .changeNameOrImg(userName)
+            .then(() => dispatch(setUserDataAC(userUpdate)))
+            .catch((err: any) => {
+                let error = err.response.data.error
+                dispatch(setErrAC(error))
+                dispatch(setAppStatusAC('failed'))
+            })
+            .finally(() => dispatch(setAppStatusAC('idle')))
+    }
 
 //Types
-export type ActionsType =
+export type AuthActionsType =
     | ReturnType<typeof setIsLoggedInAC>
     | ReturnType<typeof setUserDataAC>
     | ReturnType<typeof setEmailRecovery>

@@ -1,0 +1,16 @@
+.toPacksList {
+    position: absolute;
+    left: 20px;
+    top: -10px;
+
+    &:before {
+        content: '';
+        position: absolute;
+        left: -20px;
+        bottom: 3px;
+        width: 14px;
+        height: 12px;
+        background-image: url('../../../common/assets/image/backProfile.svg');
+        background-repeat: no-repeat;
+    }
+}

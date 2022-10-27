@@ -1,0 +1,9 @@
+@import '../../../../common/styles/sass/mixins';
+
+.tableBlock {
+    .lastUpdate {
+        position: relative;
+        top: 7px;
+        cursor: pointer;
+    }
+}

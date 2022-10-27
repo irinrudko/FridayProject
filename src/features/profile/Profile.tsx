@@ -9,18 +9,15 @@ import { EditableSpan } from '../../common/components/EditableSpan/EditableSpan'
 import { Navigate, NavLink } from 'react-router-dom'
 import { routes } from '../../app/routes/Routes'
 import { useAppDispatch, useAppSelector } from '../../app/store'
-import { setProfileUserName } from './profile-reducer'
+
 import { logoutTC } from '../auth/auth-reducer'
+import { BackPackArrow } from '../../common/components/BackPackArrow/BackPackArrow'
 
 const Profile = () => {
     const dispatch = useAppDispatch()
-    const name = useAppSelector((state) => state.profile.name)
-    const email = useAppSelector((state) => state.profile.email)
+    const name = useAppSelector((state) => state.auth.user.name)
+    const email = useAppSelector((state) => state.auth.user.email)
     const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
-
-    useEffect(() => {
-        dispatch(setProfileUserName())
-    }, [dispatch])
 
     const redirectToLogin = () => {
         dispatch(logoutTC())
@@ -35,9 +32,7 @@ const Profile = () => {
             <Grid container justifyContent={'center'}>
                 <Grid item justifyContent={'center'}>
                     <div className={s.toPacksListContainer}>
-                        <NavLink className={s.toPacksList} to={routes.packsList}>
-                            Back to Packs List
-                        </NavLink>
+                        <BackPackArrow />
                     </div>
                     <Paper className={s.paper} elevation={3}>
                         <h2 className={`${authStyle.title} ${s.title}`}>Personal Information</h2>
