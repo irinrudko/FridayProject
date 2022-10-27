@@ -15,7 +15,7 @@ export const SliderBlock = () => {
     const [value, setValue] = React.useState<number[]>([0, 110])
     useEffect(() => {
         setValue([minValue, maxValue])
-    }, [])
+    }, [minValue, maxValue])
     const handleChange = (event: Event, newValue: number | number[]) => {
         setValue(newValue as number[])
     }

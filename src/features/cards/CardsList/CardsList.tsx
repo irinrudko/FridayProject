@@ -41,7 +41,7 @@ export const CardsList = () => {
             <HeadBlock deletePack={deletePack} editPack={editPack} learnPack={learnPack} />
             <CardsSettings />
             <CardsTable deleteCard={deleteCard} editCard={editCard} userId={userId} packId={packId} myCardPacks={myCardPacks} />
-            <PaginationBlock />
+            {/*<PaginationBlock />*/}
         </div>
     )
 }

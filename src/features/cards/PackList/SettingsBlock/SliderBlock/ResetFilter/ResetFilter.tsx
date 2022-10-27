@@ -8,7 +8,7 @@ import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
 const ResetFilter = () => {
     const dispatch = useAppDispatch()
     const resetFilter = () => {
-        dispatch(setSetting({ user_id: '', packName: '', min: 0, max: 110, sortPacks: '', page: 0, pageCount: 0, block: false }))
+        dispatch(getPacksTC({ user_id: '', packName: '', min: 0, max: 110, sortPacks: '', page: 0, pageCount: 8, block: false }))
     }
     return (
         <div className={s.thirdSquare} onClick={resetFilter}>
