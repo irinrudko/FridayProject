@@ -1,11 +1,12 @@
 import React from 'react'
 import s from './CardsList.module.scss'
-import {BackPackArrow} from '../../../common/components/BackPackArrow/BackPackArrow'
+import { BackPackArrow } from '../../../common/components/BackPackArrow/BackPackArrow'
 import HeadBlock from './HeadBlock/HeadBlock'
-import {CardsTable} from './CardsTable/CardsTable'
-import {useAppDispatch, useAppSelector} from '../../../app/store'
-import {Search} from '../../../common/components/Search/Search'
-import {getCardsTC} from '../cards-reducer'
+import { CardsTable } from './CardsTable/CardsTable'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
+import { Search } from '../../../common/components/Search/Search'
+import { getCardsTC, removeCardTC } from '../cards-reducer'
+import { removePackTC } from '../packs-reducer'
 
 export const CardsList = () => {
     const dispatch = useAppDispatch()
@@ -20,16 +21,16 @@ export const CardsList = () => {
         dispatch(getCardsTC({ cardQuestion: searchValue, cardsPack_id: packId }))
     }
 
-    const deleteCard = () => {
-        alert('Delete Card')
+    const deleteCard = (id: string) => {
+        dispatch(removeCardTC(id, { cardsPack_id: packId }))
     }
     const editCard = () => {
         alert('Edit Card')
         console.log(myCardPacks)
     }
 
-    const deletePack = () => {
-        alert('Delete Pack')
+    const deletePack = (packId: string) => {
+        dispatch(removePackTC(packId, { user_id: userId, pageCount: 8 }))
     }
     const editPack = () => {
         alert('Edit Pack')
@@ -57,7 +58,14 @@ export const CardsList = () => {
             </div>
             <Search
                 searchPack={searchCard}
-                searchStyle={{ display: 'flex', alignItems: 'center', width: '100%', height: '36px', marginBottom: '25px', marginTop: '9px' }}
+                searchStyle={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    width: '100%',
+                    height: '36px',
+                    marginBottom: '25px',
+                    marginTop: '9px',
+                }}
             />
             {/*<CardsSettings />*/}
             <CardsTable

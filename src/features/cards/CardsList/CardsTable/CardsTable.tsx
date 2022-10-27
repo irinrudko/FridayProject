@@ -8,7 +8,7 @@ import CardRow from './CardRow/CardRow'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 
 type CardsTablePropsType = {
-    deleteCard: () => void
+    deleteCard: (cardId: string) => void
     editCard: () => void
     myCardPacks: CardType[]
     userId: string

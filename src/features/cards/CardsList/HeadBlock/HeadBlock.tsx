@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../../../app/store'
 import { CardType, GetCardsResponseType } from '../../../../api/cardsAPI'
 
 type HeadBlockPropsType = {
-    deletePack: () => void
+    deletePack: (packId: string) => void
     editPack: () => void
     learnPack: () => void
     cardPacks: CardType[]
@@ -34,7 +34,6 @@ const HeadBlock: React.FC<HeadBlockPropsType> = ({
 
     const newCard = {
         card: {
-            // cardsPack_id: '6356688365c36e000499fa04',
             cardsPack_id: packId,
             question: 'ready to be changed?',
             answer: 'no, please',
@@ -48,7 +47,6 @@ const HeadBlock: React.FC<HeadBlockPropsType> = ({
     }
 
     const addCard = () => {
-        // dispatch(addCardTC(newCard, { cardsPack_id: '6356688365c36e000499fa04' }))
         dispatch(addCardTC(newCard, { cardsPack_id: packId }))
     }
 
@@ -66,7 +64,7 @@ const HeadBlock: React.FC<HeadBlockPropsType> = ({
                     <div className={s.menuIcon}>
                         <MoreVertIcon fontSize={'small'} style={{ paddingBottom: '2px' }} onClick={onClickHandler} />
                         <div className={inputClass}>
-                            <ActionsMenu deletePack={deletePack} editPack={editPack} learnPack={learnPack} />
+                            <ActionsMenu deletePack={deletePack} editPack={editPack} learnPack={learnPack} packId={packId} />
                         </div>
                     </div>
                 )}
