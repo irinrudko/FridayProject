@@ -48,28 +48,32 @@ export const CardsList = () => {
         <div className={s.friendListContainer}>
             {/*<PagePack/>*/}
             <BackPackArrow />
-            <HeadBlock deletePack={deletePack}
-                       editPack={editPack}
-                       learnPack={learnPack}
-                       cardPacks={cardPacks}
-                       packId={packId}
-                       userId={userId}
-                       id={id}
-                       packName={packName} />
+            <HeadBlock
+                deletePack={deletePack}
+                editPack={editPack}
+                learnPack={learnPack}
+                cardPacks={cardPacks}
+                packId={packId}
+                userId={userId}
+                id={id}
+                packName={packName}
+            />
             <div className={s.descriptionBlock}>
                 <span>Search</span>
             </div>
             <Search
                 searchPack={searchCard}
-                searchStyle={{ display: 'flex', alignItems: 'center', width: '100%', height: '36px' }}
+                searchStyle={{ display: 'flex', alignItems: 'center', width: '100%', height: '36px', marginBottom: '15px' }}
             />
             {/*<CardsSettings />*/}
-            <CardsTable deleteCard={deleteCard}
-                        editCard={editCard}
-                        userId={userId}
-                        packId={packId}
-                        myCardPacks={myCardPacks}
-                        id={id} />
+            <CardsTable
+                deleteCard={deleteCard}
+                editCard={editCard}
+                userId={userId}
+                packId={packId}
+                myCardPacks={myCardPacks}
+                id={id}
+            />
             {/*<PaginationBlock setPaginationPage={} valueFromPagination={}/>*/}
         </div>
     )

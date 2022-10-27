@@ -22,7 +22,7 @@ const CardsSettings: React.FC<CardsSettingsPropsType> = ({ packId }) => {
         if (searchValue === '') {
             return
         }
-        dispatch(getCardsTC({ cardQuestion: searchValue, cardsPack_id: cardsId }))
+        dispatch(getCardsTC({ cardQuestion: searchValue, cardsPack_id: packId }))
     }, [debouncedValue])
 
     return (
