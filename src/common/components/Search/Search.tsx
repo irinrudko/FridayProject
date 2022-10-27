@@ -1,26 +1,26 @@
-import React, { ChangeEvent, useEffect } from 'react'
-import { IconButton, InputBase, Paper } from '@mui/material'
+import React, {ChangeEvent, useEffect} from 'react'
+import {IconButton, InputBase, Paper} from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
-import { useAppDispatch, useAppSelector } from '../../../app/store'
-import { useDebouce } from '../../assets/Hook/useDebouce'
+import {useAppDispatch} from '../../../app/store'
+import {useDebouce} from '../../assets/Hook/useDebouce'
 
 type SearchPropsType = {
-    getThunk: any
+    searchPack:(searchPack:string)=>void
 }
 
-export const Search: React.FC<SearchPropsType> = ({ getThunk }) => {
+export const Search: React.FC<SearchPropsType> = ({ searchPack }) => {
     const dispatch = useAppDispatch()
-    const packNameSetting = useAppSelector((state) => state.setting.packName)
+
     const [searchValue, setSearchValue] = React.useState('')
     const debouncedValue = useDebouce<string>(searchValue, 500)
     const onChangeSearchHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setSearchValue(e.currentTarget.value)
     }
-    useEffect(() => {
-        if (searchValue === '') {
+    useEffect(()=>{
+        if(searchValue===''){
             return
         }
-        dispatch(getThunk({ packName: searchValue }))
+        searchPack(searchValue)
     }, [debouncedValue])
 
     return (
