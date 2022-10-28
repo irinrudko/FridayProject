@@ -33,6 +33,8 @@ const RowPack: React.FC<RowPropsType> = ({ row, deletePack, editPack, learnPack 
         })
     }
 
+    const classEducation = row.cardsCount > 0 ? s.schoolIcon : s.blockSchoolIcon
+
     return (
         <>
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -50,8 +52,12 @@ const RowPack: React.FC<RowPropsType> = ({ row, deletePack, editPack, learnPack 
                 <TableCell align="left">{row.user_name}</TableCell>
                 <TableCell align="left">
                     <div className={s.actions}>
-                        <div className={s.schoolIcon}>
-                            <SchoolIcon fontSize={'small'} onClick={() => learnPack(row._id)} />
+                        <div className={classEducation}>
+                            {row.cardsCount > 0 ? (
+                                <SchoolIcon fontSize={'small'} onClick={() => learnPack(row._id)} />
+                            ) : (
+                                <SchoolIcon fontSize={'small'} />
+                            )}
                         </div>
                         <div className={s.editIcon}>
                             {row.user_id === userId && <BorderColorIcon fontSize={'small'} onClick={() => editPack(row._id)} />}
