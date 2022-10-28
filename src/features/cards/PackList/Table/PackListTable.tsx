@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import s from './PackListTable.module.scss'
 import { removePackTC } from '../../packs-reducer'
@@ -6,15 +6,18 @@ import { useAppDispatch } from '../../../../app/store'
 import { GetPackParams, PackType } from '../../../../api/packsAPI'
 import RowPack from './RowPack/RowPack'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 
 type PackListTablePropsType = {
     user_id: string
     userId: string
     cardPacks: PackType[]
+    setFilterUpdatePack: (user_id: string, sortPacks: string) => void
 }
 
-export const PackListTable: React.FC<PackListTablePropsType> = ({ user_id, userId, cardPacks }) => {
+export const PackListTable: React.FC<PackListTablePropsType> = ({ user_id, userId, cardPacks, setFilterUpdatePack }) => {
     const dispatch = useAppDispatch()
+    const [filter, setFilter] = useState(true)
 
     const deletePack = (id: string) => {
         user_id === userId ? dispatch(removePackTC(id, myCardPacksSettings)) : dispatch(removePackTC(id, cardPacksSettings))
@@ -28,8 +31,14 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ user_id, userI
         alert('learnPack:  ' + id)
     }
 
-    const onclickHandler = () => {
-        alert('filter')
+    const setFilterEndHandler = () => {
+        setFilterUpdatePack('', '1updated')
+        setFilter(!filter)
+    }
+
+    const setFilterStartHandler = () => {
+        setFilterUpdatePack('', '0updated')
+        setFilter(!filter)
     }
 
     const myCardPacksSettings: GetPackParams = {
@@ -58,7 +67,11 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ user_id, userI
                             </TableCell>
                             <TableCell align="left" style={{ fontWeight: '600' }} width={180}>
                                 Last Updated
-                                <ArrowDropDownIcon onClick={onclickHandler} className={s.lastUpdate} />
+                                {filter ? (
+                                    <ArrowDropDownIcon onClick={setFilterEndHandler} className={s.lastUpdate} />
+                                ) : (
+                                    <ArrowDropUpIcon onClick={setFilterStartHandler} className={s.lastUpdate} />
+                                )}
                             </TableCell>
                             <TableCell align="left" style={{ fontWeight: '600' }} width={180}>
                                 Created by

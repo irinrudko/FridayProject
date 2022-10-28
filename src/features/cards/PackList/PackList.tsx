@@ -52,6 +52,10 @@ export const PackList = () => {
         dispatch(getPacksTC({ user_id, pageCount }))
     }
 
+    const setFilterUpdatePack = (user_id: string, sortPacks: string) => {
+        dispatch(getPacksTC({ user_id, sortPacks, pageCount: 8 }))
+    }
+
     const searchPack = (searchValue: string) => {
         dispatch(getPacksTC({ packName: searchValue, pageCount: 8 }))
     }
@@ -78,7 +82,7 @@ export const PackList = () => {
                 resetPackListFilter={resetPackListFilter}
                 filterWithSlider={filterWithSlider}
             />
-            <PackListTable user_id={user_id} userId={userId} cardPacks={cardPacks} />
+            <PackListTable user_id={user_id} userId={userId} cardPacks={cardPacks} setFilterUpdatePack={setFilterUpdatePack} />
             <PaginationBlock valueFromPagination={valueFromPagination} setPaginationPage={setPaginationPage} />
         </div>
     )

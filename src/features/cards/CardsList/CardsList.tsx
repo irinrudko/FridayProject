@@ -61,6 +61,10 @@ export const CardsList = () => {
         alert('Learn Pack')
     }
 
+    const setFilterUpdateGrade = (sortCards: string) => {
+        dispatch(getCardsTC({ cardsPack_id: urlPackId!, sortCards, pageCount: 8 }))
+    }
+
     useEffect(() => {
         dispatch(getCardsTC({ cardsPack_id: urlPackId!, pageCount: 8 }))
     }, [])
@@ -98,7 +102,13 @@ export const CardsList = () => {
                             marginTop: '9px',
                         }}
                     />
-                    <CardsTable deleteCard={deleteCard} editCard={editCard} userId={userId} myCardPacks={myCardPacks} />
+                    <CardsTable
+                        deleteCard={deleteCard}
+                        editCard={editCard}
+                        userId={userId}
+                        myCardPacks={myCardPacks}
+                        setFilterUpdateGrade={setFilterUpdateGrade}
+                    />
                 </>
             )}
             {/*<PaginationBlock setPaginationPage={} valueFromPagination={}/>*/}
