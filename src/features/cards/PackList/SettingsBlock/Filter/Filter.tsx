@@ -7,9 +7,9 @@ type FilterPropsType = {
     setFilterPack: (user_id: string, pageCount: number) => void
 }
 export const Filter: React.FC<FilterPropsType> = ({ setFilterPack }) => {
-    const dispatch = useAppDispatch()
+    // const dispatch = useAppDispatch()
     const myId = useAppSelector((state) => state.auth.user._id)
-    const user_id = useAppSelector((state) => state.setting.user_id)
+    // const user_id = useAppSelector((state) => state.setting.user_id)
 
     const [disableButton, setDisableButton] = React.useState<boolean[]>([false, true])
 

@@ -3,8 +3,6 @@ import s from './ActionsMenu.module.scss'
 import SchoolIcon from '@mui/icons-material/School'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
-import { routes } from '../../../../app/routes/Routes'
-import { NavLink } from 'react-router-dom'
 
 type ActionMenuPropsType = {
     deletePack: (packId: string) => void

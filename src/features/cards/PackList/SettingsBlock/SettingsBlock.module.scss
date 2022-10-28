@@ -28,11 +28,11 @@
     }
 
     .settingButton {
-        @include flex(row, start, center, wrap);
+        @include flex(row, flex-start, center, wrap);
         margin-right: 32px;
     }
     .slider {
-        @include flex(row, start, center, wrap);
+        @include flex(row, flex-start, center, wrap);
     }
     .firstSquare {
         @include flex(row, center, center, wrap);

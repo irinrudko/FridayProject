@@ -8,13 +8,13 @@ import { SettingsBlock } from './SettingsBlock/SettingsBlock'
 import { PackListTable } from './Table/PackListTable'
 import { PaginationBlock } from '../../../common/components/PaginationBlock/PaginationBlock'
 import { addPackTC, getPacksTC } from '../packs-reducer'
-import { InitialStateSettingType } from './SettingsBlock/setting-reducer'
 import { GetPackParams } from '../../../api/packsAPI'
 
 export const PackList = () => {
     const dispatch = useAppDispatch()
 
     const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
+    const userId = useAppSelector((state) => state.auth.user._id)
     const cardPacksTotalCount = useAppSelector((state) => state.packs.cardPacksTotalCount)
     const pageCount = useAppSelector((state) => state.setting.pageCount)
     const pagePack = useAppSelector((state) => state.setting.page)
@@ -24,8 +24,9 @@ export const PackList = () => {
     const block = useAppSelector((state) => state.setting.block)
     const user_id = useAppSelector((state) => state.setting.user_id)
     const sortPacks = useAppSelector((state) => state.setting.sortPacks)
+    const cardPacks = useAppSelector((store) => store.packs.cardPacks)
 
-    const [myPack, setMyPack] = useState(false)
+    // const [myPack, setMyPack] = useState(false)
 
     const newPack = {
         cardsPack: {
@@ -77,7 +78,7 @@ export const PackList = () => {
                 resetPackListFilter={resetPackListFilter}
                 filterWithSlider={filterWithSlider}
             />
-            <PackListTable myPack={myPack} />
+            <PackListTable user_id={user_id} userId={userId} cardPacks={cardPacks} />
             <PaginationBlock valueFromPagination={valueFromPagination} setPaginationPage={setPaginationPage} />
         </div>
     )

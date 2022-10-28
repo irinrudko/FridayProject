@@ -1,23 +1,23 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import s from './PackListTable.module.scss'
-import { getPacksTC, removePackTC } from '../../packs-reducer'
-import { useAppDispatch, useAppSelector } from '../../../../app/store'
-import { GetPackParams } from '../../../../api/packsAPI'
+import { removePackTC } from '../../packs-reducer'
+import { useAppDispatch } from '../../../../app/store'
+import { GetPackParams, PackType } from '../../../../api/packsAPI'
 import RowPack from './RowPack/RowPack'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 
 type PackListTablePropsType = {
-    myPack: boolean
+    user_id: string
+    userId: string
+    cardPacks: PackType[]
 }
 
-export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
+export const PackListTable: React.FC<PackListTablePropsType> = ({ user_id, userId, cardPacks }) => {
     const dispatch = useAppDispatch()
-    const cardPacks = useAppSelector((store) => store.packs.cardPacks)
-    const userId = useAppSelector((store) => store.auth.user._id)
 
     const deletePack = (id: string) => {
-        myPack ? dispatch(removePackTC(id, myCardPacksSettings)) : dispatch(removePackTC(id, cardPacksSettings))
+        user_id === userId ? dispatch(removePackTC(id, myCardPacksSettings)) : dispatch(removePackTC(id, cardPacksSettings))
     }
 
     const editPack = (id: string) => {

@@ -15,7 +15,7 @@ function App() {
 
     useEffect(() => {
         dispatch(initializedTC())
-    }, [])
+    }, [dispatch])
 
     if (!initialized) {
         return (
