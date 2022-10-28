@@ -15,7 +15,7 @@ export const EditableSpan = function (props: EditableSpanPropsType) {
     let [editMode, setEditMode] = useState(false)
     const formik = useFormik({
         initialValues: {
-            name: '',
+            name: props.name,
         },
         onSubmit: (values) => {
             dispatch(updateUser(values))

@@ -7,7 +7,7 @@ const initialStateSetting = {
     max: 110,
     sortPacks: '',
     page: 0,
-    pageCount: 0,
+    pageCount: 8,
     block: false,
 }
 

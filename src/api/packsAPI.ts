@@ -56,9 +56,11 @@ export type GetPacksResponseType = {
     tokenDeathTime: number
 }
 export type CreateNewPackData = {
-    name: string
-    deckCover?: string
-    private?: boolean
+    cardsPack: {
+        name: string
+        deckCover?: string
+        private?: boolean
+    }
 }
 export type CreatePacksResponseType = {
     newCardsPack: PackType[]

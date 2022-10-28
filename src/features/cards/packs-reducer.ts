@@ -1,6 +1,7 @@
 import { CreateNewPackData, GetPackParams, GetPacksResponseType, packsAPI, PackType } from '../../api/packsAPI'
 import { AppThunk } from '../../app/store'
 import { setSetting } from './PackList/SettingsBlock/setting-reducer'
+import { setAppStatusAC } from '../../app/app-reducer'
 
 const initialState = {
     cardPacks: <PackType[]>[
@@ -50,6 +51,7 @@ export const getPacksAC = (packs: GetPacksResponseType) => ({ type: 'PACKS/GET-P
 export const getPacksTC =
     (params: GetPackParams): AppThunk =>
     (dispatch) => {
+        dispatch(setAppStatusAC('loading'))
         packsAPI
             .getPacks(params)
             .then((res) => {
@@ -60,6 +62,7 @@ export const getPacksTC =
                 let error = err.response.data.error
                 console.log('catch, error:', error)
             })
+            .finally(() => dispatch(setAppStatusAC('idle')))
     }
 
 export const changePackNameTC =
@@ -85,7 +88,7 @@ export const removePackTC =
     }
 
 export const addPackTC =
-    (newPack: any, params: GetPackParams): AppThunk =>
+    (newPack: CreateNewPackData, params: GetPackParams): AppThunk =>
     (dispatch) => {
         packsAPI
             .createPack(newPack)

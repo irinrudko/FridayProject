@@ -41,10 +41,11 @@ const initialState = {
 
 export type CardsInitialStateType = typeof initialState
 
-export const cardsReducer = (state: CardsInitialStateType = initialState, action: CardsActionsType) => {
+export const cardsReducer = (state: CardsInitialStateType = initialState, action: CardsActionsType): CardsInitialStateType => {
     switch (action.type) {
         case 'CARDS/GET-CARDS':
-            return { ...action.cards }
+            return <CardsInitialStateType>{ ...action.cards }
+        // return {...action.cards}
         default:
             return state
     }
@@ -96,21 +97,18 @@ export const removeCardTC =
             })
     }
 export const addCardTC =
-    // (cardData: CreateCardData, params: GetCardParams): AppThunk =>
-
-
-        (cardData: any, params: GetCardParams): AppThunk =>
-        (dispatch) => {
-            cardsAPI
-                .createCard(cardData)
-                .then(() => {
-                    dispatch(getCardsTC(params))
-                })
-                .catch((err: any) => {
-                    let error = err.response.data.error
-                    console.log('catch, error:', error)
-                })
-        }
+    (cardData: CreateCardData, params: GetCardParams): AppThunk =>
+    (dispatch) => {
+        cardsAPI
+            .createCard(cardData)
+            .then(() => {
+                dispatch(getCardsTC(params))
+            })
+            .catch((err: any) => {
+                let error = err.response.data.error
+                console.log('catch, error:', error)
+            })
+    }
 
 //Types
 export type CardsActionsType = ReturnType<typeof getCardsAC>

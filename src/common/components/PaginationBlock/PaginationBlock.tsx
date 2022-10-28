@@ -1,46 +1,30 @@
 import * as React from 'react'
+import { useEffect, useState } from 'react'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 import s from './PaginationBlock.module.scss'
 import { BasicSelect } from './BaseSelect/BaseSelect'
-import { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../app/store'
-import { getPacksTC } from '../../../features/cards/packs-reducer'
 
-export const PaginationBlock = () => {
-    const dispatch = useAppDispatch()
-
-    const cardPacksTotalCount = useAppSelector((state) => state.packs.cardPacksTotalCount)
-    const pageCount = useAppSelector((state) => state.setting.pageCount)
-    const pagePack = useAppSelector((state) => state.setting.page)
-    const packName = useAppSelector((state) => state.setting.packName)
-    const min = useAppSelector((state) => state.setting.min)
-    const max = useAppSelector((state) => state.setting.max)
-    const block = useAppSelector((state) => state.setting.block)
-    const user_id = useAppSelector((state) => state.setting.user_id)
-    const sortPacks = useAppSelector((state) => state.setting.sortPacks)
-
+type PaginationBlockPropsType = {
+    valueFromPagination: {
+        totalCount: number
+        pageCount: number
+        pagePack: number
+    }
+    setPaginationPage: (page: number) => void
+}
+export const PaginationBlock: React.FC<PaginationBlockPropsType> = ({ valueFromPagination, setPaginationPage }) => {
     useEffect(() => {
-        setCount(cardPacksTotalCount)
-        setPage(pagePack)
-        setPageCountValue(pageCount)
-    }, [cardPacksTotalCount, pageCount, pagePack])
+        setCount(valueFromPagination.totalCount)
+        setPage(valueFromPagination.pagePack)
+        setPageCountValue(valueFromPagination.pageCount)
+    }, [valueFromPagination.totalCount, valueFromPagination.pageCount, valueFromPagination.pagePack])
     const [count, setCount] = useState(0)
-    const [page, setPage] = useState(pagePack)
+    const [page, setPage] = useState(valueFromPagination.pagePack)
     const [pageCountValue, setPageCountValue] = useState(0)
 
-    const settingData = {
-        user_id,
-        packName,
-        min,
-        max,
-        sortPacks,
-        page,
-        pageCount,
-        block,
-    }
     useEffect(() => {
-        // dispatch(getPacksTC(settingData))
+        setPaginationPage(page)
     }, [page])
 
     return (

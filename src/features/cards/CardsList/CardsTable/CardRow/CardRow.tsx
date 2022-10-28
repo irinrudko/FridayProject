@@ -8,7 +8,7 @@ import { CardType } from '../../../../../api/cardsAPI'
 type CardRowPropsType = {
     row: CardType
     userId: string
-    deleteCard: () => void
+    deleteCard: (cardId: string) => void
     editCard: () => void
 }
 
@@ -44,7 +44,7 @@ const CardRow: React.FC<CardRowPropsType> = ({ row, userId, deleteCard, editCard
                             <BorderColorIcon fontSize={'small'} style={{ marginRight: '15px' }} onClick={editCard} />
                         </div>
                         <div className={s.deleteIcon}>
-                            <DeleteForeverIcon fontSize={'small'} onClick={deleteCard} />
+                            <DeleteForeverIcon fontSize={'small'} onClick={() => deleteCard(row._id)} />
                         </div>
                     </div>
                 </TableCell>

@@ -19,6 +19,9 @@ const CardsSettings: React.FC<CardsSettingsPropsType> = ({ packId }) => {
         setSearchValue(e.currentTarget.value)
     }
     useEffect(() => {
+        if (searchValue === '') {
+            return
+        }
         dispatch(getCardsTC({ cardQuestion: searchValue, cardsPack_id: packId }))
     }, [debouncedValue])
 

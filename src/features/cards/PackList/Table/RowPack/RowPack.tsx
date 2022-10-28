@@ -37,7 +37,11 @@ const RowPack: React.FC<RowPropsType> = ({ row, deletePack, editPack, learnPack 
         <>
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell component="th" scope="row">
-                    <NavLink to={routes.myPacksList} className={s.navLink} onClick={() => setPackId(row._id, row.user_id)}>
+                    <NavLink
+                        to={`${'/packs/my-packs/'}${row._id}`}
+                        className={s.navLink}
+                        onClick={() => setPackId(row._id, row.user_id)}
+                    >
                         {row.name}
                     </NavLink>
                 </TableCell>

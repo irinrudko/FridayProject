@@ -8,8 +8,8 @@ export const routes = {
     passwordRecovery: '/passwordRecovery',
     test: '/test',
     error404: '/404',
-    packsList: '/cards/pack-list',
-    friendsPacksList: '/cards/friend-list',
-    myPacksList: '/cards/my-list',
-    pagePack: '/cards/page-pack',
+    friendsPacksList: '/packs/friends-packs/:urlPackId',
+    packsList: '/packs/',
+    myPacksList: '/packs/my-packs/:urlPackId',
+    pagePack: '/packs/pack/',
 }
