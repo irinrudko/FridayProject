@@ -13,11 +13,9 @@ type CardsTablePropsType = {
     editCard: () => void
     myCardPacks: CardType[]
     userId: string
-    packId: string
-    id: string
 }
 
-export const CardsTable: React.FC<CardsTablePropsType> = ({ deleteCard, editCard, myCardPacks, userId, packId, id }) => {
+export const CardsTable: React.FC<CardsTablePropsType> = ({ deleteCard, editCard, myCardPacks, userId }) => {
     const dispatch = useAppDispatch()
     const [value, setValue] = React.useState<number | null>(5)
 
@@ -27,10 +25,6 @@ export const CardsTable: React.FC<CardsTablePropsType> = ({ deleteCard, editCard
     const onclickHandler = () => {
         alert('filter')
     }
-
-    useEffect(() => {
-        dispatch(getCardsTC(myPacksSettings))
-    }, [])
 
     return (
         <div className={s.tableBlock}>
@@ -51,7 +45,8 @@ export const CardsTable: React.FC<CardsTablePropsType> = ({ deleteCard, editCard
                             <TableCell align="left" style={{ fontWeight: '600' }}>
                                 Grade
                             </TableCell>
-                            {id === userId && <TableCell align="right"></TableCell>}
+                            {/*{id === userId && <TableCell align="right"></TableCell>}*/}
+                            {myCardPacks[0]._id && <TableCell align="right"></TableCell>}
                         </TableRow>
                     </TableHead>
                     <TableBody>

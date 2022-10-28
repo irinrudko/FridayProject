@@ -16,6 +16,8 @@ type HeadBlockPropsType = {
     packId: string
     id: string
     packName: string
+    myCardPacks: CardType[]
+    addCard: () => void
 }
 
 const HeadBlock: React.FC<HeadBlockPropsType> = ({
@@ -25,30 +27,12 @@ const HeadBlock: React.FC<HeadBlockPropsType> = ({
     packId,
     userId,
     cardPacks,
-    id,
     packName,
+    myCardPacks,
+    addCard,
 }) => {
-    const dispatch = useAppDispatch()
     const [collapsed, setCollapsed] = useState<boolean>(true)
     const namePack = cardPacks.map((pack) => (pack._id === packId ? packName : ''))
-
-    const newCard = {
-        card: {
-            cardsPack_id: packId,
-            question: 'ready to be changed?',
-            answer: 'no, please',
-            grade: 0,
-            shots: 0,
-            answerImg: 'url or base 64',
-            questionImg: 'url or base 64',
-            questionVideo: 'url or base 64',
-            answerVideo: 'url or base 64',
-        },
-    }
-
-    const addCard = () => {
-        dispatch(addCardTC(newCard, { cardsPack_id: packId }))
-    }
 
     const onClickHandler = () => {
         setCollapsed(!collapsed)
@@ -60,7 +44,7 @@ const HeadBlock: React.FC<HeadBlockPropsType> = ({
         <div className={s.headBlock}>
             <h2 className={s.headName}>
                 {namePack}
-                {id === userId && (
+                {myCardPacks[0]?.user_id === userId && (
                     <div className={s.menuIcon}>
                         <MoreVertIcon fontSize={'small'} style={{ paddingBottom: '2px' }} onClick={onClickHandler} />
                         <div className={inputClass}>
@@ -69,14 +53,18 @@ const HeadBlock: React.FC<HeadBlockPropsType> = ({
                     </div>
                 )}
             </h2>
-            {id === userId ? (
-                <Button type={'submit'} variant={'contained'} color={'primary'} className={s.button} onClick={addCard}>
-                    Add new card
-                </Button>
-            ) : (
-                <Button type={'submit'} variant={'contained'} color={'primary'} className={s.button} onClick={addCard}>
-                    Learn to pack
-                </Button>
+            {myCardPacks[0]?.cardsPack_id && (
+                <>
+                    {myCardPacks[0]?.user_id === userId ? (
+                        <Button type={'submit'} variant={'contained'} color={'primary'} className={s.button} onClick={addCard}>
+                            Add new card
+                        </Button>
+                    ) : (
+                        <Button type={'submit'} variant={'contained'} color={'primary'} className={s.button} onClick={() => {}}>
+                            Learn to pack
+                        </Button>
+                    )}
+                </>
             )}
         </div>
     )
