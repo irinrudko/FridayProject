@@ -7,24 +7,23 @@ import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { Search } from '../../../common/components/Search/Search'
 import { addCardTC, getCardsTC, removeCardTC } from '../cards-reducer'
 import { removePackTC } from '../packs-reducer'
-import { PagePack } from '../PagePack/PagePack'
 import { useParams } from 'react-router-dom'
+import { WithoutCards } from '../WithoutCards/WithoutCards'
 
 export const CardsList = () => {
     const dispatch = useAppDispatch()
     const userId = useAppSelector((state) => state.auth.user._id)
     const packId = useAppSelector((state) => state.table.packId)
-    const id = useAppSelector((store) => store.table.userId)
     const cardPacks = useAppSelector((state) => state.packs.cardPacks)
     const myCardPacks = useAppSelector((state) => state.cards.cards)
     const packUserId = useAppSelector((state) => state.cards.packUserId)
     const cardsTotalCount = useAppSelector((state) => state.cards.cardsTotalCount)
     const packName = useAppSelector((store) => store.cards.packName)
-    const { urlPackId } = useParams()
+    const { urlPackId } = useParams<string>()
 
     const newCard = {
         card: {
-            cardsPack_id: urlPackId as string,
+            cardsPack_id: urlPackId!,
             question: 'ready to be changed?',
             answer: 'no, please',
             grade: 0,
@@ -37,7 +36,7 @@ export const CardsList = () => {
     }
 
     const addCard = () => {
-        dispatch(addCardTC(newCard, { cardsPack_id: urlPackId as string, pageCount: 8 }))
+        dispatch(addCardTC(newCard, { cardsPack_id: urlPackId!, pageCount: 8 }))
     }
 
     const searchCard = (searchValue: string) => {
@@ -79,13 +78,12 @@ export const CardsList = () => {
                 cardPacks={cardPacks}
                 packId={packId}
                 userId={userId}
-                id={id}
                 packName={packName}
                 myCardPacks={myCardPacks}
                 addCard={addCard}
             />
             {cardsTotalCount === 0 ? (
-                <PagePack addCard={addCard} packUserId={packUserId} userId={userId} />
+                <WithoutCards addCard={addCard} packUserId={packUserId} userId={userId} />
             ) : (
                 <>
                     <div className={s.descriptionBlock}>

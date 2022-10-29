@@ -6,19 +6,16 @@ import Registration from '../../features/auth/registration/Registration'
 import { NewPassword } from '../../features/auth/forgotPassword/NewPassword'
 import { PasswordRecovery } from '../../features/auth/forgotPassword/PasswordRecovery'
 import s from './Content.module.css'
-
 import { ForgotPassword } from '../../features/auth/forgotPassword/ForgotPassword'
 import { Login } from '../../features/auth/login/Login'
 import { PackList } from '../../features/cards/PackList/PackList'
 import { CardsList } from '../../features/cards/CardsList/CardsList'
-import { PagePack } from '../../features/cards/PagePack/PagePack'
 
 const Content = () => {
     return (
         <div className={s.contentBlock}>
             <Routes>
                 <Route path={'/'} element={<Profile />} />
-
                 <Route path={routes.packsList} element={<PackList />} />
                 {/*<Route path={routes.friendsPacksList} element={<FriendsPack />} />*/}
                 <Route path={routes.myPacksList} element={<CardsList />} />

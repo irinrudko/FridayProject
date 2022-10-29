@@ -1,16 +1,16 @@
 import React from 'react'
-import s from './PagePack.module.scss'
+import s from './WithoutCards.module.scss'
 import Button from '@mui/material/Button'
 import { NavLink } from 'react-router-dom'
 import { routes } from '../../../app/routes/Routes'
 
-type PagePack = {
+type WithoutCards = {
     addCard?: () => void
     packUserId: string
     userId: string
 }
 
-export const PagePack: React.FC<PagePack> = ({ addCard, packUserId, userId }) => {
+export const WithoutCards: React.FC<WithoutCards> = ({ addCard, packUserId, userId }) => {
     return (
         <div className={s.friendListContainer}>
             <div className={s.descriptionBlock}>

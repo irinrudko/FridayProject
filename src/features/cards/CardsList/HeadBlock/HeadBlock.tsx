@@ -14,7 +14,6 @@ type HeadBlockPropsType = {
     cardPacks: CardType[]
     userId: string
     packId: string
-    id: string
     packName: string
     myCardPacks: CardType[]
     addCard: () => void

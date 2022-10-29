@@ -24,9 +24,7 @@ export const CardsTable: React.FC<CardsTablePropsType> = ({
     userId,
     setFilterUpdateGrade,
 }) => {
-    const dispatch = useAppDispatch()
     const [filter, setFilter] = useState(true)
-    const [value, setValue] = React.useState<number | null>(5)
 
     const { urlPackId } = useParams()
     const myPacksSettings: GetCardParams = { cardsPack_id: urlPackId! } //gets id from url. helps to save data if reloading  page

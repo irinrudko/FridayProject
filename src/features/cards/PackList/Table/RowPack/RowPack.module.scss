@@ -18,36 +18,39 @@
     .schoolIcon {
         width: 20px;
         margin-right: 15px;
-        opacity: 50%;
+        opacity: 100%;
 
         &:hover {
-            opacity: 100%;
+            position: relative;
+            top: 1px;
         }
     }
 
     .blockSchoolIcon {
         width: 20px;
         margin-right: 15px;
-        opacity: 100%;
+        opacity: 50%;
         cursor: default;
     }
 
     .editIcon {
         width: 20px;
         margin-right: 15px;
-        opacity: 50%;
+        opacity: 100%;
 
         &:hover {
-            opacity: 100%;
+            position: relative;
+            top: 1px;
         }
     }
 
     .deleteIcon {
         width: 20px;
-        opacity: 50%;
+        opacity: 100%;
 
         &:hover {
-            opacity: 100%;
+            position: relative;
+            top: 1px;
         }
     }
 }

@@ -49,9 +49,6 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ user_id, userI
         user_id: '',
         pageCount: 8,
     }
-    // useEffect(() => {
-    //     dispatch(getPacksTC(cardPacksSettings))
-    // }, [])
 
     return (
         <div className={s.tableBlock}>
