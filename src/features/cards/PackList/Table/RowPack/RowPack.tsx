@@ -54,7 +54,9 @@ const RowPack: React.FC<RowPropsType> = ({ row, deletePack, editPack, learnPack 
                     <div className={s.actions}>
                         <div className={classEducation}>
                             {row.cardsCount > 0 ? (
-                                <SchoolIcon fontSize={'small'} onClick={() => learnPack(row._id)} />
+                                <NavLink to={`/packs/learn/${row._id}`}>
+                                    <SchoolIcon fontSize={'small'} />
+                                </NavLink>
                             ) : (
                                 <SchoolIcon fontSize={'small'} />
                             )}

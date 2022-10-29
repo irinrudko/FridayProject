@@ -69,7 +69,6 @@ const HeadBlock: React.FC<HeadBlockPropsType> = ({
                         </Button>
                     ) : (
                         <NavLink to={`/packs/learn/${urlPackId}`}>
-                            {/*<NavLink to={routes.learnPack}>*/}
                             <Button type={'submit'} variant={'contained'} color={'primary'} className={s.button}>
                                 Learn to pack
                             </Button>
