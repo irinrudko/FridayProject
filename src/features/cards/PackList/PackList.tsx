@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { SettingsBlock } from './SettingsBlock/SettingsBlock'
 import { PackListTable } from './Table/PackListTable'
 import { PaginationBlock } from '../../../common/components/PaginationBlock/PaginationBlock'
-import { addPackTC, getPacksTC } from '../packs-reducer'
+import { addPackTC, getPacksTC } from './packs-reducer'
 import { GetPackParams } from '../../../api/packsAPI'
 
 export const PackList = () => {

@@ -1,0 +1,40 @@
+@import '../../../common/styles/sass/mixins';
+
+.learnContainer {
+    width: 1000px;
+    position: relative;
+    @include flex(column, flex-start, center, wrap);
+
+    .headName {
+        @include text(22px, 27px, 600);
+        margin-top: 40px;
+    }
+
+    .paper {
+        width: 440px;
+        min-height: 200px;
+        @include flex(column, center, center, wrap);
+
+        .text {
+            width: 80%;
+            @include text(16px, 24px, 600);
+            margin-bottom: 10px;
+            //margin-top: 30px;
+        }
+        .attempts {
+            width: 80%;
+            @include text(14px, 24px, 400);
+            opacity: 50%;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            width: 175px;
+            height: 36px;
+            border-radius: 30px;
+            //background: #366eff;
+            text-transform: capitalize;
+            box-shadow: 0px 4px 18px rgba(54, 110, 255, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+        }
+    }
+}

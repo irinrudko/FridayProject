@@ -3,9 +3,12 @@ import s from './HeadBlock.module.scss'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { ActionsMenu } from '../ActionsMenu/ActionsMenu'
 import Button from '@mui/material/Button'
-import { addCardTC } from '../../cards-reducer'
+import { addCardTC } from '../cards-reducer'
 import { useAppDispatch, useAppSelector } from '../../../../app/store'
 import { CardType, GetCardsResponseType } from '../../../../api/cardsAPI'
+import { routes } from '../../../../app/routes/Routes'
+import { NavLink, useParams } from 'react-router-dom'
+import { setIdAC } from '../../PackList/table-reducer'
 
 type HeadBlockPropsType = {
     deletePack: (packId: string) => void
@@ -31,13 +34,19 @@ const HeadBlock: React.FC<HeadBlockPropsType> = ({
     addCard,
 }) => {
     const [collapsed, setCollapsed] = useState<boolean>(true)
+    const dispatch = useAppDispatch()
     const namePack = cardPacks.map((pack) => (pack._id === packId ? packName : ''))
+    const { urlPackId } = useParams<string>()
 
     const onClickHandler = () => {
         setCollapsed(!collapsed)
     }
 
     const inputClass = !collapsed ? s.active : s.nav
+
+    const setPackId = (id: string, userId: string) => {
+        dispatch(setIdAC(id, userId))
+    }
 
     return (
         <div className={s.headBlock}>
@@ -59,9 +68,12 @@ const HeadBlock: React.FC<HeadBlockPropsType> = ({
                             Add new card
                         </Button>
                     ) : (
-                        <Button type={'submit'} variant={'contained'} color={'primary'} className={s.button} onClick={() => {}}>
-                            Learn to pack
-                        </Button>
+                        <NavLink to={`/packs/learn/${urlPackId}`}>
+                            {/*<NavLink to={routes.learnPack}>*/}
+                            <Button type={'submit'} variant={'contained'} color={'primary'} className={s.button}>
+                                Learn to pack
+                            </Button>
+                        </NavLink>
                     )}
                 </>
             )}

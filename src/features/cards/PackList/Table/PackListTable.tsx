@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import s from './PackListTable.module.scss'
-import { removePackTC } from '../../packs-reducer'
+import { removePackTC } from '../packs-reducer'
 import { useAppDispatch } from '../../../../app/store'
 import { GetPackParams, PackType } from '../../../../api/packsAPI'
 import RowPack from './RowPack/RowPack'

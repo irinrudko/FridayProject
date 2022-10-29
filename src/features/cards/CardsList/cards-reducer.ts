@@ -1,5 +1,5 @@
-import { cardsAPI, CardType, CreateCardData, GetCardParams, GetCardsResponseType, UpdateCardData } from '../../api/cardsAPI'
-import { AppThunk } from '../../app/store'
+import { cardsAPI, CardType, CreateCardData, GetCardParams, GetCardsResponseType, UpdateCardData } from '../../../api/cardsAPI'
+import { AppThunk } from '../../../app/store'
 
 const initialState = {
     cards: <CardType[]>[

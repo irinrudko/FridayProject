@@ -1,10 +1,10 @@
-import { packsReducer, PacksActionsType } from './../features/cards/packs-reducer'
+import { packsReducer, PacksActionsType } from '../features/cards/PackList/packs-reducer'
 import { AnyAction, applyMiddleware, combineReducers, legacy_createStore } from 'redux'
 import { AppActionType, appReducer } from './app-reducer'
 import thunk, { ThunkAction, ThunkDispatch } from 'redux-thunk'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { authReducer, AuthActionsType } from '../features/auth/auth-reducer'
-import { CardsActionsType, cardsReducer } from '../features/cards/cards-reducer'
+import { CardsActionsType, cardsReducer } from '../features/cards/CardsList/cards-reducer'
 import { tableReducer } from '../features/cards/PackList/table-reducer'
 import { SettingActionsType, settingReducer } from '../features/cards/PackList/SettingsBlock/setting-reducer'
 
