@@ -3,6 +3,7 @@ import { IconButton, InputBase, Paper } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { useAppDispatch } from '../../../app/store'
 import { useDebouce } from '../../assets/Hook/useDebouce'
+import ClearIcon from '@mui/icons-material/Clear'
 
 type SearchPropsType = {
     searchPack: (searchPack: string) => void
@@ -17,10 +18,15 @@ export const Search: React.FC<SearchPropsType> = ({ searchPack, searchStyle }) =
     const onChangeSearchHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setSearchValue(e.currentTarget.value)
     }
+
+    const clearInputHandler = () => {
+        setSearchValue('')
+    }
+
     useEffect(() => {
-        if (searchValue === '') {
-            return
-        }
+        // if (searchValue === '') {    // убрал, так как мне нужно отслеживать пустую строку для изменения данных в таблице
+        //     return
+        // }
         searchPack(searchValue)
     }, [debouncedValue])
 
@@ -36,6 +42,7 @@ export const Search: React.FC<SearchPropsType> = ({ searchPack, searchStyle }) =
                 onChange={onChangeSearchHandler}
                 value={searchValue}
             />
+            <ClearIcon style={{ marginRight: '8px', cursor: 'pointer' }} onClick={clearInputHandler} />
         </Paper>
     )
 }

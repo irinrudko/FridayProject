@@ -18,10 +18,10 @@ const Header = () => {
     const onClickHandler = () => setCollapsed(!collapsed)
     const onMouseLeaveHandler = () => setCollapsed(true)
 
-    useEffect(()=>{
+    useEffect(() => {
         setTimeout(() => {
             setCollapsed(true)
-        },8000)
+        }, 8000)
     }, [collapsed])
 
     return (

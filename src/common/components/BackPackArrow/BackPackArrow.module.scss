@@ -1,6 +1,5 @@
 @import '../../../common/styles/sass/mixins';
 
-
 .toPacksList {
     @include flex(row, flex-start, center, wrap);
     position: absolute;
