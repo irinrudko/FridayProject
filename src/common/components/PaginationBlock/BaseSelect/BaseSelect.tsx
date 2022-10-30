@@ -4,16 +4,18 @@ import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import { useAppSelector } from '../../../../app/store'
 import { useEffect } from 'react'
-
-export function BasicSelect() {
+import { getPacksTC } from '../../../../features/cards/PackList/packs-reducer'
+type BasicSelectPropsType = {
+    setPageCount: (pageCount: number) => void
+}
+export const BasicSelect: React.FC<BasicSelectPropsType> = ({ setPageCount }) => {
     const pageCount = useAppSelector((state) => state.setting.pageCount)
-    useEffect(() => {
-        setCardsPerPage(pageCount.toString())
-    })
-    const [cardsPerPage, setCardsPerPage] = React.useState('5')
+
+    const [cardsPerPage, setCardsPerPage] = React.useState(pageCount.toString())
 
     const handleChange = (event: SelectChangeEvent) => {
         setCardsPerPage(event.target.value as string)
+        setPageCount(+event.target.value)
     }
 
     return (

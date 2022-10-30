@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import s from './LearnPage.module.scss'
 import Button from '@mui/material/Button'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
-import { ActionsMenu } from '../CardsList/ActionsMenu/ActionsMenu'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
-import { ArrowBack } from '@mui/icons-material'
 import { BackPackArrow } from '../../../common/components/BackPackArrow/BackPackArrow'
 import { Paper, Radio, RadioGroup } from '@mui/material'
-import authStyle from '../../auth/Auth.module.css'
-import AvatarImage from '../../../common/assets/image/avatar.jpg'
-import { EditableSpan } from '../../../common/components/EditableSpan/EditableSpan'
 import { useParams } from 'react-router-dom'
 import { getCardsTC } from '../CardsList/cards-reducer'
-import { setIdAC } from '../PackList/table-reducer'
 import FormControl from '@mui/material/FormControl'
-import FormLabel from '@mui/material/FormLabel'
 import FormControlLabel from '@mui/material/FormControlLabel'
 
 type LearnPagePropsType = {}
@@ -77,7 +69,7 @@ export const LearnPage: React.FC<LearnPagePropsType> = ({}) => {
                             defaultValue="female"
                             name="radio-buttons-group"
                         >
-                            <FormControlLabel value="Did not know" control={<Radio />} label="Did not know" />
+                            <FormControlLabel value="Did yfnot know" control={<Radio />} label="Did not know" />
                             <FormControlLabel value="Forgot" control={<Radio />} label="Forgot" />
                             <FormControlLabel value="A lot of thought" control={<Radio />} label="A lot of thought" />
                             <FormControlLabel value="Confused" control={<Radio />} label="Confused" />

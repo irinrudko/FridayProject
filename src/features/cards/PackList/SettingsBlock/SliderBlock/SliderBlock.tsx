@@ -5,6 +5,7 @@ import { useAppSelector } from '../../../../../app/store'
 import { ResetFilter } from './ResetFilter/ResetFilter'
 import { InitialStateSettingType } from '../setting-reducer'
 import { GetPackParams } from '../../../../../api/packsAPI'
+import { useDebouce } from '../../../../../common/assets/Hook/useDebouce'
 
 type SliderBlockPropsType = {
     resetPackListFilter: (data: GetPackParams) => void
@@ -23,10 +24,13 @@ export const SliderBlock: React.FC<SliderBlockPropsType> = ({ resetPackListFilte
     const handleChange = (event: Event, newValue: number | number[]) => {
         setValue(newValue as number[])
     }
-
-    const setSliderValueHandler = () => {
-        filterWithSlider({ min: value[0], max: value[1], pageCount, user_id })
-    }
+    const debounce = useDebouce<number[]>(value, 500)
+    useEffect(() => {
+        filterWithSlider({ min: value[0], max: value[1], user_id, page: 1 })
+    }, [debounce])
+    // const setSliderValueHandler = () => {
+    //     filterWithSlider({ min: value[0], max: value[1], user_id, page:1 })
+    // }
     return (
         <div className={s.slider}>
             <div className={s.firstSquare}>{value[0]}</div>
@@ -39,7 +43,7 @@ export const SliderBlock: React.FC<SliderBlockPropsType> = ({ resetPackListFilte
                     min={0}
                     max={110}
                     step={1}
-                    onMouseUp={setSliderValueHandler}
+                    // onMouseUp={setSliderValueHandler}
                 />
             </Box>
             <div className={s.secondSquare}>{value[1]}</div>

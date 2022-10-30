@@ -56,7 +56,6 @@ export const getPacksTC =
             .getPacks(params)
             .then((res) => {
                 dispatch(getPacksAC(res))
-                dispatch(setSetting(params))
             })
             .catch((err: any) => {
                 let error = err.response.data.error

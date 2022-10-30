@@ -18,9 +18,6 @@ export const Search: React.FC<SearchPropsType> = ({ searchPack, searchStyle }) =
         setSearchValue(e.currentTarget.value)
     }
     useEffect(() => {
-        if (searchValue === '') {
-            return
-        }
         searchPack(searchValue)
     }, [debouncedValue])
 
@@ -31,8 +28,8 @@ export const Search: React.FC<SearchPropsType> = ({ searchPack, searchStyle }) =
             </IconButton>
             <InputBase
                 sx={{ ml: 1, flex: 1 }}
+                type={'search'}
                 placeholder="Provide your text"
-                inputProps={{ 'aria-label': 'search google maps' }}
                 onChange={onChangeSearchHandler}
                 value={searchValue}
             />

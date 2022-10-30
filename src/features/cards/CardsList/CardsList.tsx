@@ -15,6 +15,7 @@ export const CardsList = () => {
     const userId = useAppSelector((state) => state.auth.user._id)
     const packId = useAppSelector((state) => state.table.packId)
     const cardPacks = useAppSelector((state) => state.packs.cardPacks)
+
     const myCardPacks = useAppSelector((state) => state.cards.cards)
     const packUserId = useAppSelector((state) => state.cards.packUserId)
     const cardsTotalCount = useAppSelector((state) => state.cards.cardsTotalCount)

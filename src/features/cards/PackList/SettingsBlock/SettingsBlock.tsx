@@ -7,7 +7,7 @@ import { GetPackParams } from '../../../../api/packsAPI'
 
 type SettingsPropsType = {
     searchPack: (searchPack: string) => void
-    setFilterPack: (user_id: string, pageCount: number) => void
+    setFilterPack: (user_id: string, page: number) => void
     resetPackListFilter: (data: GetPackParams) => void
     filterWithSlider: (value: GetPackParams) => void
 }
