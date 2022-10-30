@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { routes } from '../routes/Routes'
 import s from './Header.module.scss'
@@ -17,6 +17,12 @@ const Header = () => {
 
     const onClickHandler = () => setCollapsed(!collapsed)
     const onMouseLeaveHandler = () => setCollapsed(true)
+
+    useEffect(()=>{
+        setTimeout(() => {
+            setCollapsed(true)
+        },8000)
+    }, [collapsed])
 
     return (
         <div className={s.headerContainer}>
