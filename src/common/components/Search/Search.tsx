@@ -42,7 +42,7 @@ export const Search: React.FC<SearchPropsType> = ({ searchPack, searchStyle }) =
                 onChange={onChangeSearchHandler}
                 value={searchValue}
             />
-            <ClearIcon style={{ marginRight: '8px', cursor: 'pointer' }} onClick={clearInputHandler} />
+            {searchValue && <ClearIcon style={{ marginRight: '8px', cursor: 'pointer' }} onClick={clearInputHandler} />}
         </Paper>
     )
 }
