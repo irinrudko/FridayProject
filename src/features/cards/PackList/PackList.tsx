@@ -29,7 +29,7 @@ export const PackList = () => {
     const user_id = useAppSelector((state) => state.setting.user_id)
     const sortPacks = useAppSelector((state) => state.setting.sortPacks)
 
-    // const [myPack, setMyPack] = useState(false)
+
     const settingData = { user_id, pageCount, page: pagePack, packName, min, max, block, sortPacks }
     useEffect(() => dispatch(getPacksTC(settingData)), [user_id, pageCount, pagePack, packName, min, max, block, sortPacks])
     const newPack = {
