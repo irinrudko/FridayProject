@@ -46,6 +46,45 @@ export const cardsReducer = (state: CardsInitialStateType = initialState, action
         case 'CARDS/GET-CARDS':
             return <CardsInitialStateType>{ ...action.cards }
         // return {...action.cards}
+        case 'CARDS/RESET-CARDS':
+            const initialValue = {
+                cards: <CardType[]>[
+                    {
+                        _id: '',
+                        cardsPack_id: '',
+                        user_id: '',
+                        answer: '',
+                        question: '',
+                        grade: 0,
+                        shots: 0,
+                        questionImg: '',
+                        answerImg: '',
+                        answerVideo: '',
+                        questionVideo: '',
+                        comments: '',
+                        type: '',
+                        rating: 0,
+                        more_id: '',
+                        created: null,
+                        updated: '',
+                        __v: 0,
+                    },
+                ],
+                packUserId: '',
+                packName: '',
+                packPrivate: false,
+                packDeckCover: '',
+                packCreated: null,
+                packUpdated: null,
+                page: 1,
+                pageCount: 8,
+                cardsTotalCount: 0,
+                minGrade: 0,
+                maxGrade: 0,
+                token: '',
+                tokenDeathTime: 0,
+            }
+            return initialValue
         default:
             return state
     }
@@ -53,6 +92,7 @@ export const cardsReducer = (state: CardsInitialStateType = initialState, action
 
 //Action creators
 export const getCardsAC = (cards: GetCardsResponseType) => ({ type: 'CARDS/GET-CARDS', cards } as const)
+export const resetCardAC = () => ({ type: 'CARDS/RESET-CARDS' } as const)
 
 // Thunks
 export const getCardsTC =
@@ -111,4 +151,4 @@ export const addCardTC =
     }
 
 //Types
-export type CardsActionsType = ReturnType<typeof getCardsAC>
+export type CardsActionsType = ReturnType<typeof getCardsAC> | ReturnType<typeof resetCardAC>

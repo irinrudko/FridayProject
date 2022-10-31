@@ -39,6 +39,38 @@ export const packsReducer = (state: PacksInitialStateType = initialState, action
     switch (action.type) {
         case 'PACKS/GET-PACKS':
             return { ...action.packs }
+        case 'PACKS/RESET-PACKS': {
+            const initialValue = {
+                cardPacks: <PackType[]>[
+                    {
+                        _id: '',
+                        user_id: '',
+                        user_name: '',
+                        private: false,
+                        name: '',
+                        path: '',
+                        grade: 0,
+                        shots: 0,
+                        deckCover: '',
+                        cardsCount: 0,
+                        type: '',
+                        rating: 0,
+                        created: null,
+                        updated: '',
+                        more_id: '',
+                        __v: 0,
+                    },
+                ],
+                page: 1,
+                pageCount: 0,
+                cardPacksTotalCount: 0,
+                minCardsCount: 0,
+                maxCardsCount: 0,
+                token: '',
+                tokenDeathTime: 0,
+            }
+            return initialValue
+        }
         default:
             return state
     }
@@ -46,6 +78,7 @@ export const packsReducer = (state: PacksInitialStateType = initialState, action
 
 //Action creators
 export const getPacksAC = (packs: GetPacksResponseType) => ({ type: 'PACKS/GET-PACKS', packs } as const)
+export const resetPackAC = () => ({ type: 'PACKS/RESET-PACKS' } as const)
 
 // Thunks
 export const getPacksTC =
@@ -101,4 +134,4 @@ export const addPackTC =
     }
 
 //Types
-export type PacksActionsType = ReturnType<typeof getPacksAC>
+export type PacksActionsType = ReturnType<typeof getPacksAC> | ReturnType<typeof resetPackAC>

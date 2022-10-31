@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { SettingsBlock } from './SettingsBlock/SettingsBlock'
 import { PackListTable } from './Table/PackListTable'
 import { PaginationBlock } from '../../../common/components/PaginationBlock/PaginationBlock'
-import { addPackTC, getPacksTC } from './packs-reducer'
+import { addPackTC, getPacksAC, getPacksTC, resetPackAC } from './packs-reducer'
 import { GetPackParams } from '../../../api/packsAPI'
 import { setSetting } from './SettingsBlock/setting-reducer'
 
@@ -29,9 +29,13 @@ export const PackList = () => {
     const user_id = useAppSelector((state) => state.setting.user_id)
     const sortPacks = useAppSelector((state) => state.setting.sortPacks)
 
-
     const settingData = { user_id, pageCount, page: pagePack, packName, min, max, block, sortPacks }
-    useEffect(() => dispatch(getPacksTC(settingData)), [user_id, pageCount, pagePack, packName, min, max, block, sortPacks])
+    useEffect(() => {
+        dispatch(getPacksTC(settingData))
+        return () => {
+            dispatch(resetPackAC())
+        }
+    }, [user_id, pageCount, pagePack, packName, min, max, block, sortPacks])
     const newPack = {
         cardsPack: {
             name: 'test Pack',

@@ -5,12 +5,13 @@ import HeadBlock from './HeadBlock/HeadBlock'
 import { CardsTable } from './CardsTable/CardsTable'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { Search } from '../../../common/components/Search/Search'
-import { addCardTC, getCardsTC, removeCardTC } from './cards-reducer'
+import { addCardTC, getCardsTC, removeCardTC, resetCardAC } from './cards-reducer'
 import { removePackTC } from '../PackList/packs-reducer'
 import { useParams } from 'react-router-dom'
 import { WithoutCards } from '../WithoutCards/WithoutCards'
 import { setCardParams } from './cardParams-reducer'
 import { PaginationBlock } from '../../../common/components/PaginationBlock/PaginationBlock'
+import { setSetting } from '../PackList/SettingsBlock/setting-reducer'
 
 export const CardsList = () => {
     const dispatch = useAppDispatch()
@@ -50,6 +51,9 @@ export const CardsList = () => {
     useEffect(() => {
         // dispatch(getCardsTC({ cardsPack_id: urlPackId!, pageCount: 8 }))
         dispatch(getCardsTC({ ...cardParams, cardsPack_id: urlPackId! }))
+        return () => {
+            dispatch(resetCardAC())
+        }
     }, [cardsPack_id, cardQuestion, cardAnswer, sortCards, max, min, page, pageCount])
     const valueFromPagination = {
         totalCount: cardsTotalCount,
