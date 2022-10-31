@@ -57,18 +57,28 @@ const RowPack: React.FC<RowPropsType> = ({ row, deletePack, editPack, learnPack 
                         <div className={classEducation}>
                             {row.cardsCount > 0 ? (
                                 <NavLink to={`/packs/learn/${row._id}`}>
-                                    <SchoolIcon fontSize={'small'} />
+                                    <SchoolIcon fontSize={'small'} style={{ color: 'black' }} />
                                 </NavLink>
                             ) : (
-                                <SchoolIcon fontSize={'small'} />
+                                <SchoolIcon fontSize={'small'} style={{ color: 'black' }} />
                             )}
                         </div>
                         <div className={s.editIcon}>
-                            {row.user_id === userId && <BorderColorIcon fontSize={'small'} onClick={() => editPack(row._id)} />}
+                            {row.user_id === userId && (
+                                <BorderColorIcon
+                                    fontSize={'small'}
+                                    onClick={() => editPack(row._id)}
+                                    style={{ color: 'black' }}
+                                />
+                            )}
                         </div>
                         <div className={s.deleteIcon}>
                             {row.user_id === userId && (
-                                <DeleteForeverIcon fontSize={'small'} onClick={() => deletePack(row._id)} />
+                                <DeleteForeverIcon
+                                    fontSize={'small'}
+                                    onClick={() => deletePack(row._id)}
+                                    style={{ color: 'black' }}
+                                />
                             )}
                         </div>
                     </div>
