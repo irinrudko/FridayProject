@@ -32,6 +32,7 @@ export const Search: React.FC<SearchPropsType> = ({ searchPack, searchStyle }) =
                 placeholder="Provide your text"
                 onChange={onChangeSearchHandler}
                 value={searchValue}
+                style={{ paddingRight: '8px' }}
             />
         </Paper>
     )
