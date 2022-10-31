@@ -9,6 +9,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { PackType } from '../../../../../api/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../../../../app/store'
+import { setCardParams } from '../../../CardsList/cardParams-reducer'
 
 type RowPropsType = {
     row: PackType
@@ -23,6 +24,7 @@ const RowPack: React.FC<RowPropsType> = ({ row, deletePack, editPack, learnPack 
 
     const setPackId = (id: string, userId: string) => {
         dispatch(setIdAC(id, userId))
+        dispatch(setCardParams({ cardsPack_id: id }))
     }
 
     const formatDate = (date: string): string => {

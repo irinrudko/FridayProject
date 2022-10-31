@@ -18,12 +18,11 @@ export const PaginationBlock: React.FC<PaginationBlockPropsType> = ({ valueFromP
     useEffect(() => {
         setCount(valueFromPagination.totalCount)
         setPage(valueFromPagination.pagePack)
-        setPageCountValue(valueFromPagination.pageCount)
     }, [valueFromPagination.totalCount, valueFromPagination.pageCount, valueFromPagination.pagePack])
     const [count, setCount] = useState(0)
     const [page, setPage] = useState(valueFromPagination.pagePack)
-    const [pageCountValue, setPageCountValue] = useState(0)
 
+    const pageCountValue = Math.ceil(valueFromPagination.totalCount / valueFromPagination.pageCount)
     useEffect(() => {
         if (valueFromPagination.totalCount / valueFromPagination.pageCount < page) {
             setPaginationPage(1)
@@ -41,7 +40,7 @@ export const PaginationBlock: React.FC<PaginationBlockPropsType> = ({ valueFromP
                 <Pagination
                     shape="rounded"
                     color={'primary'}
-                    count={count}
+                    count={pageCountValue}
                     page={page}
                     onChange={(e, num) => {
                         setPage(num)

@@ -9,6 +9,8 @@ import { addCardTC, getCardsTC, removeCardTC } from './cards-reducer'
 import { removePackTC } from '../PackList/packs-reducer'
 import { useParams } from 'react-router-dom'
 import { WithoutCards } from '../WithoutCards/WithoutCards'
+import { setCardParams } from './cardParams-reducer'
+import { PaginationBlock } from '../../../common/components/PaginationBlock/PaginationBlock'
 
 export const CardsList = () => {
     const dispatch = useAppDispatch()
@@ -21,6 +23,15 @@ export const CardsList = () => {
     const cardsTotalCount = useAppSelector((state) => state.cards.cardsTotalCount)
     const packName = useAppSelector((store) => store.cards.packName)
     const { urlPackId } = useParams<string>()
+
+    const cardQuestion = useAppSelector((state) => state.cardParams.cardQuestion)
+    const cardAnswer = useAppSelector((state) => state.cardParams.cardAnswer)
+    const sortCards = useAppSelector((state) => state.cardParams.sortCards)
+    const max = useAppSelector((state) => state.cardParams.max)
+    const min = useAppSelector((state) => state.cardParams.min)
+    const page = useAppSelector((state) => state.cardParams.page)
+    const pageCount = useAppSelector((state) => state.cardParams.pageCount)
+    const cardsPack_id = useAppSelector((state) => state.cardParams.cardsPack_id)
 
     const newCard = {
         card: {
@@ -35,24 +46,39 @@ export const CardsList = () => {
             answerVideo: 'url or base 64',
         },
     }
-
+    const cardParams = { cardsPack_id, cardQuestion, cardAnswer, sortCards, max, min, page, pageCount }
+    useEffect(() => {
+        // dispatch(getCardsTC({ cardsPack_id: urlPackId!, pageCount: 8 }))
+        dispatch(getCardsTC({ ...cardParams, cardsPack_id: urlPackId! }))
+    }, [cardsPack_id, cardQuestion, cardAnswer, sortCards, max, min, page, pageCount])
+    const valueFromPagination = {
+        totalCount: cardsTotalCount,
+        pageCount: pageCount,
+        pagePack: page,
+    }
+    const setPaginationPage = (page: number) => {
+        dispatch(setCardParams({ cardsPack_id, page }))
+    }
+    const setPageCount = (pageCount: number) => {
+        dispatch(setCardParams({ pageCount, cardsPack_id }))
+    }
     const addCard = () => {
-        dispatch(addCardTC(newCard, { cardsPack_id: urlPackId!, pageCount: 8 }))
+        dispatch(addCardTC(newCard, { cardsPack_id: urlPackId! }))
     }
 
     const searchCard = (searchValue: string) => {
-        dispatch(getCardsTC({ cardQuestion: searchValue, cardsPack_id: packId }))
+        dispatch(setCardParams({ cardQuestion: searchValue, cardsPack_id: urlPackId! }))
     }
 
     const deleteCard = (id: string) => {
-        dispatch(removeCardTC(id, { cardsPack_id: packId, pageCount: 8 }))
+        dispatch(removeCardTC(id, { cardsPack_id: packId }))
     }
     const editCard = () => {
         alert('Edit Card')
     }
 
     const deletePack = (packId: string) => {
-        dispatch(removePackTC(packId, { user_id: userId, pageCount: 8 }))
+        dispatch(removePackTC(packId, { user_id: userId }))
     }
     const editPack = () => {
         alert('Edit Pack')
@@ -62,12 +88,8 @@ export const CardsList = () => {
     }
 
     const setFilterUpdateGrade = (sortCards: string) => {
-        dispatch(getCardsTC({ cardsPack_id: urlPackId!, sortCards, pageCount: 8 }))
+        dispatch(setCardParams({ cardsPack_id: urlPackId!, sortCards }))
     }
-
-    useEffect(() => {
-        dispatch(getCardsTC({ cardsPack_id: urlPackId!, pageCount: 8 }))
-    }, [])
 
     return (
         <div className={s.friendListContainer}>
@@ -110,7 +132,11 @@ export const CardsList = () => {
                     />
                 </>
             )}
-            {/*<PaginationBlock setPaginationPage={} valueFromPagination={}/>*/}
+            <PaginationBlock
+                valueFromPagination={valueFromPagination}
+                setPaginationPage={setPaginationPage}
+                setPageCount={setPageCount}
+            />
         </div>
     )
 }

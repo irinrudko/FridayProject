@@ -31,7 +31,7 @@ const initialState = {
     packCreated: null,
     packUpdated: null,
     page: 1,
-    pageCount: 4,
+    pageCount: 8,
     cardsTotalCount: 0,
     minGrade: 0,
     maxGrade: 0,
