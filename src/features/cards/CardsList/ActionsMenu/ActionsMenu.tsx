@@ -9,10 +9,9 @@ type ActionMenuPropsType = {
     deletePack: (packId: string) => void
     editPack: () => void
     learnPack: () => void
-    packId: string
 }
 
-export const ActionsMenu: React.FC<ActionMenuPropsType> = ({ deletePack, editPack, learnPack, packId }) => {
+export const ActionsMenu: React.FC<ActionMenuPropsType> = ({ deletePack, editPack }) => {
     const { urlPackId } = useParams<string>()
 
     return (
@@ -23,7 +22,7 @@ export const ActionsMenu: React.FC<ActionMenuPropsType> = ({ deletePack, editPac
                     <span className={s.text}>Edit</span>
                 </div>
                 {/*<NavLink to={routes.packsList}>*/}
-                <div className={s.linkBlock} onClick={() => deletePack(packId)}>
+                <div className={s.linkBlock} onClick={() => deletePack(urlPackId!)}>
                     <DeleteForeverIcon fontSize={'small'} style={{ marginRight: '15px', marginLeft: '12px' }} />
                     <span className={s.text}>Delete</span>
                 </div>

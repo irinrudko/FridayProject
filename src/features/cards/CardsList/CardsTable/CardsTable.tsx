@@ -15,6 +15,7 @@ type CardsTablePropsType = {
     myCardPacks: CardType[]
     userId: string
     setFilterUpdateGrade: (sortCards: string) => void
+    packUserId: string
 }
 
 export const CardsTable: React.FC<CardsTablePropsType> = ({
@@ -23,6 +24,7 @@ export const CardsTable: React.FC<CardsTablePropsType> = ({
     myCardPacks,
     userId,
     setFilterUpdateGrade,
+    packUserId,
 }) => {
     const [filter, setFilter] = useState(true)
 
@@ -66,21 +68,24 @@ export const CardsTable: React.FC<CardsTablePropsType> = ({
                                     <ArrowDropUpIcon onClick={setFilterStartHandler} className={s.lastUpdate} />
                                 )}
                             </TableCell>
-                            {/*{id === userId && <TableCell align="right"></TableCell>}*/}
-                            {myCardPacks[0]._id && <TableCell align="right"></TableCell>}
+                            {packUserId === userId && <TableCell align="right"></TableCell>}
                         </TableRow>
                     </TableHead>
-                    <TableBody>
-                        {myCardPacks.map((row: CardType) => (
-                            <CardRow
-                                key={row.cardsPack_id}
-                                row={row}
-                                deleteCard={deleteCard}
-                                editCard={editCard}
-                                userId={userId}
-                            />
-                        ))}
-                    </TableBody>
+                    {myCardPacks.length ? (
+                        <TableBody>
+                            {myCardPacks.map((row: CardType) => (
+                                <CardRow key={row._id} row={row} deleteCard={deleteCard} editCard={editCard} userId={userId} />
+                            ))}
+                        </TableBody>
+                    ) : (
+                        <TableBody>
+                            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                <TableCell component="th" scope="row">
+                                    No results matching your request
+                                </TableCell>
+                            </TableRow>
+                        </TableBody>
+                    )}
                 </Table>
             </TableContainer>
         </div>

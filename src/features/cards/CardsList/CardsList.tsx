@@ -16,7 +16,6 @@ import { setSetting } from '../PackList/SettingsBlock/setting-reducer'
 export const CardsList = () => {
     const dispatch = useAppDispatch()
     const userId = useAppSelector((state) => state.auth.user._id)
-    const packId = useAppSelector((state) => state.table.packId)
     const cardPacks = useAppSelector((state) => state.packs.cardPacks)
 
     const myCardPacks = useAppSelector((state) => state.cards.cards)
@@ -33,6 +32,8 @@ export const CardsList = () => {
     const page = useAppSelector((state) => state.cardParams.page)
     const pageCount = useAppSelector((state) => state.cardParams.pageCount)
     const cardsPack_id = useAppSelector((state) => state.cardParams.cardsPack_id)
+
+    const [searchValue, setSearchValue] = React.useState('')
 
     const newCard = {
         card: {
@@ -75,7 +76,7 @@ export const CardsList = () => {
     }
 
     const deleteCard = (id: string) => {
-        dispatch(removeCardTC(id, { cardsPack_id: packId }))
+        dispatch(removeCardTC(id, { cardsPack_id: urlPackId! }))
     }
     const editCard = () => {
         alert('Edit Card')
@@ -103,39 +104,41 @@ export const CardsList = () => {
                 editPack={editPack}
                 learnPack={learnPack}
                 cardPacks={cardPacks}
-                packId={packId}
                 userId={userId}
                 packName={packName}
                 myCardPacks={myCardPacks}
                 addCard={addCard}
             />
-            {cardsTotalCount === 0 ? (
-                <WithoutCards addCard={addCard} packUserId={packUserId} userId={userId} />
-            ) : (
-                <>
-                    <div className={s.descriptionBlock}>
-                        <span>Search</span>
-                    </div>
-                    <Search
-                        searchPack={searchCard}
-                        searchStyle={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            width: '100%',
-                            height: '36px',
-                            marginBottom: '25px',
-                            marginTop: '9px',
-                        }}
-                    />
-                    <CardsTable
-                        deleteCard={deleteCard}
-                        editCard={editCard}
-                        userId={userId}
-                        myCardPacks={myCardPacks}
-                        setFilterUpdateGrade={setFilterUpdateGrade}
-                    />
-                </>
-            )}
+            {/*{cardsTotalCount === 0 ? (*/}
+            {/*    <WithoutCards addCard={addCard} packUserId={packUserId} userId={userId} />*/}
+            {/*) : (*/}
+            {/*    <>*/}
+            <div className={s.descriptionBlock}>
+                <span>Search</span>
+            </div>
+            <Search
+                setSearchValue={setSearchValue}
+                searchValue={searchValue}
+                searchPack={searchCard}
+                searchStyle={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    width: '100%',
+                    height: '36px',
+                    marginBottom: '25px',
+                    marginTop: '9px',
+                }}
+            />
+            <CardsTable
+                deleteCard={deleteCard}
+                editCard={editCard}
+                userId={userId}
+                myCardPacks={myCardPacks}
+                setFilterUpdateGrade={setFilterUpdateGrade}
+                packUserId={packUserId}
+            />
+            {/*</>*/}
+            {/*)}*/}
             <PaginationBlock
                 valueFromPagination={valueFromPagination}
                 setPaginationPage={setPaginationPage}

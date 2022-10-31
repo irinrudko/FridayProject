@@ -78,11 +78,27 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ user_id, userI
                             </TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody>
-                        {cardPacks.map((row, index) => (
-                            <RowPack key={index} deletePack={deletePack} row={row} editPack={editPack} learnPack={learnPack} />
-                        ))}
-                    </TableBody>
+                    {cardPacks.length ? (
+                        <TableBody>
+                            {cardPacks.map((row, index) => (
+                                <RowPack
+                                    key={index}
+                                    deletePack={deletePack}
+                                    row={row}
+                                    editPack={editPack}
+                                    learnPack={learnPack}
+                                />
+                            ))}
+                        </TableBody>
+                    ) : (
+                        <TableBody>
+                            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                <TableCell component="th" scope="row">
+                                    No results matching your request
+                                </TableCell>
+                            </TableRow>
+                        </TableBody>
+                    )}
                 </Table>
             </TableContainer>
         </div>

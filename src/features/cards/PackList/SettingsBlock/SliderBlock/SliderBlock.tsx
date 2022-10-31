@@ -10,8 +10,9 @@ import { useDebouce } from '../../../../../common/assets/Hook/useDebouce'
 type SliderBlockPropsType = {
     resetPackListFilter: (data: GetPackParams) => void
     filterWithSlider: (value: GetPackParams) => void
+    setSearchValue: (searchValue: string) => void
 }
-export const SliderBlock: React.FC<SliderBlockPropsType> = ({ resetPackListFilter, filterWithSlider }) => {
+export const SliderBlock: React.FC<SliderBlockPropsType> = ({ resetPackListFilter, filterWithSlider, setSearchValue }) => {
     const minValue = useAppSelector((state) => state.setting.min)
     const maxValue = useAppSelector((state) => state.setting.max)
     const user_id = useAppSelector((state) => state.setting.user_id)
@@ -47,7 +48,7 @@ export const SliderBlock: React.FC<SliderBlockPropsType> = ({ resetPackListFilte
                 />
             </Box>
             <div className={s.secondSquare}>{value[1]}</div>
-            <ResetFilter resetPackListFilter={resetPackListFilter} />
+            <ResetFilter resetPackListFilter={resetPackListFilter} setSearchValue={setSearchValue} />
         </div>
     )
 }
