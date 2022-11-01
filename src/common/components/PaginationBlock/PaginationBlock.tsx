@@ -12,20 +12,27 @@ type PaginationBlockPropsType = {
         pagePack: number
     }
     setPaginationPage: (page: number) => void
+    setPageCount: (pageCount: number) => void
 }
-export const PaginationBlock: React.FC<PaginationBlockPropsType> = ({ valueFromPagination, setPaginationPage }) => {
+export const PaginationBlock: React.FC<PaginationBlockPropsType> = ({ valueFromPagination, setPaginationPage, setPageCount }) => {
     useEffect(() => {
         setCount(valueFromPagination.totalCount)
         setPage(valueFromPagination.pagePack)
-        setPageCountValue(valueFromPagination.pageCount)
     }, [valueFromPagination.totalCount, valueFromPagination.pageCount, valueFromPagination.pagePack])
     const [count, setCount] = useState(0)
     const [page, setPage] = useState(valueFromPagination.pagePack)
-    const [pageCountValue, setPageCountValue] = useState(0)
 
+    const pageCountValue = Math.ceil(valueFromPagination.totalCount / valueFromPagination.pageCount)
     useEffect(() => {
+        if (valueFromPagination.totalCount / valueFromPagination.pageCount < page) {
+            setPaginationPage(1)
+        }
         setPaginationPage(page)
     }, [page])
+
+    if (valueFromPagination.totalCount < valueFromPagination.pageCount) {
+        return <></>
+    }
 
     return (
         <div className={s.paginationBlock}>
@@ -33,7 +40,7 @@ export const PaginationBlock: React.FC<PaginationBlockPropsType> = ({ valueFromP
                 <Pagination
                     shape="rounded"
                     color={'primary'}
-                    count={count}
+                    count={pageCountValue}
                     page={page}
                     onChange={(e, num) => {
                         setPage(num)
@@ -41,7 +48,7 @@ export const PaginationBlock: React.FC<PaginationBlockPropsType> = ({ valueFromP
                 />
             </Stack>
             <div className={s.containerBaseSelect}>
-                Show <BasicSelect /> Cards per Page
+                Show <BasicSelect setPageCount={setPageCount} /> Cards per Page
             </div>
         </div>
     )

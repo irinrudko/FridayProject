@@ -13,4 +13,5 @@ export const routes = {
     myPacksList: '/packs/my-packs/:urlPackId',
     pagePack: '/packs/pack/',
     learnPack: '/packs/learn/:urlPackId',
+    withoutCards: '/no-cards/:urlPackId',
 }

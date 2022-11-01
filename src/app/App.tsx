@@ -28,7 +28,7 @@ function App() {
     return (
         <div className="App">
             <Header />
-            <div className="snackBar">
+            <div className="progressBar">
                 {status === 'loading' && <LinearProgress />}
                 {status === 'failed' && <LinearProgress color="error" variant="determinate" value={0} />}
                 {status === 'succeeded' && <LinearProgress color="success" variant="determinate" value={0} />}

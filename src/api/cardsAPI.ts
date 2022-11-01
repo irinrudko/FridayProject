@@ -14,9 +14,16 @@ export const cardsAPI = {
     updateCard(updateCardData: UpdateCardData) {
         return instance.put<AxiosResponse<UpdateCardResponseType>>('cards/card', updateCardData)
     },
+    grageCard(data: GradeDataType) {
+        return instance.put<AxiosResponse<UpdateCardResponseType>>('cards/grade', data)
+    },
 }
 
 // cardsAPI types
+export type GradeDataType = {
+    grade: number
+    card_id: string
+}
 
 export type CardType = {
     _id: string

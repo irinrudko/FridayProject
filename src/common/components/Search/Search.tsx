@@ -7,20 +7,19 @@ import { useDebouce } from '../../assets/Hook/useDebouce'
 type SearchPropsType = {
     searchPack: (searchPack: string) => void
     searchStyle: any
+    setSearchValue: (searchValue: string) => void
+    searchValue: string
 }
 
-export const Search: React.FC<SearchPropsType> = ({ searchPack, searchStyle }) => {
+export const Search: React.FC<SearchPropsType> = ({ searchPack, searchStyle, setSearchValue, searchValue }) => {
     const dispatch = useAppDispatch()
 
-    const [searchValue, setSearchValue] = React.useState('')
+    // const [searchValue, setSearchValue] = React.useState('')
     const debouncedValue = useDebouce<string>(searchValue, 500)
     const onChangeSearchHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setSearchValue(e.currentTarget.value)
     }
     useEffect(() => {
-        if (searchValue === '') {
-            return
-        }
         searchPack(searchValue)
     }, [debouncedValue])
 
@@ -31,10 +30,11 @@ export const Search: React.FC<SearchPropsType> = ({ searchPack, searchStyle }) =
             </IconButton>
             <InputBase
                 sx={{ ml: 1, flex: 1 }}
+                type={'search'}
                 placeholder="Provide your text"
-                inputProps={{ 'aria-label': 'search google maps' }}
                 onChange={onChangeSearchHandler}
                 value={searchValue}
+                style={{ paddingRight: '8px', cursor: 'pointer' }}
             />
         </Paper>
     )

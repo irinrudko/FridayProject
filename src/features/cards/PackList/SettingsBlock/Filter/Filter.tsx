@@ -1,25 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import s from '../SettingsBlock.module.scss'
 import Button from '@mui/material/Button'
-import { useAppDispatch, useAppSelector } from '../../../../../app/store'
+import { useAppSelector } from '../../../../../app/store'
 
 type FilterPropsType = {
-    setFilterPack: (user_id: string, pageCount: number) => void
+    setFilterPack: (user_id: string, page: number) => void
 }
 export const Filter: React.FC<FilterPropsType> = ({ setFilterPack }) => {
-    // const dispatch = useAppDispatch()
     const myId = useAppSelector((state) => state.auth.user._id)
-    // const user_id = useAppSelector((state) => state.setting.user_id)
+    const userIdSetting = useAppSelector((state) => state.setting.user_id)
 
     const [disableButton, setDisableButton] = React.useState<boolean[]>([false, true])
 
+    // userIdSetting?setDisableButton([true, false]):setDisableButton([false, true])
+
     const showMyPackHandler = () => {
-        setFilterPack(myId, 8)
+        setFilterPack(myId, 1)
         setDisableButton([true, false])
     }
 
     const showAllPackHandler = () => {
-        setFilterPack('', 8)
+        setFilterPack('', 1)
         setDisableButton([false, true])
     }
     return (

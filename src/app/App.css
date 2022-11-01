@@ -3,6 +3,14 @@
     background-color: #f9f9fa;
 }
 
+.App .progressBar {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
 .App-logo {
     height: 40vmin;
     pointer-events: none;
