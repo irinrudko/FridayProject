@@ -23,7 +23,7 @@ export const CardsList = () => {
     const cardsTotalCount = useAppSelector((state) => state.cards.cardsTotalCount)
     const packName = useAppSelector((store) => store.cards.packName)
     const { urlPackId } = useParams<string>()
-
+    // {/*    <WithoutCards addCard={addCard} packUserId={packUserId} userId={userId} />*/}
     const cardQuestion = useAppSelector((state) => state.cardParams.cardQuestion)
     const cardAnswer = useAppSelector((state) => state.cardParams.cardAnswer)
     const sortCards = useAppSelector((state) => state.cardParams.sortCards)
@@ -49,6 +49,7 @@ export const CardsList = () => {
         },
     }
     const cardParams = { cardsPack_id, cardQuestion, cardAnswer, sortCards, max, min, page, pageCount }
+
     useEffect(() => {
         // dispatch(getCardsTC({ cardsPack_id: urlPackId!, pageCount: 8 }))
         dispatch(getCardsTC({ ...cardParams, cardsPack_id: urlPackId! }))
@@ -56,6 +57,7 @@ export const CardsList = () => {
             dispatch(resetCardAC())
         }
     }, [cardsPack_id, cardQuestion, cardAnswer, sortCards, max, min, page, pageCount])
+
     const valueFromPagination = {
         totalCount: cardsTotalCount,
         pageCount: pageCount,

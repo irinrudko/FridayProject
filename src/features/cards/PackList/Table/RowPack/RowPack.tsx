@@ -23,7 +23,7 @@ const RowPack: React.FC<RowPropsType> = ({ row, deletePack, editPack, learnPack 
     const userId = useAppSelector((store) => store.auth.user._id)
 
     const setPackId = (id: string, userId: string) => {
-        dispatch(setIdAC(id, userId))
+        // dispatch(setIdAC(id, userId))
         dispatch(setCardParams({ cardsPack_id: id }))
     }
 
@@ -41,13 +41,23 @@ const RowPack: React.FC<RowPropsType> = ({ row, deletePack, editPack, learnPack 
         <>
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell component="th" scope="row">
-                    <NavLink
-                        to={`${'/packs/my-packs/'}${row._id}`}
-                        className={s.navLink}
-                        onClick={() => setPackId(row._id, row.user_id)}
-                    >
-                        {row.name}
-                    </NavLink>
+                    {row.cardsCount === 0 ? (
+                        <NavLink
+                            to={`/no-cards/${row._id}`}
+                            className={s.navLink}
+                            onClick={() => setPackId(row._id, row.user_id)}
+                        >
+                            {row.name}
+                        </NavLink>
+                    ) : (
+                        <NavLink
+                            to={`/packs/my-packs/${row._id}`}
+                            className={s.navLink}
+                            onClick={() => setPackId(row._id, row.user_id)}
+                        >
+                            {row.name}
+                        </NavLink>
+                    )}
                 </TableCell>
                 <TableCell align="left">{row.cardsCount}</TableCell>
                 <TableCell align="left">{formatDate(row.updated)}</TableCell>

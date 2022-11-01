@@ -11,6 +11,7 @@ import { Login } from '../../features/auth/login/Login'
 import { PackList } from '../../features/cards/PackList/PackList'
 import { CardsList } from '../../features/cards/CardsList/CardsList'
 import { LearnPage } from '../../features/cards/LearnPage/LearnPage'
+import { WithoutCards } from '../../features/cards/WithoutCards/WithoutCards'
 
 const Content = () => {
     return (
@@ -29,6 +30,7 @@ const Content = () => {
                 <Route path={routes.newPassword} element={<NewPassword />} />
                 <Route path={`${routes.newPassword}/:token`} element={<NewPassword />} />
                 <Route path={routes.passwordRecovery} element={<PasswordRecovery />} />
+                <Route path={routes.withoutCards} element={<WithoutCards />} />
                 {/*<Route path={routes.error404} element={<Error404 />} />*/}
                 {/*<Route path={'/*'} element={<Navigate to={routes.error404} />} />*/}
             </Routes>
