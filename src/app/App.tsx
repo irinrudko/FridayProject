@@ -15,7 +15,7 @@ function App() {
 
     useEffect(() => {
         dispatch(initializedTC())
-    }, [])
+    }, [dispatch])
 
     if (!initialized) {
         return (
@@ -28,9 +28,11 @@ function App() {
     return (
         <div className="App">
             <Header />
-            {status === 'loading' && <LinearProgress />}
-            {status === 'failed' && <LinearProgress color="error" variant="determinate" value={0} />}
-            {status === 'succeeded' && <LinearProgress color="success" variant="determinate" value={0} />}
+            <div className="progressBar">
+                {status === 'loading' && <LinearProgress />}
+                {status === 'failed' && <LinearProgress color="error" variant="determinate" value={0} />}
+                {status === 'succeeded' && <LinearProgress color="success" variant="determinate" value={0} />}
+            </div>
             <Content />
             <ErrorSnackbar />
         </div>

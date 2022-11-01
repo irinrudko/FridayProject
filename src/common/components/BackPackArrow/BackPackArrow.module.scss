@@ -1,4 +1,7 @@
+@import '../../../common/styles/sass/mixins';
+
 .toPacksList {
+    @include flex(row, flex-start, center, wrap);
     position: absolute;
     left: 20px;
     top: -10px;
@@ -10,7 +13,7 @@
         bottom: 3px;
         width: 14px;
         height: 12px;
-        background-image: url('../../../common/assets/image/backProfile.svg');
-        background-repeat: no-repeat;
+        //background-image: url('../../../common/assets/image/backProfile.svg');
+        //background-repeat: no-repeat;
     }
 }

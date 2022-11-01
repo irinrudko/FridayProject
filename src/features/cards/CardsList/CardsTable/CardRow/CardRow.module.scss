@@ -1,22 +1,24 @@
 @import '../../../../../common/styles/sass/mixins';
 
 .actions {
-    @include flex(row, end, center, wrap);
+    @include flex(row, flex-end, center, wrap);
     cursor: pointer;
 
     .editIcon {
-        opacity: 50%;
+        opacity: 100%;
 
         &:hover {
-            opacity: 100%;
+            position: relative;
+            top: 1px;
         }
     }
 
     .deleteIcon {
-        opacity: 50%;
+        opacity: 100%;
 
         &:hover {
-            opacity: 100%;
+            position: relative;
+            top: 1px;
         }
     }
 }

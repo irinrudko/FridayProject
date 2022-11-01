@@ -4,7 +4,7 @@
     width: 1000px;
     position: relative;
     .descriptionBlock {
-        @include flex(row, start, center, wrap);
+        @include flex(row, flex-start, center, wrap);
         @include text(14px, 17px, 500);
 
         .second {

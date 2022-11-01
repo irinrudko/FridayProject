@@ -1,23 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import s from './PackListTable.module.scss'
-import { getPacksTC, removePackTC } from '../../packs-reducer'
-import { useAppDispatch, useAppSelector } from '../../../../app/store'
-import { GetPackParams } from '../../../../api/packsAPI'
+import { removePackTC } from '../packs-reducer'
+import { useAppDispatch } from '../../../../app/store'
+import { GetPackParams, PackType } from '../../../../api/packsAPI'
 import RowPack from './RowPack/RowPack'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 
 type PackListTablePropsType = {
-    myPack: boolean
+    user_id: string
+    userId: string
+    cardPacks: PackType[]
+    setFilterUpdatePack: (user_id: string, sortPacks: string) => void
 }
 
-export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
+export const PackListTable: React.FC<PackListTablePropsType> = ({ user_id, userId, cardPacks, setFilterUpdatePack }) => {
     const dispatch = useAppDispatch()
-    const cardPacks = useAppSelector((store) => store.packs.cardPacks)
-    const userId = useAppSelector((store) => store.auth.user._id)
+    const [filter, setFilter] = useState(true)
 
     const deletePack = (id: string) => {
-        myPack ? dispatch(removePackTC(id, myCardPacksSettings)) : dispatch(removePackTC(id, cardPacksSettings))
+        user_id === userId ? dispatch(removePackTC(id, myCardPacksSettings)) : dispatch(removePackTC(id, cardPacksSettings))
     }
 
     const editPack = (id: string) => {
@@ -28,8 +31,14 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
         alert('learnPack:  ' + id)
     }
 
-    const onclickHandler = () => {
-        alert('filter')
+    const setFilterEndHandler = () => {
+        setFilterUpdatePack('', '1updated')
+        setFilter(!filter)
+    }
+
+    const setFilterStartHandler = () => {
+        setFilterUpdatePack('', '0updated')
+        setFilter(!filter)
     }
 
     const myCardPacksSettings: GetPackParams = {
@@ -40,9 +49,6 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
         user_id: '',
         pageCount: 8,
     }
-    // useEffect(() => {
-    //     dispatch(getPacksTC(cardPacksSettings))
-    // }, [])
 
     return (
         <div className={s.tableBlock}>
@@ -58,7 +64,11 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
                             </TableCell>
                             <TableCell align="left" style={{ fontWeight: '600' }} width={180}>
                                 Last Updated
-                                <ArrowDropDownIcon onClick={onclickHandler} className={s.lastUpdate} />
+                                {filter ? (
+                                    <ArrowDropDownIcon onClick={setFilterEndHandler} className={s.lastUpdate} />
+                                ) : (
+                                    <ArrowDropUpIcon onClick={setFilterStartHandler} className={s.lastUpdate} />
+                                )}
                             </TableCell>
                             <TableCell align="left" style={{ fontWeight: '600' }} width={180}>
                                 Created by
@@ -68,11 +78,27 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ myPack }) => {
                             </TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody>
-                        {cardPacks.map((row, index) => (
-                            <RowPack key={index} deletePack={deletePack} row={row} editPack={editPack} learnPack={learnPack} />
-                        ))}
-                    </TableBody>
+                    {cardPacks.length ? (
+                        <TableBody>
+                            {cardPacks.map((row, index) => (
+                                <RowPack
+                                    key={index}
+                                    deletePack={deletePack}
+                                    row={row}
+                                    editPack={editPack}
+                                    learnPack={learnPack}
+                                />
+                            ))}
+                        </TableBody>
+                    ) : (
+                        <TableBody>
+                            <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                <TableCell component="th" scope="row">
+                                    No results matching your request
+                                </TableCell>
+                            </TableRow>
+                        </TableBody>
+                    )}
                 </Table>
             </TableContainer>
         </div>

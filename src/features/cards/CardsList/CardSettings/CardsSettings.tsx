@@ -4,7 +4,7 @@ import { IconButton, InputBase, Paper } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { useAppDispatch, useAppSelector } from '../../../../app/store'
 import { useDebouce } from '../../../../common/assets/Hook/useDebouce'
-import { getCardsTC } from '../../cards-reducer'
+import { getCardsTC } from '../cards-reducer'
 
 type CardsSettingsPropsType = {
     packId: string

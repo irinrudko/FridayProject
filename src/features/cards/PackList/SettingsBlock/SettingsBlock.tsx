@@ -7,7 +7,7 @@ import { GetPackParams } from '../../../../api/packsAPI'
 
 type SettingsPropsType = {
     searchPack: (searchPack: string) => void
-    setFilterPack: (user_id: string, pageCount: number) => void
+    setFilterPack: (user_id: string, page: number) => void
     resetPackListFilter: (data: GetPackParams) => void
     filterWithSlider: (value: GetPackParams) => void
 }
@@ -19,6 +19,9 @@ export const SettingsBlock: React.FC<SettingsPropsType> = ({
     filterWithSlider,
 }) => {
     const searchStyle = { display: 'flex', alignItems: 'center', width: '410px', height: '36px', marginRight: '22px' }
+
+    const [searchValue, setSearchValue] = React.useState('')
+
     return (
         <div className={s.settingsBlock}>
             <div className={s.descriptionBlock}>
@@ -26,9 +29,13 @@ export const SettingsBlock: React.FC<SettingsPropsType> = ({
                 <span className={s.second}>Show packs cards</span>
                 <span className={s.third}>Number of cards</span>
             </div>
-            <Search searchStyle={searchStyle} searchPack={searchPack} />
+            <Search searchStyle={searchStyle} searchPack={searchPack} setSearchValue={setSearchValue} searchValue={searchValue} />
             <Filter setFilterPack={setFilterPack} />
-            <SliderBlock filterWithSlider={filterWithSlider} resetPackListFilter={resetPackListFilter} />
+            <SliderBlock
+                filterWithSlider={filterWithSlider}
+                resetPackListFilter={resetPackListFilter}
+                setSearchValue={setSearchValue}
+            />
         </div>
     )
 }

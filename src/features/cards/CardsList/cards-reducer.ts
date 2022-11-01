@@ -1,5 +1,14 @@
-import { cardsAPI, CardType, CreateCardData, GetCardParams, GetCardsResponseType, UpdateCardData } from '../../api/cardsAPI'
-import { AppThunk } from '../../app/store'
+import {
+    cardsAPI,
+    CardType,
+    CreateCardData,
+    GetCardParams,
+    GetCardsResponseType,
+    GradeDataType,
+    UpdateCardData,
+} from '../../../api/cardsAPI'
+import { AppRootStateType, AppThunk } from '../../../app/store'
+import { setAppStatusAC } from '../../../app/app-reducer'
 
 const initialState = {
     cards: <CardType[]>[
@@ -31,7 +40,7 @@ const initialState = {
     packCreated: null,
     packUpdated: null,
     page: 1,
-    pageCount: 4,
+    pageCount: 8,
     cardsTotalCount: 0,
     minGrade: 0,
     maxGrade: 0,
@@ -46,6 +55,45 @@ export const cardsReducer = (state: CardsInitialStateType = initialState, action
         case 'CARDS/GET-CARDS':
             return <CardsInitialStateType>{ ...action.cards }
         // return {...action.cards}
+        case 'CARDS/RESET-CARDS':
+            const initialValue = {
+                cards: <CardType[]>[
+                    {
+                        _id: '',
+                        cardsPack_id: '',
+                        user_id: '',
+                        answer: '',
+                        question: '',
+                        grade: 0,
+                        shots: 0,
+                        questionImg: '',
+                        answerImg: '',
+                        answerVideo: '',
+                        questionVideo: '',
+                        comments: '',
+                        type: '',
+                        rating: 0,
+                        more_id: '',
+                        created: null,
+                        updated: '',
+                        __v: 0,
+                    },
+                ],
+                packUserId: '',
+                packName: '',
+                packPrivate: false,
+                packDeckCover: '',
+                packCreated: null,
+                packUpdated: null,
+                page: 1,
+                pageCount: 8,
+                cardsTotalCount: 0,
+                minGrade: 0,
+                maxGrade: 0,
+                token: '',
+                tokenDeathTime: 0,
+            }
+            return initialValue
         default:
             return state
     }
@@ -53,11 +101,13 @@ export const cardsReducer = (state: CardsInitialStateType = initialState, action
 
 //Action creators
 export const getCardsAC = (cards: GetCardsResponseType) => ({ type: 'CARDS/GET-CARDS', cards } as const)
+export const resetCardAC = () => ({ type: 'CARDS/RESET-CARDS' } as const)
 
 // Thunks
 export const getCardsTC =
     (params: GetCardParams): AppThunk =>
     (dispatch) => {
+        dispatch(setAppStatusAC('loading'))
         cardsAPI
             .getCards(params)
             .then((res) => {
@@ -67,6 +117,7 @@ export const getCardsTC =
                 let error = err.response.data.error
                 console.log('catch, error:', error)
             })
+            .finally(() => dispatch(setAppStatusAC('idle')))
     }
 
 export const updateCardTC =
@@ -109,6 +160,22 @@ export const addCardTC =
                 console.log('catch, error:', error)
             })
     }
+export const gradeCardTC =
+    (data: GradeDataType): AppThunk =>
+    (dispatch, getState: () => AppRootStateType) => {
+        const params = getState().cardParams
+        dispatch(setAppStatusAC('loading'))
+        cardsAPI
+            .grageCard(data)
+            .then(() => {
+                dispatch(getCardsTC(params))
+            })
+            .catch((err: any) => {
+                let error = err.response.data.error
+                console.log('catch, error:', error)
+            })
+            .finally(() => dispatch(setAppStatusAC('idle')))
+    }
 
 //Types
-export type CardsActionsType = ReturnType<typeof getCardsAC>
+export type CardsActionsType = ReturnType<typeof getCardsAC> | ReturnType<typeof resetCardAC>

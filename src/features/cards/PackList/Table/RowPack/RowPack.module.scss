@@ -2,6 +2,8 @@
 
 .navLink {
     cursor: pointer;
+    color: black;
+    text-decoration: none;
 
     &:hover {
         color: #1975d1;
@@ -10,35 +12,51 @@
 }
 
 .actions {
-    @include flex(row, start, center, wrap);
+    @include flex(row, flex-start, center, wrap);
     cursor: pointer;
+    color: black;
 
     .schoolIcon {
         width: 20px;
         margin-right: 15px;
-        opacity: 50%;
+        opacity: 100%;
+        color: black;
+        text-decoration: none;
 
         &:hover {
-            opacity: 100%;
+            position: relative;
+            top: 1px;
+            color: black;
         }
+    }
+
+    .blockSchoolIcon {
+        width: 20px;
+        margin-right: 15px;
+        opacity: 50%;
+        cursor: default;
     }
 
     .editIcon {
         width: 20px;
         margin-right: 15px;
-        opacity: 50%;
+        opacity: 100%;
+        color: black;
 
         &:hover {
-            opacity: 100%;
+            position: relative;
+            top: 1px;
         }
     }
 
     .deleteIcon {
         width: 20px;
-        opacity: 50%;
+        opacity: 100%;
+        color: black;
 
         &:hover {
-            opacity: 100%;
+            position: relative;
+            top: 1px;
         }
     }
 }
