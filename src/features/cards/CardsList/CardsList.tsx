@@ -54,7 +54,7 @@ export const CardsList = () => {
         // dispatch(getCardsTC({ cardsPack_id: urlPackId!, pageCount: 8 }))
         dispatch(getCardsTC({ ...cardParams, cardsPack_id: urlPackId! }))
         return () => {
-            dispatch(resetCardAC())
+            // dispatch(resetCardAC())
         }
     }, [cardsPack_id, cardQuestion, cardAnswer, sortCards, max, min, page, pageCount])
 

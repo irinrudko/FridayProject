@@ -1,5 +1,14 @@
-import { cardsAPI, CardType, CreateCardData, GetCardParams, GetCardsResponseType, UpdateCardData } from '../../../api/cardsAPI'
-import { AppThunk } from '../../../app/store'
+import {
+    cardsAPI,
+    CardType,
+    CreateCardData,
+    GetCardParams,
+    GetCardsResponseType,
+    GradeDataType,
+    UpdateCardData,
+} from '../../../api/cardsAPI'
+import { AppRootStateType, AppThunk } from '../../../app/store'
+import { setAppStatusAC } from '../../../app/app-reducer'
 
 const initialState = {
     cards: <CardType[]>[
@@ -98,6 +107,7 @@ export const resetCardAC = () => ({ type: 'CARDS/RESET-CARDS' } as const)
 export const getCardsTC =
     (params: GetCardParams): AppThunk =>
     (dispatch) => {
+        dispatch(setAppStatusAC('loading'))
         cardsAPI
             .getCards(params)
             .then((res) => {
@@ -107,6 +117,7 @@ export const getCardsTC =
                 let error = err.response.data.error
                 console.log('catch, error:', error)
             })
+            .finally(() => dispatch(setAppStatusAC('idle')))
     }
 
 export const updateCardTC =
@@ -148,6 +159,22 @@ export const addCardTC =
                 let error = err.response.data.error
                 console.log('catch, error:', error)
             })
+    }
+export const gradeCardTC =
+    (data: GradeDataType): AppThunk =>
+    (dispatch, getState: () => AppRootStateType) => {
+        const params = getState().cardParams
+        dispatch(setAppStatusAC('loading'))
+        cardsAPI
+            .grageCard(data)
+            .then(() => {
+                dispatch(getCardsTC(params))
+            })
+            .catch((err: any) => {
+                let error = err.response.data.error
+                console.log('catch, error:', error)
+            })
+            .finally(() => dispatch(setAppStatusAC('idle')))
     }
 
 //Types
