@@ -10,6 +10,7 @@ import { PaginationBlock } from '../../../common/components/PaginationBlock/Pagi
 import { addPackTC, getPacksAC, getPacksTC, resetPackAC } from './packs-reducer'
 import { GetPackParams } from '../../../api/packsAPI'
 import { setSetting } from './SettingsBlock/setting-reducer'
+import { AddPackModal } from '../../../common/components/Modals/AddPackModal'
 
 export const PackList = () => {
     const dispatch = useAppDispatch()
@@ -82,9 +83,7 @@ export const PackList = () => {
         <div className={s.packListContainer}>
             <div className={s.headBlock}>
                 <h2 className={s.headName}>Pack list</h2>
-                <Button type={'button'} variant={'contained'} color={'primary'} className={s.button} onClick={addNewPack}>
-                    Add new pack
-                </Button>
+                <AddPackModal title={'Add new pack'} />
             </div>
             <SettingsBlock
                 searchPack={searchPack}
