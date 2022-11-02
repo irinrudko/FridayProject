@@ -15,23 +15,23 @@ type HeadBlockPropsType = {
     deletePack: (packId: string) => void
     editPack: () => void
     learnPack: () => void
-    cardPacks: CardType[]
     userId: string
     packName: string
     myCardPacks: CardType[]
     addCard: () => void
+    packUserId: string
 }
 
 const HeadBlock: React.FC<HeadBlockPropsType> = React.memo(
-    ({ deletePack, editPack, learnPack, userId, cardPacks, packName, myCardPacks, addCard }) => {
+    ({ deletePack, editPack, learnPack, userId, packUserId, packName, myCardPacks, addCard }) => {
         const { urlPackId } = useParams<string>()
         const [collapsed, setCollapsed] = useState<boolean>(true)
         const dispatch = useAppDispatch()
 
         const onClickHandler = () => {
             setCollapsed(!collapsed)
-            console.log(urlPackId)
-            console.log(cardPacks[0].user_id)
+            console.log(myCardPacks[0].user_id)
+            console.log(userId)
         }
 
         const inputClass = !collapsed ? s.active : s.nav
@@ -48,7 +48,7 @@ const HeadBlock: React.FC<HeadBlockPropsType> = React.memo(
             <div className={s.headBlock}>
                 <h2 className={s.headName}>
                     {name}
-                    {myCardPacks[0]?.user_id === userId && (
+                    {packUserId === userId && (
                         <div className={s.menuIcon}>
                             <MoreVertIcon fontSize={'small'} style={{ paddingBottom: '2px' }} onClick={onClickHandler} />
                             <div className={inputClass}>
@@ -57,9 +57,9 @@ const HeadBlock: React.FC<HeadBlockPropsType> = React.memo(
                         </div>
                     )}
                 </h2>
-                {myCardPacks[0]?.cardsPack_id && (
+                {packUserId && (
                     <>
-                        {myCardPacks[0]?.user_id === userId ? (
+                        {packUserId === userId ? (
                             <Button
                                 type={'submit'}
                                 variant={'contained'}
