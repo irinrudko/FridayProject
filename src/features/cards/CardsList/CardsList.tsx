@@ -105,11 +105,11 @@ export const CardsList = () => {
                 deletePack={deletePack}
                 editPack={editPack}
                 learnPack={learnPack}
-                cardPacks={cardPacks}
                 userId={userId}
                 packName={packName}
                 myCardPacks={myCardPacks}
                 addCard={addCard}
+                packUserId={packUserId}
             />
             {/*{cardsTotalCount === 0 ? (*/}
             {/*    <WithoutCards addCard={addCard} packUserId={packUserId} userId={userId} />*/}
