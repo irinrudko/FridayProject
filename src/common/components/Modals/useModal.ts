@@ -1,14 +1,26 @@
 import { useState } from 'react'
 
 export const useModal = () => {
-    const [isShowing, setIsShowing] = useState(false)
+    const [addPackModal, setAddPackModal] = useState(false)
+    const [editPackModal, setEditPackModal] = useState(false)
+    const [removePackModal, setRemovePackModal] = useState(false)
 
-    function toggle() {
-        setIsShowing(!isShowing)
+    function toggleAddPackModal() {
+        setAddPackModal(!addPackModal)
+    }
+    function toggleEditPackModal() {
+        setEditPackModal(!editPackModal)
+    }
+    function toggleRemovePackModal() {
+        setRemovePackModal(!removePackModal)
     }
 
     return {
-        isShowing,
-        toggle,
+        addPackModal,
+        editPackModal,
+        removePackModal,
+        toggleAddPackModal,
+        toggleEditPackModal,
+        toggleRemovePackModal,
     }
 }
