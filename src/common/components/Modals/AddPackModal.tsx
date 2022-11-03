@@ -33,6 +33,7 @@ export const AddPackModal = (props: AddNewPackType) => {
             },
         }
         dispatch(addPackTC(newPack))
+        setName('')
     }
 
     return (
