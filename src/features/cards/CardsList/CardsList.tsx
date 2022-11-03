@@ -5,12 +5,11 @@ import HeadBlock from './HeadBlock/HeadBlock'
 import { CardsTable } from './CardsTable/CardsTable'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { Search } from '../../../common/components/Search/Search'
-import { addCardTC, getCardsTC, removeCardTC, resetCardAC } from './cards-reducer'
+import { addCardTC, getCardsTC } from './cards-reducer'
 import { removePackTC } from '../PackList/packs-reducer'
 import { useParams } from 'react-router-dom'
 import { setCardParams } from './cardParams-reducer'
 import { PaginationBlock } from '../../../common/components/PaginationBlock/PaginationBlock'
-import { EditPackModal } from '../../../common/components/Modals/archive/EditPackModal'
 
 export const CardsList = () => {
     const dispatch = useAppDispatch()
@@ -22,7 +21,6 @@ export const CardsList = () => {
     const cardsTotalCount = useAppSelector((state) => state.cards.cardsTotalCount)
     const packName = useAppSelector((store) => store.cards.packName)
     const { urlPackId } = useParams<string>()
-    // {/*    <WithoutCards addCard={addCard} packUserId={packUserId} userId={userId} />*/}
     const cardQuestion = useAppSelector((state) => state.cardParams.cardQuestion)
     const cardAnswer = useAppSelector((state) => state.cardParams.cardAnswer)
     const sortCards = useAppSelector((state) => state.cardParams.sortCards)
@@ -50,11 +48,8 @@ export const CardsList = () => {
     const cardParams = { cardsPack_id, cardQuestion, cardAnswer, sortCards, max, min, page, pageCount }
 
     useEffect(() => {
-        // dispatch(getCardsTC({ cardsPack_id: urlPackId!, pageCount: 8 }))
         dispatch(getCardsTC({ ...cardParams, cardsPack_id: urlPackId! }))
-        return () => {
-            // dispatch(resetCardAC())
-        }
+        return () => {}
     }, [cardsPack_id, cardQuestion, cardAnswer, sortCards, max, min, page, pageCount])
 
     const valueFromPagination = {
@@ -76,9 +71,6 @@ export const CardsList = () => {
         dispatch(setCardParams({ cardQuestion: searchValue, cardsPack_id: urlPackId! }))
     }
 
-    const deleteCard = (id: string) => {
-        dispatch(removeCardTC(id, { cardsPack_id: urlPackId! }))
-    }
     const editCard = () => {
         alert('Edit Card')
     }
@@ -110,10 +102,6 @@ export const CardsList = () => {
                 addCard={addCard}
                 packUserId={packUserId}
             />
-            {/*{cardsTotalCount === 0 ? (*/}
-            {/*    <WithoutCards addCard={addCard} packUserId={packUserId} userId={userId} />*/}
-            {/*) : (*/}
-            {/*    <>*/}
             <div className={s.descriptionBlock}>
                 <span>Search</span>
             </div>
@@ -131,15 +119,13 @@ export const CardsList = () => {
                 }}
             />
             <CardsTable
-                deleteCard={deleteCard}
                 editCard={editCard}
                 userId={userId}
                 myCardPacks={myCardPacks}
                 setFilterUpdateGrade={setFilterUpdateGrade}
                 packUserId={packUserId}
             />
-            {/*</>*/}
-            {/*)}*/}
+
             <PaginationBlock
                 valueFromPagination={valueFromPagination}
                 setPaginationPage={setPaginationPage}
