@@ -8,10 +8,9 @@ import { Search } from '../../../common/components/Search/Search'
 import { addCardTC, getCardsTC, removeCardTC, resetCardAC } from './cards-reducer'
 import { removePackTC } from '../PackList/packs-reducer'
 import { useParams } from 'react-router-dom'
-import { WithoutCards } from '../WithoutCards/WithoutCards'
 import { setCardParams } from './cardParams-reducer'
 import { PaginationBlock } from '../../../common/components/PaginationBlock/PaginationBlock'
-import { setSetting } from '../PackList/SettingsBlock/setting-reducer'
+import { EditPackModal } from '../../../common/components/Modals/archive/EditPackModal'
 
 export const CardsList = () => {
     const dispatch = useAppDispatch()
