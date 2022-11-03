@@ -31,6 +31,9 @@ type ModalType = {
     buttonTitle?: string
 }
 
+//TODO:
+//exit onBlur
+
 export const BasicModal: React.FC<ModalType> = ({ isShowing, hide, children, title, onSaveClick, buttonTitle }) =>
     isShowing
         ? ReactDOM.createPortal(

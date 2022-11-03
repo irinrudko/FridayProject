@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from '../../../../../app/store'
 import { setCardParams } from '../../../CardsList/cardParams-reducer'
 import { EditPackModalWithPortal } from '../../../../../common/components/Modals/packsModals/EditPackModalWithPortal'
 import { useModal } from '../../../../../common/components/Modals/useModal'
-import { RemovePackModal } from '../../../../../common/components/Modals/packsModals/RemovePack'
+import { RemovePackModal } from '../../../../../common/components/Modals/packsModals/RemovePackModal'
 
 type RowPropsType = {
     row: PackType

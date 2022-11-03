@@ -14,6 +14,8 @@ type RemovePackModalType = {
 }
 
 export const RemovePackModal = (props: RemovePackModalType) => {
+    //TODO:
+    //add red color on Delete button (BasicModal component)
     const dispatch = useAppDispatch()
 
     const removePack = () => {
