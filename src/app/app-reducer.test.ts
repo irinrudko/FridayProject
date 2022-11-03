@@ -5,6 +5,7 @@ it('should change AppStatus', () => {
         status: 'loading' as RequestStatusType,
         error: null as null | string,
         initialized: false,
+        isModalOpened: false,
     }
 
     const action = setAppStatusAC('succeeded')
@@ -18,6 +19,7 @@ it('should change error message', () => {
         status: 'loading' as RequestStatusType,
         error: null as null | string,
         initialized: false,
+        isModalOpened: false,
     }
 
     const action = setErrAC('test message error')
@@ -32,6 +34,7 @@ it('should initialize App', () => {
         status: 'loading' as RequestStatusType,
         error: null as null | string,
         initialized: false,
+        isModalOpened: false,
     }
 
     const action = initializedAC(true)
