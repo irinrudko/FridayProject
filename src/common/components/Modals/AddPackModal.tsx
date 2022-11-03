@@ -16,10 +16,6 @@ export const AddPackModal = (props: AddNewPackType) => {
     let [name, setName] = useState('')
     let [isPrivate, setIsPrivate] = useState(false)
 
-    const [open, setOpen] = React.useState(false)
-    const handleOpen = () => setOpen(true)
-    const handleClose = () => setOpen(false)
-
     const setNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.currentTarget.value)
     }
@@ -37,18 +33,14 @@ export const AddPackModal = (props: AddNewPackType) => {
             },
         }
         dispatch(addPackTC(newPack))
-        handleClose()
     }
 
     return (
-        <BasicModal title={props.title} open={open} onClose={handleClose} onOpen={handleOpen}>
+        <BasicModal title={props.title} onSaveClick={addNewPack}>
             <TextField variant="standard" label="Name pack" value={name} onChange={setNameHandler} />
             <FormGroup>
                 <FormControlLabel control={<Checkbox onChange={setIsPrivateHandler} />} label="Private pack" />
             </FormGroup>
-            <Button onClick={addNewPack} variant={'contained'} color={'primary'} className={`${s.button} ${s.buttonPrimary}`}>
-                Save
-            </Button>
         </BasicModal>
     )
 }
