@@ -7,6 +7,7 @@ const initialState = {
     status: 'idle' as RequestStatusType,
     error: null as null | string,
     initialized: false,
+    isModalOpened: false,
 }
 type InitialStateType = typeof initialState
 
@@ -18,6 +19,10 @@ export const appReducer = (state: InitialStateType = initialState, action: AppAc
             return { ...state, error: action.message }
         case 'APP/INITIALIZED':
             return { ...state, initialized: action.initializedStatus }
+        case 'APP/OPEN-MODAl':
+            return { ...state, isModalOpened: action.isModalOpened }
+        case 'APP/CLOSE-MODAl':
+            return { ...state, isModalOpened: action.isModalOpened }
         default:
             return state
     }
@@ -27,6 +32,8 @@ export const appReducer = (state: InitialStateType = initialState, action: AppAc
 export const setAppStatusAC = (status: RequestStatusType) => ({ type: 'APP/SET-STATUS', status } as const)
 export const setErrAC = (message: null | string) => ({ type: 'APP/SET-ERROR', message } as const)
 export const initializedAC = (initializedStatus: boolean) => ({ type: 'APP/INITIALIZED', initializedStatus } as const)
+export const openModalAC = () => ({ type: 'APP/OPEN-MODAl', isModalOpened: true } as const)
+export const closeModalAC = () => ({ type: 'APP/CLOSE-MODAl', isModalOpened: false } as const)
 
 //ThunkC
 export const initializedTC = (): AppThunk => (dispatch) => {
@@ -51,4 +58,9 @@ export const initializedTC = (): AppThunk => (dispatch) => {
 //type
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
 export type setErrType = ReturnType<typeof setErrAC>
-export type AppActionType = ReturnType<typeof setAppStatusAC> | setErrType | ReturnType<typeof initializedAC>
+export type AppActionType =
+    | ReturnType<typeof setAppStatusAC>
+    | setErrType
+    | ReturnType<typeof initializedAC>
+    | ReturnType<typeof openModalAC>
+    | ReturnType<typeof closeModalAC>
