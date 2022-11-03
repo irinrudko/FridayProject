@@ -3,13 +3,11 @@ import s from './HeadBlock.module.scss'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { ActionsMenu } from '../ActionsMenu/ActionsMenu'
 import Button from '@mui/material/Button'
-import { addCardTC } from '../cards-reducer'
-import { useAppDispatch, useAppSelector } from '../../../../app/store'
-import { CardType, GetCardsResponseType } from '../../../../api/cardsAPI'
-import { routes } from '../../../../app/routes/Routes'
+import { useAppDispatch } from '../../../../app/store'
+import { CardType } from '../../../../api/cardsAPI'
 import { NavLink, useParams } from 'react-router-dom'
-import { setIdAC } from '../../PackList/table-reducer'
-import { setPackName } from '../../PackList/SettingsBlock/setting-reducer'
+import { useModal } from '../../../../common/components/Modals/useModal'
+import { AddCardModal } from '../../../../common/components/Modals/cardsModals/AddCardModal'
 
 type HeadBlockPropsType = {
     deletePack: (packId: string) => void
@@ -24,6 +22,8 @@ type HeadBlockPropsType = {
 
 const HeadBlock: React.FC<HeadBlockPropsType> = React.memo(
     ({ deletePack, editPack, learnPack, userId, packUserId, packName, myCardPacks, addCard }) => {
+        const { addCardModal, toggleAddCardModal } = useModal()
+
         const { urlPackId } = useParams<string>()
         const [collapsed, setCollapsed] = useState<boolean>(true)
         const dispatch = useAppDispatch()
@@ -65,7 +65,7 @@ const HeadBlock: React.FC<HeadBlockPropsType> = React.memo(
                                 variant={'contained'}
                                 color={'primary'}
                                 className={s.button}
-                                onClick={addCard}
+                                onClick={toggleAddCardModal}
                             >
                                 Add new card
                             </Button>
@@ -78,6 +78,7 @@ const HeadBlock: React.FC<HeadBlockPropsType> = React.memo(
                         )}
                     </>
                 )}
+                <AddCardModal title={'Add new card'} packId={urlPackId!} isShowing={addCardModal} hide={toggleAddCardModal} />
             </div>
         )
     }
