@@ -105,11 +105,11 @@ export const resetCardAC = () => ({ type: 'CARDS/RESET-CARDS' } as const)
 
 // Thunks
 export const getCardsTC =
-    (params: GetCardParams): AppThunk =>
+    (params?: GetCardParams): AppThunk =>
     (dispatch) => {
         dispatch(setAppStatusAC('loading'))
         cardsAPI
-            .getCards(params)
+            .getCards(params!)
             .then((res) => {
                 dispatch(getCardsAC(res))
             })
@@ -121,7 +121,7 @@ export const getCardsTC =
     }
 
 export const updateCardTC =
-    (updateCardData: UpdateCardData, params: GetCardParams): AppThunk =>
+    (updateCardData: UpdateCardData, params?: GetCardParams): AppThunk =>
     (dispatch) => {
         cardsAPI
             .updateCard(updateCardData)
@@ -135,7 +135,7 @@ export const updateCardTC =
     }
 
 export const removeCardTC =
-    (id: string, params: GetCardParams): AppThunk =>
+    (id: string, params?: GetCardParams): AppThunk =>
     (dispatch) => {
         cardsAPI
             .removeCard(id)
@@ -148,7 +148,7 @@ export const removeCardTC =
             })
     }
 export const addCardTC =
-    (cardData: CreateCardData, params: GetCardParams): AppThunk =>
+    (cardData: CreateCardData, params?: GetCardParams): AppThunk =>
     (dispatch) => {
         cardsAPI
             .createCard(cardData)
