@@ -9,11 +9,13 @@ import { PaginationBlock } from '../../../common/components/PaginationBlock/Pagi
 import { getPacksTC, resetPackAC } from './packs-reducer'
 import { GetPackParams } from '../../../api/packsAPI'
 import { setSetting } from './SettingsBlock/setting-reducer'
-import { AddPackModal } from '../../../common/components/Modals/AddPackModal'
 import { Button } from '@mui/material'
-import { openModalAC } from '../../../app/app-reducer'
+import { useModal } from '../../../common/components/Modals/useModal'
+import { AddPackModalWithPortal } from '../../../common/components/Modals/AddPackModalWithPortal'
 
 export const PackList = () => {
+    const { isShowing, toggle } = useModal()
+
     const dispatch = useAppDispatch()
 
     const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn)
@@ -75,14 +77,8 @@ export const PackList = () => {
         <div className={s.packListContainer}>
             <div className={s.headBlock}>
                 <h2 className={s.headName}>Pack list</h2>
-                <AddPackModal title="Add new pack" />
-                <Button
-                    type={'button'}
-                    variant={'contained'}
-                    color={'primary'}
-                    className={s.button}
-                    onClick={() => dispatch(openModalAC())}
-                >
+                <AddPackModalWithPortal title="Add new pack" isShowing={isShowing} hide={toggle} />
+                <Button type={'button'} variant={'contained'} color={'primary'} className={s.button} onClick={toggle}>
                     Add new pack
                 </Button>
             </div>
