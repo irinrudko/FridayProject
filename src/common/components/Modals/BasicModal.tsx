@@ -4,6 +4,8 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
+import { openModalAC, closeModalAC } from '../../../app/app-reducer'
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -24,25 +26,24 @@ const style = {
 type ModalType = {
     children: React.ReactNode
     title: string
-    open: boolean
-    onClose: () => void
-    onOpen: () => void
+    onSaveClick: () => void
 }
 
 export function BasicModal(props: ModalType) {
-    const [open, setOpen] = React.useState(false)
-    const handleOpen = () => setOpen(true)
-    const handleClose = () => setOpen(false)
-    console.log('props.open', props.open)
-    console.log('open', open)
+    const dispatch = useAppDispatch()
+    const closeModal = () => dispatch(closeModalAC())
+    const modalStatus = useAppSelector((state) => state.app.isModalOpened)
+
+    const onSave = () => {
+        props.onSaveClick()
+        closeModal()
+    }
+
     return (
         <div className={s.item}>
-            <Button type={'button'} variant={'contained'} color={'primary'} className={s.buttonMain} onClick={handleOpen}>
-                {props.title}
-            </Button>
             <Modal
-                open={open}
-                onClose={handleClose}
+                open={modalStatus}
+                onClose={closeModal}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
@@ -51,11 +52,19 @@ export function BasicModal(props: ModalType) {
                         {props.title}
                     </Typography>
                     {props.children}
-                    {/* <div className={s.buttonContainer}> */}
-                    <Button onClick={handleClose} variant={'contained'} color={'inherit'} className={s.button}>
-                        Cancel
-                    </Button>
-                    {/* </div> */}
+                    <div className={s.buttonContainer}>
+                        <Button onClick={closeModal} variant={'contained'} color={'inherit'} className={s.button}>
+                            Cancel
+                        </Button>
+                        <Button
+                            onClick={onSave}
+                            variant={'contained'}
+                            color={'primary'}
+                            className={`${s.button} ${s.buttonPrimary}`}
+                        >
+                            Save
+                        </Button>
+                    </div>
                 </Box>
             </Modal>
         </div>
