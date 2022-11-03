@@ -6,6 +6,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { CardType } from '../../../../../api/cardsAPI'
 import { RemoveCardModal } from '../../../../../common/components/Modals/cardsModals/RemoveCardModal'
 import { useModal } from '../../../../../common/components/Modals/useModal'
+import { AddCardModal } from '../../../../../common/components/Modals/cardsModals/AddCardModal'
 
 type CardRowPropsType = {
     row: CardType
