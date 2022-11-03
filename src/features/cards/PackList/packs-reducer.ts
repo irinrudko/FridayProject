@@ -97,16 +97,16 @@ export const getPacksTC =
             .finally(() => dispatch(setAppStatusAC('idle')))
     }
 
-export const changePackNameTC =
-    (id: string, name: string, params: GetPackParams): AppThunk =>
+export const updatePackTC =
+    (id: string, name: string, isPrivate?: boolean, params?: GetPackParams): AppThunk =>
     (dispatch) => {
-        packsAPI.changePackName(id, name).then(() => {
+        packsAPI.updatePack(id, name, isPrivate!).then(() => {
             dispatch(getPacksTC(params))
         })
     }
 
 export const removePackTC =
-    (id: string, params: GetPackParams): AppThunk =>
+    (id: string, params?: GetPackParams): AppThunk =>
     (dispatch) => {
         packsAPI
             .removePack(id)
