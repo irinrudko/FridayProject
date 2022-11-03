@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import s from './BasicModal.module.scss'
-
-import { Button, Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/material'
+import { Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/material'
 import { useAppDispatch } from '../../../app/store'
 import { BasicModal } from './BasicModal'
 import { addPackTC } from '../../../features/cards/PackList/packs-reducer'
