@@ -11,10 +11,10 @@ import { GetPackParams } from '../../../api/packsAPI'
 import { setSetting } from './SettingsBlock/setting-reducer'
 import { Button } from '@mui/material'
 import { useModal } from '../../../common/components/Modals/useModal'
-import { AddPackModalWithPortal } from '../../../common/components/Modals/AddPackModalWithPortal'
+import { AddPackModalWithPortal } from '../../../common/components/Modals/packsModals/AddPackModalWithPortal'
 
 export const PackList = () => {
-    const { isShowing, toggle } = useModal()
+    const { addPackModal, toggleAddPackModal } = useModal()
 
     const dispatch = useAppDispatch()
 
@@ -77,8 +77,8 @@ export const PackList = () => {
         <div className={s.packListContainer}>
             <div className={s.headBlock}>
                 <h2 className={s.headName}>Pack list</h2>
-                <AddPackModalWithPortal title="Add new pack" isShowing={isShowing} hide={toggle} />
-                <Button type={'button'} variant={'contained'} color={'primary'} className={s.button} onClick={toggle}>
+                <AddPackModalWithPortal title="Add new pack" isShowing={addPackModal} hide={toggleAddPackModal} />
+                <Button type={'button'} variant={'contained'} color={'primary'} className={s.button} onClick={toggleAddPackModal}>
                     Add new pack
                 </Button>
             </div>
