@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import s from './PackList.module.scss'
-import Button from '@mui/material/Button'
 import { Navigate } from 'react-router-dom'
 import { routes } from '../../../app/routes/Routes'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { SettingsBlock } from './SettingsBlock/SettingsBlock'
 import { PackListTable } from './Table/PackListTable'
 import { PaginationBlock } from '../../../common/components/PaginationBlock/PaginationBlock'
-import { addPackTC, getPacksAC, getPacksTC, resetPackAC } from './packs-reducer'
+import { getPacksTC, resetPackAC } from './packs-reducer'
 import { GetPackParams } from '../../../api/packsAPI'
 import { setSetting } from './SettingsBlock/setting-reducer'
 import { AddPackModal } from '../../../common/components/Modals/AddPackModal'
+import { Button } from '@mui/material'
+import { openModalAC } from '../../../app/app-reducer'
 
 export const PackList = () => {
     const dispatch = useAppDispatch()
@@ -37,13 +38,7 @@ export const PackList = () => {
             dispatch(resetPackAC())
         }
     }, [user_id, pageCount, pagePack, packName, min, max, block, sortPacks])
-    const newPack = {
-        cardsPack: {
-            name: 'test Pack',
-            deckCover: '',
-            private: false,
-        },
-    }
+
     const valueFromPagination = { totalCount: cardPacksTotalCount, pageCount, pagePack }
     const setPaginationPage = (page: number) => {
         dispatch(setSetting({ page }))
@@ -69,9 +64,6 @@ export const PackList = () => {
         dispatch(setSetting({ packName: searchValue }))
     }
 
-    const addNewPack = () => {
-        dispatch(addPackTC(newPack, {}))
-    }
     const setPageCount = (pageCount: number) => {
         dispatch(setSetting({ pageCount }))
     }
@@ -83,7 +75,16 @@ export const PackList = () => {
         <div className={s.packListContainer}>
             <div className={s.headBlock}>
                 <h2 className={s.headName}>Pack list</h2>
-                <AddPackModal title={'Add new pack'} />
+                <Button
+                    type={'button'}
+                    variant={'contained'}
+                    color={'primary'}
+                    className={s.button}
+                    onClick={() => dispatch(openModalAC())}
+                >
+                    Add new pack
+                </Button>
+                <AddPackModal title="Add new pack" />
             </div>
             <SettingsBlock
                 searchPack={searchPack}
