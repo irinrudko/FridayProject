@@ -33,6 +33,7 @@ type ModalType = {
 
 //TODO:
 //exit onBlur
+//memoization
 
 export const BasicModal: React.FC<ModalType> = ({ isShowing, hide, children, title, onSaveClick, buttonTitle }) =>
     isShowing
