@@ -75,6 +75,7 @@ export const PackList = () => {
         <div className={s.packListContainer}>
             <div className={s.headBlock}>
                 <h2 className={s.headName}>Pack list</h2>
+                <AddPackModal title="Add new pack" />
                 <Button
                     type={'button'}
                     variant={'contained'}
@@ -84,7 +85,6 @@ export const PackList = () => {
                 >
                     Add new pack
                 </Button>
-                <AddPackModal title="Add new pack" />
             </div>
             <SettingsBlock
                 searchPack={searchPack}
