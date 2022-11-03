@@ -28,9 +28,10 @@ type ModalType = {
 
     isShowing: boolean
     hide: () => void
+    buttonTitle?: string
 }
 
-export const BasicModalWithPortal: React.FC<ModalType> = ({ isShowing, hide, children, title, onSaveClick }) =>
+export const BasicModal: React.FC<ModalType> = ({ isShowing, hide, children, title, onSaveClick, buttonTitle }) =>
     isShowing
         ? ReactDOM.createPortal(
               <>
@@ -53,7 +54,7 @@ export const BasicModalWithPortal: React.FC<ModalType> = ({ isShowing, hide, chi
                                   color={'primary'}
                                   className={`${s.button} ${s.buttonPrimary}`}
                               >
-                                  Save
+                                  {buttonTitle || 'Save'}
                               </Button>
                           </div>
                       </Box>
