@@ -17,10 +17,18 @@ export const useModal = () => {
     }
 
     ////cards
+    const [addCardModal, addRemoveCardModal] = useState(false)
+    const [editCardModal, editRemoveCardModal] = useState(false)
     const [removeCardModal, setRemoveCardModal] = useState(false)
 
     function toggleRemoveCardModal() {
         setRemoveCardModal(!removeCardModal)
+    }
+    function toggleAddCardModal() {
+        addRemoveCardModal(!addCardModal)
+    }
+    function toggleEditCardModal() {
+        editRemoveCardModal(!editCardModal)
     }
 
     return {
@@ -28,9 +36,14 @@ export const useModal = () => {
         editPackModal,
         removePackModal,
         removeCardModal,
+        addCardModal,
+        editCardModal,
+
         toggleAddPackModal,
         toggleEditPackModal,
         toggleRemovePackModal,
         toggleRemoveCardModal,
+        toggleAddCardModal,
+        toggleEditCardModal,
     }
 }
