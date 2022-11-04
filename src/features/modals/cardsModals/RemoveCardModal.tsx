@@ -1,8 +1,8 @@
 import React from 'react'
-import s from '../BasicModal.module.scss'
-import { useAppDispatch } from '../../../../app/store'
-import { BasicModal } from '../BasicModal'
-import { removeCardTC } from '../../../../features/cards/CardsList/cards-reducer'
+import s from '../../../common/components/Modal/BasicModal.module.scss'
+import { useAppDispatch } from '../../../app/store'
+import { BasicModal } from '../../../common/components/Modal/BasicModal'
+import { removeCardTC } from '../../cards/CardsList/cards-reducer'
 
 type RemoveCardModalType = {
     title: string

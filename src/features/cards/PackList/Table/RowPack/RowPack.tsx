@@ -8,9 +8,9 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { PackType } from '../../../../../api/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../../../../app/store'
 import { setCardParams } from '../../../CardsList/cardParams-reducer'
-import { useModal } from '../../../../../common/components/Modals/useModal'
-import { RemovePackModal } from '../../../../../common/components/Modals/packsModals/RemovePackModal'
-import { EditPackModal } from '../../../../../common/components/Modals/packsModals/EditPackModal'
+import { useModal } from '../../../../../common/components/Modal/useModal'
+import { RemovePackModal } from '../../../../modals/packsModals/RemovePackModal'
+import { EditPackModal } from '../../../../modals/packsModals/EditPackModal'
 
 type RowPropsType = {
     row: PackType

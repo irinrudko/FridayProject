@@ -6,8 +6,8 @@ import { routes } from '../../../app/routes/Routes'
 import { BackPackArrow } from '../../../common/components/BackPackArrow/BackPackArrow'
 import { getCardsTC, resetCardAC } from '../CardsList/cards-reducer'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
-import { useModal } from '../../../common/components/Modals/useModal'
-import { AddCardModal } from '../../../common/components/Modals/cardsModals/AddCardModal'
+import { useModal } from '../../../common/components/Modal/useModal'
+import { AddCardModal } from '../../modals/cardsModals/AddCardModal'
 
 type WithoutCards = {}
 

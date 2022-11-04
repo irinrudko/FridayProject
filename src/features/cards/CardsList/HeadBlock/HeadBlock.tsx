@@ -4,8 +4,8 @@ import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { ActionsMenu } from '../ActionsMenu/ActionsMenu'
 import Button from '@mui/material/Button'
 import { NavLink, useParams } from 'react-router-dom'
-import { useModal } from '../../../../common/components/Modals/useModal'
-import { AddCardModal } from '../../../../common/components/Modals/cardsModals/AddCardModal'
+import { useModal } from '../../../../common/components/Modal/useModal'
+import { AddCardModal } from '../../../modals/cardsModals/AddCardModal'
 
 type HeadBlockPropsType = {
     userId: string

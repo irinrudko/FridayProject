@@ -4,9 +4,9 @@ import s from './CardRow.module.scss'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { CardType } from '../../../../../api/cardsAPI'
-import { RemoveCardModal } from '../../../../../common/components/Modals/cardsModals/RemoveCardModal'
-import { useModal } from '../../../../../common/components/Modals/useModal'
-import { EditCardModal } from '../../../../../common/components/Modals/cardsModals/EditCardModal'
+import { RemoveCardModal } from '../../../../modals/cardsModals/RemoveCardModal'
+import { useModal } from '../../../../../common/components/Modal/useModal'
+import { EditCardModal } from '../../../../modals/cardsModals/EditCardModal'
 
 type CardRowPropsType = {
     row: CardType

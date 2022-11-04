@@ -10,8 +10,8 @@ import { getPacksTC, resetPackAC } from './packs-reducer'
 import { GetPackParams } from '../../../api/packsAPI'
 import { setSetting } from './SettingsBlock/setting-reducer'
 import { Button } from '@mui/material'
-import { useModal } from '../../../common/components/Modals/useModal'
-import { AddPackModal } from '../../../common/components/Modals/packsModals/AddPackModal'
+import { useModal } from '../../../common/components/Modal/useModal'
+import { AddPackModal } from '../../modals/packsModals/AddPackModal'
 
 export const PackList = () => {
     const { addPackModal, toggleAddPackModal } = useModal()

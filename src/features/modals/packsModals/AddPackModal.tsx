@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/material'
-import { useAppDispatch } from '../../../../app/store'
-import { updatePackTC } from '../../../../features/cards/PackList/packs-reducer'
-import { BasicModal } from '../BasicModal'
+import { useAppDispatch } from '../../../app/store'
+import { addPackTC } from '../../cards/PackList/packs-reducer'
+import { BasicModal } from '../../../common/components/Modal/BasicModal'
 
-type EditPackModalType = {
+type AddPackModalType = {
     title: string
-    id: string
-    packName: string
     isShowing: boolean
     hide: () => void
 }
 
-export const EditPackModal = (props: EditPackModalType) => {
+export const AddPackModal = (props: AddPackModalType) => {
     const dispatch = useAppDispatch()
-
-    useEffect(() => {
-        setName(props.packName)
-    }, [props.packName]) //to get name from props
 
     let [name, setName] = useState('')
     let [isPrivate, setIsPrivate] = useState(false)
@@ -30,12 +24,20 @@ export const EditPackModal = (props: EditPackModalType) => {
         setIsPrivate(e.currentTarget.checked)
     }
 
-    const editPack = () => {
-        dispatch(updatePackTC(props.id, name, isPrivate))
+    const addNewPack = () => {
+        const newPack = {
+            cardsPack: {
+                name: name,
+                deckCover: '',
+                private: isPrivate,
+            },
+        }
+        dispatch(addPackTC(newPack))
+        setName('')
     }
 
     return (
-        <BasicModal title={props.title} onSaveClick={editPack} isShowing={props.isShowing} hide={props.hide}>
+        <BasicModal title={props.title} onSaveClick={addNewPack} isShowing={props.isShowing} hide={props.hide}>
             <TextField variant="standard" label="Name pack" value={name} onChange={setNameHandler} />
             <FormGroup>
                 <FormControlLabel control={<Checkbox onChange={setIsPrivateHandler} />} label="Private pack" />
