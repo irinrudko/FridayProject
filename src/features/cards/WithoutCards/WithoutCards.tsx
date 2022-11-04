@@ -4,13 +4,16 @@ import Button from '@mui/material/Button'
 import { Navigate, NavLink, useNavigate, useParams } from 'react-router-dom'
 import { routes } from '../../../app/routes/Routes'
 import { BackPackArrow } from '../../../common/components/BackPackArrow/BackPackArrow'
-import { addCardTC, getCardsTC, resetCardAC } from '../CardsList/cards-reducer'
+import { getCardsTC, resetCardAC } from '../CardsList/cards-reducer'
 import { useAppDispatch, useAppSelector } from '../../../app/store'
-import { getPacksTC, resetPackAC } from '../PackList/packs-reducer'
+import { useModal } from '../../../common/components/Modal/useModal'
+import { AddCardModal } from '../../modals/cardsModals/AddCardModal'
 
 type WithoutCards = {}
 
 export const WithoutCards: React.FC<WithoutCards> = ({}) => {
+    const { addCardModal, toggleAddCardModal } = useModal()
+
     const dispatch = useAppDispatch()
     const { urlPackId } = useParams()
     const userId = useAppSelector((state) => state.auth.user._id)
@@ -26,7 +29,7 @@ export const WithoutCards: React.FC<WithoutCards> = ({}) => {
     }
 
     const addCard = () => {
-        dispatch(addCardTC(newCard, { cardsPack_id: urlPackId! }))
+        toggleAddCardModal()
         return navigate(`/packs/my-packs/${urlPackId!}`)
     }
 
@@ -60,6 +63,7 @@ export const WithoutCards: React.FC<WithoutCards> = ({}) => {
                     </>
                 )}
             </div>
+            <AddCardModal title={'Add new card'} packId={urlPackId!} isShowing={addCardModal} hide={toggleAddCardModal} />
         </div>
     )
 }

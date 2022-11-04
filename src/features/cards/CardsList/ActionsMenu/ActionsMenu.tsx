@@ -5,28 +5,22 @@ import BorderColorIcon from '@mui/icons-material/BorderColor'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { NavLink, useParams } from 'react-router-dom'
 
-type ActionMenuPropsType = {
-    deletePack: (packId: string) => void
-    editPack: () => void
-    learnPack: () => void
-}
+type ActionMenuPropsType = {}
 
-export const ActionsMenu: React.FC<ActionMenuPropsType> = ({ deletePack, editPack }) => {
+export const ActionsMenu: React.FC<ActionMenuPropsType> = () => {
     const { urlPackId } = useParams<string>()
 
     return (
         <div>
             <div className={s.mainContainer}>
-                <div className={s.linkBlock} onClick={editPack}>
+                <div className={s.linkBlock}>
                     <BorderColorIcon fontSize={'small'} style={{ marginRight: '15px', marginLeft: '12px' }} />
                     <span className={s.text}>Edit</span>
                 </div>
-                {/*<NavLink to={routes.packsList}>*/}
-                <div className={s.linkBlock} onClick={() => deletePack(urlPackId!)}>
+                <div className={s.linkBlock}>
                     <DeleteForeverIcon fontSize={'small'} style={{ marginRight: '15px', marginLeft: '12px' }} />
                     <span className={s.text}>Delete</span>
                 </div>
-                {/*</NavLink>*/}
                 <NavLink to={`/packs/learn/${urlPackId}`}>
                     <div className={s.linkBlock}>
                         <SchoolIcon fontSize={'small'} style={{ marginRight: '15px', marginLeft: '12px' }} />

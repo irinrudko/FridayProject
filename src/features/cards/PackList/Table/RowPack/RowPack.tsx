@@ -1,8 +1,6 @@
 import React from 'react'
-import { setIdAC } from '../../table-reducer'
 import { TableCell, TableRow } from '@mui/material'
 import { NavLink } from 'react-router-dom'
-import { routes } from '../../../../../app/routes/Routes'
 import s from './RowPack.module.scss'
 import SchoolIcon from '@mui/icons-material/School'
 import BorderColorIcon from '@mui/icons-material/BorderColor'
@@ -10,20 +8,24 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { PackType } from '../../../../../api/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../../../../app/store'
 import { setCardParams } from '../../../CardsList/cardParams-reducer'
+import { useModal } from '../../../../../common/components/Modal/useModal'
+import { RemovePackModal } from '../../../../modals/packsModals/RemovePackModal'
+import { EditPackModal } from '../../../../modals/packsModals/EditPackModal'
 
 type RowPropsType = {
     row: PackType
     deletePack: (rowId: string) => void
-    editPack: (rowId: string) => void
     learnPack: (rowId: string) => void
 }
 
-const RowPack: React.FC<RowPropsType> = ({ row, deletePack, editPack, learnPack }) => {
+const RowPack: React.FC<RowPropsType> = ({ row, deletePack, learnPack }) => {
+    const { removePackModal, toggleRemovePackModal } = useModal()
+    const { editPackModal, toggleEditPackModal } = useModal()
+
     const dispatch = useAppDispatch()
     const userId = useAppSelector((store) => store.auth.user._id)
 
     const setPackId = (id: string, userId: string) => {
-        // dispatch(setIdAC(id, userId))
         dispatch(setCardParams({ cardsPack_id: id }))
     }
 
@@ -75,18 +77,14 @@ const RowPack: React.FC<RowPropsType> = ({ row, deletePack, editPack, learnPack 
                         </div>
                         <div className={s.editIcon}>
                             {row.user_id === userId && (
-                                <BorderColorIcon
-                                    fontSize={'small'}
-                                    onClick={() => editPack(row._id)}
-                                    style={{ color: 'black' }}
-                                />
+                                <BorderColorIcon fontSize={'small'} onClick={toggleEditPackModal} style={{ color: 'black' }} />
                             )}
                         </div>
                         <div className={s.deleteIcon}>
                             {row.user_id === userId && (
                                 <DeleteForeverIcon
                                     fontSize={'small'}
-                                    onClick={() => deletePack(row._id)}
+                                    onClick={toggleRemovePackModal}
                                     style={{ color: 'black' }}
                                 />
                             )}
@@ -94,6 +92,20 @@ const RowPack: React.FC<RowPropsType> = ({ row, deletePack, editPack, learnPack 
                     </div>
                 </TableCell>
             </TableRow>
+            <EditPackModal
+                title="Edit pack"
+                isShowing={editPackModal}
+                hide={toggleEditPackModal}
+                id={row._id}
+                packName={row.name}
+            />
+            <RemovePackModal
+                title="Delete pack"
+                id={row._id}
+                packName={row.name}
+                isShowing={removePackModal}
+                hide={toggleRemovePackModal}
+            />
         </>
     )
 }

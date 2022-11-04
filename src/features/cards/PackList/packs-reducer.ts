@@ -82,11 +82,11 @@ export const resetPackAC = () => ({ type: 'PACKS/RESET-PACKS' } as const)
 
 // Thunks
 export const getPacksTC =
-    (params: GetPackParams): AppThunk =>
+    (params?: GetPackParams): AppThunk =>
     (dispatch) => {
         dispatch(setAppStatusAC('loading'))
         packsAPI
-            .getPacks(params)
+            .getPacks(params!)
             .then((res) => {
                 dispatch(getPacksAC(res))
             })
@@ -97,16 +97,16 @@ export const getPacksTC =
             .finally(() => dispatch(setAppStatusAC('idle')))
     }
 
-export const changePackNameTC =
-    (id: string, name: string, params: GetPackParams): AppThunk =>
+export const updatePackTC =
+    (id: string, name: string, isPrivate?: boolean, params?: GetPackParams): AppThunk =>
     (dispatch) => {
-        packsAPI.changePackName(id, name).then(() => {
+        packsAPI.updatePack(id, name, isPrivate!).then(() => {
             dispatch(getPacksTC(params))
         })
     }
 
 export const removePackTC =
-    (id: string, params: GetPackParams): AppThunk =>
+    (id: string, params?: GetPackParams): AppThunk =>
     (dispatch) => {
         packsAPI
             .removePack(id)
@@ -120,12 +120,12 @@ export const removePackTC =
     }
 
 export const addPackTC =
-    (newPack: CreateNewPackData, params: GetPackParams): AppThunk =>
+    (newPack: CreateNewPackData, params?: GetPackParams): AppThunk =>
     (dispatch) => {
         packsAPI
             .createPack(newPack)
             .then(() => {
-                dispatch(getPacksTC(params))
+                dispatch(getPacksTC())
             })
             .catch((err: any) => {
                 let error = err.response.data.error
