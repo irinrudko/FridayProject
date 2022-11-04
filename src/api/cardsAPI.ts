@@ -95,10 +95,12 @@ export type RemoveCardResponseType = {
     tokenDeathTime: number
 }
 export type UpdateCardData = {
-    _id: string
-    question?: string
-    answer?: string
-    comments?: string
+    card: {
+        _id: string
+        question?: string
+        answer?: string
+        comments?: string
+    }
 }
 export type UpdateCardResponseType = {
     updatedCard: CardType
