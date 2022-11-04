@@ -135,8 +135,9 @@ export const updateCardTC =
     }
 
 export const removeCardTC =
-    (id: string, params?: GetCardParams): AppThunk =>
-    (dispatch) => {
+    (id: string): AppThunk =>
+    (dispatch, getState: () => AppRootStateType) => {
+        const params = getState().cardParams
         cardsAPI
             .removeCard(id)
             .then(() => {
@@ -148,8 +149,9 @@ export const removeCardTC =
             })
     }
 export const addCardTC =
-    (cardData: CreateCardData, params?: GetCardParams): AppThunk =>
-    (dispatch) => {
+    (cardData: CreateCardData): AppThunk =>
+    (dispatch, getState: () => AppRootStateType) => {
+        const params = getState().cardParams
         cardsAPI
             .createCard(cardData)
             .then(() => {

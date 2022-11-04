@@ -20,7 +20,7 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ user_id, userI
     const [filter, setFilter] = useState(true)
 
     const deletePack = (id: string) => {
-        user_id === userId ? dispatch(removePackTC(id, myCardPacksSettings)) : dispatch(removePackTC(id, cardPacksSettings))
+        user_id === userId ? dispatch(removePackTC(id)) : dispatch(removePackTC(id))
     }
 
     const learnPack = (id: string) => {
