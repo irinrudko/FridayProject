@@ -47,9 +47,7 @@ const initialState = {
     token: '',
     tokenDeathTime: 0,
 }
-
 export type CardsInitialStateType = typeof initialState
-
 export const cardsReducer = (state: CardsInitialStateType = initialState, action: CardsActionsType): CardsInitialStateType => {
     switch (action.type) {
         case 'CARDS/GET-CARDS':
