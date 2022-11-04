@@ -6,16 +6,17 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { CardType } from '../../../../../api/cardsAPI'
 import { RemoveCardModal } from '../../../../../common/components/Modals/cardsModals/RemoveCardModal'
 import { useModal } from '../../../../../common/components/Modals/useModal'
-import { AddCardModal } from '../../../../../common/components/Modals/cardsModals/AddCardModal'
+import { EditCardModal } from '../../../../../common/components/Modals/cardsModals/EditCardModal'
 
 type CardRowPropsType = {
     row: CardType
     userId: string
-    editCard: () => void
+    packId: string
 }
 
-const CardRow: React.FC<CardRowPropsType> = ({ row, userId, editCard }) => {
+const CardRow: React.FC<CardRowPropsType> = ({ row, userId, packId }) => {
     const { removeCardModal, toggleRemoveCardModal } = useModal()
+    const { editCardModal, toggleEditCardModal } = useModal()
 
     const formatDate = (date: string): string => {
         return new Date(date).toLocaleDateString('ru', {
@@ -42,7 +43,11 @@ const CardRow: React.FC<CardRowPropsType> = ({ row, userId, editCard }) => {
                     <TableCell align="left">
                         <div className={s.actions}>
                             <div className={s.editIcon}>
-                                <BorderColorIcon fontSize={'small'} style={{ marginRight: '15px' }} onClick={editCard} />
+                                <BorderColorIcon
+                                    fontSize={'small'}
+                                    style={{ marginRight: '15px' }}
+                                    onClick={toggleEditCardModal}
+                                />
                             </div>
                             <div className={s.deleteIcon}>
                                 <DeleteForeverIcon fontSize={'small'} onClick={toggleRemoveCardModal} />
@@ -57,6 +62,15 @@ const CardRow: React.FC<CardRowPropsType> = ({ row, userId, editCard }) => {
                 cardName={row.question!}
                 isShowing={removeCardModal}
                 hide={toggleRemoveCardModal}
+            />
+            <EditCardModal
+                title={'Edit card'}
+                packId={packId} // from URL
+                id={row._id}
+                question={row.question!}
+                answer={row.answer!}
+                isShowing={editCardModal}
+                hide={toggleEditCardModal}
             />
         </>
     )
