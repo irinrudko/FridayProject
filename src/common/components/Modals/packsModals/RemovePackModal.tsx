@@ -2,7 +2,7 @@ import React from 'react'
 import s from '../BasicModal.module.scss'
 import { useAppDispatch } from '../../../../app/store'
 import { removePackTC } from '../../../../features/cards/PackList/packs-reducer'
-import { BasicModal } from '../BasicModalWithPortal'
+import { BasicModal } from '../BasicModal'
 
 type RemovePackModalType = {
     title: string

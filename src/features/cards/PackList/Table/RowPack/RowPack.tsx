@@ -8,9 +8,9 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import { PackType } from '../../../../../api/packsAPI'
 import { useAppDispatch, useAppSelector } from '../../../../../app/store'
 import { setCardParams } from '../../../CardsList/cardParams-reducer'
-import { EditPackModalWithPortal } from '../../../../../common/components/Modals/packsModals/EditPackModalWithPortal'
 import { useModal } from '../../../../../common/components/Modals/useModal'
 import { RemovePackModal } from '../../../../../common/components/Modals/packsModals/RemovePackModal'
+import { EditPackModal } from '../../../../../common/components/Modals/packsModals/EditPackModal'
 
 type RowPropsType = {
     row: PackType
@@ -92,7 +92,7 @@ const RowPack: React.FC<RowPropsType> = ({ row, deletePack, learnPack }) => {
                     </div>
                 </TableCell>
             </TableRow>
-            <EditPackModalWithPortal
+            <EditPackModal
                 title="Edit pack"
                 isShowing={editPackModal}
                 hide={toggleEditPackModal}

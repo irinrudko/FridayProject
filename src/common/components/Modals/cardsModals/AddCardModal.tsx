@@ -2,7 +2,7 @@ import React from 'react'
 import { FormControl, InputLabel, NativeSelect, TextField } from '@mui/material'
 import { SelectChangeEvent } from '@mui/material/Select'
 import { useAppDispatch } from '../../../../app/store'
-import { BasicModal } from '../BasicModalWithPortal'
+import { BasicModal } from '../BasicModal'
 import { addCardTC } from '../../../../features/cards/CardsList/cards-reducer'
 
 type AddCardModalType = {

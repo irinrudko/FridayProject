@@ -1,23 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/material'
 import { useAppDispatch } from '../../../../app/store'
-import { updatePackTC } from '../../../../features/cards/PackList/packs-reducer'
-import { BasicModal } from '../BasicModalWithPortal'
+import { addPackTC } from '../../../../features/cards/PackList/packs-reducer'
+import { BasicModal } from './BasicModal-old'
 
-type EditPackModalWithPortalType = {
+type AddNewPackType = {
     title: string
-    id: string
-    packName: string
-    isShowing: boolean
-    hide: () => void
 }
 
-export const EditPackModalWithPortal = (props: EditPackModalWithPortalType) => {
+export const AddPackModal = (props: AddNewPackType) => {
     const dispatch = useAppDispatch()
-
-    useEffect(() => {
-        setName(props.packName)
-    }, [props.packName]) //to get name from props
 
     let [name, setName] = useState('')
     let [isPrivate, setIsPrivate] = useState(false)
@@ -30,12 +22,20 @@ export const EditPackModalWithPortal = (props: EditPackModalWithPortalType) => {
         setIsPrivate(e.currentTarget.checked)
     }
 
-    const editPack = () => {
-        dispatch(updatePackTC(props.id, name, isPrivate))
+    const addNewPack = () => {
+        const newPack = {
+            cardsPack: {
+                name: name,
+                deckCover: '',
+                private: isPrivate,
+            },
+        }
+        dispatch(addPackTC(newPack))
+        setName('')
     }
 
     return (
-        <BasicModal title={props.title} onSaveClick={editPack} isShowing={props.isShowing} hide={props.hide}>
+        <BasicModal title={props.title} onSaveClick={addNewPack}>
             <TextField variant="standard" label="Name pack" value={name} onChange={setNameHandler} />
             <FormGroup>
                 <FormControlLabel control={<Checkbox onChange={setIsPrivateHandler} />} label="Private pack" />

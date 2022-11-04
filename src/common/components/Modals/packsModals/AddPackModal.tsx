@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import { Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/material'
 import { useAppDispatch } from '../../../../app/store'
 import { addPackTC } from '../../../../features/cards/PackList/packs-reducer'
-import { BasicModal } from '../BasicModalWithPortal'
+import { BasicModal } from '../BasicModal'
 
-type AddPackModalWithPortalType = {
+type AddPackModalType = {
     title: string
     isShowing: boolean
     hide: () => void
 }
 
-export const AddPackModalWithPortal = (props: AddPackModalWithPortalType) => {
+export const AddPackModal = (props: AddPackModalType) => {
     const dispatch = useAppDispatch()
 
     let [name, setName] = useState('')
