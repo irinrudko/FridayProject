@@ -1,36 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import s from './CardsTable.module.scss'
-
-import { CardType, GetCardParams } from '../../../../api/cardsAPI'
+import { CardType } from '../../../../api/cardsAPI'
 import CardRow from './CardRow/CardRow'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import { useParams } from 'react-router-dom'
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
 
 type CardsTablePropsType = {
-    editCard: () => void
     myCardPacks: CardType[]
     userId: string
     setFilterUpdateGrade: (sortCards: string) => void
     packUserId: string
 }
 
-export const CardsTable: React.FC<CardsTablePropsType> = ({
-    editCard,
-    myCardPacks,
-    userId,
-    setFilterUpdateGrade,
-    packUserId,
-}) => {
-    const [filter, setFilter] = useState(true)
+export const CardsTable: React.FC<CardsTablePropsType> = ({ myCardPacks, userId, setFilterUpdateGrade, packUserId }) => {
+    const [filter, setFilter] = React.useState(true)
 
     const { urlPackId } = useParams()
-    const myPacksSettings: GetCardParams = { cardsPack_id: urlPackId! } //gets id from url. helps to save data if reloading  page
-
-    const onclickHandler = () => {
-        alert('filter')
-    }
 
     const setFilterEndHandler = () => {
         setFilterUpdateGrade('1grade')
@@ -71,7 +58,7 @@ export const CardsTable: React.FC<CardsTablePropsType> = ({
                     {myCardPacks.length ? (
                         <TableBody>
                             {myCardPacks.map((row: CardType) => (
-                                <CardRow key={row._id} row={row} editCard={editCard} userId={userId} />
+                                <CardRow key={row._id} row={row} userId={userId} packId={urlPackId!} />
                             ))}
                         </TableBody>
                     ) : (
