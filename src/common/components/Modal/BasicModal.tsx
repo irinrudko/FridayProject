@@ -36,8 +36,6 @@ type ModalType = {
 //memoization
 
 export const BasicModal: React.FC<ModalType> = ({ isShowing, hide, children, title, onSaveClick, buttonTitle }) => {
-    console.log('BasicModal')
-
     const onSave = () => {
         onSaveClick()
         hide()

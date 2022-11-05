@@ -14,8 +14,6 @@ import { useModal } from '../../../common/components/Modal/useModal'
 import { AddPackModal } from '../../modals/packsModals/AddPackModal'
 
 export const PackList = React.memo(() => {
-    console.log('Packlist')
-
     const { addPackModal, toggleAddPackModal } = useModal()
 
     const dispatch = useAppDispatch()
