@@ -1,5 +1,5 @@
 import { CreateNewPackData, GetPackParams, GetPacksResponseType, packsAPI, PackType } from '../../../api/packsAPI'
-import { AppThunk } from '../../../app/store'
+import { AppRootStateType, AppThunk } from '../../../app/store'
 import { setSetting } from './SettingsBlock/setting-reducer'
 import { setAppStatusAC } from '../../../app/app-reducer'
 
@@ -106,8 +106,9 @@ export const updatePackTC =
     }
 
 export const removePackTC =
-    (id: string, params?: GetPackParams): AppThunk =>
-    (dispatch) => {
+    (id: string): AppThunk =>
+    (dispatch, getState: () => AppRootStateType) => {
+        const params = getState().setting
         packsAPI
             .removePack(id)
             .then(() => {
@@ -120,12 +121,13 @@ export const removePackTC =
     }
 
 export const addPackTC =
-    (newPack: CreateNewPackData, params?: GetPackParams): AppThunk =>
-    (dispatch) => {
+    (newPack: CreateNewPackData): AppThunk =>
+    (dispatch, getState: () => AppRootStateType) => {
+        const params = getState().setting
         packsAPI
             .createPack(newPack)
             .then(() => {
-                dispatch(getPacksTC())
+                dispatch(getPacksTC(params))
             })
             .catch((err: any) => {
                 let error = err.response.data.error
