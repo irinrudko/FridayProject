@@ -16,7 +16,7 @@ type RowPropsType = {
     row: PackType
 }
 
-const RowPack: React.FC<RowPropsType> = ({ row }) => {
+const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
     const { removePackModal, toggleRemovePackModal } = useModal()
     const { editPackModal, toggleEditPackModal } = useModal()
 
@@ -106,6 +106,6 @@ const RowPack: React.FC<RowPropsType> = ({ row }) => {
             />
         </>
     )
-}
+})
 
 export default RowPack
