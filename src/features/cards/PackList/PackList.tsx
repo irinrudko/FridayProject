@@ -13,7 +13,9 @@ import { Button } from '@mui/material'
 import { useModal } from '../../../common/components/Modal/useModal'
 import { AddPackModal } from '../../modals/packsModals/AddPackModal'
 
-export const PackList = () => {
+export const PackList = React.memo(() => {
+    console.log('Packlist')
+
     const { addPackModal, toggleAddPackModal } = useModal()
 
     const dispatch = useAppDispatch()
@@ -96,4 +98,4 @@ export const PackList = () => {
             />
         </div>
     )
-}
+})
