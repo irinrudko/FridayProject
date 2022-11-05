@@ -11,6 +11,8 @@ type AddPackModalType = {
 }
 
 export const AddPackModal = (props: AddPackModalType) => {
+    console.log('AddPackModal')
+
     const dispatch = useAppDispatch()
 
     let [name, setName] = useState('')

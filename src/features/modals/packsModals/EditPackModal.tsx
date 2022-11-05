@@ -13,6 +13,8 @@ type EditPackModalType = {
 }
 
 export const EditPackModal = (props: EditPackModalType) => {
+    console.log('EditPackModal')
+
     const dispatch = useAppDispatch()
 
     useEffect(() => {
