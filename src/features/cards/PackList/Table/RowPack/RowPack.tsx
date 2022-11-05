@@ -14,11 +14,9 @@ import { EditPackModal } from '../../../../modals/packsModals/EditPackModal'
 
 type RowPropsType = {
     row: PackType
-    deletePack: (rowId: string) => void
-    learnPack: (rowId: string) => void
 }
 
-const RowPack: React.FC<RowPropsType> = ({ row, deletePack, learnPack }) => {
+const RowPack: React.FC<RowPropsType> = ({ row }) => {
     const { removePackModal, toggleRemovePackModal } = useModal()
     const { editPackModal, toggleEditPackModal } = useModal()
 
