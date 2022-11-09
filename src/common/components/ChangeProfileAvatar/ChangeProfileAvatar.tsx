@@ -8,10 +8,11 @@ import { setErrAC } from '../../../app/app-reducer'
 export const ChangeProfileAvatar = () => {
     const dispatch = useAppDispatch()
     const avatar = useAppSelector((state) => state.auth.user.avatar)
+    const vievAvatar = avatar ? avatar : AvatarImage
     const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length) {
             const file = e.target.files[0]
-            console.log('file: ', file)
+            // console.log('file: ', file)
 
             if (file.size < 1000000) {
                 convertFileToBase64(file, (file64: string) => {
@@ -20,7 +21,7 @@ export const ChangeProfileAvatar = () => {
                 })
             } else {
                 dispatch(setErrAC('Error: Файл слишком большого размера'))
-                console.error('Error: ', 'Файл слишком большого размера')
+                // console.error('Error: ', 'Файл слишком большого размера')
             }
         }
     }
@@ -36,7 +37,7 @@ export const ChangeProfileAvatar = () => {
 
     return (
         <div className={s.imageContainer}>
-            <img className={s.img} alt="my avatar" src={avatar || AvatarImage} />
+            <img className={s.img} alt="my avatar" src={vievAvatar} />
             <label>
                 <input type="file" onChange={uploadHandler} style={{ display: 'none' }} />
                 <span className={s.iconPhoto}></span>
