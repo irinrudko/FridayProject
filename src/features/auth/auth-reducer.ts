@@ -169,13 +169,13 @@ export const registrationTC =
             })
     }
 export const updateUser =
-    (userName: { name: string }): AppThunk =>
+    (data: { name?: string; avatar?: string }): AppThunk =>
     (dispatch, getState: () => AppRootStateType) => {
         dispatch(setAppStatusAC('loading'))
         const user = getState().auth.user
-        const userUpdate = { ...user, ...userName }
+        const userUpdate = { ...user, ...data }
         authAPI
-            .changeNameOrImg(userName)
+            .changeNameOrImg(data)
             .then(() => dispatch(setUserDataAC(userUpdate)))
             .catch((err: any) => {
                 let error = err.response.data.error
