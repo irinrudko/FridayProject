@@ -9,6 +9,7 @@ export const ChangeProfileAvatar = () => {
     const dispatch = useAppDispatch()
     const avatar = useAppSelector((state) => state.auth.user.avatar)
     const vievAvatar = avatar ? avatar : AvatarImage
+
     const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length) {
             const file = e.target.files[0]

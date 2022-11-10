@@ -3,6 +3,7 @@ import { debounce, IconButton, InputBase, Paper } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { useAppDispatch } from '../../../app/store'
 import { useDebouce } from '../../assets/Hook/useDebouce'
+import s from './Search.module.scss'
 
 type SearchPropsType = {
     searchPack: (searchPack: string) => void
@@ -24,18 +25,23 @@ export const Search: React.FC<SearchPropsType> = ({ searchPack, searchStyle, set
     }, [debouncedValue])
 
     return (
-        <Paper component="form" sx={searchStyle}>
-            <IconButton type="button" sx={{ p: '10px', cursor: 'pointer' }} aria-label="search">
-                <SearchIcon />
-            </IconButton>
-            <InputBase
-                sx={{ ml: 1, flex: 1 }}
-                type={'search'}
-                placeholder="Provide your text"
-                onChange={onChangeSearchHandler}
-                value={searchValue}
-                style={{ paddingRight: '8px', cursor: 'pointer' }}
-            />
-        </Paper>
+        <>
+            <div className={s.descriptionBlock}>
+                <span>Search</span>
+            </div>
+            <Paper component="form" sx={searchStyle}>
+                <IconButton type="button" sx={{ p: '10px', cursor: 'pointer' }} aria-label="search">
+                    <SearchIcon />
+                </IconButton>
+                <InputBase
+                    sx={{ ml: 1, flex: 1 }}
+                    type={'search'}
+                    placeholder="Provide your text"
+                    onChange={onChangeSearchHandler}
+                    value={searchValue}
+                    style={{ paddingRight: '8px', cursor: 'pointer' }}
+                />
+            </Paper>
+        </>
     )
 }

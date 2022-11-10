@@ -1,5 +1,11 @@
 @import '../../../../../common/styles/sass/mixins';
 
+.questionImage {
+    object-fit: cover;
+    width: 180px;
+    height: 120px;
+}
+
 .actions {
     @include flex(row, flex-end, center, wrap);
     cursor: pointer;

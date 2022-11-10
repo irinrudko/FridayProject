@@ -88,7 +88,19 @@ export const LearnPage: React.FC<LearnPagePropsType> = ({}) => {
             <h2 className={s.headName}>Learn {packName}</h2>
             <Paper className={s.paper} elevation={3}>
                 <div className={s.question}>
-                    <b>Question: </b> {card.question}{' '}
+                    <b>Question: </b>
+                    {card.questionImg ? (
+                        <div className={s.xxx}>
+                            <img
+                                src={card.questionImg}
+                                alt="question image"
+                                style={{ width: '250px' }}
+                                className={s.questionImage}
+                            />
+                        </div>
+                    ) : (
+                        card.question
+                    )}
                 </div>
                 <div className={s.attempts}>Количество попыток ответов на вопрос: {card.shots}</div>
                 {!showAnswer ? (

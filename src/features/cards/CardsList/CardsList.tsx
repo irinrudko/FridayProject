@@ -60,9 +60,6 @@ export const CardsList = () => {
         <div className={s.friendListContainer}>
             <BackPackArrow />
             <HeadBlock userId={userId} packName={packName} packUserId={packUserId} />
-            <div className={s.descriptionBlock}>
-                <span>Search</span>
-            </div>
             <Search
                 setSearchValue={setSearchValue}
                 searchValue={searchValue}
