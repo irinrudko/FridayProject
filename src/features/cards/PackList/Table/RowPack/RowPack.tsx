@@ -22,6 +22,7 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
 
     const dispatch = useAppDispatch()
     const userId = useAppSelector((store) => store.auth.user._id)
+    const packAvatar = row.deckCover
 
     const setPackId = useCallback(
         (id: string, userId: string) => {
@@ -49,6 +50,7 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
                             className={s.navLink}
                             onClick={() => setPackId(row._id, row.user_id)}
                         >
+                            <img src={packAvatar} className={s.packAvatar} alt="pack avatart" />
                             {row.name}
                         </NavLink>
                     ) : (
