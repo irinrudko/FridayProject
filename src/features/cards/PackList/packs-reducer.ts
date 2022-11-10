@@ -98,9 +98,9 @@ export const getPacksTC =
     }
 
 export const updatePackTC =
-    (id: string, name: string, isPrivate?: boolean, params?: GetPackParams): AppThunk =>
+    (id: string, name: string, deckCover: string, isPrivate?: boolean, params?: GetPackParams): AppThunk =>
     (dispatch) => {
-        packsAPI.updatePack(id, name, isPrivate!).then(() => {
+        packsAPI.updatePack(id, name, deckCover, isPrivate!).then(() => {
             dispatch(getPacksTC(params))
         })
     }

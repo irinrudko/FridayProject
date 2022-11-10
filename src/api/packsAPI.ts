@@ -11,11 +11,12 @@ export const packsAPI = {
     removePack(id: string) {
         return instance.delete<AxiosResponse<RemovePackResponseType>>(`cards/pack?id=${id}`)
     },
-    updatePack(id: string, name: string, isPrivate: boolean) {
+    updatePack(id: string, name: string, deckCover: string, isPrivate: boolean) {
         return instance.put<AxiosResponse<ChangePackNameResponseType>>('cards/pack', {
             cardsPack: {
                 _id: id,
                 name,
+                deckCover,
                 private: isPrivate,
             },
         })
