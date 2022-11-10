@@ -59,6 +59,7 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
                             className={s.navLink}
                             onClick={() => setPackId(row._id, row.user_id)}
                         >
+                            <img src={packAvatar} className={s.packAvatar} alt="pack avatart" />
                             {row.name}
                         </NavLink>
                     )}
