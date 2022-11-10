@@ -1,0 +1,6 @@
+@import '../../../common/styles/sass/mixins';
+
+.descriptionBlock {
+    @include flex(row, flex-start, center, wrap);
+    @include text(14px, 17px, 500);
+}

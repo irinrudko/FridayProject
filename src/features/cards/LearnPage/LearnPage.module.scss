@@ -22,7 +22,20 @@
             @include text(16px, 24px, 600);
             margin-bottom: 10px;
             margin-top: 20px;
+
+            .xxx {
+                @include flex(row, center, center, wrap);
+                width: 350px;
+
+                .questionImage {
+                    object-fit: cover;
+                    width: 250px;
+                    height: 200px;
+                    padding-top: 30px;
+                }
+            }
         }
+
         .attempts {
             //width: 80%;
             @include text(14px, 24px, 400);
