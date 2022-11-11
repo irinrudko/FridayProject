@@ -11,6 +11,7 @@ import { setCardParams } from '../../../CardsList/cardParams-reducer'
 import { useModal } from '../../../../../common/components/Modal/useModal'
 import { RemovePackModal } from '../../../../modals/packsModals/RemovePackModal'
 import { EditPackModal } from '../../../../modals/packsModals/EditPackModal'
+import packCover from '../../../../../common/assets/image/packCover.jpeg'
 
 type RowPropsType = {
     row: PackType
@@ -22,7 +23,8 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
 
     const dispatch = useAppDispatch()
     const userId = useAppSelector((store) => store.auth.user._id)
-    const packAvatar = row.deckCover
+    const deckCover = row.deckCover
+    const packAvatar = deckCover ? deckCover : packCover
 
     const setPackId = useCallback(
         (id: string, userId: string) => {
@@ -40,6 +42,7 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
     }
 
     const classEducation = row.cardsCount > 0 ? s.schoolIcon : s.blockSchoolIcon
+
     return (
         <>
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
