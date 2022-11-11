@@ -20,12 +20,7 @@ export const HandlePrivatePack: React.FC<HandlePrivatePackType> = (props) => {
     return (
         <>
             {props.isPrivate ? (
-                <FormGroup>
-                    <FormControlLabel
-                        control={<Checkbox onChange={setIsPrivateHandler} checked={props.isPrivate} />}
-                        label="Private pack"
-                    />
-                </FormGroup>
+                <Checkbox onChange={setIsPrivateHandler} checked={props.isPrivate} />
             ) : (
                 <Checkbox onChange={setIsPrivateHandler} checked={false} />
             )}

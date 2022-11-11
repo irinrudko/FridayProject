@@ -116,7 +116,9 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
                     </div>
                 </TableCell>
                 <TableCell align="left">
-                    <HandlePrivatePack id={row._id} packName={row.name} avatar={row.deckCover} isPrivate={row.private} />
+                    {row.user_id === userId && (
+                        <HandlePrivatePack id={row._id} packName={row.name} avatar={row.deckCover} isPrivate={row.private} />
+                    )}
                 </TableCell>
             </TableRow>
 
