@@ -24,7 +24,7 @@ export const EditPackModal = (props: EditPackModalType) => {
     }, [props.packName, props.avatar]) //to get name from props
 
     let [name, setName] = useState('')
-    let [isPrivate, setIsPrivate] = useState(false)
+    let [isPrivate, setIsPrivate] = useState(props.isPrivate)
     const [uploadPhoto, setUploadPhoto] = React.useState<string>('')
 
     const setNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +46,7 @@ export const EditPackModal = (props: EditPackModalType) => {
             <img src={props.avatar} className={s.image} />
             <FormGroup>
                 <FormControlLabel
-                    control={<Checkbox onChange={setIsPrivateHandler} checked={props.isPrivate} />}
+                    control={<Checkbox onChange={setIsPrivateHandler} checked={isPrivate} />}
                     label="Private pack"
                 />
             </FormGroup>
