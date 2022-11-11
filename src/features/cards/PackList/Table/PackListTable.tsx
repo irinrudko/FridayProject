@@ -32,6 +32,9 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ cardPacks, set
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow style={{ backgroundColor: '#EFEFEF' }}>
+                            <TableCell style={{ fontWeight: '600' }} width={120}>
+                                Cover
+                            </TableCell>
                             <TableCell style={{ fontWeight: '600' }} width={300}>
                                 Name
                             </TableCell>

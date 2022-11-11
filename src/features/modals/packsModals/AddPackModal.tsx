@@ -3,6 +3,7 @@ import { Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/material'
 import { useAppDispatch } from '../../../app/store'
 import { addPackTC } from '../../cards/PackList/packs-reducer'
 import { BasicModal } from '../../../common/components/Modal/BasicModal'
+import UploadPhoto from '../cardsModals/UploadPhoto/UploadPhoto'
 
 type AddPackModalType = {
     title: string
@@ -15,6 +16,7 @@ export const AddPackModal = (props: AddPackModalType) => {
 
     let [name, setName] = useState('')
     let [isPrivate, setIsPrivate] = useState(false)
+    const [uploadPhoto, setUploadPhoto] = React.useState<string>('')
 
     const setNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.currentTarget.value)
@@ -28,7 +30,7 @@ export const AddPackModal = (props: AddPackModalType) => {
         const newPack = {
             cardsPack: {
                 name: name,
-                deckCover: '',
+                deckCover: uploadPhoto,
                 private: isPrivate,
             },
         }
@@ -39,6 +41,7 @@ export const AddPackModal = (props: AddPackModalType) => {
     return (
         <BasicModal title={props.title} onSaveClick={addNewPack} isShowing={props.isShowing} hide={props.hide}>
             <TextField variant="standard" label="Name pack" value={name} onChange={setNameHandler} />
+            <UploadPhoto setUploadPhoto={setUploadPhoto} uploadPhoto={uploadPhoto} />
             <FormGroup>
                 <FormControlLabel control={<Checkbox onChange={setIsPrivateHandler} />} label="Private pack" />
             </FormGroup>

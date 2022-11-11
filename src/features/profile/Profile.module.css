@@ -7,28 +7,22 @@
     padding-top: 17px;
 }
 
-.img {
-    height: 96px;
-    width: 96px;
-    border-radius: 50%;
-}
-
 .name {
     display: block;
     margin-top: 17px;
     position: relative;
 }
 
-.name::after {
-    content: '';
-    position: absolute;
-    top: -50px;
-    right: 76px;
-    width: 32px;
-    height: 32px;
-    background-image: url('../../common/assets/image/iconPhotoProfile.svg');
-    background-repeat: no-repeat;
-}
+/*.name::after {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    top: -50px;*/
+/*    right: 76px;*/
+/*    width: 32px;*/
+/*    height: 32px;*/
+/*    background-image: url('../../common/assets/image/iconPhotoProfile.svg');*/
+/*    background-repeat: no-repeat;*/
+/*}*/
 
 .email {
     opacity: 0.5;

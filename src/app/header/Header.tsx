@@ -11,8 +11,9 @@ import CollapsedMenu from '../../common/components/CollapsedMenu/CollapsedMenu'
 const Header = () => {
     const isLoggedIn = useAppSelector((store) => store.auth.isLoggedIn)
     const name = useAppSelector((state) => state.auth.user.name)
-    // const avatar = useAppSelector((state) => state.auth.user.avatar)
+    const avatar = useAppSelector((state) => state.auth.user.avatar)
     const [collapsed, setCollapsed] = useState<boolean>(true)
+    const vievAvatar = avatar ? avatar : AvatarImage
     const inputClass = !collapsed ? s.active : s.nav
 
     const onClickHandler = () => setCollapsed(!collapsed)
@@ -47,7 +48,7 @@ const Header = () => {
                         </div>
                         <div>
                             {/*{avatar}*/}
-                            <img className={s.img} alt="my avatar" src={AvatarImage} />
+                            <img className={s.img} alt="my avatar" src={vievAvatar} />
                         </div>
                         <div className={inputClass} onMouseLeave={onMouseLeaveHandler}>
                             <CollapsedMenu />

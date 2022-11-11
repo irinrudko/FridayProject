@@ -22,6 +22,7 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
 
     const dispatch = useAppDispatch()
     const userId = useAppSelector((store) => store.auth.user._id)
+    const packAvatar = row.deckCover
 
     const setPackId = useCallback(
         (id: string, userId: string) => {
@@ -42,6 +43,25 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
     return (
         <>
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell component="th" scope="row">
+                    {row.cardsCount === 0 ? (
+                        <NavLink
+                            to={`/no-cards/${row._id}`}
+                            className={s.navLink}
+                            onClick={() => setPackId(row._id, row.user_id)}
+                        >
+                            <img src={packAvatar} className={s.packAvatar} alt="pack cover" />
+                        </NavLink>
+                    ) : (
+                        <NavLink
+                            to={`/packs/my-packs/${row._id}`}
+                            className={s.navLink}
+                            onClick={() => setPackId(row._id, row.user_id)}
+                        >
+                            <img src={packAvatar} className={s.packAvatar} alt="pack cover" />
+                        </NavLink>
+                    )}
+                </TableCell>
                 <TableCell component="th" scope="row">
                     {row.cardsCount === 0 ? (
                         <NavLink

@@ -1,0 +1,23 @@
+.imageContainer {
+    .img {
+        height: 96px;
+        width: 96px;
+        border-radius: 50%;
+    }
+
+    .iconPhoto {
+        display: block;
+        position: relative;
+        &::before {
+            content: '';
+            position: absolute;
+            top: -27px;
+            right: 76px;
+            width: 32px;
+            height: 32px;
+            background-image: url('../../assets/image/iconPhotoProfile.svg');
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+    }
+}
