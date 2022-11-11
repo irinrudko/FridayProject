@@ -6,22 +6,6 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
 
-const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 455,
-    height: 351,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-}
-
 type ModalType = {
     children: React.ReactNode
     title: string
@@ -75,4 +59,20 @@ export const BasicModal: React.FC<ModalType> = ({ isShowing, hide, children, tit
               document.body
           )
         : null
+}
+
+const style = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 455,
+    height: 351,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
 }
