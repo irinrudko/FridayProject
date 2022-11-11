@@ -4,27 +4,23 @@ import { useAppDispatch } from '../../../app/store'
 import { updatePackTC } from '../../cards/PackList/packs-reducer'
 import { BasicModal } from '../../../common/components/Modal/BasicModal'
 import UploadPhoto from '../cardsModals/UploadPhoto/UploadPhoto'
+import s from '../../../common/components/Modal/BasicModal.module.scss'
 
 type EditPackModalType = {
     title: string
     id: string
     packName: string
+    avatar: string
     isShowing: boolean
     hide: () => void
 }
 
 export const EditPackModal = (props: EditPackModalType) => {
     const dispatch = useAppDispatch()
-    // const packs = useAppSelector((state) => state.packs.cardPacks)
-    // const pack = packs.filter((pack) => (pack._id === props.id ? pack : null))
 
-    // const oldAvatar = pack.
-    // const oldAvatar: string = packs.filter((pack) => (pack._id === props.id ? pack.deckCover : ''))
-
-    // const avatar = pack.
     useEffect(() => {
         setName(props.packName)
-    }, [props.packName]) //to get name from props
+    }, [props.packName, props.avatar]) //to get name from props
 
     let [name, setName] = useState('')
     let [isPrivate, setIsPrivate] = useState(false)
@@ -46,6 +42,7 @@ export const EditPackModal = (props: EditPackModalType) => {
         <BasicModal title={props.title} onSaveClick={editPack} isShowing={props.isShowing} hide={props.hide}>
             <TextField variant="standard" label="Name pack" value={name} onChange={setNameHandler} />
             <UploadPhoto setUploadPhoto={setUploadPhoto} uploadPhoto={uploadPhoto} />
+            <img src={props.avatar} className={s.image} />
             <FormGroup>
                 <FormControlLabel control={<Checkbox onChange={setIsPrivateHandler} />} label="Private pack" />
             </FormGroup>

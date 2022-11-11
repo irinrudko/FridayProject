@@ -124,6 +124,7 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
                     hide={toggleEditPackModal}
                     id={row._id}
                     packName={row.name}
+                    avatar={row.deckCover}
                 />
             )}
 
