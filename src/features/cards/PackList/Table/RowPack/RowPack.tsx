@@ -65,7 +65,7 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
                         </NavLink>
                     )}
                 </TableCell>
-                <TableCell component="th" scope="row">
+                <TableCell className={s.nameCell} component="th" scope="row">
                     {row.cardsCount === 0 ? (
                         <NavLink
                             to={`/no-cards/${row._id}`}
