@@ -114,6 +114,7 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
                         </div>
                     </div>
                 </TableCell>
+                <TableCell align="left">{row.private ? 'private' : 'not private'}</TableCell>
             </TableRow>
 
             {editPackModal && (
@@ -125,6 +126,7 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
                     id={row._id}
                     packName={row.name}
                     avatar={row.deckCover}
+                    isPrivate={row.private}
                 />
             )}
 

@@ -11,6 +11,7 @@ type EditPackModalType = {
     id: string
     packName: string
     avatar: string
+    isPrivate: boolean
     isShowing: boolean
     hide: () => void
 }
@@ -44,7 +45,10 @@ export const EditPackModal = (props: EditPackModalType) => {
             <UploadPhoto setUploadPhoto={setUploadPhoto} uploadPhoto={uploadPhoto} />
             <img src={props.avatar} className={s.image} />
             <FormGroup>
-                <FormControlLabel control={<Checkbox onChange={setIsPrivateHandler} />} label="Private pack" />
+                <FormControlLabel
+                    control={<Checkbox onChange={setIsPrivateHandler} checked={props.isPrivate} />}
+                    label="Private pack"
+                />
             </FormGroup>
         </BasicModal>
     )
