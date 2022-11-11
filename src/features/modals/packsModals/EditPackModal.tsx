@@ -43,7 +43,7 @@ export const EditPackModal = (props: EditPackModalType) => {
         <BasicModal title={props.title} onSaveClick={editPack} isShowing={props.isShowing} hide={props.hide}>
             <TextField variant="standard" label="Name pack" value={name} onChange={setNameHandler} />
             <UploadPhoto setUploadPhoto={setUploadPhoto} uploadPhoto={uploadPhoto} />
-            <img src={props.avatar} className={s.image} />
+            {props.avatar && <img src={props.avatar} className={s.image} />}
             <FormGroup>
                 <FormControlLabel
                     control={<Checkbox onChange={setIsPrivateHandler} checked={isPrivate} />}
