@@ -50,7 +50,25 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
                             className={s.navLink}
                             onClick={() => setPackId(row._id, row.user_id)}
                         >
-                            <img src={packAvatar} className={s.packAvatar} alt="pack avatart" />
+                            <img src={packAvatar} className={s.packAvatar} alt="pack cover" />
+                        </NavLink>
+                    ) : (
+                        <NavLink
+                            to={`/packs/my-packs/${row._id}`}
+                            className={s.navLink}
+                            onClick={() => setPackId(row._id, row.user_id)}
+                        >
+                            <img src={packAvatar} className={s.packAvatar} alt="pack cover" />
+                        </NavLink>
+                    )}
+                </TableCell>
+                <TableCell component="th" scope="row">
+                    {row.cardsCount === 0 ? (
+                        <NavLink
+                            to={`/no-cards/${row._id}`}
+                            className={s.navLink}
+                            onClick={() => setPackId(row._id, row.user_id)}
+                        >
                             {row.name}
                         </NavLink>
                     ) : (
@@ -59,7 +77,6 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
                             className={s.navLink}
                             onClick={() => setPackId(row._id, row.user_id)}
                         >
-                            <img src={packAvatar} className={s.packAvatar} alt="pack avatart" />
                             {row.name}
                         </NavLink>
                     )}
