@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { TableCell, TableRow } from '@mui/material'
+import { Checkbox, TableCell, TableRow } from '@mui/material'
 import { NavLink } from 'react-router-dom'
 import s from './RowPack.module.scss'
 import SchoolIcon from '@mui/icons-material/School'
@@ -12,6 +12,7 @@ import { useModal } from '../../../../../common/components/Modal/useModal'
 import { RemovePackModal } from '../../../../modals/packsModals/RemovePackModal'
 import { EditPackModal } from '../../../../modals/packsModals/EditPackModal'
 import packCover from '../../../../../common/assets/image/packCover.jpeg'
+import { HandlePrivatePack } from './HandlePrivatePack/HandlePrivatePack'
 
 type RowPropsType = {
     row: PackType
@@ -65,7 +66,7 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
                         </NavLink>
                     )}
                 </TableCell>
-                <TableCell component="th" scope="row">
+                <TableCell className={s.nameCell} component="th" scope="row">
                     {row.cardsCount === 0 ? (
                         <NavLink
                             to={`/no-cards/${row._id}`}
@@ -114,6 +115,11 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
                         </div>
                     </div>
                 </TableCell>
+                <TableCell align="left">
+                    {row.user_id === userId && (
+                        <HandlePrivatePack id={row._id} packName={row.name} avatar={row.deckCover} isPrivate={row.private} />
+                    )}
+                </TableCell>
             </TableRow>
 
             {editPackModal && (
@@ -124,6 +130,8 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
                     hide={toggleEditPackModal}
                     id={row._id}
                     packName={row.name}
+                    avatar={row.deckCover}
+                    isPrivate={row.private}
                 />
             )}
 
