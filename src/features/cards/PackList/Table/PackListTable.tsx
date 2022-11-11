@@ -56,7 +56,7 @@ export const PackListTable: React.FC<PackListTablePropsType> = ({ cardPacks, set
                                 Actions
                             </TableCell>
                             <TableCell align="left" style={{ fontWeight: '600' }} width={120}>
-                                isPrivate
+                                Private
                             </TableCell>
                         </TableRow>
                     </TableHead>

@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { TableCell, TableRow } from '@mui/material'
+import { Checkbox, TableCell, TableRow } from '@mui/material'
 import { NavLink } from 'react-router-dom'
 import s from './RowPack.module.scss'
 import SchoolIcon from '@mui/icons-material/School'
@@ -114,7 +114,7 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
                         </div>
                     </div>
                 </TableCell>
-                <TableCell align="left">{row.private ? 'private' : 'not private'}</TableCell>
+                <TableCell align="left">{row.private ? <Checkbox checked={true} /> : <Checkbox checked={false} />}</TableCell>
             </TableRow>
 
             {editPackModal && (
