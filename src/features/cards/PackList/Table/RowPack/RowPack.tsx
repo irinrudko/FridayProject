@@ -12,6 +12,7 @@ import { useModal } from '../../../../../common/components/Modal/useModal'
 import { RemovePackModal } from '../../../../modals/packsModals/RemovePackModal'
 import { EditPackModal } from '../../../../modals/packsModals/EditPackModal'
 import packCover from '../../../../../common/assets/image/packCover.jpeg'
+import { HandlePrivatePack } from './HandlePrivatePack/HandlePrivatePack'
 
 type RowPropsType = {
     row: PackType
@@ -114,7 +115,9 @@ const RowPack: React.FC<RowPropsType> = React.memo(({ row }) => {
                         </div>
                     </div>
                 </TableCell>
-                <TableCell align="left">{row.private ? <Checkbox checked={true} /> : <Checkbox checked={false} />}</TableCell>
+                <TableCell align="left">
+                    <HandlePrivatePack id={row._id} packName={row.name} avatar={row.deckCover} isPrivate={row.private} />
+                </TableCell>
             </TableRow>
 
             {editPackModal && (
