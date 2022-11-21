@@ -89,7 +89,7 @@ export const LearnPage: React.FC<LearnPagePropsType> = ({}) => {
             <Paper className={s.paper} elevation={3}>
                 <div className={s.question}>
                     <b>Question: </b>
-                    { card.questionImg && card.questionImg.length > 15 ? (
+                    {card.questionImg && card.questionImg.length > 15 ? (
                         <div className={s.xxx}>
                             <img
                                 src={card.questionImg}

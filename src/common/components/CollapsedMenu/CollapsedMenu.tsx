@@ -15,9 +15,10 @@ const CollapsedMenu: FC<CollapsedMenuPropsType> = ({ setCollapsed }) => {
     const redirectToLogin = () => {
         dispatch(logoutTC())
     }
+
     return (
         <div className={s.mainContainer}>
-            <NavLink to={routes.login}>
+            <NavLink to={routes.profile}>
                 <div className={s.linkBlock} onClick={setCollapsed}>
                     <span className={s.iconProfile}></span>
                     <span className={s.text}>Profile</span>
