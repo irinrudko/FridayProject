@@ -26,9 +26,7 @@ export const Search: React.FC<SearchPropsType> = ({ searchPack, searchStyle, set
 
     return (
         <>
-            <div className={s.descriptionBlock}>
-                <span>Search</span>
-            </div>
+            <div className={s.descriptionBlock}>{/*<span>Search</span>*/}</div>
             <Paper component="form" sx={searchStyle}>
                 <IconButton type="button" sx={{ p: '10px', cursor: 'pointer' }} aria-label="search">
                     <SearchIcon />
