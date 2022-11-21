@@ -25,7 +25,6 @@ const CardRow: React.FC<CardRowPropsType> = ({ row, userId, packId }) => {
             year: 'numeric',
         })
     }
-    console.log(row.questionImg)
 
     return (
         <>
