@@ -38,7 +38,7 @@ export const EditPackModal = (props: EditPackModalType) => {
     }
 
     const editPack = () => {
-        dispatch(updatePackTC(props.id, name!, uploadPhoto, isPrivate, { user_id: id }))
+        dispatch(updatePackTC(props.id, name!, uploadPhoto, isPrivate, { user_id: id, pageCount: 100 }))
         console.log(props.id, name!, uploadPhoto, isPrivate)
     }
 

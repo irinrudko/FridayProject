@@ -33,6 +33,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        text-decoration: none;
+        color: black;
 
         &:hover {
             background-color: rgba(194, 194, 194, 0.2);
