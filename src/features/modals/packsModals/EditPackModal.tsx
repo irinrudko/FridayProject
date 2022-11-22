@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Checkbox, FormControlLabel, FormGroup, TextField } from '@mui/material'
-import { useAppDispatch } from '../../../app/store'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { updatePackTC } from '../../cards/PackList/packs-reducer'
 import { BasicModal } from '../../../common/components/Modal/BasicModal'
 import UploadPhoto from '../cardsModals/UploadPhoto/UploadPhoto'
@@ -9,9 +9,9 @@ import s from '../../../common/components/Modal/BasicModal.module.scss'
 type EditPackModalType = {
     title: string
     id: string
-    packName: string
-    avatar: string
-    isPrivate: boolean
+    packName?: string
+    avatar?: string
+    isPrivate?: boolean
     isShowing: boolean
     hide: () => void
 }
@@ -19,13 +19,14 @@ type EditPackModalType = {
 export const EditPackModal = (props: EditPackModalType) => {
     const dispatch = useAppDispatch()
 
+    const [name, setName] = useState<string | undefined>('')
+    const [isPrivate, setIsPrivate] = useState(props.isPrivate)
+    const [uploadPhoto, setUploadPhoto] = useState<string>('')
+    const id = useAppSelector((store) => store.auth.user._id)
+
     useEffect(() => {
         setName(props.packName)
     }, [props.packName, props.avatar]) //to get name from props
-
-    let [name, setName] = useState('')
-    let [isPrivate, setIsPrivate] = useState(props.isPrivate)
-    const [uploadPhoto, setUploadPhoto] = React.useState<string>('')
 
     const setNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.currentTarget.value)
@@ -33,10 +34,12 @@ export const EditPackModal = (props: EditPackModalType) => {
 
     const setIsPrivateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setIsPrivate(e.currentTarget.checked)
+        console.log(e.currentTarget.checked)
     }
 
     const editPack = () => {
-        dispatch(updatePackTC(props.id, name, uploadPhoto, isPrivate))
+        dispatch(updatePackTC(props.id, name!, uploadPhoto, isPrivate, { user_id: id }))
+        console.log(props.id, name!, uploadPhoto, isPrivate)
     }
 
     return (

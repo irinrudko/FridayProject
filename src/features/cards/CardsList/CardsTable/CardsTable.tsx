@@ -18,7 +18,6 @@ export const CardsTable: React.FC<CardsTablePropsType> = ({ myCardPacks, userId,
     const [filter, setFilter] = React.useState(true)
 
     const { urlPackId } = useParams()
-
     const setFilterEndHandler = () => {
         setFilterUpdateGrade('1grade')
         setFilter(!filter)

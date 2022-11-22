@@ -9,13 +9,13 @@ import { AddCardModal } from '../../../modals/cardsModals/AddCardModal'
 
 type HeadBlockPropsType = {
     userId: string
-    packName: string
+    packName: string | undefined
     packUserId: string
 }
 
 const HeadBlock: React.FC<HeadBlockPropsType> = React.memo(({ userId, packUserId, packName }) => {
     const { addCardModal, toggleAddCardModal } = useModal()
-    const [name, setName] = useState('')
+    const [name, setName] = useState<string | undefined>('')
     const [collapsed, setCollapsed] = useState<boolean>(true)
     const { urlPackId } = useParams<string>()
 
