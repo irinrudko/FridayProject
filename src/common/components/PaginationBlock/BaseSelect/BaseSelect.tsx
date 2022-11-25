@@ -3,8 +3,7 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import { useAppSelector } from '../../../../app/store'
-import { useEffect } from 'react'
-import { getPacksTC } from '../../../../features/cards/PackList/packs-reducer'
+
 type BasicSelectPropsType = {
     setPageCount: (pageCount: number) => void
 }
