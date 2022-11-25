@@ -1,6 +1,5 @@
 import { CreateNewPackData, GetPackParams, GetPacksResponseType, packsAPI, PackType } from '../../../api/packsAPI'
 import { AppRootStateType, AppThunk } from '../../../app/store'
-import { setSetting } from './SettingsBlock/setting-reducer'
 import { setAppStatusAC } from '../../../app/app-reducer'
 
 const initialState = {

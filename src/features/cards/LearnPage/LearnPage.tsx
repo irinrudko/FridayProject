@@ -26,7 +26,7 @@ const getCard = (cards: CardType[]) => {
 }
 type LearnPagePropsType = {}
 
-export const LearnPage: React.FC<LearnPagePropsType> = ({}) => {
+export const LearnPage: React.FC<LearnPagePropsType> = () => {
     const dispatch = useAppDispatch()
     const packName = useAppSelector((store) => store.cards.packName)
     const cards = useAppSelector((state) => state.cards.cards)

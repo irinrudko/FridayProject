@@ -14,7 +14,7 @@ import Button from '@mui/material/Button'
 import { useFormik } from 'formik'
 import { IconButton, Input, InputAdornment, InputLabel } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
-import { AppRootStateType, useAppDispatch, useAppSelector } from '../../../app/store'
+import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { FormikErrorType } from '../auth-types'
 import { loginTC } from '../auth-reducer'
 
@@ -82,9 +82,6 @@ export const Login = () => {
                                 margin="normal"
                                 variant="standard"
                                 className={authStyle.textField}
-                                // onChange={formik.handleChange}
-                                // value={formik.values.email}
-                                // name="email"
                                 {...formik.getFieldProps('email')}
                             />
                             {formik.touched.email && formik.errors.email ? (
@@ -95,9 +92,6 @@ export const Login = () => {
                                 <Input
                                     id="password"
                                     type={password ? 'text' : 'password'}
-                                    // onChange={formik.handleChange}
-                                    // value={formik.values.password}
-                                    // name="password"
                                     className={authStyle.textField}
                                     autoComplete="on"
                                     {...formik.getFieldProps('password')}
