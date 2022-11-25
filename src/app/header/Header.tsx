@@ -13,11 +13,10 @@ const Header = () => {
     const name = useAppSelector((state) => state.auth.user.name)
     const avatar = useAppSelector((state) => state.auth.user.avatar)
     const [collapsed, setCollapsed] = useState<boolean>(true)
-    const vievAvatar = avatar ? avatar : AvatarImage
+    const viewAvatar = avatar ? avatar : AvatarImage
     const inputClass = !collapsed ? s.active : s.nav
 
     const onClickHandler = () => setCollapsed(!collapsed)
-    const onMouseLeaveHandler = () => setCollapsed(true)
 
     useEffect(() => {
         setTimeout(() => {
@@ -47,11 +46,10 @@ const Header = () => {
                             {name}
                         </div>
                         <div>
-                            {/*{avatar}*/}
-                            <img className={s.img} alt="my avatar" src={vievAvatar} />
+                            <img className={s.img} alt="my avatar" src={viewAvatar} />
                         </div>
-                        <div className={inputClass} onMouseLeave={onMouseLeaveHandler}>
-                            <CollapsedMenu />
+                        <div className={inputClass}>
+                            <CollapsedMenu setCollapsed={() => setCollapsed(true)} />
                         </div>
                     </div>
                 )}

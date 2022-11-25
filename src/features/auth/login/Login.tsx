@@ -65,7 +65,7 @@ export const Login = () => {
     })
 
     if (isLoggedIn) {
-        return <Navigate to={routes.profile} />
+        return <Navigate to={routes.packsList} />
     }
 
     return (

@@ -3,22 +3,9 @@
     justify-content: center;
     align-items: center;
     height: 60px;
-    /*background-color: #383838;*/
     background-color: #fafafb;
     box-shadow: 0px 4px 18px rgba(54, 110, 255, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
-    .nav {
-        position: relative;
-        /*border: red 1px solid;*/
-        transition: 1s;
-        transform: translateX(-76%);
-    }
 
-    .active {
-        position: relative;
-        /*border: red 1px solid;*/
-        transform: translateX(0);
-        transition: 1s;
-    }
     .mainBlock {
         width: 1000px;
         display: flex;
@@ -51,7 +38,7 @@
             .nav {
                 position: absolute;
                 opacity: 0;
-                top: -15px;
+                top: -315px;
                 right: 127px;
                 transition: all 0.8s ease 0s;
                 z-index: 10;

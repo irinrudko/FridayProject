@@ -46,10 +46,26 @@
                 content: '';
                 position: absolute;
                 left: 20px;
-                bottom: 55px;
+                top: 15px;
                 width: 13px;
                 height: 13px;
                 background-image: url('../../../common/assets/image/profile.svg');
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+
+        .iconPack {
+            width: 40%;
+
+            &:after {
+                content: '';
+                position: absolute;
+                left: 20px;
+                top: 56px;
+                width: 13px;
+                height: 13px;
+                background-image: url('../../../common/assets/image/book.png');
                 background-repeat: no-repeat;
                 background-size: cover;
             }

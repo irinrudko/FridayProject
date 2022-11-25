@@ -30,11 +30,15 @@ const CardRow: React.FC<CardRowPropsType> = ({ row, userId, packId }) => {
         <>
             <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell component="th" scope="row">
-                    {row.questionImg ? (
-                        <img src={row.questionImg} alt="questionImage" className={s.questionImage} />
-                    ) : (
-                        row.question
-                    )}
+                    {
+                        row.questionImg && row.questionImg.length > 15 ? (
+                            <img src={row.questionImg} alt="questionImage" className={s.questionImage} />
+                        ) : (
+                            row.question
+                        )
+                        // ? (row.question)
+                        // : (<img src={row.questionImg} alt="questionImage" className={s.questionImage} />)
+                    }
                 </TableCell>
                 <TableCell align="left">{row.answer}</TableCell>
                 <TableCell align="left">{formatDate(row.updated)}</TableCell>

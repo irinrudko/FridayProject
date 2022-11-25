@@ -16,7 +16,7 @@ export const CardsList = () => {
     const myCardPacks = useAppSelector((state) => state.cards.cards)
     const packUserId = useAppSelector((state) => state.cards.packUserId)
     const cardsTotalCount = useAppSelector((state) => state.cards.cardsTotalCount)
-    const packName = useAppSelector((store) => store.cards.packName)
+    // const packName = useAppSelector((store) => store.cards.packName)
     const { urlPackId } = useParams<string>()
     const cardQuestion = useAppSelector((state) => state.cardParams.cardQuestion)
     const cardAnswer = useAppSelector((state) => state.cardParams.cardAnswer)
@@ -26,14 +26,17 @@ export const CardsList = () => {
     const page = useAppSelector((state) => state.cardParams.page)
     const pageCount = useAppSelector((state) => state.cardParams.pageCount)
     const cardsPack_id = useAppSelector((state) => state.cardParams.cardsPack_id)
+    const packName = useAppSelector((store) => store.packs.cardPacks.find((p) => p._id === urlPackId)?.name)
 
     const [searchValue, setSearchValue] = React.useState('')
 
     const cardParams = { cardsPack_id, cardQuestion, cardAnswer, sortCards, max, min, page, pageCount }
 
     useEffect(() => {
-        dispatch(getCardsTC({ ...cardParams, cardsPack_id: urlPackId! }))
-        return () => {}
+        setTimeout(() => {
+            dispatch(getCardsTC({ ...cardParams, cardsPack_id: urlPackId! }))
+            return () => {}
+        }, 1)
     }, [cardsPack_id, cardQuestion, cardAnswer, sortCards, max, min, page, pageCount])
 
     const valueFromPagination = {
