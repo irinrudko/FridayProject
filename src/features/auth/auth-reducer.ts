@@ -15,7 +15,7 @@ const initialState = {
     isLoggedIn: false,
     email: '',
     registered: false,
-    user: <UserData>{
+    user: {
         _id: '',
         email: '',
         name: '',
@@ -27,7 +27,7 @@ const initialState = {
         verified: false,
         rememberMe: false,
         error: '',
-    },
+    } as UserData,
 }
 
 export type AuthInitialStateType = typeof initialState
