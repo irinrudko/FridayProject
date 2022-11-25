@@ -3,7 +3,7 @@ import { AppRootStateType, AppThunk } from '../../../app/store'
 import { setAppStatusAC } from '../../../app/app-reducer'
 
 const initialState = {
-    cardPacks: <PackType[]>[
+    cardPacks: [
         {
             _id: '',
             user_id: '',
@@ -22,7 +22,7 @@ const initialState = {
             more_id: '',
             __v: 0,
         },
-    ],
+    ] as PackType[],
     page: 1,
     pageCount: 0,
     cardPacksTotalCount: 0,
@@ -40,7 +40,7 @@ export const packsReducer = (state: PacksInitialStateType = initialState, action
             return { ...action.packs }
         case 'PACKS/RESET-PACKS': {
             const initialValue = {
-                cardPacks: <PackType[]>[
+                cardPacks: [
                     {
                         _id: '',
                         user_id: '',
@@ -59,7 +59,7 @@ export const packsReducer = (state: PacksInitialStateType = initialState, action
                         more_id: '',
                         __v: 0,
                     },
-                ],
+                ] as PackType[],
                 page: 1,
                 pageCount: 0,
                 cardPacksTotalCount: 0,

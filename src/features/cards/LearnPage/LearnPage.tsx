@@ -91,12 +91,7 @@ export const LearnPage: React.FC<LearnPagePropsType> = () => {
                     <b>Question: </b>
                     {card.questionImg && card.questionImg.length > 15 ? (
                         <div className={s.xxx}>
-                            <img
-                                src={card.questionImg}
-                                alt="question image"
-                                style={{ width: '250px' }}
-                                className={s.questionImage}
-                            />
+                            <img src={card.questionImg} alt="question" style={{ width: '250px' }} className={s.questionImage} />
                         </div>
                     ) : (
                         card.question

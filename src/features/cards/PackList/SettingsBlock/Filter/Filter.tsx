@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import s from '../SettingsBlock.module.scss'
 import Button from '@mui/material/Button'
 import { useAppSelector } from '../../../../../app/store'
@@ -8,11 +8,8 @@ type FilterPropsType = {
 }
 export const Filter: React.FC<FilterPropsType> = ({ setFilterPack }) => {
     const myId = useAppSelector((state) => state.auth.user._id)
-    const userIdSetting = useAppSelector((state) => state.setting.user_id)
 
     const [disableButton, setDisableButton] = React.useState<boolean[]>([false, true])
-
-    // userIdSetting?setDisableButton([true, false]):setDisableButton([false, true])
 
     const showMyPackHandler = () => {
         setFilterPack(myId, 1)

@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { Checkbox, TableCell, TableRow } from '@mui/material'
+import { TableCell, TableRow } from '@mui/material'
 import { NavLink } from 'react-router-dom'
 import s from './RowPack.module.scss'
 import SchoolIcon from '@mui/icons-material/School'

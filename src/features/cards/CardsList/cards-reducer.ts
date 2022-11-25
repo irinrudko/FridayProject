@@ -11,7 +11,7 @@ import { AppRootStateType, AppThunk } from '../../../app/store'
 import { setAppStatusAC } from '../../../app/app-reducer'
 
 const initialState = {
-    cards: <CardType[]>[
+    cards: [
         {
             _id: '',
             cardsPack_id: '',
@@ -32,7 +32,7 @@ const initialState = {
             updated: '',
             __v: 0,
         },
-    ],
+    ] as CardType[],
     packUserId: '',
     packName: '',
     packPrivate: false,
@@ -51,11 +51,11 @@ export type CardsInitialStateType = typeof initialState
 export const cardsReducer = (state: CardsInitialStateType = initialState, action: CardsActionsType): CardsInitialStateType => {
     switch (action.type) {
         case 'CARDS/GET-CARDS':
-            return <CardsInitialStateType>{ ...action.cards }
+            return { ...action.cards } as CardsInitialStateType
         // return {...action.cards}
         case 'CARDS/RESET-CARDS':
             const initialValue = {
-                cards: <CardType[]>[
+                cards: [
                     {
                         _id: '',
                         cardsPack_id: '',
@@ -76,7 +76,7 @@ export const cardsReducer = (state: CardsInitialStateType = initialState, action
                         updated: '',
                         __v: 0,
                     },
-                ],
+                ] as CardType[],
                 packUserId: '',
                 packName: '',
                 packPrivate: false,

@@ -40,7 +40,7 @@ const UploadPhoto: FC<UploadPhotoPropsType> = ({ setUploadPhoto, uploadPhoto }) 
             <input type="file" onChange={uploadHandler} style={{ display: 'none' }} />
             {uploadPhoto && (
                 <div>
-                    <img src={uploadPhoto} alt="your uploaded image" className={s.uploadPhoto} />
+                    <img src={uploadPhoto} alt="upload your cover" className={s.uploadPhoto} />
                 </div>
             )}
             <Button variant="contained" component="span" className={s.button}>
