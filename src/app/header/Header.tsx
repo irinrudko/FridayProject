@@ -46,7 +46,7 @@ const Header = () => {
                             {name}
                         </div>
                         <div>
-                            <img className={s.img} alt="my avatar" src={viewAvatar} />
+                            <img className={s.img} alt="my avatar" onClick={onClickHandler} src={viewAvatar} />
                         </div>
                         <div className={inputClass}>
                             <CollapsedMenu setCollapsed={() => setCollapsed(true)} />
