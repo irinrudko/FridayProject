@@ -27,7 +27,7 @@ const CollapsedMenu: FC<CollapsedMenuPropsType> = ({ setCollapsed }) => {
             <NavLink to={routes.packsList}>
                 <div className={s.linkBlock} onClick={setCollapsed}>
                     <span className={s.iconPack}></span>
-                    <span className={s.text}>Pack</span>
+                    <span className={s.text}>Packs</span>
                 </div>
             </NavLink>
             <NavLink to={routes.login} onClick={redirectToLogin}>

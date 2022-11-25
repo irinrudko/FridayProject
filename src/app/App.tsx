@@ -8,7 +8,6 @@ import { useAppDispatch, useAppSelector } from './store'
 import { initializedTC } from './app-reducer'
 
 function App() {
-    // debugger
     const status = useAppSelector((store) => store.app.status)
     const dispatch = useAppDispatch()
     const initialized = useAppSelector((store) => store.app.initialized)
