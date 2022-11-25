@@ -12,7 +12,6 @@ type SearchPropsType = {
 }
 
 export const Search: React.FC<SearchPropsType> = ({ searchPack, searchStyle, setSearchValue, searchValue }) => {
-    // const [searchValue, setSearchValue] = React.useState('')
     const debouncedValue = useDebouce<string>(searchValue, 500)
     const onChangeSearchHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setSearchValue(e.currentTarget.value)
@@ -23,7 +22,7 @@ export const Search: React.FC<SearchPropsType> = ({ searchPack, searchStyle, set
 
     return (
         <>
-            <div className={s.descriptionBlock}>{/*<span>Search</span>*/}</div>
+            <div className={s.descriptionBlock}></div>
             <Paper component="form" sx={searchStyle}>
                 <IconButton type="button" sx={{ p: '10px', cursor: 'pointer' }} aria-label="search">
                     <SearchIcon />
@@ -31,7 +30,7 @@ export const Search: React.FC<SearchPropsType> = ({ searchPack, searchStyle, set
                 <InputBase
                     sx={{ ml: 1, flex: 1 }}
                     type={'search'}
-                    placeholder="Provide your text"
+                    placeholder="What pack would you like to find?"
                     onChange={onChangeSearchHandler}
                     value={searchValue}
                     style={{ paddingRight: '8px', cursor: 'pointer' }}
