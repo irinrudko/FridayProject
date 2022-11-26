@@ -1,6 +1,6 @@
 {
     "name": "learning-cards",
-    "homepage": "https://cards-irinrudko.vercel.app/",
+    "homepage": "https://irinrudko.github.io/learning-cards/",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
