@@ -21,13 +21,12 @@ export const Filter: React.FC<FilterPropsType> = ({ setFilterPack }) => {
         setDisableButton([false, true])
     }
     return (
-        <div className={s.settingButton}>
+        <div className={s.buttonsContainer}>
             <Button
                 type={'submit'}
                 variant={'contained'}
-                color={'primary'}
                 disabled={disableButton[0]}
-                style={{ width: '100px' }}
+                className={s.button}
                 onClick={showMyPackHandler}
             >
                 My
@@ -36,9 +35,8 @@ export const Filter: React.FC<FilterPropsType> = ({ setFilterPack }) => {
             <Button
                 type={'submit'}
                 variant={'contained'}
-                color={'primary'}
                 disabled={disableButton[1]}
-                style={{ width: '100px' }}
+                className={s.button}
                 onClick={showAllPackHandler}
             >
                 All
