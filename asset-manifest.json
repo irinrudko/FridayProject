@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/learning-cards/static/css/main.0ca23310.css",
-    "main.js": "/learning-cards/static/js/main.37a3cf13.js",
+    "main.css": "/learning-cards/static/css/main.17befab6.css",
+    "main.js": "/learning-cards/static/js/main.ceb18aad.js",
     "static/js/787.5a03379c.chunk.js": "/learning-cards/static/js/787.5a03379c.chunk.js",
     "static/media/avatar.jpg": "/learning-cards/static/media/avatar.19108967af9a62b77256.jpg",
     "static/media/iconSendForgotPassword.svg": "/learning-cards/static/media/iconSendForgotPassword.836e246556dd50d082cf05d8309583a6.svg",
@@ -11,12 +11,12 @@
     "static/media/logout.svg": "/learning-cards/static/media/logout.819881059549eb959ed2.svg",
     "static/media/profile.svg": "/learning-cards/static/media/profile.df46afb1e4b9a8c53af1.svg",
     "static/media/backProfile.svg": "/learning-cards/static/media/backProfile.9c43ee4473c188dca315.svg",
-    "main.0ca23310.css.map": "/learning-cards/static/css/main.0ca23310.css.map",
-    "main.37a3cf13.js.map": "/learning-cards/static/js/main.37a3cf13.js.map",
+    "main.17befab6.css.map": "/learning-cards/static/css/main.17befab6.css.map",
+    "main.ceb18aad.js.map": "/learning-cards/static/js/main.ceb18aad.js.map",
     "787.5a03379c.chunk.js.map": "/learning-cards/static/js/787.5a03379c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0ca23310.css",
-    "static/js/main.37a3cf13.js"
+    "static/css/main.17befab6.css",
+    "static/js/main.ceb18aad.js"
   ]
 }
