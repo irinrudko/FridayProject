@@ -9,12 +9,11 @@
     .mainBlock {
         width: 1000px;
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
 
         .navLink {
             &:hover {
                 color: #2196f3;
-                transition: color 1s ease;
             }
 
             .button {
@@ -33,14 +32,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.8s ease 0s;
 
             .nav {
                 position: absolute;
                 opacity: 0;
                 top: -315px;
                 right: 127px;
-                transition: all 0.8s ease 0s;
                 z-index: 10;
             }
 
@@ -67,6 +64,7 @@
                 height: 36px;
                 border-radius: 50%;
                 margin-left: 10px;
+                cursor: pointer;
             }
         }
     }

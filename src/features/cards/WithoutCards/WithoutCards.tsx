@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import s from './WithoutCards.module.scss'
 import Button from '@mui/material/Button'
-import { Navigate, NavLink, useNavigate, useParams } from 'react-router-dom'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import { routes } from '../../../app/routes/Routes'
 import { BackPackArrow } from '../../../common/components/BackPackArrow/BackPackArrow'
 import { getCardsTC, resetCardAC } from '../CardsList/cards-reducer'
@@ -9,9 +9,9 @@ import { useAppDispatch, useAppSelector } from '../../../app/store'
 import { useModal } from '../../../common/components/Modal/useModal'
 import { AddCardModal } from '../../modals/cardsModals/AddCardModal'
 
-type WithoutCards = {}
+type WithoutCardsType = {}
 
-export const WithoutCards: React.FC<WithoutCards> = ({}) => {
+export const WithoutCards: React.FC<WithoutCardsType> = (props) => {
     const { addCardModal, toggleAddCardModal } = useModal()
 
     const dispatch = useAppDispatch()
@@ -21,12 +21,6 @@ export const WithoutCards: React.FC<WithoutCards> = ({}) => {
     const me = userId === packUserId
 
     let navigate = useNavigate()
-
-    const newCard = {
-        card: {
-            cardsPack_id: urlPackId!,
-        },
-    }
 
     const addCard = () => {
         toggleAddCardModal()

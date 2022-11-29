@@ -1,10 +1,10 @@
 @import '../../styles/sass/mixins';
 .paginationBlock {
-    @include flex(row, start, center, wrap);
+    @include flex(row, flex-start, center, wrap);
     margin-bottom: 36px;
     margin-top: 36px;
     .containerBaseSelect {
-        @include flex(row, start, center, wrap);
+        @include flex(row, flex-start, center, wrap);
         margin-left: 30px;
     }
 }

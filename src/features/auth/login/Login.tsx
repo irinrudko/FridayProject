@@ -74,6 +74,11 @@ export const Login = () => {
                 <form onSubmit={formik.handleSubmit}>
                     <FormControl className={authStyle.form}>
                         <FormLabel>
+                            <div>
+                                <p>To test it use common account credentials:</p>
+                                <p>Email: test.irinrudko@gmail.com</p>
+                                <p>Password: test-test</p>
+                            </div>
                             <h2 className={authStyle.title}>Sign in</h2>
                         </FormLabel>
                         <FormGroup>

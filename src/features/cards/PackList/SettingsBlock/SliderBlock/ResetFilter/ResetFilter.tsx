@@ -1,7 +1,6 @@
 import React from 'react'
 import s from '../../SettingsBlock.module.scss'
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff'
-import { InitialStateSettingType } from '../../setting-reducer'
 import { GetPackParams } from '../../../../../../api/packsAPI'
 
 type ResetFilterPropsType = {

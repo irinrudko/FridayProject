@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { FormControl, InputLabel, NativeSelect, TextField } from '@mui/material'
-import { SelectChangeEvent } from '@mui/material/Select'
 import { useAppDispatch } from '../../../app/store'
 import { BasicModal } from '../../../common/components/Modal/BasicModal'
 import { updateCardTC } from '../../cards/CardsList/cards-reducer'

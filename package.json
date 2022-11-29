@@ -1,6 +1,6 @@
 {
-    "name": "my-app",
-    "homepage": "https://nazaruk-d.github.io/FridayProject",
+    "name": "learning-cards",
+    "homepage": "https://irinrudko.github.io/learning-cards/",
     "version": "0.1.0",
     "private": true,
     "dependencies": {

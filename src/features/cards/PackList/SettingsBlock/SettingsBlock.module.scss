@@ -1,35 +1,37 @@
 @import '../../../../common/styles/sass/mixins';
 
 .settingsBlock {
-    //border: 1px solid #525252;
-    @include flex(row, start, center, wrap);
+    @include flex(row, flex-start, center, wrap);
     margin-bottom: 24px;
     margin-top: 8px;
 
-    //.descriptionBlock {
-    //    //border: 1px solid #282c34;
-    //    @include flex(row, start, center, wrap);
-    //    @include text(14px, 17px, 500);
-    //@include flex(row, start, center, wrap);
-    //margin-bottom: 24px;
-
     .descriptionBlock {
-        @include flex(row, start, center, wrap);
+        @include flex(row, flex-start, center, wrap);
         @include text(14px, 17px, 500);
         margin-bottom: 8px;
 
         .second {
             padding-left: 390px;
         }
-
         .third {
             padding-left: 120px;
         }
     }
 
-    .settingButton {
+    .buttonsContainer {
         @include flex(row, flex-start, center, wrap);
         margin-right: 32px;
+
+        .button:disabled {
+            background-color: #2d7dcd;
+            width: 100px;
+            color: #ffffff;
+            border: 1px solid #ced8e1;
+        }
+        .button {
+            background-color: #1976d2;
+            width: 100px;
+        }
     }
     .slider {
         @include flex(row, flex-start, center, wrap);

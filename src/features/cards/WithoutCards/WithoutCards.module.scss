@@ -36,7 +36,7 @@
 
     .descriptionBlock {
         //border: 1px solid #282c34;
-        @include flex(column, start, center, wrap);
+        @include flex(column, flex-start, center, wrap);
 
         .text {
             @include text(16px, 20px, 400);

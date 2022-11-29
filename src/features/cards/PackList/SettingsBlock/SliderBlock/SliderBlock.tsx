@@ -3,7 +3,6 @@ import s from '../SettingsBlock.module.scss'
 import { Box, Slider } from '@mui/material'
 import { useAppSelector } from '../../../../../app/store'
 import { ResetFilter } from './ResetFilter/ResetFilter'
-import { InitialStateSettingType } from '../setting-reducer'
 import { GetPackParams } from '../../../../../api/packsAPI'
 import { useDebouce } from '../../../../../common/assets/Hook/useDebouce'
 
@@ -16,7 +15,6 @@ export const SliderBlock: React.FC<SliderBlockPropsType> = ({ resetPackListFilte
     const minValue = useAppSelector((state) => state.setting.min)
     const maxValue = useAppSelector((state) => state.setting.max)
     const user_id = useAppSelector((state) => state.setting.user_id)
-    const pageCount = useAppSelector((state) => state.setting.pageCount)
 
     const [value, setValue] = React.useState<number[]>([0, 110])
     useEffect(() => {
