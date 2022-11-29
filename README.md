@@ -1,46 +1,96 @@
-# Getting Started with Create React App
+# Education cards
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+The essence of the project is that the user can choose a pack on a specific topic or create it on their own and start learning.<br/>
+The user launches a training program in which he independently answers the question. <br/>
+After that, he can look at the answer and set the grade to this question. <br/>
+Depending on the value set by the user, the frequency of hitting this question in the future depends. <br/>
+Team project. The team worked according to the template - <a href="https://www.figma.com/file/C1HxtTFYhUh57G3z18rn5v/%D0%9E%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BF%D0%BE-%D0%BA%D0%B0%D1%80%D1%82%D0%BE%D1%87%D0%BA%D0%B0%D0%BC?node-id=34242%3A6&t=ygaU0bzMjH8eRyaU-0">figma</a> <br/>
+About the team: <a href="https://github.com/Nazaruk-D">Dmitry Nazaruk</a>, <a href="https://github.com/irinrudko">Iryna Rudzko</a>, <a href="https://github.com/Bmwbyas">Askerko Alexandr</a>.<br/>
+To create tasks we've used Jira, got git to collaborate, and had daily scrum meetings to communicate and catch up with the team.<br/>
+
+<img width="800px" src="./src/common/assets/image/example.png">
+
+Application functionality: <br/>
+
+-   Loginization / registration <br/>
+-   Password recovery <br/>
+-   Adding / edit / removal a pack <br/>
+-   Adding / edit / removal a card <br/>
+-   Grading each card <br/>
+-   Searching / filtering packs and cards <br/>
+-   Adding a pack cover <br/>
+-   Image instead of text question <br/>
+
+---
+
+### :briefcase: language and tools
+
+<img align="left" alt="JavaScript" width="50px" style="padding-right: 15px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"/>
+<img align="left" alt="JavaScript" width="50px" style="padding-right: 15px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-plain.svg"/>
+<img align="left" alt="JavaScript" width="50px" style="padding-right: 15px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg"/>
+<img align="left" alt="JavaScript" width="50px" style="padding-right: 15px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg"/>
+<img align="left" alt="JavaScript" width="50px" style="padding-right: 15px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg"/>
+<img align="left" alt="JavaScript" width="50px" style="padding-right: 15px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"/>
+<div style="margin-bottom: 40px"></div>
+<br/>
+<br/>
+
+[//]: # '___'
+
+## Loginization / Registration
+
+To register, just enter your email and a new password (must consist of at least 8 characters) <br/>
+If your email is not in the database, a new account will be registered.<br/>
+Next, go to Login and enter your login details.<br/>
+
+<img width="800px" src="./src/common/assets/image/signUp.png">
+
+The following libraries are installed in this project:
+
+-   **material-ui**
+
+-   **axios**
+
+-   **formik**
+
+-   **gh-pages**
+
+-   **jest**
+
+-   **react** and **@types/react**
+
+-   **react-dom** and **@types/react-dom**
+
+-   **react-redux** and **@types/react-redux**
+
+-   **react-router-dom** and **@types/react-router-dom**
+
+-   **react-scripts**
+
+-   **redux**
+
+-   **redux-thunk**
+
+-   **reselect**
+
+-   **typescript**
+
+-   **uuid** and **@types/uuid**
+
+-   **sass**
+
+-   **prettier**
+
+## How to start a project
+
+After git clone 'link' install all dependencies from package.json:
+
+### `yarn`
+
+and then run the project:
 
 ### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
